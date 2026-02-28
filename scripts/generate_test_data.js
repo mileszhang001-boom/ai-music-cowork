@@ -38,7 +38,7 @@ function generateTestFile() {
     metadata: {
       version: '2.0',
       created_at: new Date().toISOString().split('T')[0],
-      description: '场景模板测试数据集 - 100个预置模板 + 200条变体',
+      description: '场景模板测试数据集 - 精简版',
       total_presets: presets.length,
       total_generated: generated.length
     },
@@ -53,6 +53,9 @@ function generateTestFile() {
   console.log('  - 预置模板:', presets.length);
   console.log('  - 生成变体:', generated.length);
   console.log('  - 输出路径:', outputPath);
+  
+  const size = fs.statSync(outputPath).size / 1024;
+  console.log('  - 文件大小:', size.toFixed(1), 'KB');
 }
 
 function inferSocialContext(t) {
@@ -121,84 +124,54 @@ function generateVariants(templates) {
   const variants = [];
   let id = 1;
 
-  const timeVariants = [
-    { name: '早高峰变体', time: 0.32, weather: 'clear', mood: 'neutral' },
-    { name: '午间变体', time: 0.5, weather: 'sunny', mood: 'calm' },
-    { name: '傍晚变体', time: 0.75, weather: 'clear', mood: 'happy' },
-    { name: '深夜变体', time: 0.05, weather: 'clear', mood: 'calm' },
-    { name: '凌晨变体', time: 0.02, weather: 'clear', mood: 'tired' }
+  const variantConfigs = [
+    { suffix: '雨天版', env: { weather: 'rain' }, mood: 'calm' },
+    { suffix: '晴天版', env: { weather: 'sunny' }, mood: 'happy' },
+    { suffix: '夜间版', env: { time_of_day: 0.9 }, mood: 'calm' },
+    { suffix: '家庭版', passengers: { children: 1, adults: 2, seniors: 0 } },
+    { suffix: '情侣版', passengers: { children: 0, adults: 2, seniors: 0 } }
   ];
 
-  const weatherVariants = [
-    { name: '晴天', weather: 'sunny', mood: 'happy' },
-    { name: '雨天', weather: 'rain', mood: 'calm' },
-    { name: '雪天', weather: 'snow', mood: 'neutral' },
-    { name: '雾天', weather: 'fog', mood: 'neutral' },
-    { name: '多云', weather: 'cloudy', mood: 'neutral' }
-  ];
+  const categoryTemplates = {};
+  templates.forEach(t => {
+    if (!categoryTemplates[t.category]) {
+      categoryTemplates[t.category] = [];
+    }
+    if (categoryTemplates[t.category].length < 5) {
+      categoryTemplates[t.category].push(t);
+    }
+  });
 
-  const socialVariants = [
-    { name: '独自', passengers: { children: 0, adults: 1, seniors: 0 }, context: 'solo' },
-    { name: '情侣', passengers: { children: 0, adults: 2, seniors: 0 }, context: 'couple' },
-    { name: '家庭', passengers: { children: 1, adults: 2, seniors: 0 }, context: 'family' },
-    { name: '朋友', passengers: { children: 0, adults: 3, seniors: 0 }, context: 'group' },
-    { name: '三代', passengers: { children: 1, adults: 2, seniors: 1 }, context: 'family' }
-  ];
+  for (const [category, categoryTpls] of Object.entries(categoryTemplates)) {
+    for (const t of categoryTpls) {
+      const config = variantConfigs[Math.floor(Math.random() * variantConfigs.length)];
+      
+      const signals = {
+        environment: { ...config.env },
+        vehicle: {},
+        internal_camera: {
+          passengers: config.passengers || { children: 0, adults: 1, seniors: 0 },
+          mood: config.mood || 'neutral'
+        }
+      };
 
-  const baseTemplates = templates.slice(0, 20);
-
-  for (const t of baseTemplates) {
-    for (const v of timeVariants) {
-      variants.push(createVariant(id++, t, v.name + '_' + t.name, {
-        environment: { time_of_day: v.time, weather: v.weather },
-        internal_camera: { mood: v.mood }
-      }));
+      variants.push({
+        scene_id: `gen_${String(id++).padStart(3, '0')}`,
+        scene_type: t.scene_type,
+        scene_name: `${t.name}_${config.suffix}`,
+        scene_narrative: `${t.name}的${config.suffix}变体`,
+        intent: {
+          mood: t.intent.mood,
+          energy_level: t.intent.energy_level,
+          atmosphere: t.intent.atmosphere
+        },
+        hints: t.hints,
+        input_signals: signals
+      });
     }
   }
 
-  for (const t of baseTemplates) {
-    for (const v of weatherVariants) {
-      variants.push(createVariant(id++, t, v.name + '_' + t.name, {
-        environment: { weather: v.weather },
-        internal_camera: { mood: v.mood }
-      }));
-    }
-  }
-
-  for (const t of baseTemplates) {
-    for (const v of socialVariants) {
-      variants.push(createVariant(id++, t, v.name + '_' + t.name, {
-        internal_camera: { passengers: v.passengers }
-      }));
-    }
-  }
-
-  return variants.slice(0, 250);
-}
-
-function createVariant(id, template, name, overrides) {
-  const signals = {
-    environment: overrides.environment || {},
-    vehicle: overrides.vehicle || {},
-    internal_camera: {
-      passengers: overrides.internal_camera?.passengers || { children: 0, adults: 1, seniors: 0 },
-      mood: overrides.internal_camera?.mood || 'neutral'
-    }
-  };
-
-  return {
-    scene_id: `gen_${String(id).padStart(3, '0')}`,
-    scene_type: template.scene_type,
-    scene_name: name,
-    scene_narrative: `${name}场景`,
-    intent: {
-      mood: template.intent.mood,
-      energy_level: template.intent.energy_level,
-      atmosphere: template.intent.atmosphere
-    },
-    hints: template.hints,
-    input_signals: signals
-  };
+  return variants;
 }
 
 generateTestFile();
