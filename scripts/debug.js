@@ -134,6 +134,17 @@ function formatTime(timeOfDay) {
   return '深夜 (21:00-24:00)';
 }
 
+function parseLooseJson(str) {
+  let jsonStr = str.trim();
+  
+  jsonStr = jsonStr.replace(/,\s*}/g, '}');
+  jsonStr = jsonStr.replace(/,\s*]/g, ']');
+  jsonStr = jsonStr.replace(/\/\/.*$/gm, '');
+  jsonStr = jsonStr.replace(/\/\*[\s\S]*?\*\//g, '');
+  
+  return JSON.parse(jsonStr);
+}
+
 function showJsonInputMode() {
   clearScreen();
   console.log(`${COLORS.bold}${COLORS.cyan}`);
@@ -150,7 +161,8 @@ function showJsonInputMode() {
   console.log(`    ${COLORS.cyan}Enter${COLORS.reset} - 换行`);
   console.log(`    ${COLORS.cyan}Tab${COLORS.reset}   - 确认执行`);
   console.log(`    ${COLORS.cyan}Esc${COLORS.reset}   - 取消返回`);
-  console.log(`\n  ${COLORS.dim}请输入JSON数据:${COLORS.reset}\n`);
+  console.log(`\n  ${COLORS.dim}支持宽松JSON格式（允许尾随逗号、注释）${COLORS.reset}`);
+  console.log(`  ${COLORS.dim}请输入JSON数据:${COLORS.reset}\n`);
   
   if (state.jsonInputBuffer) {
     const lines = state.jsonInputBuffer.split('\n');
@@ -808,7 +820,7 @@ async function main() {
         try {
           const jsonStr = state.jsonInputBuffer.trim();
           if (jsonStr) {
-            state.customInput = JSON.parse(jsonStr);
+            state.customInput = parseLooseJson(jsonStr);
             state.jsonInputMode = false;
             state.jsonInputBuffer = '';
             state.step = 3;
