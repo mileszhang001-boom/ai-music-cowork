@@ -247,125 +247,382 @@ async function runAndShowResult() {
 
 function showLayer1Result(scenario, output, time) {
   const activeSources = output._meta?.active_sources || [];
-  const allSources = ['vhal', 'environment', 'external_camera', 'internal_camera', 'internal_mic', 'voice'];
-  const sourceStatus = allSources.map(s => ({
-    source: s,
-    status: activeSources.includes(s) ? '✅ 活跃' : (output.signals[s] && Object.keys(output.signals[s]).length > 0 ? '⚠️ 有数据' : '○ 无')
-  }));
+  const allSources = [
+    { key: 'vhal', name: '车辆信号(VHAL)' },
+    { key: 'environment', name: '环境信号' },
+    { key: 'external_camera', name: '车外摄像头' },
+    { key: 'internal_camera', name: '车内摄像头' },
+    { key: 'internal_mic', name: '车内麦克风' },
+    { key: 'voice', name: '语音识别' }
+  ];
+  
+  const sourceStatus = allSources.map(s => {
+    const hasData = output.signals[s.key] && Object.keys(output.signals[s.key] || {}).length > 0;
+    const isActive = activeSources.includes(s.key);
+    let status, detail = '';
+    
+    if (isActive) {
+      status = `${COLORS.green}✅ 跑通${COLORS.reset}`;
+      detail = getSignalDetail(s.key, output.signals[s.key]);
+    } else if (hasData) {
+      status = `${COLORS.yellow}⚠️ 有数据${COLORS.reset}`;
+      detail = getSignalDetail(s.key, output.signals[s.key]);
+    } else {
+      status = `${COLORS.dim}○ 空信号${COLORS.reset}`;
+    }
+    
+    return { name: s.name, status, detail };
+  });
 
-  printBox('📊 信号源状态', sourceStatus.map(s => `${s.source.padEnd(16)}: ${s.status}`), COLORS.yellow);
+  console.log(`\n${COLORS.bold}${COLORS.blue}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.blue}  📥 输入信号分析${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.blue}════════════════════════════════════════════════════════${COLORS.reset}`);
+  
+  sourceStatus.forEach(s => {
+    console.log(`  ${s.name.padEnd(16)}: ${s.status}`);
+    if (s.detail) console.log(`    ${COLORS.dim}${s.detail}${COLORS.reset}`);
+  });
 
+  console.log(`\n${COLORS.bold}${COLORS.green}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.green}  📤 StandardizedSignals 输出${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.green}════════════════════════════════════════════════════════${COLORS.reset}`);
+  
+  console.log(`\n  ${COLORS.cyan}综合置信度: ${(output.confidence.overall * 100).toFixed(0)}%${COLORS.reset}`);
+  
+  console.log(`\n  ${COLORS.yellow}环境状态:${COLORS.reset}`);
+  console.log(`    时间: ${formatTime(output.signals?.environment?.time_of_day)}`);
+  console.log(`    日期类型: ${output.signals?.environment?.date_type || 'weekday'}`);
+  console.log(`    天气: ${output.signals?.environment?.weather || '未知'}`);
+  
+  console.log(`\n  ${COLORS.yellow}车辆状态:${COLORS.reset}`);
+  console.log(`    车速: ${output.signals?.vehicle?.speed_kmh || 0} km/h`);
+  
   const extCam = output.signals?.external_camera || {};
+  console.log(`\n  ${COLORS.yellow}车外环境:${COLORS.reset}`);
+  console.log(`    场景描述: ${extCam.scene_description || '未知'}`);
+  console.log(`    主色调: ${extCam.primary_color || '未知'}`);
+  console.log(`    亮度: ${((extCam.brightness || 0) * 100).toFixed(0)}%`);
+  
   const intCam = output.signals?.internal_camera || {};
+  console.log(`\n  ${COLORS.yellow}车内状态:${COLORS.reset}`);
+  console.log(`    驾驶员心情: ${intCam.mood || '未知'} (置信度: ${((intCam.confidence || 0) * 100).toFixed(0)}%)`);
+  console.log(`    乘客分布: 儿童${intCam.passengers?.children || 0} 成人${intCam.passengers?.adults || 0} 老人${intCam.passengers?.seniors || 0}`);
+  
+  const intMic = output.signals?.internal_mic || {};
+  console.log(`\n  ${COLORS.yellow}车内音频:${COLORS.reset}`);
+  console.log(`    音量级别: ${((intMic.volume_level || 0) * 100).toFixed(0)}%`);
+  console.log(`    检测到人声: ${intMic.has_voice ? '是' : '否'}`);
+  
+  const userQuery = output.signals?.user_query;
+  if (userQuery) {
+    console.log(`\n  ${COLORS.yellow}用户请求:${COLORS.reset}`);
+    console.log(`    文本: "${userQuery.text || ''}"`);
+    console.log(`    意图: ${userQuery.intent || '未知'}`);
+  }
 
-  printBox('📤 StandardizedSignals 输出', [
-    `置信度: ${(output.confidence.overall * 100).toFixed(0)}%`,
-    `时间: ${formatTime(output.signals?.environment?.time_of_day)}`,
-    `天气: ${output.signals?.environment?.weather || '未知'}`,
-    `车速: ${output.signals?.vehicle?.speed_kmh || 0} km/h`,
-    `心情: ${intCam.mood || '未知'}`,
-    `乘客: 儿童${intCam.passengers?.children || 0} 成人${intCam.passengers?.adults || 0}`
-  ], COLORS.green);
+  console.log(`\n${COLORS.bold}${COLORS.cyan}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.cyan}  📄 输出JSON (精简)${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.cyan}════════════════════════════════════════════════════════${COLORS.reset}`);
+  const jsonOutput = {
+    confidence: output.confidence,
+    signals: {
+      environment: output.signals?.environment,
+      vehicle: output.signals?.vehicle,
+      internal_camera: { mood: intCam.mood, passengers: intCam.passengers },
+      external_camera: { scene_description: extCam.scene_description },
+      user_query: userQuery
+    }
+  };
+  console.log(`\n${COLORS.dim}${JSON.stringify(jsonOutput, null, 2)}${COLORS.reset}`);
 
-  printBox('⏱️ 执行摘要', [`耗时: ${time}ms`], COLORS.cyan);
+  console.log(`\n${COLORS.bold}⏱️ 执行耗时: ${time}ms${COLORS.reset}`);
+}
+
+function getSignalDetail(key, data) {
+  if (!data) return '';
+  const keys = Object.keys(data);
+  if (keys.length === 0) return '';
+  return keys.slice(0, 3).join(', ') + (keys.length > 3 ? '...' : '');
 }
 
 function showLayer2Result(l1, l2, validation, time) {
-  const channel = l2.scene_descriptor.scene_type?.includes('fatigue') ? '🚨 紧急通道' : 
-                 (l1.signals?.user_query ? '🐢 慢通道' : '⚡ 快通道');
+  const isEmergency = l2.scene_descriptor.scene_type?.includes('fatigue');
+  const hasUserQuery = l1.signals?.user_query;
   
-  printBox('⚙️ 推理过程', [
-    `通道: ${channel}`,
-    `场景: ${l2.scene_descriptor.scene_type} (${l2.scene_descriptor.scene_name})`,
-    `校验: ${validation.passed ? '✅ 通过' : '⚠️ 已修复'}`
-  ], COLORS.yellow);
+  let channel, channelReason;
+  if (isEmergency) {
+    channel = `${COLORS.red}🚨 紧急通道${COLORS.reset}`;
+    channelReason = '检测到疲劳驾驶等紧急情况';
+  } else if (hasUserQuery) {
+    channel = `${COLORS.magenta}🐢 慢通道 (LLM)${COLORS.reset}`;
+    channelReason = `用户语音请求: "${hasUserQuery.text}"`;
+  } else {
+    channel = `${COLORS.green}⚡ 快通道 (模板匹配)${COLORS.reset}`;
+    channelReason = '基于传感器数据自动匹配场景模板';
+  }
 
-  printBox('📤 Scene Descriptor 输出', [
-    `能量: ${l2.scene_descriptor.intent?.energy_level || 0}`,
-    `情绪: valence=${l2.scene_descriptor.intent?.mood?.valence || 0.5}`,
-    `播报: "${l2.scene_descriptor.announcement || '无'}"`
-  ], COLORS.green);
+  console.log(`\n${COLORS.bold}${COLORS.yellow}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.yellow}  ⚙️ 场景执行判断${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.yellow}════════════════════════════════════════════════════════${COLORS.reset}`);
+  
+  console.log(`\n  执行通道: ${channel}`);
+  console.log(`  判断依据: ${channelReason}`);
+  console.log(`  匹配场景: ${COLORS.bold}${l2.scene_descriptor.scene_name}${COLORS.reset} (${l2.scene_descriptor.scene_type})`);
+  console.log(`  数据来源: ${l2.meta?.source || 'template'}`);
+  
+  if (l2.meta?.matched_triggers) {
+    console.log(`  触发条件: ${l2.meta.matched_triggers.join(', ')}`);
+  }
 
-  printBox('⏱️ 执行摘要', [`耗时: ${time}ms`], COLORS.cyan);
+  console.log(`\n${COLORS.bold}${COLORS.green}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.green}  ✅ 规则校验${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.green}════════════════════════════════════════════════════════${COLORS.reset}`);
+  
+  console.log(`\n  校验结果: ${validation.passed ? `${COLORS.green}✅ 通过${COLORS.reset}` : `${COLORS.yellow}⚠️ 已自动修复${COLORS.reset}`}`);
+  if (validation.warnings && validation.warnings.length > 0) {
+    console.log(`  警告信息:`);
+    validation.warnings.forEach(w => {
+      console.log(`    - ${w.message}`);
+    });
+  }
+  if (validation.fixes && validation.fixes.length > 0) {
+    console.log(`  自动修复:`);
+    validation.fixes.forEach(f => {
+      console.log(`    - ${f.field}: ${f.from} → ${f.to}`);
+    });
+  }
+
+  console.log(`\n${COLORS.bold}${COLORS.cyan}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.cyan}  📤 Scene Descriptor 输出${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.cyan}════════════════════════════════════════════════════════${COLORS.reset}`);
+  
+  const intent = l2.scene_descriptor.intent || {};
+  console.log(`\n  ${COLORS.yellow}场景意图:${COLORS.reset}`);
+  console.log(`    能量级别: ${intent.energy_level || 0} / 1.0`);
+  console.log(`    情绪效价(valence): ${intent.mood?.valence || 0.5} (积极←→消极)`);
+  console.log(`    情绪唤醒(arousal): ${intent.mood?.arousal || 0.5} (平静←→兴奋)`);
+  console.log(`    社交语境: ${intent.social_context || 'solo'}`);
+  
+  const hints = l2.scene_descriptor.hints || {};
+  console.log(`\n  ${COLORS.yellow}内容提示:${COLORS.reset}`);
+  console.log(`    音乐流派: ${(hints.music?.genres || []).join(', ') || '自动选择'}`);
+  console.log(`    音乐年代: ${(hints.music?.decades || []).join(', ') || '不限'}`);
+  console.log(`    灯光主题: ${hints.lighting?.color_theme || 'default'}`);
+
+  console.log(`\n${COLORS.bold}${COLORS.magenta}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.magenta}  📢 用户回复${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.magenta}════════════════════════════════════════════════════════${COLORS.reset}`);
+  
+  const announcement = l2.scene_descriptor.announcement;
+  if (typeof announcement === 'string') {
+    console.log(`\n  播报文本: "${announcement}"`);
+  } else if (announcement) {
+    console.log(`\n  播报文本: "${announcement.text || '无'}"`);
+    console.log(`  语音风格: ${announcement.voice_style || 'default'}`);
+  } else {
+    console.log(`\n  播报文本: (无播报)`);
+  }
+
+  console.log(`\n${COLORS.bold}${COLORS.blue}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.blue}  📄 输出JSON (精简)${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.blue}════════════════════════════════════════════════════════${COLORS.reset}`);
+  const jsonOutput = {
+    scene_id: l2.scene_descriptor.scene_id,
+    scene_type: l2.scene_descriptor.scene_type,
+    scene_name: l2.scene_descriptor.scene_name,
+    intent: l2.scene_descriptor.intent,
+    hints: l2.scene_descriptor.hints,
+    announcement: l2.scene_descriptor.announcement
+  };
+  console.log(`\n${COLORS.dim}${JSON.stringify(jsonOutput, null, 2)}${COLORS.reset}`);
+
+  console.log(`\n${COLORS.bold}⏱️ 执行耗时: ${time}ms${COLORS.reset}`);
 }
 
 function showLayer3Result(sceneDescriptor, l3, time) {
   const content = l3.commands?.content;
   const lighting = l3.commands?.lighting;
   const audio = l3.commands?.audio;
+  const playlist = content?.playlist || [];
 
-  printBox('🎵 内容生成', [
-    `播放列表: ${content?.playlist?.length || 0} 首`,
-    `首曲: ${content?.playlist?.[0]?.title || '无'}`
-  ], COLORS.green);
+  console.log(`\n${COLORS.bold}${COLORS.green}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.green}  🎵 内容生成${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.green}════════════════════════════════════════════════════════${COLORS.reset}`);
+  
+  console.log(`\n  播放列表: ${COLORS.bold}${playlist.length} 首${COLORS.reset}`);
+  
+  if (playlist.length > 0) {
+    console.log(`\n  ${COLORS.yellow}曲目列表:${COLORS.reset}`);
+    playlist.slice(0, 5).forEach((track, i) => {
+      console.log(`    ${i + 1}. ${COLORS.bold}${track.title}${COLORS.reset} - ${track.artist}`);
+      console.log(`       流派: ${(track.genres || []).join(', ')} | 能量: ${track.energy || 0} | BPM: ${track.bpm || '未知'}`);
+    });
+    if (playlist.length > 5) {
+      console.log(`    ${COLORS.dim}... 还有 ${playlist.length - 5} 首${COLORS.reset}`);
+    }
+  }
 
-  printBox('💡 氛围灯', [
-    `主题: ${lighting?.theme || 'default'}`,
-    `亮度: ${((lighting?.intensity || 1) * 100).toFixed(0)}%`
-  ], COLORS.yellow);
+  console.log(`\n${COLORS.bold}${COLORS.yellow}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.yellow}  💡 氛围灯效果${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.yellow}════════════════════════════════════════════════════════${COLORS.reset}`);
+  
+  console.log(`\n  灯光主题: ${COLORS.bold}${lighting?.theme || 'default'}${COLORS.reset}`);
+  console.log(`  主色调: ${(lighting?.colors || []).join(' → ') || '默认'}`);
+  console.log(`  亮度: ${((lighting?.intensity || 1) * 100).toFixed(0)}%`);
+  console.log(`  动态模式: ${lighting?.pattern || 'steady'}`);
+  console.log(`  过渡时间: ${lighting?.transition_ms || 1000}ms`);
+  
+  if (lighting?.sync_with_music) {
+    console.log(`  音乐同步: ${COLORS.green}开启${COLORS.reset}`);
+  }
 
-  printBox('🔊 音频', [
-    `预设: ${audio?.preset || 'standard'}`,
-    `音量: ${audio?.settings?.volume_db || 65} dB`
-  ], COLORS.cyan);
+  console.log(`\n${COLORS.bold}${COLORS.cyan}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.cyan}  🔊 音频效果${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.cyan}════════════════════════════════════════════════════════${COLORS.reset}`);
+  
+  console.log(`\n  音效预设: ${COLORS.bold}${audio?.preset || 'standard'}${COLORS.reset}`);
+  console.log(`  音量: ${audio?.settings?.volume_db || 65} dB`);
+  
+  const eq = audio?.settings?.eq;
+  if (eq) {
+    console.log(`  均衡器: 低音+${eq.bass || 0} 中音+${eq.mid || 0} 高音+${eq.treble || 0}`);
+  }
+  
+  console.log(`  空间音频: ${audio?.settings?.spatial || 'off'}`);
+  console.log(`  降噪: ${audio?.settings?.noise_cancellation ? '开启' : '关闭'}`);
 
-  printBox('⏱️ 执行摘要', [`耗时: ${time}ms`], COLORS.cyan);
+  const experienceDesc = generateExperienceDescription(sceneDescriptor, content, lighting, audio);
+  
+  console.log(`\n${COLORS.bold}${COLORS.magenta}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.magenta}  🎯 场景体验描述${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.magenta}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`\n  ${COLORS.bold}${COLORS.green}${experienceDesc}${COLORS.reset}`);
+
+  console.log(`\n${COLORS.bold}⏱️ 执行耗时: ${time}ms${COLORS.reset}`);
+}
+
+function generateExperienceDescription(sceneDescriptor, content, lighting, audio) {
+  const sceneName = sceneDescriptor?.scene_name || '未知场景';
+  const trackCount = content?.playlist?.length || 0;
+  const firstTrack = content?.playlist?.[0];
+  const theme = lighting?.theme || 'default';
+  const brightness = ((lighting?.intensity || 1) * 100).toFixed(0);
+  const preset = audio?.preset || 'standard';
+  
+  let desc = `${sceneName}：`;
+  
+  if (trackCount > 0) {
+    desc += `播放${trackCount}首`;
+    if (firstTrack?.genres?.length > 0) {
+      desc += `${firstTrack.genres[0]}风格的`;
+    }
+    desc += '音乐';
+  }
+  
+  desc += `，${theme}主题灯光(${brightness}%亮度)`;
+  
+  if (preset !== 'standard') {
+    desc += `，${preset}音效`;
+  }
+  
+  const energy = sceneDescriptor?.intent?.energy_level || 0.5;
+  if (energy > 0.7) {
+    desc += '，营造活力四射的驾驶氛围';
+  } else if (energy > 0.4) {
+    desc += '，营造舒适惬意的驾驶氛围';
+  } else {
+    desc += '，营造宁静放松的驾驶氛围';
+  }
+  
+  return desc;
 }
 
 function showFullPipelineResult(l1, l2, l3, validation, time) {
-  console.log(`${COLORS.bold}${COLORS.blue}════════════════════════════════════════════════════════${COLORS.reset}`);
-  console.log(`${COLORS.bold}${COLORS.blue}  Layer 1: 物理感知层${COLORS.reset}`);
-  console.log(`${COLORS.bold}${COLORS.blue}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`\n${COLORS.bold}${COLORS.blue}╔════════════════════════════════════════════════════════╗${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.blue}║  Layer 1: 物理感知层                                    ║${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.blue}╚════════════════════════════════════════════════════════╝${COLORS.reset}`);
+
+  const activeSources = l1._meta?.active_sources || [];
+  const allSources = ['vhal', 'environment', 'external_camera', 'internal_camera', 'internal_mic', 'voice'];
+  
+  console.log(`\n  ${COLORS.yellow}📊 信号源状态:${COLORS.reset}`);
+  allSources.forEach(s => {
+    const isActive = activeSources.includes(s);
+    const hasData = l1.signals[s] && Object.keys(l1.signals[s] || {}).length > 0;
+    const status = isActive ? `${COLORS.green}✅${COLORS.reset}` : (hasData ? `${COLORS.yellow}⚠️${COLORS.reset}` : `${COLORS.dim}○${COLORS.reset}`);
+    console.log(`    ${status} ${s}`);
+  });
 
   const intCam1 = l1.signals?.internal_camera || {};
-  printBox('📤 Layer 1 输出', [
-    `置信度: ${(l1.confidence.overall * 100).toFixed(0)}%`,
-    `时间: ${formatTime(l1.signals?.environment?.time_of_day)}`,
-    `心情: ${intCam1.mood || '未知'}`
-  ], COLORS.green);
+  const extCam1 = l1.signals?.external_camera || {};
+  
+  console.log(`\n  ${COLORS.yellow}📤 关键输出:${COLORS.reset}`);
+  console.log(`    置信度: ${(l1.confidence.overall * 100).toFixed(0)}%`);
+  console.log(`    时间: ${formatTime(l1.signals?.environment?.time_of_day)}`);
+  console.log(`    心情: ${intCam1.mood || '未知'}`);
+  console.log(`    环境: ${extCam1.scene_description || '未知'}`);
 
-  console.log(`\n${COLORS.bold}${COLORS.yellow}════════════════════════════════════════════════════════${COLORS.reset}`);
-  console.log(`${COLORS.bold}${COLORS.yellow}  Layer 2: 语义推理层${COLORS.reset}`);
-  console.log(`${COLORS.bold}${COLORS.yellow}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`\n${COLORS.bold}${COLORS.yellow}╔════════════════════════════════════════════════════════╗${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.yellow}║  Layer 2: 语义推理层                                    ║${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.yellow}╚════════════════════════════════════════════════════════╝${COLORS.reset}`);
 
-  const channel = l2.scene_descriptor.scene_type?.includes('fatigue') ? '🚨 紧急通道' : 
-                 (l1.signals?.user_query ? '🐢 慢通道' : '⚡ 快通道');
+  const isEmergency = l2.scene_descriptor.scene_type?.includes('fatigue');
+  const hasUserQuery = l1.signals?.user_query;
+  
+  let channel, channelColor;
+  if (isEmergency) {
+    channel = '🚨 紧急通道';
+    channelColor = COLORS.red;
+  } else if (hasUserQuery) {
+    channel = '🐢 慢通道 (LLM)';
+    channelColor = COLORS.magenta;
+  } else {
+    channel = '⚡ 快通道 (模板)';
+    channelColor = COLORS.green;
+  }
 
-  printBox('⚙️ 推理过程', [
-    `通道: ${channel}`,
-    `场景: ${l2.scene_descriptor.scene_type}`,
-    `校验: ${validation.passed ? '✅ 通过' : '⚠️ 已修复'}`
-  ], COLORS.yellow);
+  console.log(`\n  ${COLORS.yellow}⚙️ 执行判断:${COLORS.reset}`);
+  console.log(`    通道: ${channelColor}${channel}${COLORS.reset}`);
+  console.log(`    场景: ${COLORS.bold}${l2.scene_descriptor.scene_name}${COLORS.reset} (${l2.scene_descriptor.scene_type})`);
+  console.log(`    校验: ${validation.passed ? `${COLORS.green}✅ 通过${COLORS.reset}` : `${COLORS.yellow}⚠️ 已修复${COLORS.reset}`}`);
 
-  printBox('📤 Layer 2 输出', [
-    `能量: ${l2.scene_descriptor.intent?.energy_level || 1}`,
-    `播报: "${l2.scene_descriptor.announcement || '无'}"`
-  ], COLORS.green);
+  console.log(`\n  ${COLORS.yellow}📤 关键输出:${COLORS.reset}`);
+  console.log(`    能量: ${l2.scene_descriptor.intent?.energy_level || 0}`);
+  console.log(`    流派: ${(l2.scene_descriptor.hints?.music?.genres || []).join(', ') || '自动'}`);
+  
+  const announcement = l2.scene_descriptor.announcement;
+  console.log(`    播报: "${typeof announcement === 'string' ? announcement : (announcement?.text || '无')}"`);
 
-  console.log(`\n${COLORS.bold}${COLORS.magenta}════════════════════════════════════════════════════════${COLORS.reset}`);
-  console.log(`${COLORS.bold}${COLORS.magenta}  Layer 3: 效果生成层${COLORS.reset}`);
-  console.log(`${COLORS.bold}${COLORS.magenta}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`\n${COLORS.bold}${COLORS.magenta}╔════════════════════════════════════════════════════════╗${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.magenta}║  Layer 3: 效果生成层                                    ║${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.magenta}╚════════════════════════════════════════════════════════╝${COLORS.reset}`);
 
   const content = l3.commands?.content;
   const lighting = l3.commands?.lighting;
   const audio = l3.commands?.audio;
 
-  printBox('🎵 内容生成', [
-    `播放列表: ${content?.playlist?.length || 0} 首`,
-    `首曲: ${content?.playlist?.[0]?.title || '无'}`
-  ], COLORS.green);
+  console.log(`\n  ${COLORS.yellow}🎵 内容:${COLORS.reset}`);
+  console.log(`    播放列表: ${content?.playlist?.length || 0} 首`);
+  if (content?.playlist?.[0]) {
+    console.log(`    首曲: ${content.playlist[0].title} - ${content.playlist[0].artist}`);
+  }
 
-  printBox('💡 氛围灯', [
-    `主题: ${lighting?.theme || 'default'}`,
-    `亮度: ${((lighting?.intensity || 1) * 100).toFixed(0)}%`
-  ], COLORS.yellow);
+  console.log(`\n  ${COLORS.yellow}💡 灯光:${COLORS.reset}`);
+  console.log(`    主题: ${lighting?.theme || 'default'} (${((lighting?.intensity || 1) * 100).toFixed(0)}%)`);
 
-  printBox('🔊 音频', [
-    `预设: ${audio?.preset || 'standard'}`,
-    `音量: ${audio?.settings?.volume_db || 65} dB`
-  ], COLORS.cyan);
+  console.log(`\n  ${COLORS.yellow}🔊 音频:${COLORS.reset}`);
+  console.log(`    预设: ${audio?.preset || 'standard'} (${audio?.settings?.volume_db || 65}dB)`);
 
-  printBox('⏱️ 执行摘要', [`总耗时: ${time}ms`], COLORS.cyan);
+  const experienceDesc = generateExperienceDescription(l2.scene_descriptor, content, lighting, audio);
+  
+  console.log(`\n${COLORS.bold}${COLORS.green}╔════════════════════════════════════════════════════════╗${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.green}║  🎯 场景体验描述                                        ║${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.green}╚════════════════════════════════════════════════════════╝${COLORS.reset}`);
+  console.log(`\n  ${COLORS.bold}${experienceDesc}${COLORS.reset}`);
+
+  console.log(`\n${COLORS.bold}════════════════════════════════════════════════════════${COLORS.reset}`);
+  console.log(`${COLORS.bold}⏱️ 总执行耗时: ${time}ms${COLORS.reset}`);
+  console.log(`${COLORS.bold}════════════════════════════════════════════════════════${COLORS.reset}`);
 }
 
 async function main() {
