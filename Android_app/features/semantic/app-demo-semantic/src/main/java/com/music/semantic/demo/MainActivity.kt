@@ -105,24 +105,21 @@ class MainActivity : ComponentActivity() {
             Spacer(modifier = Modifier.height(8.dp))
             
             Text(
-                text = "输入 StandardizedSignals:",
+                text = "输入 StandardizedSignals (可直接粘贴):",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium
             )
             
-            Box(
+            OutlinedTextField(
+                value = inputJson,
+                onValueChange = { inputJson = it },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(150.dp)
-                    .background(Color(0xFFF5F5F5), RoundedCornerShape(8.dp))
-                    .padding(8.dp)
-            ) {
-                Text(
-                    text = inputJson,
-                    fontSize = 10.sp,
-                    modifier = Modifier.verticalScroll(rememberScrollState())
-                )
-            }
+                    .height(150.dp),
+                textStyle = androidx.compose.ui.text.TextStyle(fontSize = 10.sp),
+                placeholder = { Text("请输入或粘贴 JSON...", fontSize = 10.sp) },
+                shape = RoundedCornerShape(8.dp)
+            )
             
             Spacer(modifier = Modifier.height(16.dp))
             
