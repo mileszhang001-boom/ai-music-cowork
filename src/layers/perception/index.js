@@ -68,7 +68,9 @@ class PerceptionLayer {
     const structured = {
       vehicle: {},
       environment: {},
-      biometric: {},
+      external_camera: {},
+      internal_camera: {},
+      internal_mic: {},
       user_query: null
     };
 
@@ -80,8 +82,14 @@ class PerceptionLayer {
         case SignalSources.ENVIRONMENT:
           this.mergeEnvironmentSignal(structured.environment, signal);
           break;
-        case SignalSources.BIOMETRIC:
-          this.mergeBiometricSignal(structured.biometric, signal);
+        case SignalSources.EXTERNAL_CAMERA:
+          this.mergeExternalCameraSignal(structured.external_camera, signal);
+          break;
+        case SignalSources.INTERNAL_CAMERA:
+          this.mergeInternalCameraSignal(structured.internal_camera, signal);
+          break;
+        case SignalSources.INTERNAL_MIC:
+          this.mergeInternalMicSignal(structured.internal_mic, signal);
           break;
         case SignalSources.VOICE:
           structured.user_query = {
@@ -98,37 +106,62 @@ class PerceptionLayer {
 
   mergeVehicleSignal(vehicle, signal) {
     if (signal.type === 'vehicle_speed') {
-      vehicle.speed_kmh = signal.value?.speed_kmh || Math.round(signal.value?.vehicle_speed * 200);
+      vehicle.speed_kmh = signal.raw_value?.speed_kmh || signal.value?.speed_kmh || 0;
     }
     if (signal.type === 'passenger_count') {
-      vehicle.passenger_count = signal.value?.passenger_count || 0;
+      vehicle.passenger_count = signal.raw_value?.passenger_count || signal.value?.passenger_count || 0;
     }
     if (signal.type === 'gear_position') {
-      vehicle.gear = signal.value;
+      vehicle.gear = signal.raw_value || signal.value;
     }
   }
 
   mergeEnvironmentSignal(environment, signal) {
     if (signal.type === 'time_of_day') {
-      environment.time_of_day = signal.value?.time_of_day || 0.5;
+      environment.time_of_day = signal.raw_value?.time_of_day ?? signal.value?.time_of_day ?? 0.5;
     }
     if (signal.type === 'weather') {
-      environment.weather = signal.value?.weather || 'clear';
+      environment.weather = signal.raw_value?.weather || signal.value?.weather || 'clear';
     }
     if (signal.type === 'temperature') {
-      environment.temperature = signal.value;
+      environment.temperature = signal.raw_value ?? signal.value;
+    }
+    if (signal.type === 'date_type') {
+      environment.date_type = signal.raw_value?.date_type || signal.value?.date_type || 'weekday';
     }
   }
 
-  mergeBiometricSignal(biometric, signal) {
-    if (signal.type === 'heart_rate') {
-      biometric.heart_rate = signal.raw_value || signal.value;
+  mergeExternalCameraSignal(externalCamera, signal) {
+    if (signal.type === 'environment_colors') {
+      const val = signal.value || signal.raw_value || {};
+      externalCamera.primary_color = val.primary_color || '#87CEEB';
+      externalCamera.secondary_color = val.secondary_color || '#FFFFFF';
+      externalCamera.brightness = val.brightness ?? 0.5;
     }
-    if (signal.type === 'fatigue_level') {
-      biometric.fatigue_level = signal.raw_value || signal.value;
+  }
+
+  mergeInternalCameraSignal(internalCamera, signal) {
+    if (signal.type === 'cabin_analysis') {
+      const val = signal.value || signal.raw_value || {};
+      internalCamera.mood = val.mood || 'neutral';
+      internalCamera.confidence = val.confidence ?? 0.8;
+      internalCamera.passengers = val.passengers || { children: 0, adults: 1, seniors: 0 };
     }
-    if (signal.type === 'stress_level') {
-      biometric.stress_level = signal.raw_value || signal.value;
+    if (signal.type === 'mood') {
+      internalCamera.mood = signal.raw_value?.mood || signal.value?.mood || 'neutral';
+    }
+  }
+
+  mergeInternalMicSignal(internalMic, signal) {
+    if (signal.type === 'cabin_audio') {
+      const val = signal.value || signal.raw_value || {};
+      internalMic.volume_level = val.volume_level ?? 0.3;
+      internalMic.has_voice = val.has_voice ?? false;
+      internalMic.voice_count = val.voice_count ?? 0;
+      internalMic.noise_level = val.noise_level ?? 0.1;
+    }
+    if (signal.type === 'volume_level') {
+      internalMic.volume_level = signal.raw_value ?? signal.value ?? 0.3;
     }
   }
 

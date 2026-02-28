@@ -33,9 +33,11 @@
 
 | 值 | 说明 | 支持的 type |
 |----|------|-------------|
-| `vhal` | 车辆硬件抽象层 | `vehicle_speed`, `passenger_count`, `gear_position`, `fuel_level`, `door_status`, `window_status` |
-| `environment` | 环境数据 | `time_of_day`, `weather`, `temperature`, `humidity`, `light_level` |
-| `biometric` | 生物传感器 | `heart_rate`, `fatigue_level`, `stress_level` |
+| `vhal` | 车辆硬件抽象层 | `vehicle_speed`, `passenger_count`, `gear_position`, `door_status`, `window_status` |
+| `environment` | 环境数据 | `time_of_day`, `weather`, `temperature`, `humidity`, `light_level`, `date_type` |
+| `external_camera` | 车外摄像头 | `environment_colors` |
+| `internal_camera` | 车内摄像头 | `cabin_analysis`, `mood` |
+| `internal_mic` | 车内麦克风 | `cabin_audio`, `volume_level` |
 | `voice` | 语音输入 | `user_query` |
 | `user_profile` | 用户画像 | `preferences`, `history` |
 | `music_state` | 播放状态 | `current_track`, `playback_state` |
@@ -52,9 +54,6 @@
 
 // gear_position
 { "gear": "D" }
-
-// fuel_level
-{ "fuel_percent": 65 }
 ```
 
 **environment 信号:**
@@ -67,18 +66,50 @@
 
 // temperature
 { "temperature": 22 }
+
+// date_type
+{ "date_type": "weekday" }  // weekday | weekend | holiday
 ```
 
-**biometric 信号:**
+**external_camera 信号 (车外摄像头):**
 ```json
-// heart_rate
-{ "heart_rate": 72 }
+// environment_colors - 车外环境主色和辅色
+{
+  "primary_color": "#87CEEB",    // 主色调 (天空蓝、夕阳橙等)
+  "secondary_color": "#FFFFFF",  // 辅色调
+  "brightness": 0.6              // 环境亮度 (0-1)
+}
+```
 
-// fatigue_level (0-1)
-{ "fatigue_level": 0.85 }
+**internal_camera 信号 (车内摄像头):**
+```json
+// cabin_analysis - 车内综合分析
+{
+  "mood": "happy",               // 乘客心情: happy | calm | tired | stressed | neutral | excited
+  "confidence": 0.85,            // 识别置信度 (0-1)
+  "passengers": {
+    "children": 1,               // 儿童数量
+    "adults": 2,                 // 成年人数量
+    "seniors": 0                 // 老人数量
+  }
+}
 
-// stress_level (0-1)
-{ "stress_level": 0.3 }
+// mood - 单独的心情检测
+{ "mood": "calm" }
+```
+
+**internal_mic 信号 (车内麦克风):**
+```json
+// cabin_audio - 车内声音分析
+{
+  "volume_level": 0.4,           // 声音大小 (0-1)
+  "has_voice": true,             // 是否有人声
+  "voice_count": 2,              // 说话人数
+  "noise_level": 0.15            // 噪音水平 (0-1)
+}
+
+// volume_level - 单独的音量检测
+{ "volume_level": 0.5 }
 ```
 
 **voice 信号:**
@@ -107,12 +138,28 @@
     "environment": {                   // ? 可选 - 环境状态
       "time_of_day": 0.35,             // ? 可选 - 时间 (0-1)
       "weather": "clear",              // ? 可选 - 天气
-      "temperature": 22                // ? 可选 - 温度
+      "temperature": 22,               // ? 可选 - 温度
+      "date_type": "weekday"           // ? 可选 - 日期类型
     },
-    "biometric": {                     // ? 可选 - 生物特征
-      "heart_rate": 72,                // ? 可选 - 心率
-      "fatigue_level": 0.2,            // ? 可选 - 疲劳度 (0-1)
-      "stress_level": 0.3              // ? 可选 - 压力值 (0-1)
+    "external_camera": {               // ? 可选 - 车外摄像头
+      "primary_color": "#87CEEB",      // ? 可选 - 主色调
+      "secondary_color": "#FFFFFF",    // ? 可选 - 辅色调
+      "brightness": 0.6                // ? 可选 - 亮度 (0-1)
+    },
+    "internal_camera": {               // ? 可选 - 车内摄像头
+      "mood": "happy",                 // ? 可选 - 乘客心情
+      "confidence": 0.85,              // ? 可选 - 识别置信度
+      "passengers": {                  // ? 可选 - 乘客分布
+        "children": 1,
+        "adults": 2,
+        "seniors": 0
+      }
+    },
+    "internal_mic": {                  // ? 可选 - 车内麦克风
+      "volume_level": 0.4,             // ? 可选 - 声音大小 (0-1)
+      "has_voice": true,               // ? 可选 - 是否有人声
+      "voice_count": 2,                // ? 可选 - 说话人数
+      "noise_level": 0.15              // ? 可选 - 噪音水平 (0-1)
     },
     "user_query": null                 // ? 可选 - 用户语音请求 (null 或 Object)
   },
@@ -121,7 +168,9 @@
     "by_source": {                     // ? 可选 - 各信号源置信度
       "vhal": 0.95,
       "environment": 0.90,
-      "biometric": 0.75
+      "external_camera": 0.80,
+      "internal_camera": 0.85,
+      "internal_mic": 0.75
     }
   },
   "raw_signals": [],                   // ? 可选 - 原始信号数组
@@ -129,7 +178,7 @@
     "output_id": "perception_1709123456789",
     "total_count": 5,
     "high_confidence_count": 3,
-    "active_sources": ["vhal", "environment", "biometric"]
+    "active_sources": ["vhal", "environment", "internal_camera"]
   }
 }
 ```
@@ -146,9 +195,19 @@
 | `signals.environment.time_of_day` | ? | number | 0-1 | 一天中的时间比例 |
 | `signals.environment.weather` | ? | string | clear/sunny/cloudy/rain/snow/fog/storm | 天气状况 |
 | `signals.environment.temperature` | ? | number | -40~60 | 摄氏温度 |
-| `signals.biometric.heart_rate` | ? | number | 40-200 | 心率 bpm |
-| `signals.biometric.fatigue_level` | ? | number | 0-1 | 疲劳程度 |
-| `signals.biometric.stress_level` | ? | number | 0-1 | 压力程度 |
+| `signals.environment.date_type` | ? | string | weekday/weekend/holiday | 日期类型 |
+| `signals.external_camera.primary_color` | ? | string | HEX颜色 | 车外环境主色调 |
+| `signals.external_camera.secondary_color` | ? | string | HEX颜色 | 车外环境辅色调 |
+| `signals.external_camera.brightness` | ? | number | 0-1 | 环境亮度 |
+| `signals.internal_camera.mood` | ? | string | happy/calm/tired/stressed/neutral/excited | 乘客心情 |
+| `signals.internal_camera.confidence` | ? | number | 0-1 | 心情识别置信度 |
+| `signals.internal_camera.passengers.children` | ? | integer | 0-8 | 儿童数量 |
+| `signals.internal_camera.passengers.adults` | ? | integer | 0-8 | 成年人数量 |
+| `signals.internal_camera.passengers.seniors` | ? | integer | 0-8 | 老人数量 |
+| `signals.internal_mic.volume_level` | ? | number | 0-1 | 车内声音大小 |
+| `signals.internal_mic.has_voice` | ? | boolean | - | 是否检测到人声 |
+| `signals.internal_mic.voice_count` | ? | integer | 0-8 | 说话人数 |
+| `signals.internal_mic.noise_level` | ? | number | 0-1 | 噪音水平 |
 | `signals.user_query` | ? | object/null | - | 用户语音请求 |
 | `signals.user_query.text` | ? | string | - | 语音文本 |
 | `signals.user_query.intent` | ? | string | creative/navigation/control/info | 意图类型 |
@@ -251,12 +310,23 @@
 | `night_drive` | 深夜驾驶 | time_of_day < 0.2, 低能量 |
 | `road_trip` | 公路旅行 | 高速度, 高能量 |
 | `romantic_date` | 浪漫约会 | 2乘客, 晚间 |
-| `family_outing` | 家庭出行 | 乘客数 ≥ 3, 含儿童 |
+| `family_outing` | 家庭出行 | 乘客数 ≥ 3 或 有儿童 |
 | `focus_work` | 专注工作 | 高专注度, 低能量 |
 | `traffic_jam` | 交通拥堵 | 低速度, 长时间 |
-| `fatigue_alert` | 疲劳提醒 | fatigue_level > 0.7 |
+| `fatigue_alert` | 疲劳提醒 | mood = tired |
 | `rainy_night` | 雨夜 | weather=rain, time < 0.3 |
 | `party` | 派对 | 高社交, 高能量 |
+
+#### 心情类型 (mood) 枚举
+
+| 值 | 说明 | 能量映射 |
+|----|------|----------|
+| `happy` | 开心 | 0.7 |
+| `excited` | 兴奋 | 0.9 |
+| `calm` | 平静 | 0.3 |
+| `neutral` | 中性 | 0.5 |
+| `tired` | 疲劳 | 0.2 (触发疲劳提醒) |
+| `stressed` | 压力 | 0.6 |
 
 #### 内容分级 (content_rating) 枚举
 
@@ -450,7 +520,7 @@
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                         外部信号源                                        │
-│  VHAL | Voice | Biometric | Environment | UserProfile | MusicState       │
+│  VHAL | Voice | Environment | ExternalCamera | InternalCamera | Mic      │
 └────────────────────────────────┬────────────────────────────────────────┘
                                  │ RawSignal[]
                                  ▼
@@ -459,6 +529,7 @@
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐                   │
 │  │   Normalizer │→ │   Validator  │→ │  Structurer  │                   │
 │  └──────────────┘  └──────────────┘  └──────────────┘                   │
+│  新增: external_camera, internal_camera, internal_mic 标准化             │
 └────────────────────────────────┬────────────────────────────────────────┘
                                  │ StandardizedSignals
                                  ▼
@@ -467,7 +538,7 @@
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐                   │
 │  │  Recognizer  │→ │TemplateMatch │→ │  Validator   │                   │
 │  └──────────────┘  └──────────────┘  └──────────────┘                   │
-│                    [LLM Reasoner] (可选)                                 │
+│  新增: 基于心情(mood)判断疲劳, 基于乘客分布判断家庭场景                   │
 └────────────────────────────────┬────────────────────────────────────────┘
                                  │ Scene Descriptor
                                  ▼
@@ -498,8 +569,9 @@
 2. `timestamp` 必须为有效 ISO 8601 格式
 3. `signals` 必须为对象
 4. `confidence.overall` 必须在 0-1 范围内
-5. `signals.vehicle.speed_kmh` 范围 0-300
-6. `signals.biometric.fatigue_level` 范围 0-1
+5. `signals.external_camera.brightness` 范围 0-1
+6. `signals.internal_camera.mood` 必须为有效枚举值
+7. `signals.internal_mic.volume_level` 范围 0-1
 
 ### Layer 2 校验规则
 
@@ -526,3 +598,4 @@
 | 版本 | 日期 | 变更说明 |
 |------|------|----------|
 | 1.0 | 2026-02-28 | 初始版本，定义三层数据结构 |
+| 1.1 | 2026-02-28 | 新增信号源: external_camera, internal_camera, internal_mic, date_type；移除: biometric (heart_rate, fatigue_level, stress_level), fuel_level |

@@ -3,8 +3,10 @@
 const SignalSources = {
   VHAL: 'vhal',
   VOICE: 'voice',
-  BIOMETRIC: 'biometric',
   ENVIRONMENT: 'environment',
+  EXTERNAL_CAMERA: 'external_camera',
+  INTERNAL_CAMERA: 'internal_camera',
+  INTERNAL_MIC: 'internal_mic',
   USER_PROFILE: 'user_profile',
   MUSIC_STATE: 'music_state'
 };
@@ -13,7 +15,9 @@ const SignalCategories = {
   CONTEXT: 'context',
   USER_STATE: 'user_state',
   USER_INTENT: 'user_intent',
-  ENVIRONMENT: 'environment'
+  ENVIRONMENT: 'environment',
+  VISION: 'vision',
+  AUDIO: 'audio'
 };
 
 const SignalConfigs = {
@@ -27,15 +31,25 @@ const SignalConfigs = {
     defaultTTL: 30000,
     confidenceDecay: 0.05
   },
-  [SignalSources.BIOMETRIC]: {
-    category: SignalCategories.USER_STATE,
-    defaultTTL: 10000,
-    confidenceDecay: 0.08
-  },
   [SignalSources.ENVIRONMENT]: {
     category: SignalCategories.ENVIRONMENT,
     defaultTTL: 60000,
     confidenceDecay: 0.02
+  },
+  [SignalSources.EXTERNAL_CAMERA]: {
+    category: SignalCategories.VISION,
+    defaultTTL: 1000,
+    confidenceDecay: 0.15
+  },
+  [SignalSources.INTERNAL_CAMERA]: {
+    category: SignalCategories.VISION,
+    defaultTTL: 2000,
+    confidenceDecay: 0.12
+  },
+  [SignalSources.INTERNAL_MIC]: {
+    category: SignalCategories.AUDIO,
+    defaultTTL: 500,
+    confidenceDecay: 0.2
   },
   [SignalSources.USER_PROFILE]: {
     category: SignalCategories.USER_STATE,
@@ -49,8 +63,25 @@ const SignalConfigs = {
   }
 };
 
+const DateTypes = {
+  WEEKDAY: 'weekday',
+  WEEKEND: 'weekend',
+  HOLIDAY: 'holiday'
+};
+
+const MoodTypes = {
+  HAPPY: 'happy',
+  CALM: 'calm',
+  TIRED: 'tired',
+  STRESSED: 'stressed',
+  NEUTRAL: 'neutral',
+  EXCITED: 'excited'
+};
+
 module.exports = {
   SignalSources,
   SignalCategories,
-  SignalConfigs
+  SignalConfigs,
+  DateTypes,
+  MoodTypes
 };

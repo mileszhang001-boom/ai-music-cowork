@@ -112,6 +112,26 @@ class TemplateLibrary {
         },
         announcement_templates: ['雨夜行车，为您准备了舒缓的音乐'],
         triggers: { weather: ['rain'], time_range: [18, 6] }
+      },
+      {
+        template_id: 'TPL_006',
+        scene_type: 'family_outing',
+        name: '家庭出行',
+        description: '和家人一起出行，温馨愉快',
+        category: 'social',
+        priority: 0,
+        intent: {
+          mood: { valence: 0.7, arousal: 0.5 },
+          energy_level: 0.5,
+          atmosphere: 'warm_family'
+        },
+        hints: {
+          music: { genres: ['pop', 'folk', 'children'], tempo: 'moderate', vocal_style: 'bright' },
+          lighting: { color_theme: 'warm', pattern: 'steady', intensity: 0.5 },
+          audio: { preset: 'standard' }
+        },
+        announcement_templates: ['家庭时光，为您准备了适合全家的音乐'],
+        triggers: { has_children: true }
       }
     ];
 
@@ -155,6 +175,13 @@ class TemplateLibrary {
       if (template.triggers.weather && context.weather) {
         if (template.triggers.weather.includes(context.weather)) {
           score += 0.2;
+        }
+      }
+
+      if (template.triggers.has_children !== undefined) {
+        const hasChildren = context.hasChildren || context.passengerComposition?.includes('child') || false;
+        if (hasChildren === template.triggers.has_children) {
+          score += 0.3;
         }
       }
     }

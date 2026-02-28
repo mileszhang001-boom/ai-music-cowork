@@ -2,6 +2,15 @@
 
 const { SceneDimensions, SceneTypes } = require('../types');
 
+const MoodEnergyMap = {
+  happy: 0.7,
+  excited: 0.9,
+  calm: 0.3,
+  neutral: 0.5,
+  tired: 0.2,
+  stressed: 0.6
+};
+
 class SceneRecognizer {
   constructor(config = {}) {
     this.config = config;
@@ -35,6 +44,11 @@ class SceneRecognizer {
   }
 
   calculateSocialDimension(signals) {
+    const passengers = signals.internal_camera?.passengers;
+    if (passengers) {
+      const total = (passengers.children || 0) + (passengers.adults || 0) + (passengers.seniors || 0);
+      return Math.min(1, total / 4);
+    }
     if (signals.vehicle?.passenger_count) {
       return Math.min(1, signals.vehicle.passenger_count / 4);
     }
@@ -50,10 +64,15 @@ class SceneRecognizer {
       weight += 0.3;
     }
 
-    if (signals.biometric?.heart_rate) {
-      const hr = signals.biometric.heart_rate;
-      energy += ((hr - 60) / 100) * 0.3;
-      weight += 0.3;
+    if (signals.internal_camera?.mood) {
+      const moodEnergy = MoodEnergyMap[signals.internal_camera.mood] || 0.5;
+      energy += moodEnergy * 0.4;
+      weight += 0.4;
+    }
+
+    if (signals.internal_mic?.volume_level !== undefined) {
+      energy += signals.internal_mic.volume_level * 0.2;
+      weight += 0.2;
     }
 
     return weight > 0 ? Math.min(1, Math.max(0, energy / (weight + 0.5))) : 0.5;
@@ -66,8 +85,12 @@ class SceneRecognizer {
       focus += 0.3;
     }
 
-    if (signals.biometric?.stress_level) {
-      focus += signals.biometric.stress_level * 0.3;
+    if (signals.internal_camera?.mood === 'stressed') {
+      focus += 0.2;
+    }
+
+    if (signals.internal_camera?.mood === 'calm') {
+      focus -= 0.1;
     }
 
     return Math.min(1, Math.max(0, focus));
@@ -96,12 +119,19 @@ class SceneRecognizer {
   inferSceneType(dimensions, signals) {
     const { social, energy, focus, time_context, weather } = dimensions;
 
-    if (signals.biometric?.fatigue_level && signals.biometric.fatigue_level > 0.7) {
+    if (signals.internal_camera?.mood === 'tired') {
       return SceneTypes.FATIGUE_ALERT;
     }
 
     if (weather > 0.5 && time_context < 0.3) {
       return SceneTypes.RAINY_NIGHT;
+    }
+
+    const passengers = signals.internal_camera?.passengers;
+    const hasChildren = passengers && passengers.children > 0;
+
+    if (hasChildren) {
+      return SceneTypes.FAMILY_OUTING;
     }
 
     if (social > 0.5 && energy > 0.7) {
@@ -135,7 +165,7 @@ class SceneRecognizer {
     const sourceCount = [
       signals.vehicle?.speed_kmh !== undefined,
       signals.environment?.time_of_day !== undefined,
-      signals.biometric?.heart_rate !== undefined,
+      signals.internal_camera?.mood !== undefined,
       signals.user_query !== null
     ].filter(Boolean).length;
 

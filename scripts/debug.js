@@ -18,27 +18,45 @@ const SCENARIOS = {
   '1': { name: '早晨通勤', signals: [
     { source: SignalSources.VHAL, type: 'vehicle_speed', value: { speed_kmh: 70 } },
     { source: SignalSources.ENVIRONMENT, type: 'time_of_day', value: { time_of_day: 0.35 } },
-    { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'clear' } }
+    { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'clear' } },
+    { source: SignalSources.ENVIRONMENT, type: 'date_type', value: { date_type: 'weekday' } },
+    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#FFA500', secondary_color: '#87CEEB', brightness: 0.6 } },
+    { source: SignalSources.INTERNAL_CAMERA, type: 'cabin_analysis', value: { mood: 'neutral', confidence: 0.85, passengers: { children: 0, adults: 1, seniors: 0 } } },
+    { source: SignalSources.INTERNAL_MIC, type: 'cabin_audio', value: { volume_level: 0.2, has_voice: false, voice_count: 0, noise_level: 0.1 } }
   ], context: { passengerComposition: ['adult'] }},
   '2': { name: '深夜驾驶', signals: [
     { source: SignalSources.VHAL, type: 'vehicle_speed', value: { speed_kmh: 50 } },
     { source: SignalSources.ENVIRONMENT, type: 'time_of_day', value: { time_of_day: 0.05 } },
-    { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'clear' } }
+    { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'clear' } },
+    { source: SignalSources.ENVIRONMENT, type: 'date_type', value: { date_type: 'weekday' } },
+    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#1E3A5F', secondary_color: '#2C5F7C', brightness: 0.2 } },
+    { source: SignalSources.INTERNAL_CAMERA, type: 'cabin_analysis', value: { mood: 'calm', confidence: 0.8, passengers: { children: 0, adults: 1, seniors: 0 } } },
+    { source: SignalSources.INTERNAL_MIC, type: 'cabin_audio', value: { volume_level: 0.1, has_voice: false, voice_count: 0, noise_level: 0.05 } }
   ], context: { passengerComposition: ['adult'] }},
   '3': { name: '疲劳提醒', signals: [
-    { source: SignalSources.BIOMETRIC, type: 'fatigue_level', value: 0.85 },
-    { source: SignalSources.BIOMETRIC, type: 'heart_rate', value: 58 }
+    { source: SignalSources.VHAL, type: 'vehicle_speed', value: { speed_kmh: 60 } },
+    { source: SignalSources.ENVIRONMENT, type: 'time_of_day', value: { time_of_day: 0.5 } },
+    { source: SignalSources.INTERNAL_CAMERA, type: 'cabin_analysis', value: { mood: 'tired', confidence: 0.9, passengers: { children: 0, adults: 1, seniors: 0 } } }
   ], context: { passengerComposition: ['adult'] }},
   '4': { name: '家庭出行(儿童)', signals: [
-    { source: SignalSources.VHAL, type: 'passenger_count', value: { passenger_count: 3 } },
-    { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'sunny' } }
+    { source: SignalSources.VHAL, type: 'vehicle_speed', value: { speed_kmh: 80 } },
+    { source: SignalSources.ENVIRONMENT, type: 'time_of_day', value: { time_of_day: 0.6 } },
+    { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'sunny' } },
+    { source: SignalSources.ENVIRONMENT, type: 'date_type', value: { date_type: 'weekend' } },
+    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#87CEEB', secondary_color: '#FFFFFF', brightness: 0.8 } },
+    { source: SignalSources.INTERNAL_CAMERA, type: 'cabin_analysis', value: { mood: 'happy', confidence: 0.85, passengers: { children: 1, adults: 2, seniors: 0 } } },
+    { source: SignalSources.INTERNAL_MIC, type: 'cabin_audio', value: { volume_level: 0.5, has_voice: true, voice_count: 3, noise_level: 0.3 } }
   ], context: { passengerComposition: ['adult', 'adult', 'child'] }},
   '5': { name: '雨夜驾驶', signals: [
     { source: SignalSources.ENVIRONMENT, type: 'time_of_day', value: { time_of_day: 0.1 } },
-    { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'rain' } }
+    { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'rain' } },
+    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#4A5568', secondary_color: '#718096', brightness: 0.3 } },
+    { source: SignalSources.INTERNAL_CAMERA, type: 'cabin_analysis', value: { mood: 'calm', confidence: 0.75, passengers: { children: 0, adults: 1, seniors: 0 } } }
   ], context: { passengerComposition: ['adult'] }},
   '6': { name: '语音请求', signals: [
-    { source: SignalSources.VOICE, type: 'user_query', value: { text: '来点嗨歌', intent: 'creative' } }
+    { source: SignalSources.VHAL, type: 'vehicle_speed', value: { speed_kmh: 80 } },
+    { source: SignalSources.VOICE, type: 'user_query', value: { text: '来点嗨歌', intent: 'creative' } },
+    { source: SignalSources.INTERNAL_CAMERA, type: 'cabin_analysis', value: { mood: 'excited', confidence: 0.8, passengers: { children: 0, adults: 1, seniors: 0 } } }
   ], context: { passengerComposition: ['adult'] }}
 };
 
@@ -86,10 +104,10 @@ async function runDebug() {
     result = { layer1: output, time: Date.now() - t0 };
     
     const activeSources = output._meta?.active_sources || [];
-    const allSources = ['vhal', 'environment', 'biometric', 'voice', 'user_profile', 'music_state'];
+    const allSources = ['vhal', 'environment', 'external_camera', 'internal_camera', 'internal_mic', 'voice', 'user_profile', 'music_state'];
     const sourceStatus = allSources.map(s => ({
       source: s,
-      status: activeSources.includes(s) ? '✅ 跑通' : (output.signals[s] ? '⚠️ 有数据' : '❌ 空')
+      status: activeSources.includes(s) ? '✅ 跑通' : (output.signals[s] && Object.keys(output.signals[s]).length > 0 ? '⚠️ 有数据' : '❌ 空')
     }));
 
     printBox('📥 输入信号', scenario.signals.map((s, i) => 
@@ -100,12 +118,18 @@ async function runDebug() {
       `${s.source}: ${s.status}`
     ), COLORS.yellow);
 
+    const extCam = output.signals?.external_camera || {};
+    const intCam = output.signals?.internal_camera || {};
+    const intMic = output.signals?.internal_mic || {};
+
     printBox('📤 输出 (StandardizedSignals)', [
       `置信度: ${(output.confidence.overall * 100).toFixed(0)}%`,
       `时间: ${formatTime(output.signals?.environment?.time_of_day)}`,
+      `日期: ${output.signals?.environment?.date_type || 'weekday'}`,
       `天气: ${output.signals?.environment?.weather || '未知'}`,
       `车速: ${output.signals?.vehicle?.speed_kmh || 0} km/h`,
-      `乘客: ${output.signals?.vehicle?.passenger_count || 1} 人`
+      `心情: ${intCam.mood || '未知'} (${((intCam.confidence || 0) * 100).toFixed(0)}%)`,
+      `乘客: 儿童${intCam.passengers?.children || 0} 成人${intCam.passengers?.adults || 0} 老人${intCam.passengers?.seniors || 0}`
     ], COLORS.green);
 
     console.log(`\n${COLORS.dim}--- JSON 数据 ---${COLORS.reset}`);
@@ -119,6 +143,8 @@ async function runDebug() {
 
     printBox('📥 输入 (Layer 1 输出)', [
       `置信度: ${(l1.confidence.overall * 100).toFixed(0)}%`,
+      `心情: ${l1.signals?.internal_camera?.mood || '未知'}`,
+      `乘客: 儿童${l1.signals?.internal_camera?.passengers?.children || 0} 成人${l1.signals?.internal_camera?.passengers?.adults || 0}`,
       `用户请求: ${l1.signals?.user_query?.text || '无'}`
     ], COLORS.blue);
 
@@ -208,21 +234,25 @@ async function runDebug() {
     console.log(`${COLORS.bold}${COLORS.blue}════════════════════════════════════════════════════════${COLORS.reset}`);
 
     const activeSources = l1._meta?.active_sources || [];
-    const allSources = ['vhal', 'environment', 'biometric', 'voice', 'user_profile', 'music_state'];
+    const allSources = ['vhal', 'environment', 'external_camera', 'internal_camera', 'internal_mic', 'voice', 'user_profile', 'music_state'];
     const sourceStatus = allSources.map(s => ({
       source: s,
-      status: activeSources.includes(s) ? '✅ 跑通' : (l1.signals[s] ? '⚠️ 有数据' : '❌ 空')
+      status: activeSources.includes(s) ? '✅ 跑通' : (l1.signals[s] && Object.keys(l1.signals[s] || {}).length > 0 ? '⚠️ 有数据' : '❌ 空')
     }));
 
     printBox('📊 设备信号状态', sourceStatus.map(s => 
       `${s.source}: ${s.status}`
     ), COLORS.yellow);
 
+    const intCam1 = l1.signals?.internal_camera || {};
     printBox('📤 Layer 1 输出', [
       `置信度: ${(l1.confidence.overall * 100).toFixed(0)}%`,
       `时间: ${formatTime(l1.signals?.environment?.time_of_day)}`,
+      `日期: ${l1.signals?.environment?.date_type || 'weekday'}`,
       `天气: ${l1.signals?.environment?.weather || '未知'}`,
-      `车速: ${l1.signals?.vehicle?.speed_kmh || 1} km/h`
+      `车速: ${l1.signals?.vehicle?.speed_kmh || 0} km/h`,
+      `心情: ${intCam1.mood || '未知'}`,
+      `乘客: 儿童${intCam1.passengers?.children || 0} 成人${intCam1.passengers?.adults || 0}`
     ], COLORS.green);
 
     console.log(`\n${COLORS.bold}${COLORS.yellow}════════════════════════════════════════════════════════${COLORS.reset}`);

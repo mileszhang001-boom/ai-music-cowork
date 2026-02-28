@@ -24,15 +24,40 @@ const SignalsSchema = {
           properties: {
             time_of_day: { type: 'number', minimum: 0, maximum: 1 },
             weather: { type: 'string' },
-            temperature: { type: 'number' }
+            temperature: { type: 'number' },
+            date_type: { type: 'string', enum: ['weekday', 'weekend', 'holiday'] }
           }
         },
-        biometric: {
+        external_camera: {
           type: 'object',
           properties: {
-            heart_rate: { type: 'number', minimum: 40, maximum: 200 },
-            fatigue_level: { type: 'number', minimum: 0, maximum: 1 },
-            stress_level: { type: 'number', minimum: 0, maximum: 1 }
+            primary_color: { type: 'string' },
+            secondary_color: { type: 'string' },
+            brightness: { type: 'number', minimum: 0, maximum: 1 }
+          }
+        },
+        internal_camera: {
+          type: 'object',
+          properties: {
+            mood: { type: 'string', enum: ['happy', 'calm', 'tired', 'stressed', 'neutral', 'excited'] },
+            confidence: { type: 'number', minimum: 0, maximum: 1 },
+            passengers: {
+              type: 'object',
+              properties: {
+                children: { type: 'integer', minimum: 0 },
+                adults: { type: 'integer', minimum: 0 },
+                seniors: { type: 'integer', minimum: 0 }
+              }
+            }
+          }
+        },
+        internal_mic: {
+          type: 'object',
+          properties: {
+            volume_level: { type: 'number', minimum: 0, maximum: 1 },
+            has_voice: { type: 'boolean' },
+            voice_count: { type: 'integer', minimum: 0 },
+            noise_level: { type: 'number', minimum: 0, maximum: 1 }
           }
         },
         user_query: {
@@ -77,8 +102,20 @@ class Validator {
       errors.push('Missing or invalid confidence.overall');
     }
 
-    if (output.confidence.overall < 0 || output.confidence.overall > 1) {
+    if (output.confidence?.overall < 0 || output.confidence?.overall > 1) {
       errors.push('confidence.overall must be between 0 and 1');
+    }
+
+    if (output.signals?.external_camera?.brightness !== undefined) {
+      if (output.signals.external_camera.brightness < 0 || output.signals.external_camera.brightness > 1) {
+        errors.push('external_camera.brightness must be between 0 and 1');
+      }
+    }
+
+    if (output.signals?.internal_mic?.volume_level !== undefined) {
+      if (output.signals.internal_mic.volume_level < 0 || output.signals.internal_mic.volume_level > 1) {
+        errors.push('internal_mic.volume_level must be between 0 and 1');
+      }
     }
 
     return {

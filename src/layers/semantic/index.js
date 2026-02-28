@@ -41,6 +41,7 @@ class SemanticLayer {
     const matchedTemplate = templateLibrary.matchTemplate(sceneVector, {
       passengerCount: signals.vehicle?.passenger_count,
       weather: signals.environment?.weather,
+      hasChildren: signals.internal_camera?.passengers?.children > 0,
       ...options.context
     });
 
