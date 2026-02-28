@@ -250,7 +250,6 @@
   "scene_type": "morning_commute",     // * 必填 - 场景类型
   "scene_name": "早晨通勤",             // ? 可选 - 场景名称
   "scene_narrative": "清新的早晨，独自驾车上班", // ? 可选 - 场景描述
-  "timestamp": "2026-02-28T08:30:05Z", // ? 可选 - 时间戳
   
   "intent": {                          // * 必填 - 意图对象
     "mood": {                          // * 必填 - 情绪维度
@@ -258,36 +257,23 @@
       "arousal": 0.4                   // * 必填 - 唤醒度 (平静0 → 兴奋1)
     },
     "energy_level": 0.4,               // * 必填 - 能量级别 (0-1)
-    "energy_curve": [0.3, 0.4, 0.5],   // ? 可选 - 能量曲线 (时间序列)
-    "curve_duration_minutes": 20,      // ? 可选 - 曲线时长
     "atmosphere": "fresh_morning",     // ? 可选 - 氛围描述
     "social_context": "solo",          // ? 可选 - 社交语境 (solo/couple/family/group)
-    "trip_phase": "commute",           // ? 可选 - 行程阶段
-    "trip_progress": 0.3,              // ? 可选 - 行程进度 (0-1)
     "constraints": {                   // ? 可选 - 硬约束 (引擎必须满足)
       "content_rating": "PG",          // ? 可选 - 内容分级 (G/PG/PG-13/R)
       "max_volume_db": 70,             // ? 可选 - 最大音量
-      "avoid_sudden_changes": false,   // ? 可选 - 避免突变
-      "brightness_max": 0.8            // ? 可选 - 最大亮度
+      "avoid_sudden_changes": false    // ? 可选 - 避免突变
     },
     "user_overrides": {                // ? 可选 - 用户覆盖
       "exclude_tags": ["heavy_metal"], // ? 可选 - 排除标签
       "preferred_language": ["zh"]     // ? 可选 - 偏好语言
-    },
-    "transition": {                    // ? 可选 - 过渡配置
-      "type": "fade",                  // ? 可选 - 过渡类型 (fade/cut/crossfade)
-      "style": "smooth",               // ? 可选 - 过渡风格
-      "duration_sec": 5                // ? 可选 - 过渡时长(秒)
     }
   },
   
   "hints": {                           // * 必填 - 提示对象 (软建议)
     "music": {                         // ? 可选 - 音乐提示
       "genres": ["pop", "indie"],      // ? 可选 - 推荐流派
-      "tempo": "moderate",             // ? 可选 - 节奏 (slow/moderate/fast)
-      "suggested_tempo": [100, 120],   // ? 可选 - BPM 范围
-      "suggested_artists": [],         // ? 可选 - 推荐艺术家
-      "vocal_style": "bright"          // ? 可选 - 人声风格
+      "tempo": "moderate"              // ? 可选 - 节奏 (slow/moderate/fast)
     },
     "lighting": {                      // ? 可选 - 灯光提示
       "color_theme": "warm",           // ? 可选 - 颜色主题
@@ -295,25 +281,16 @@
       "intensity": 0.4                 // ? 可选 - 亮度 (0-1)
     },
     "audio": {                         // ? 可选 - 音效提示
-      "preset": "standard",            // ? 可选 - 预设名称
-      "spatial": "front_stage",        // ? 可选 - 空间音频
-      "bass_level": "moderate"         // ? 可选 - 低音级别
+      "preset": "standard"             // ? 可选 - 预设名称
     }
   },
   
-  "announcement": {                    // ? 可选 - 播报配置
-    "text": "早安，为您准备了清新的晨间音乐", // ? 可选 - 播报文本
-    "timing": "immediate",             // ? 可选 - 播报时机 (immediate/delayed/with_music)
-    "voice_style": "warm_female"       // ? 可选 - 语音风格
-  },
+  "announcement": "早安，为您准备了清新的晨间音乐", // ? 可选 - 播报文本
   
   "meta": {                            // ? 可选 - 元数据
     "confidence": 0.85,                // ? 可选 - 置信度
     "source": "template",              // ? 可选 - 来源 (template/llm/fallback)
-    "reasoning": "基于时间和天气匹配",   // ? 可选 - 推理说明
-    "template_id": "morning_commute",  // ? 可选 - 模板ID
-    "expires_at": "2026-02-28T08:50:05Z", // ? 可选 - 过期时间
-    "low_confidence_dimensions": []    // ? 可选 - 低置信度维度
+    "template_id": "morning_commute"   // ? 可选 - 模板ID
   }
 }
 ```
