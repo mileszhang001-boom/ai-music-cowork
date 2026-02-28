@@ -115,7 +115,8 @@ let state = {
   step: 1,
   selectedLayer: '4',
   selectedScenario: null,
-  pageOffset: 0
+  pageOffset: 0,
+  inputBuffer: ''
 };
 
 function printBox(title, lines, color = COLORS.cyan) {
@@ -495,57 +496,61 @@ async function main() {
   }
 
   rawInput.setRawMode(true);
-  rawOutput.write('\x1b[?25l\x1b[?1c\x1b[?1049h');
-  
-  rl = readline.createInterface({ 
-    input: rawInput, 
-    output: rawOutput,
-    terminal: true,
-    historySize: 0
-  });
+  rawInput.resume();
+  readline.emitKeypressEvents(rawInput);
 
   const prompt = () => {
     if (state.step === 1) {
       showStep1();
+      process.stdout.write('\n请输入: ');
     } else if (state.step === 2) {
       showStep2();
+      process.stdout.write('\n请输入: ');
     } else if (state.step === 3) {
       return;
     }
   };
 
   prompt();
-  
-  const handleKeyPress = (str, key) => {
+
+  const handleKeyPress = async (str, key) => {
     if (key.name === 'escape') {
-      console.log(`${COLORS.green}再见！${COLORS.reset}\n`);
-      rl.close();
+      console.log(`\n${COLORS.green}再见！${COLORS.reset}\n`);
+      rawInput.setRawMode(false);
       process.exit(0);
       return;
     }
-    
-    if (key.name === 'return') {
-      if (state.step === 2) {
-        state.step = 1;
-        prompt();
-      } else if (state.step === 3) {
-        state.step = 1;
-        prompt();
+
+    if (state.step === 1) {
+      if (key.name === 'return') {
+        const input = state.inputBuffer.trim();
+        state.inputBuffer = '';
+        
+        if (LAYERS[input]) {
+          state.selectedLayer = input;
+          state.step = 2;
+          state.selectedScenario = '1';
+          state.pageOffset = 0;
+          prompt();
+        }
+      } else if (str && str.length === 1) {
+        state.inputBuffer += str;
+        process.stdout.write(str);
+      } else if (key.name === 'backspace') {
+        state.inputBuffer = state.inputBuffer.slice(0, -1);
+        process.stdout.write('\b \b');
       }
-      return;
-    }
-    
-    if (state.step === 2) {
+    } else if (state.step === 2) {
       const pageSize = 15;
-      let totalScenarios;
-      if (state.selectedLayer === '1' || state.selectedLayer === '4') {
-        totalScenarios = Object.keys(LAYER1_SCENARIOS).length;
-      } else if (state.selectedLayer === '2') {
-        totalScenarios = Object.keys(LAYER1_SCENARIOS).length;
-      } else if (state.selectedLayer === '3') {
-        totalScenarios = Object.keys(LAYER3_SCENARIOS).length;
+      let scenarios = [];
+      
+      if (state.selectedLayer === '3') {
+        scenarios = Object.entries(LAYER3_SCENARIOS);
+      } else {
+        scenarios = Object.entries(LAYER1_SCENARIOS);
       }
       
+      const totalScenarios = scenarios.length;
       const totalPages = Math.ceil(totalScenarios / pageSize);
       
       if (key.name === 'up') {
@@ -554,52 +559,42 @@ async function main() {
       } else if (key.name === 'down') {
         state.pageOffset = Math.min((totalPages - 1) * pageSize, state.pageOffset + pageSize);
         prompt();
+      } else if (key.name === 'return') {
+        const input = state.inputBuffer.trim();
+        state.inputBuffer = '';
+        
+        if (input.toUpperCase() === 'B') {
+          state.step = 1;
+          state.pageOffset = 0;
+          prompt();
+        } else if (state.selectedLayer === '3' && LAYER3_SCENARIOS[input]) {
+          state.selectedScenario = input;
+          state.step = 3;
+          await runAndShowResult();
+          state.step = 1;
+          state.pageOffset = 0;
+          prompt();
+        } else if (LAYER1_SCENARIOS[input]) {
+          state.selectedScenario = input;
+          state.step = 3;
+          await runAndShowResult();
+          state.step = 1;
+          state.pageOffset = 0;
+          prompt();
+        } else {
+          prompt();
+        }
+      } else if (str && str.length === 1) {
+        state.inputBuffer += str;
+        process.stdout.write(str);
+      } else if (key.name === 'backspace') {
+        state.inputBuffer = state.inputBuffer.slice(0, -1);
+        process.stdout.write('\b \b');
       }
     }
   };
 
   rawInput.on('keypress', handleKeyPress);
-  
-  rl.question('\n', async (input) => {
-    const cmd = input.trim().toUpperCase();
-
-    if (cmd === 'Q') {
-      console.log(`\n${COLORS.green}再见！${COLORS.reset}\n`);
-      rl.close();
-      process.exit(0);
-    }
-
-    if (state.step === 1) {
-      if (LAYERS[input.trim()]) {
-        state.selectedLayer = input.trim();
-        state.step = 2;
-        state.selectedScenario = state.selectedLayer === '3' ? '1' : '1';
-        state.pageOffset = 0;
-      }
-    } else if (state.step === 2) {
-      if (cmd === 'B') {
-        state.step = 1;
-        state.pageOffset = 0;
-      } else if (state.selectedLayer === '3' && LAYER3_SCENARIOS[input.trim()]) {
-        state.selectedScenario = input.trim();
-        state.step = 3;
-        await runAndShowResult();
-        state.step = 1;
-      } else if ((state.selectedLayer === '1' || state.selectedLayer === '2' || state.selectedLayer === '4') && LAYER1_SCENARIOS[input.trim()]) {
-        state.selectedScenario = input.trim();
-        state.step = 3;
-        await runAndShowResult();
-        state.step = 1;
-      }
-    }
-
-    prompt();
-  });
-
-  rl.on('close', () => {
-    rawInput.setRawMode(false);
-    rawInput.write('\x1b[?1049h\x1b[?25l');
-  });
 }
 
 main().catch(console.error);
