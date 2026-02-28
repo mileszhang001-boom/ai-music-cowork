@@ -446,20 +446,34 @@ function showLayer3Result(sceneDescriptor, l3, time) {
   const playlist = content?.playlist || [];
 
   console.log(`\n${COLORS.bold}${COLORS.green}════════════════════════════════════════════════════════${COLORS.reset}`);
-  console.log(`${COLORS.bold}${COLORS.green}  🎵 内容生成${COLORS.reset}`);
+  console.log(`${COLORS.bold}${COLORS.green}  🎵 内容生成 - 播放列表 (${playlist.length}首)${COLORS.reset}`);
   console.log(`${COLORS.bold}${COLORS.green}════════════════════════════════════════════════════════${COLORS.reset}`);
   
-  console.log(`\n  播放列表: ${COLORS.bold}${playlist.length} 首${COLORS.reset}`);
-  
   if (playlist.length > 0) {
-    console.log(`\n  ${COLORS.yellow}曲目列表:${COLORS.reset}`);
-    playlist.slice(0, 5).forEach((track, i) => {
-      console.log(`    ${i + 1}. ${COLORS.bold}${track.title}${COLORS.reset} - ${track.artist}`);
-      console.log(`       流派: ${(track.genres || []).join(', ')} | 能量: ${track.energy || 0} | BPM: ${track.bpm || '未知'}`);
+    console.log(``);
+    playlist.forEach((track, i) => {
+      const num = String(i + 1).padStart(2, ' ');
+      const title = track.title || '未知';
+      const artist = track.artist || '未知艺术家';
+      const genres = (track.genres || []).join(', ') || '未知流派';
+      const energy = track.energy || 0;
+      const bpm = track.bpm || '--';
+      const duration = track.duration_sec ? `${Math.floor(track.duration_sec / 60)}:${String(track.duration_sec % 60).padStart(2, '0')}` : '--:--';
+      
+      console.log(`  ${COLORS.bold}${num}.${COLORS.reset} ${COLORS.green}${title}${COLORS.reset} - ${COLORS.cyan}${artist}${COLORS.reset}`);
+      console.log(`      ${COLORS.dim}流派: ${genres} | 能量: ${energy.toFixed(1)} | BPM: ${bpm} | 时长: ${duration}${COLORS.reset}`);
     });
-    if (playlist.length > 5) {
-      console.log(`    ${COLORS.dim}... 还有 ${playlist.length - 5} 首${COLORS.reset}`);
-    }
+    
+    const totalDuration = playlist.reduce((sum, t) => sum + (t.duration_sec || 0), 0);
+    const avgEnergy = playlist.reduce((sum, t) => sum + (t.energy || 0), 0) / playlist.length;
+    const allGenres = [...new Set(playlist.flatMap(t => t.genres || []))];
+    
+    console.log(`\n  ${COLORS.yellow}📊 歌单统计:${COLORS.reset}`);
+    console.log(`      总时长: ${Math.floor(totalDuration / 60)}分${totalDuration % 60}秒`);
+    console.log(`      平均能量: ${avgEnergy.toFixed(2)}`);
+    console.log(`      包含流派: ${allGenres.slice(0, 5).join(', ')}${allGenres.length > 5 ? '...' : ''}`);
+  } else {
+    console.log(`\n  ${COLORS.yellow}⚠️ 播放列表为空${COLORS.reset}`);
   }
 
   console.log(`\n${COLORS.bold}${COLORS.yellow}════════════════════════════════════════════════════════${COLORS.reset}`);
@@ -600,11 +614,18 @@ function showFullPipelineResult(l1, l2, l3, validation, time) {
   const content = l3.commands?.content;
   const lighting = l3.commands?.lighting;
   const audio = l3.commands?.audio;
+  const playlist = content?.playlist || [];
 
-  console.log(`\n  ${COLORS.yellow}🎵 内容:${COLORS.reset}`);
-  console.log(`    播放列表: ${content?.playlist?.length || 0} 首`);
-  if (content?.playlist?.[0]) {
-    console.log(`    首曲: ${content.playlist[0].title} - ${content.playlist[0].artist}`);
+  console.log(`\n  ${COLORS.yellow}🎵 播放列表 (${playlist.length}首):${COLORS.reset}`);
+  if (playlist.length > 0) {
+    playlist.forEach((track, i) => {
+      const num = String(i + 1).padStart(2, ' ');
+      console.log(`    ${num}. ${COLORS.green}${track.title}${COLORS.reset} - ${COLORS.cyan}${track.artist}${COLORS.reset}`);
+    });
+    
+    const totalDuration = playlist.reduce((sum, t) => sum + (t.duration_sec || 0), 0);
+    const avgEnergy = playlist.reduce((sum, t) => sum + (t.energy || 0), 0) / playlist.length;
+    console.log(`    ${COLORS.dim}总时长: ${Math.floor(totalDuration / 60)}分 | 平均能量: ${avgEnergy.toFixed(2)}${COLORS.reset}`);
   }
 
   console.log(`\n  ${COLORS.yellow}💡 灯光:${COLORS.reset}`);
