@@ -18,7 +18,8 @@
     "demo:layer3": "node scripts/layer3/demo.js",
     "demo:full": "node scripts/integration/e2e_test.js",
     "debug": "node scripts/debug.js",
-    "debug:run": "node scripts/debug.js --run"
+    "debug:run": "node scripts/debug.js --run 4 1",
+    "debug:run:full": "node scripts/debug.js --run 4 1"
   },
   "author": "",
   "license": "ISC",
