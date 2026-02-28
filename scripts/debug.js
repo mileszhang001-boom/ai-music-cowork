@@ -105,7 +105,10 @@ const state = {
   step: 1,
   selectedLayer: '4',
   selectedScenario: '1',
-  pageOffset: 0
+  pageOffset: 0,
+  jsonInputMode: false,
+  jsonInputBuffer: '',
+  customInput: null
 };
 
 function clearScreen() {
@@ -131,11 +134,71 @@ function formatTime(timeOfDay) {
   return '深夜 (21:00-24:00)';
 }
 
+function showJsonInputMode() {
+  clearScreen();
+  console.log(`${COLORS.bold}${COLORS.cyan}`);
+  console.log('╔════════════════════════════════════════════════════════════════╗');
+  console.log('║          🚗 车载座舱 AI 娱乐系统 - 调试工具 v2.2               ║');
+  console.log('╚════════════════════════════════════════════════════════════════╝');
+  console.log(`${COLORS.reset}`);
+  
+  const layer = LAYERS[state.selectedLayer];
+  console.log(`\n${COLORS.bold}${COLORS.green}✓ 调试阶段: ${layer.name}${COLORS.reset}`);
+  
+  console.log(`\n${COLORS.bold}${COLORS.magenta}【自定义JSON输入模式】${COLORS.reset}`);
+  console.log(`\n  ${COLORS.yellow}请输入JSON数据，按 Enter 确认，Esc 取消:${COLORS.reset}`);
+  console.log(`  ${COLORS.dim}提示: 输入多行JSON，以空行结束${COLORS.reset}\n`);
+  
+  if (state.jsonInputBuffer) {
+    const lines = state.jsonInputBuffer.split('\n');
+    lines.forEach(line => {
+      console.log(`  ${COLORS.green}${line}${COLORS.reset}`);
+    });
+  }
+  
+  console.log(`\n  ${COLORS.cyan}等待输入...${COLORS.reset}`);
+}
+
+function getJsonInputTemplate() {
+  const layer = state.selectedLayer;
+  
+  if (layer === '1') {
+    return `[
+  { "source": "vhal", "type": "vehicle_speed", "value": { "speed_kmh": 60 } },
+  { "source": "environment", "type": "time_of_day", "value": { "time_of_day": 0.5 } },
+  { "source": "internal_camera", "type": "cabin_analysis", "value": { "mood": "neutral", "passengers": { "adults": 1 } } }
+]`;
+  } else if (layer === '2') {
+    return `{
+  "confidence": { "overall": 0.9 },
+  "signals": {
+    "environment": { "time_of_day": 0.5, "weather": "clear" },
+    "internal_camera": { "mood": "neutral", "passengers": { "adults": 1 } }
+  }
+}`;
+  } else if (layer === '3') {
+    return `{
+  "scene_type": "custom_scene",
+  "scene_name": "自定义场景",
+  "intent": {
+    "mood": { "valence": 0.6, "arousal": 0.5 },
+    "energy_level": 0.5
+  },
+  "hints": {
+    "music": { "genres": ["pop"] },
+    "lighting": { "color_theme": "warm" }
+  }
+}`;
+  }
+  
+  return `{}`;
+}
+
 function showStep1() {
   clearScreen();
   console.log(`${COLORS.bold}${COLORS.cyan}`);
   console.log('╔════════════════════════════════════════════════════════════════╗');
-  console.log('║          🚗 车载座舱 AI 娱乐系统 - 调试工具 v2.1               ║');
+  console.log('║          🚗 车载座舱 AI 娱乐系统 - 调试工具 v2.2               ║');
   console.log('╚════════════════════════════════════════════════════════════════╝');
   console.log(`${COLORS.reset}`);
   
@@ -154,7 +217,7 @@ function showStep2() {
   clearScreen();
   console.log(`${COLORS.bold}${COLORS.cyan}`);
   console.log('╔════════════════════════════════════════════════════════════════╗');
-  console.log('║          🚗 车载座舱 AI 娱乐系统 - 调试工具 v2.1               ║');
+  console.log('║          🚗 车载座舱 AI 娱乐系统 - 调试工具 v2.2               ║');
   console.log('╚════════════════════════════════════════════════════════════════╝');
   console.log(`${COLORS.reset}`);
   
@@ -163,7 +226,7 @@ function showStep2() {
   
   console.log(`\n${COLORS.bold}${COLORS.yellow}【步骤 2/3】选择测试场景${COLORS.reset}\n`);
   
-  let scenarios, totalScenarios, pageSize = 10;
+  let scenarios, totalScenarios, pageSize = 8;
   
   if (state.selectedLayer === '3') {
     scenarios = Object.entries(LAYER3_SCENARIOS);
@@ -187,23 +250,29 @@ function showStep2() {
     console.log(`  ${mark}${COLORS.bold}${String(actualIdx + 1).padStart(3)}${COLORS.reset}. ${v.name}`);
   });
   
+  console.log(`\n  ${COLORS.magenta}● 0. 自定义JSON输入${COLORS.reset}`);
+  
   console.log(`\n  ${COLORS.dim}第 ${currentPage}/${totalPages} 页${COLORS.reset}`);
-  console.log(`  ${COLORS.cyan}⬆️ 上页  ⬇️ 下页  Enter 确认  Esc 返回${COLORS.reset}`);
+  console.log(`  ${COLORS.cyan}⬆️ 上页  ⬇️ 下页  Enter 确认  0 自定义JSON  Esc 返回${COLORS.reset}`);
 }
 
 async function runAndShowResult() {
   clearScreen();
   console.log(`${COLORS.bold}${COLORS.cyan}`);
   console.log('╔════════════════════════════════════════════════════════════════╗');
-  console.log('║          🚗 车载座舱 AI 娱乐系统 - 调试工具 v2.1               ║');
+  console.log('║          🚗 车载座舱 AI 娱乐系统 - 调试工具 v2.2               ║');
   console.log('╚════════════════════════════════════════════════════════════════╝');
   console.log(`${COLORS.reset}`);
   
   const layer = LAYERS[state.selectedLayer];
   console.log(`\n${COLORS.bold}${COLORS.green}✓ 调试阶段: ${layer.name}${COLORS.reset}`);
   
+  const isCustom = state.customInput !== null;
   let scenarioName = '';
-  if (state.selectedLayer === '3') {
+  
+  if (isCustom) {
+    scenarioName = `${COLORS.magenta}自定义JSON输入${COLORS.reset}`;
+  } else if (state.selectedLayer === '3') {
     scenarioName = LAYER3_SCENARIOS[state.selectedScenario]?.name || '';
   } else {
     scenarioName = LAYER1_SCENARIOS[state.selectedScenario]?.name || '';
@@ -216,24 +285,52 @@ async function runAndShowResult() {
   
   try {
     if (state.selectedLayer === '1') {
-      const scenario = LAYER1_SCENARIOS[state.selectedScenario];
-      const output = perceptionLayer.processBatch(scenario.signals);
-      showLayer1Result(scenario, output, Date.now() - t0);
+      let signals, context;
+      if (isCustom) {
+        signals = Array.isArray(state.customInput) ? state.customInput : [state.customInput];
+        context = { passengerComposition: ['adult'] };
+      } else {
+        const scenario = LAYER1_SCENARIOS[state.selectedScenario];
+        signals = scenario.signals;
+        context = scenario.context;
+      }
+      const output = perceptionLayer.processBatch(signals);
+      showLayer1Result({ signals, context }, output, Date.now() - t0);
     } else if (state.selectedLayer === '2') {
-      const scenario = LAYER1_SCENARIOS[state.selectedScenario];
-      const l1 = perceptionLayer.processBatch(scenario.signals);
-      const l2 = await semanticLayer.process(l1, { enableLLM: false, context: scenario.context });
-      const validation = rulesEngine.validate(l2.scene_descriptor, scenario.context);
-      showLayer2Result(l1, l2, validation, Date.now() - t0);
+      let l1Input, context;
+      if (isCustom) {
+        l1Input = state.customInput;
+        context = { passengerComposition: ['adult'] };
+      } else {
+        const scenario = LAYER1_SCENARIOS[state.selectedScenario];
+        l1Input = perceptionLayer.processBatch(scenario.signals);
+        context = scenario.context;
+      }
+      const l2 = await semanticLayer.process(l1Input, { enableLLM: false, context });
+      const validation = rulesEngine.validate(l2.scene_descriptor, context);
+      showLayer2Result(l1Input, l2, validation, Date.now() - t0);
     } else if (state.selectedLayer === '3') {
-      const scenario = LAYER3_SCENARIOS[state.selectedScenario];
-      const l3 = await effectsLayer.process(scenario.scene_descriptor);
-      showLayer3Result(scenario.scene_descriptor, l3, Date.now() - t0);
+      let sceneDescriptor;
+      if (isCustom) {
+        sceneDescriptor = state.customInput;
+      } else {
+        sceneDescriptor = LAYER3_SCENARIOS[state.selectedScenario].scene_descriptor;
+      }
+      const l3 = await effectsLayer.process(sceneDescriptor);
+      showLayer3Result(sceneDescriptor, l3, Date.now() - t0);
     } else {
-      const scenario = LAYER1_SCENARIOS[state.selectedScenario];
-      const l1 = perceptionLayer.processBatch(scenario.signals);
-      const l2 = await semanticLayer.process(l1, { enableLLM: false, context: scenario.context });
-      const validation = rulesEngine.validate(l2.scene_descriptor, scenario.context);
+      let signals, context;
+      if (isCustom) {
+        signals = Array.isArray(state.customInput) ? state.customInput : [state.customInput];
+        context = { passengerComposition: ['adult'] };
+      } else {
+        const scenario = LAYER1_SCENARIOS[state.selectedScenario];
+        signals = scenario.signals;
+        context = scenario.context;
+      }
+      const l1 = perceptionLayer.processBatch(signals);
+      const l2 = await semanticLayer.process(l1, { enableLLM: false, context });
+      const validation = rulesEngine.validate(l2.scene_descriptor, context);
       const l3 = await effectsLayer.process(l2.scene_descriptor);
       showFullPipelineResult(l1, l2, l3, validation, Date.now() - t0);
     }
@@ -404,9 +501,12 @@ function showLayer2Result(l1, l2, validation, time) {
   console.log(`    社交语境: ${intent.social_context || 'solo'}`);
   
   const hints = l2.scene_descriptor.hints || {};
+  const musicGenres = Array.isArray(hints.music?.genres) ? hints.music.genres : [];
+  const musicDecades = Array.isArray(hints.music?.decades) ? hints.music.decades : [];
+  
   console.log(`\n  ${COLORS.yellow}内容提示:${COLORS.reset}`);
-  console.log(`    音乐流派: ${(hints.music?.genres || []).join(', ') || '自动选择'}`);
-  console.log(`    音乐年代: ${(hints.music?.decades || []).join(', ') || '不限'}`);
+  console.log(`    音乐流派: ${musicGenres.join(', ') || '自动选择'}`);
+  console.log(`    音乐年代: ${musicDecades.join(', ') || '不限'}`);
   console.log(`    灯光主题: ${hints.lighting?.color_theme || 'default'}`);
 
   console.log(`\n${COLORS.bold}${COLORS.magenta}════════════════════════════════════════════════════════${COLORS.reset}`);
@@ -455,7 +555,7 @@ function showLayer3Result(sceneDescriptor, l3, time) {
       const num = String(i + 1).padStart(2, ' ');
       const title = track.title || '未知';
       const artist = track.artist || '未知艺术家';
-      const genres = (track.genres || []).join(', ') || '未知流派';
+      const genres = Array.isArray(track.genres) ? track.genres.join(', ') : '未知流派';
       const energy = track.energy || 0;
       const bpm = track.bpm || '--';
       const duration = track.duration_sec ? `${Math.floor(track.duration_sec / 60)}:${String(track.duration_sec % 60).padStart(2, '0')}` : '--:--';
@@ -481,7 +581,7 @@ function showLayer3Result(sceneDescriptor, l3, time) {
   console.log(`${COLORS.bold}${COLORS.yellow}════════════════════════════════════════════════════════${COLORS.reset}`);
   
   console.log(`\n  灯光主题: ${COLORS.bold}${lighting?.theme || 'default'}${COLORS.reset}`);
-  console.log(`  主色调: ${(lighting?.colors || []).join(' → ') || '默认'}`);
+  console.log(`  主色调: ${Array.isArray(lighting?.colors) ? lighting.colors.join(' → ') : '默认'}`);
   console.log(`  亮度: ${((lighting?.intensity || 1) * 100).toFixed(0)}%`);
   console.log(`  动态模式: ${lighting?.pattern || 'steady'}`);
   console.log(`  过渡时间: ${lighting?.transition_ms || 1000}ms`);
@@ -602,7 +702,8 @@ function showFullPipelineResult(l1, l2, l3, validation, time) {
 
   console.log(`\n  ${COLORS.yellow}📤 关键输出:${COLORS.reset}`);
   console.log(`    能量: ${l2.scene_descriptor.intent?.energy_level || 0}`);
-  console.log(`    流派: ${(l2.scene_descriptor.hints?.music?.genres || []).join(', ') || '自动'}`);
+  const l2Genres = Array.isArray(l2.scene_descriptor.hints?.music?.genres) ? l2.scene_descriptor.hints.music.genres : [];
+  console.log(`    流派: ${l2Genres.join(', ') || '自动'}`);
   
   const announcement = l2.scene_descriptor.announcement;
   console.log(`    播报: "${typeof announcement === 'string' ? announcement : (announcement?.text || '无')}"`);
@@ -686,9 +787,46 @@ async function main() {
 
   process.stdin.on('keypress', async (str, key) => {
     if (key.name === 'escape' || (key.name === 'c' && key.ctrl)) {
+      if (state.jsonInputMode) {
+        state.jsonInputMode = false;
+        state.jsonInputBuffer = '';
+        state.step = 2;
+        showStep2();
+        return;
+      }
       console.log(`\n${COLORS.green}再见！${COLORS.reset}`);
       process.stdin.setRawMode(false);
       process.exit(0);
+      return;
+    }
+
+    if (state.jsonInputMode) {
+      if (key.name === 'return') {
+        if (state.jsonInputBuffer.trim() === '') {
+          try {
+            const jsonStr = state.jsonInputBuffer.trim();
+            if (jsonStr) {
+              state.customInput = JSON.parse(jsonStr);
+              state.jsonInputMode = false;
+              state.jsonInputBuffer = '';
+              state.step = 3;
+              await runAndShowResult();
+            }
+          } catch (e) {
+            console.log(`\n${COLORS.red}JSON解析错误: ${e.message}${COLORS.reset}`);
+            console.log(`${COLORS.yellow}请重新输入或按 Esc 取消${COLORS.reset}`);
+          }
+        } else {
+          state.jsonInputBuffer += '\n';
+          showJsonInputMode();
+        }
+      } else if (key.name === 'backspace') {
+        state.jsonInputBuffer = state.jsonInputBuffer.slice(0, -1);
+        showJsonInputMode();
+      } else if (str && str.length === 1) {
+        state.jsonInputBuffer += str;
+        showJsonInputMode();
+      }
       return;
     }
 
@@ -732,6 +870,10 @@ async function main() {
       } else if (key.name === 'return') {
         state.step = 3;
         await runAndShowResult();
+      } else if (str === '0') {
+        state.jsonInputMode = true;
+        state.jsonInputBuffer = getJsonInputTemplate();
+        showJsonInputMode();
       } else if (key.name === 'escape' || key.name === 'b') {
         state.step = 1;
         state.pageOffset = 0;
@@ -740,6 +882,7 @@ async function main() {
     } else if (state.step === 3) {
       state.step = 1;
       state.pageOffset = 0;
+      state.customInput = null;
       layerIndex = layerKeys.indexOf(state.selectedLayer);
       showStep1();
     }
