@@ -1,0 +1,14 @@
+# Tasks
+- [x] Task 1: 分析并提取现有文档信息
+  - [x] SubTask 1.1: 读取 `constitution.md`、`spec-all.md`、`plan.md`、`rd_tasks.md`、`testing_acceptance.md` 等现有文件，梳理内容结构。
+- [x] Task 2: 重构五个核心文档（添加目录与交叉引用）
+  - [x] SubTask 2.1: 优化 `constitution.md`（项目准则与规范）。
+  - [x] SubTask 2.2: 优化 `spec-all.md`（产品定义与技术规格）。
+  - [x] SubTask 2.3: 优化 `plan.md`（技术实现与架构设计）。
+  - [x] SubTask 2.4: 创建/更新 `tasks.md`（合并 `rd_tasks.md` 内容，规划进度）。
+  - [x] SubTask 2.5: 创建/更新 `testing.md`（合并 `testing_acceptance.md` 内容，测试计划与用例）。
+- [x] Task 3: 编写项目说明与协作指南
+  - [x] SubTask 3.1: 编写 `README.md`，包含项目目标、结构说明以及基于 GitHub 的多人协作方案。
+  - [x] SubTask 3.2: 编写 `doc_integration_guide.md`，包含整合说明报告和文档使用指南。
+- [x] Task 4: 清理冗余文件
+  - [x] SubTask 4.1: 确认信息已完整迁移后，删除 `rd_tasks.md` 和 `testing_acceptance.md` 等被合并的文件。

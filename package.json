@@ -1,21 +1,44 @@
 {
-  "name": "vibe-tuner",
+  "name": "in-car-ai-entertainment",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "车载座舱 AI 娱乐融合方案",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:mocker": "node src/mocker/eventBusMocker.js",
+    "test": "mocha 'tests/**/*.test.js' --require tests/setup.js",
+    "test:coverage": "nyc npm test",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix",
+    "test:layer1": "node scripts/layer1/demo.js",
+    "test:layer2": "node scripts/layer2/demo.js",
+    "test:layer3": "node scripts/layer3/demo.js",
+    "test:integration": "node scripts/integration/e2e_test.js",
+    "demo:layer1": "node scripts/layer1/demo.js",
+    "demo:layer2": "node scripts/layer2/demo.js",
+    "demo:layer3": "node scripts/layer3/demo.js",
+    "demo:full": "node scripts/integration/e2e_test.js",
+    "debug": "node scripts/debug.js",
+    "debug:run": "node scripts/debug.js --run"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "zod": "^4.3.6"
+    "events": "^3.3.0",
+    "openai": "^6.25.0"
   },
   "devDependencies": {
-    "@types/node": "^25.3.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
-  }
+    "eslint": "^8.56.0",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "automotive",
+    "ai",
+    "entertainment",
+    "music-recommendation",
+    "smart-cabin"
+  ]
 }

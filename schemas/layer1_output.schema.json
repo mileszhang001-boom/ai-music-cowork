@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Layer 1 Output",
+  "type": "object",
+  "properties": {
+    "environment": {
+      "type": "object",
+      "properties": {
+        "time_of_day": { "type": "string" },
+        "weather": { "type": "string" },
+        "light_level": { "type": "number" },
+        "outside_scene": { "type": "string" },
+        "season_context": { "type": "string" },
+        "_source": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "from": { "type": "string" },
+              "confidence": { "type": "number" }
+            },
+            "required": ["from", "confidence"]
+          }
+        }
+      }
+    },
+    "passengers": {
+      "type": "object",
+      "properties": {
+        "count": { "type": "integer" },
+        "composition": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "mood_signals": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "valence": { "type": "number" },
+              "arousal": { "type": "number" },
+              "confidence": { "type": "number" }
+            }
+          }
+        },
+        "cabin_audio_state": { "type": "string" },
+        "_source": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "from": { "type": "string" },
+              "confidence": { "type": "number" }
+            },
+            "required": ["from", "confidence"]
+          }
+        }
+      }
+    },
+    "trip": {
+      "type": "object",
+      "properties": {
+        "trip_purpose": { "type": "string" },
+        "trip_progress": { "type": "number" },
+        "estimated_remaining_min": { "type": "integer" },
+        "_source": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "from": { "type": "string" },
+              "confidence": { "type": "number" }
+            },
+            "required": ["from", "confidence"]
+          }
+        }
+      }
+    },
+    "driver_state": {
+      "type": "object",
+      "properties": {
+        "fatigue_level": { "type": "number" },
+        "attention_level": { "type": "number" },
+        "_source": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "from": { "type": "string" },
+              "confidence": { "type": "number" }
+            },
+            "required": ["from", "confidence"]
+          }
+        }
+      }
+    }
+  }
+}

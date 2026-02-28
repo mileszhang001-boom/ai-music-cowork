@@ -1,0 +1,25 @@
+{
+  "user_id": "user_12345",
+  "name": "Alex",
+  "age_group": "25-34",
+  "primary_persona": "persona_office_worker",
+  "secondary_personas": ["persona_night_owl", "persona_road_tripper"],
+  "global_preferences": {
+    "liked_genres": ["pop", "rock", "electronic", "synthwave"],
+    "disliked_genres": ["classical", "country"],
+    "favorite_artists": ["The Weeknd", "Daft Punk", "Coldplay"],
+    "preferred_volume_level": 60,
+    "preferred_tts_voice": "energetic_male"
+  },
+  "contextual_preferences": {
+    "morning_commute": {
+      "vibe": "upbeat",
+      "energy_level": 0.8
+    },
+    "late_night_drive": {
+      "vibe": "cool",
+      "energy_level": 0.5
+    }
+  },
+  "last_updated": "2026-02-28T10:00:00Z"
+}

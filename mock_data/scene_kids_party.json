@@ -1,0 +1,56 @@
+{
+  "scene_id": "scene_kids_party_001",
+  "timestamp": "2026-03-05T15:30:00Z",
+  "intent": "kids_entertainment",
+  "confidence": 0.94,
+  "source": "layer3_slow_path",
+  "persona": {
+    "id": "persona_family_with_kids",
+    "description": "带娃出行",
+    "preferences": {
+      "liked_genres": ["children", "disney", "pop"],
+      "disliked_genres": ["metal", "rap"],
+      "vibe": "playful"
+    }
+  },
+  "context": {
+    "time": "15:30",
+    "weather": "sunny",
+    "oms": {
+      "occupants": 3,
+      "type": "mixed"
+    },
+    "mic": "noisy_kids"
+  },
+  "announcement": {
+    "tts_text": "小朋友们好！我们来听一些好玩的儿歌吧！",
+    "voice_type": "cheerful_female"
+  },
+  "orchestration": {
+    "transition": {
+      "type": "crossfade",
+      "duration_ms": 2000
+    },
+    "energy_curve": [
+      {"time_offset_s": 0, "energy_level": 0.7},
+      {"time_offset_s": 300, "energy_level": 0.75},
+      {"time_offset_s": 600, "energy_level": 0.8},
+      {"time_offset_s": 900, "energy_level": 0.75},
+      {"time_offset_s": 1200, "energy_level": 0.7}
+    ],
+    "content_hints": {
+      "genres": ["children", "pop"],
+      "tempo": "fast",
+      "instrumental_only": false
+    },
+    "light_hints": {
+      "color_palette": ["#FF0000", "#00FF00", "#0000FF"],
+      "effect": "rainbow_chase",
+      "brightness": 0.9
+    },
+    "audio_hints": {
+      "eq_preset": "vocal_boost",
+      "spatial_audio": "rear_focused"
+    }
+  }
+}
