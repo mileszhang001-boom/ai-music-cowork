@@ -137,6 +137,7 @@ class PerceptionLayer {
       externalCamera.primary_color = val.primary_color || '#87CEEB';
       externalCamera.secondary_color = val.secondary_color || '#FFFFFF';
       externalCamera.brightness = val.brightness ?? 0.5;
+      externalCamera.scene_description = val.scene_description || 'unknown';
     }
   }
 

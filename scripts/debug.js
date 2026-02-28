@@ -20,7 +20,7 @@ const SCENARIOS = {
     { source: SignalSources.ENVIRONMENT, type: 'time_of_day', value: { time_of_day: 0.35 } },
     { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'clear' } },
     { source: SignalSources.ENVIRONMENT, type: 'date_type', value: { date_type: 'weekday' } },
-    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#FFA500', secondary_color: '#87CEEB', brightness: 0.6 } },
+    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#FFA500', secondary_color: '#87CEEB', brightness: 0.6, scene_description: 'city' } },
     { source: SignalSources.INTERNAL_CAMERA, type: 'cabin_analysis', value: { mood: 'neutral', confidence: 0.85, passengers: { children: 0, adults: 1, seniors: 0 } } },
     { source: SignalSources.INTERNAL_MIC, type: 'cabin_audio', value: { volume_level: 0.2, has_voice: false, voice_count: 0, noise_level: 0.1 } }
   ], context: { passengerComposition: ['adult'] }},
@@ -29,7 +29,7 @@ const SCENARIOS = {
     { source: SignalSources.ENVIRONMENT, type: 'time_of_day', value: { time_of_day: 0.05 } },
     { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'clear' } },
     { source: SignalSources.ENVIRONMENT, type: 'date_type', value: { date_type: 'weekday' } },
-    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#1E3A5F', secondary_color: '#2C5F7C', brightness: 0.2 } },
+    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#1E3A5F', secondary_color: '#2C5F7C', brightness: 0.2, scene_description: 'highway' } },
     { source: SignalSources.INTERNAL_CAMERA, type: 'cabin_analysis', value: { mood: 'calm', confidence: 0.8, passengers: { children: 0, adults: 1, seniors: 0 } } },
     { source: SignalSources.INTERNAL_MIC, type: 'cabin_audio', value: { volume_level: 0.1, has_voice: false, voice_count: 0, noise_level: 0.05 } }
   ], context: { passengerComposition: ['adult'] }},
@@ -43,14 +43,14 @@ const SCENARIOS = {
     { source: SignalSources.ENVIRONMENT, type: 'time_of_day', value: { time_of_day: 0.6 } },
     { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'sunny' } },
     { source: SignalSources.ENVIRONMENT, type: 'date_type', value: { date_type: 'weekend' } },
-    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#87CEEB', secondary_color: '#FFFFFF', brightness: 0.8 } },
+    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#87CEEB', secondary_color: '#FFFFFF', brightness: 0.8, scene_description: 'suburban' } },
     { source: SignalSources.INTERNAL_CAMERA, type: 'cabin_analysis', value: { mood: 'happy', confidence: 0.85, passengers: { children: 1, adults: 2, seniors: 0 } } },
     { source: SignalSources.INTERNAL_MIC, type: 'cabin_audio', value: { volume_level: 0.5, has_voice: true, voice_count: 3, noise_level: 0.3 } }
   ], context: { passengerComposition: ['adult', 'adult', 'child'] }},
   '5': { name: '雨夜驾驶', signals: [
     { source: SignalSources.ENVIRONMENT, type: 'time_of_day', value: { time_of_day: 0.1 } },
     { source: SignalSources.ENVIRONMENT, type: 'weather', value: { weather: 'rain' } },
-    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#4A5568', secondary_color: '#718096', brightness: 0.3 } },
+    { source: SignalSources.EXTERNAL_CAMERA, type: 'environment_colors', value: { primary_color: '#4A5568', secondary_color: '#718096', brightness: 0.3, scene_description: 'city' } },
     { source: SignalSources.INTERNAL_CAMERA, type: 'cabin_analysis', value: { mood: 'calm', confidence: 0.75, passengers: { children: 0, adults: 1, seniors: 0 } } }
   ], context: { passengerComposition: ['adult'] }},
   '6': { name: '语音请求', signals: [
@@ -128,6 +128,7 @@ async function runDebug() {
       `日期: ${output.signals?.environment?.date_type || 'weekday'}`,
       `天气: ${output.signals?.environment?.weather || '未知'}`,
       `车速: ${output.signals?.vehicle?.speed_kmh || 0} km/h`,
+      `环境: ${extCam.scene_description || '未知'}`,
       `心情: ${intCam.mood || '未知'} (${((intCam.confidence || 0) * 100).toFixed(0)}%)`,
       `乘客: 儿童${intCam.passengers?.children || 0} 成人${intCam.passengers?.adults || 0} 老人${intCam.passengers?.seniors || 0}`
     ], COLORS.green);
@@ -245,12 +246,14 @@ async function runDebug() {
     ), COLORS.yellow);
 
     const intCam1 = l1.signals?.internal_camera || {};
+    const extCam1 = l1.signals?.external_camera || {};
     printBox('📤 Layer 1 输出', [
       `置信度: ${(l1.confidence.overall * 100).toFixed(0)}%`,
       `时间: ${formatTime(l1.signals?.environment?.time_of_day)}`,
       `日期: ${l1.signals?.environment?.date_type || 'weekday'}`,
       `天气: ${l1.signals?.environment?.weather || '未知'}`,
       `车速: ${l1.signals?.vehicle?.speed_kmh || 0} km/h`,
+      `环境: ${extCam1.scene_description || '未知'}`,
       `心情: ${intCam1.mood || '未知'}`,
       `乘客: 儿童${intCam1.passengers?.children || 0} 成人${intCam1.passengers?.adults || 0}`
     ], COLORS.green);

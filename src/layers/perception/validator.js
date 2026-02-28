@@ -33,7 +33,8 @@ const SignalsSchema = {
           properties: {
             primary_color: { type: 'string' },
             secondary_color: { type: 'string' },
-            brightness: { type: 'number', minimum: 0, maximum: 1 }
+            brightness: { type: 'number', minimum: 0, maximum: 1 },
+            scene_description: { type: 'string' }
           }
         },
         internal_camera: {

@@ -98,7 +98,8 @@ class Normalizer {
         return {
           primary_color: v.primary_color || '#87CEEB',
           secondary_color: v.secondary_color || '#FFFFFF',
-          brightness: Math.min(1, Math.max(0, v.brightness ?? 0.5))
+          brightness: Math.min(1, Math.max(0, v.brightness ?? 0.5)),
+          scene_description: v.scene_description || 'unknown'
         };
       }
     };

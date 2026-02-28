@@ -77,9 +77,23 @@
 {
   "primary_color": "#87CEEB",    // 主色调 (天空蓝、夕阳橙等)
   "secondary_color": "#FFFFFF",  // 辅色调
-  "brightness": 0.6              // 环境亮度 (0-1)
+  "brightness": 0.6,             // 环境亮度 (0-1)
+  "scene_description": "city"    // 环境描述 (city | highway | suburban | rural | tunnel | bridge | parking | unknown)
 }
 ```
+
+#### 环境描述 (scene_description) 枚举
+
+| 值 | 说明 |
+|----|------|
+| `city` | 城市道路 |
+| `highway` | 高速公路 |
+| `suburban` | 郊区道路 |
+| `rural` | 乡村道路 |
+| `tunnel` | 隧道 |
+| `bridge` | 桥梁 |
+| `parking` | 停车场 |
+| `unknown` | 未知环境 |
 
 **internal_camera 信号 (车内摄像头):**
 ```json
@@ -144,7 +158,8 @@
     "external_camera": {               // ? 可选 - 车外摄像头
       "primary_color": "#87CEEB",      // ? 可选 - 主色调
       "secondary_color": "#FFFFFF",    // ? 可选 - 辅色调
-      "brightness": 0.6                // ? 可选 - 亮度 (0-1)
+      "brightness": 0.6,               // ? 可选 - 亮度 (0-1)
+      "scene_description": "city"      // ? 可选 - 环境描述
     },
     "internal_camera": {               // ? 可选 - 车内摄像头
       "mood": "happy",                 // ? 可选 - 乘客心情
@@ -199,6 +214,7 @@
 | `signals.external_camera.primary_color` | ? | string | HEX颜色 | 车外环境主色调 |
 | `signals.external_camera.secondary_color` | ? | string | HEX颜色 | 车外环境辅色调 |
 | `signals.external_camera.brightness` | ? | number | 0-1 | 环境亮度 |
+| `signals.external_camera.scene_description` | ? | string | city/highway/suburban/rural/tunnel/bridge/parking/unknown | 环境描述 |
 | `signals.internal_camera.mood` | ? | string | happy/calm/tired/stressed/neutral/excited | 乘客心情 |
 | `signals.internal_camera.confidence` | ? | number | 0-1 | 心情识别置信度 |
 | `signals.internal_camera.passengers.children` | ? | integer | 0-8 | 儿童数量 |
