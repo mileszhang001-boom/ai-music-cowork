@@ -162,16 +162,16 @@ function showJsonInputMode() {
   console.log(`    ${COLORS.cyan}Tab${COLORS.reset}   - 确认执行`);
   console.log(`    ${COLORS.cyan}Esc${COLORS.reset}   - 取消返回`);
   console.log(`\n  ${COLORS.dim}支持宽松JSON格式（允许尾随逗号、注释）${COLORS.reset}`);
-  console.log(`  ${COLORS.dim}请输入JSON数据:${COLORS.reset}\n`);
+  console.log(`  ${COLORS.dim}直接粘贴您的JSON数据即可${COLORS.reset}\n`);
   
   if (state.jsonInputBuffer) {
     const lines = state.jsonInputBuffer.split('\n');
     lines.forEach(line => {
       console.log(`  ${COLORS.green}${line}${COLORS.reset}`);
     });
+  } else {
+    console.log(`  ${COLORS.cyan}等待输入... (可直接粘贴JSON)${COLORS.reset}`);
   }
-  
-  console.log(`\n  ${COLORS.cyan}等待输入...${COLORS.reset}`);
 }
 
 function getJsonInputTemplate() {
@@ -886,7 +886,7 @@ async function main() {
         await runAndShowResult();
       } else if (str === '0') {
         state.jsonInputMode = true;
-        state.jsonInputBuffer = getJsonInputTemplate();
+        state.jsonInputBuffer = '';
         showJsonInputMode();
       } else if (key.name === 'escape' || key.name === 'b') {
         state.step = 1;
