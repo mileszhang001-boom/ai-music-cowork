@@ -1,0 +1,12 @@
+# Tasks
+- [x] Task 1: 生成研发任务文档 `rd_tasks.md`
+  - [x] SubTask 1.1: 基于 `plan.md`，细化 Phase 0 到 Phase 4 的具体研发任务。
+  - [x] SubTask 1.2: 明确每个任务的责任团队（Team A/B/C/D/E）和交付物。
+- [x] Task 2: 生成测试验收文档 `testing_acceptance.md`
+  - [x] SubTask 2.1: 定义整体的质量验证方法（三层闭环）。
+  - [x] SubTask 2.2: 详细描述 3 个核心场景（深夜雨天独自通勤、儿童上车+创意语音请求、疲劳驾驶紧急干预）的测试路径和预期效果。
+- [x] Task 3: 生成测试验收的必要素材（Mock 数据）
+  - [x] SubTask 3.1: 创建 `mock_data/` 目录。
+  - [x] SubTask 3.2: 为“深夜雨天独自通勤”场景生成 Mock 数据（如 `scene_rainy_night.json`）。
+  - [x] SubTask 3.3: 为“儿童上车+创意语音请求”场景生成 Mock 数据（如 `scene_family_beach.json` 和 `ack_creative.json`）。
+  - [x] SubTask 3.4: 为“疲劳驾驶紧急干预”场景生成 Mock 数据（如 `scene_fatigue_alert.json`）。

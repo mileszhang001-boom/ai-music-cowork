@@ -1,0 +1,56 @@
+{
+  "scene_id": "scene_traffic_jam_001",
+  "timestamp": "2026-03-07T18:00:00Z",
+  "intent": "stress_relief",
+  "confidence": 0.93,
+  "source": "layer3_slow_path",
+  "persona": {
+    "id": "persona_stressed_driver",
+    "description": "堵车司机",
+    "preferences": {
+      "liked_genres": ["acoustic", "indie", "classical"],
+      "disliked_genres": ["metal", "edm", "hard_rock"],
+      "vibe": "calming"
+    }
+  },
+  "context": {
+    "time": "18:00",
+    "weather": "cloudy",
+    "oms": {
+      "occupants": 1,
+      "type": "adult"
+    },
+    "mic": "sighing"
+  },
+  "announcement": {
+    "tts_text": "前面有点堵，别着急，听点轻松的音乐放松一下心情吧。",
+    "voice_type": "warm_female"
+  },
+  "orchestration": {
+    "transition": {
+      "type": "fade",
+      "duration_ms": 4000
+    },
+    "energy_curve": [
+      {"time_offset_s": 0, "energy_level": 0.4},
+      {"time_offset_s": 300, "energy_level": 0.35},
+      {"time_offset_s": 600, "energy_level": 0.3},
+      {"time_offset_s": 900, "energy_level": 0.25},
+      {"time_offset_s": 1200, "energy_level": 0.2}
+    ],
+    "content_hints": {
+      "genres": ["acoustic", "indie"],
+      "tempo": "slow",
+      "instrumental_only": false
+    },
+    "light_hints": {
+      "color_palette": ["#98FB98", "#F0E68C"],
+      "effect": "breathing_slow",
+      "brightness": 0.4
+    },
+    "audio_hints": {
+      "eq_preset": "acoustic",
+      "spatial_audio": "stereo_standard"
+    }
+  }
+}

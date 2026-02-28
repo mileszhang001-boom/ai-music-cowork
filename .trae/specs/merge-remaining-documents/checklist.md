@@ -1,0 +1,6 @@
+- [x] `tech.md` 的内容已完整合并至 `plan.md`。
+- [x] `checklist.md` 的内容已完整合并至 `testing.md`。
+- [x] `plan.md` 和 `testing.md` 的目录（TOC）已更新。
+- [x] `README.md` 和 `doc_integration_guide.md` 已更新，无失效引用。
+- [x] 根目录下的 `tech.md` 已被删除。
+- [x] 根目录下的 `checklist.md` 已被删除。

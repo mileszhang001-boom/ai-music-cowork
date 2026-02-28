@@ -1,0 +1,10 @@
+- [x] `spec-all.md` has no markdown formatting errors or stray text.
+- [x] `spec-all.md` has only one definition for the Scene Descriptor.
+- [x] Risk management is consolidated into a single document without overlap.
+- [x] `testing.md` references `spec-all.md` for scenarios instead of duplicating them.
+- [x] Formal `.schema.json` files exist for core data structures.
+- [x] Existing mock data files strictly conform to the structures in `spec-all.md` and the new JSON schemas.
+- [x] There are at least 10 Scene Descriptor mock files.
+- [x] Mock data exists for Feedback Reports, Layer 1/2 outputs, and user personas.
+- [x] Basic project scaffolding (directory structure and build config) is initialized.
+- [x] Event Bus Mocker tool script is created.

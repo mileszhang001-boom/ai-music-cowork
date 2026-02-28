@@ -1,0 +1,62 @@
+{
+  "timestamp": "2026-02-28T00:52:47.267Z",
+  "summary": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "totalDuration": 9933
+  },
+  "results": [
+    {
+      "test": "基础连接测试 - qwen3.5-flash",
+      "model": "qwen3.5-flash",
+      "success": true,
+      "duration": 483,
+      "reasoningTokens": 0,
+      "tokens": 48
+    },
+    {
+      "test": "场景推理测试 - qwen3.5-flash",
+      "model": "qwen3.5-flash",
+      "success": true,
+      "duration": 1914,
+      "reasoningTokens": 0,
+      "tokens": 315,
+      "jsonValid": true
+    },
+    {
+      "test": "基础连接测试 - qwen3.5-plus",
+      "model": "qwen3.5-plus",
+      "success": true,
+      "duration": 694,
+      "reasoningTokens": 0,
+      "tokens": 47
+    },
+    {
+      "test": "场景推理测试 - qwen3.5-plus",
+      "model": "qwen3.5-plus",
+      "success": true,
+      "duration": 3238,
+      "reasoningTokens": 0,
+      "tokens": 372,
+      "jsonValid": true
+    },
+    {
+      "test": "基础连接测试 - qwen-plus",
+      "model": "qwen-plus",
+      "success": true,
+      "duration": 1068,
+      "reasoningTokens": 0,
+      "tokens": 60
+    },
+    {
+      "test": "场景推理测试 - qwen-plus",
+      "model": "qwen-plus",
+      "success": true,
+      "duration": 2536,
+      "reasoningTokens": 0,
+      "tokens": 270,
+      "jsonValid": true
+    }
+  ]
+}

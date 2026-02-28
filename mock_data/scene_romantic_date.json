@@ -1,0 +1,56 @@
+{
+  "scene_id": "scene_romantic_date_001",
+  "timestamp": "2026-02-14T19:30:00Z",
+  "intent": "romantic_evening",
+  "confidence": 0.91,
+  "source": "layer3_slow_path",
+  "persona": {
+    "id": "persona_couple",
+    "description": "情侣约会",
+    "preferences": {
+      "liked_genres": ["rnb", "soul", "jazz"],
+      "disliked_genres": ["metal", "edm"],
+      "vibe": "romantic"
+    }
+  },
+  "context": {
+    "time": "19:30",
+    "weather": "clear",
+    "oms": {
+      "occupants": 2,
+      "type": "adult"
+    },
+    "mic": "soft_talking"
+  },
+  "announcement": {
+    "tts_text": "夜色真美，为您播放一些浪漫的旋律。",
+    "voice_type": "soft_female"
+  },
+  "orchestration": {
+    "transition": {
+      "type": "fade",
+      "duration_ms": 4000
+    },
+    "energy_curve": [
+      {"time_offset_s": 0, "energy_level": 0.4},
+      {"time_offset_s": 300, "energy_level": 0.45},
+      {"time_offset_s": 600, "energy_level": 0.5},
+      {"time_offset_s": 900, "energy_level": 0.45},
+      {"time_offset_s": 1200, "energy_level": 0.4}
+    ],
+    "content_hints": {
+      "genres": ["rnb", "soul"],
+      "tempo": "medium_slow",
+      "instrumental_only": false
+    },
+    "light_hints": {
+      "color_palette": ["#FF69B4", "#8A2BE2"],
+      "effect": "gradient_slow",
+      "brightness": 0.5
+    },
+    "audio_hints": {
+      "eq_preset": "vocal",
+      "spatial_audio": "intimate"
+    }
+  }
+}

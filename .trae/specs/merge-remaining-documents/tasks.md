@@ -1,0 +1,13 @@
+# Tasks
+- [x] Task 1: 合并 `tech.md` 到 `plan.md`
+  - [x] SubTask 1.1: 读取 `tech.md` 的内容（平台基线、技术选型、风险评估）。
+  - [x] SubTask 1.2: 将内容作为独立章节（如“全链路技术方案评估与选型”）追加或融合到 `plan.md` 中，并更新 `plan.md` 的目录。
+- [x] Task 2: 合并 `checklist.md` 到 `testing.md`
+  - [x] SubTask 2.1: 读取 `checklist.md` 的内容（各阶段核心检查项）。
+  - [x] SubTask 2.2: 将内容作为独立章节（如“核心检查项 Checklist”）追加到 `testing.md` 中，并更新 `testing.md` 的目录。
+- [x] Task 3: 更新导航与说明文档
+  - [x] SubTask 3.1: 检查并更新 `README.md`，移除对 `tech.md` 和 `checklist.md` 的引用（如果有）。
+  - [x] SubTask 3.2: 检查并更新 `doc_integration_guide.md`，记录此次合并操作。
+- [x] Task 4: 清理遗留文件
+  - [x] SubTask 4.1: 删除根目录下的 `tech.md`。
+  - [x] SubTask 4.2: 删除根目录下的 `checklist.md`。

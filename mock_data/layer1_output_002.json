@@ -1,0 +1,12 @@
+{
+  "event_id": "l1_evt_002",
+  "timestamp": "2026-02-28T14:15:22Z",
+  "trigger": "hard_braking_detected",
+  "action": "lower_volume",
+  "parameters": {
+    "target_volume_percent": 20,
+    "fade_duration_ms": 200
+  },
+  "latency_ms": 12,
+  "status": "executed"
+}

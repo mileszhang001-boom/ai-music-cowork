@@ -1,0 +1,16 @@
+{
+  "adjustment_id": "l2_adj_002",
+  "timestamp": "2026-02-28T19:50:00Z",
+  "scene_id": "scene_romantic_date_001",
+  "trigger": "user_feedback_volume_up",
+  "adjustments": {
+    "extend_current_vibe_duration_s": 1800,
+    "genre_weight_adjustments": {
+      "jazz": 1.2,
+      "soul": 1.1
+    }
+  },
+  "reason": "User increased volume during jazz track, indicating strong preference for current vibe.",
+  "latency_ms": 850,
+  "status": "applied"
+}

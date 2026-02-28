@@ -1,0 +1,56 @@
+{
+  "scene_id": "scene_road_trip_001",
+  "timestamp": "2026-03-01T10:00:00Z",
+  "intent": "fun_journey",
+  "confidence": 0.95,
+  "source": "layer3_slow_path",
+  "persona": {
+    "id": "persona_friends_group",
+    "description": "朋友出游",
+    "preferences": {
+      "liked_genres": ["edm", "hiphop"],
+      "disliked_genres": ["jazz"],
+      "vibe": "party"
+    }
+  },
+  "context": {
+    "time": "10:00",
+    "weather": "clear",
+    "oms": {
+      "occupants": 4,
+      "type": "adult"
+    },
+    "mic": "chatting"
+  },
+  "announcement": {
+    "tts_text": "准备好出发了吗？让我们用最嗨的音乐开启这趟旅程！",
+    "voice_type": "enthusiastic_female"
+  },
+  "orchestration": {
+    "transition": {
+      "type": "cut",
+      "duration_ms": 0
+    },
+    "energy_curve": [
+      {"time_offset_s": 0, "energy_level": 0.8},
+      {"time_offset_s": 600, "energy_level": 0.85},
+      {"time_offset_s": 1200, "energy_level": 0.9},
+      {"time_offset_s": 1800, "energy_level": 0.95},
+      {"time_offset_s": 2400, "energy_level": 0.9}
+    ],
+    "content_hints": {
+      "genres": ["edm", "hiphop"],
+      "tempo": "fast",
+      "instrumental_only": false
+    },
+    "light_hints": {
+      "color_palette": ["#FF00FF", "#00FFFF"],
+      "effect": "strobe_soft",
+      "brightness": 1.0
+    },
+    "audio_hints": {
+      "eq_preset": "bass_boost",
+      "spatial_audio": "surround_max"
+    }
+  }
+}

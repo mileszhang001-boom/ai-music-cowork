@@ -1,0 +1,25 @@
+{
+  "user_id": "user_67890",
+  "name": "Sarah",
+  "age_group": "35-44",
+  "primary_persona": "persona_family_with_kids",
+  "secondary_personas": ["persona_stressed_driver", "persona_romantic"],
+  "global_preferences": {
+    "liked_genres": ["pop", "children", "acoustic", "jazz"],
+    "disliked_genres": ["metal", "rap", "hard_rock"],
+    "favorite_artists": ["Taylor Swift", "Norah Jones", "Disney Chorus"],
+    "preferred_volume_level": 40,
+    "preferred_tts_voice": "warm_female"
+  },
+  "contextual_preferences": {
+    "kids_in_car": {
+      "vibe": "playful",
+      "energy_level": 0.7
+    },
+    "traffic_jam": {
+      "vibe": "calming",
+      "energy_level": 0.3
+    }
+  },
+  "last_updated": "2026-02-27T15:30:00Z"
+}

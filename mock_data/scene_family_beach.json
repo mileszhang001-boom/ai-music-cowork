@@ -1,0 +1,78 @@
+{
+  "version": "2.0",
+  "scene_id": "scene_family_beach_001",
+  "timestamp": "2026-02-27T10:30:38+08:00",
+  "scene_name": "海边度假·合家欢",
+  "scene_narrative": "为全家带来海边度假的轻松氛围",
+  "intent": {
+    "mood": {
+      "valence": 0.8,
+      "arousal": 0.6
+    },
+    "energy_level": 0.6,
+    "energy_curve": [
+      0.6,
+      0.7,
+      0.65
+    ],
+    "curve_duration_minutes": 30,
+    "atmosphere": "beach_vacation",
+    "social_context": "family_with_child",
+    "trip_phase": "midway",
+    "trip_progress": 0.5,
+    "constraints": {
+      "content_rating": "G",
+      "max_volume_db": -15,
+      "avoid_sudden_changes": false,
+      "brightness_max": 0.8
+    },
+    "user_overrides": {
+      "exclude_tags": [],
+      "preferred_language": []
+    },
+    "transition": {
+      "type": "event",
+      "style": "crossfade",
+      "duration_sec": 3
+    }
+  },
+  "hints": {
+    "music": {
+      "suggested_tags": [
+        "Bossa Nova",
+        "夏日",
+        "轻快"
+      ],
+      "suggested_tempo": [
+        90,
+        120
+      ],
+      "suggested_artists": [],
+      "suggested_vocal_style": "cheerful"
+    },
+    "lighting": {
+      "suggested_palette": [
+        "ocean_blue",
+        "sunset_orange"
+      ],
+      "suggested_rhythm": "wave"
+    },
+    "audio": {
+      "suggested_spatial": "surround_wide",
+      "suggested_bass_level": "medium"
+    }
+  },
+  "announcement": {
+    "text": "为你们切换到海边度假模式，准备好享受阳光和沙滩了吗？",
+    "timing": "after_transition_start",
+    "voice_style": "warm_female"
+  },
+  "meta": {
+    "confidence": 0.88,
+    "source": "layer3_llm",
+    "reasoning": "用户语音请求海边度假感觉，同时检测到后排有儿童，生成适合全家的海边度假氛围",
+    "fallback_template": "TPL_020",
+    "expires_at": "2026-02-27T11:00:38+08:00",
+    "low_confidence_dimensions": []
+  }
+}
