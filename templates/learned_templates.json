@@ -1,6 +1,56 @@
 {
   "version": "1.0",
-  "description": "从 LLM 生成的 Scene Descriptor 中学习的模板",
-  "lastUpdated": null,
-  "templates": []
+  "lastUpdated": "2026-02-28T08:55:51.838Z",
+  "templates": [
+    {
+      "scene_type": "integration_test",
+      "name": "自定义integration_test",
+      "description": "用户自定义场景",
+      "category": "special",
+      "intent": {
+        "scene_type": "integration_test",
+        "mood": {
+          "valence": 0.5,
+          "arousal": 0.5
+        },
+        "energy_level": 0.5,
+        "atmosphere": "neutral"
+      },
+      "hints": {
+        "music": {
+          "genres": [
+            "pop"
+          ],
+          "tempo": "medium",
+          "vocal_style": "any"
+        },
+        "lighting": {
+          "color_theme": "calm",
+          "pattern": "breathing",
+          "intensity": 0.4
+        },
+        "audio": {
+          "preset": "standard"
+        }
+      },
+      "triggers": {
+        "time_range": [
+          "09:00",
+          "12:00"
+        ]
+      },
+      "priority": 5,
+      "announcement_templates": [
+        "已为你切换到integration_test模式"
+      ],
+      "template_id": "LEARNED_6F09A12F",
+      "source": "learned",
+      "learnedAt": "2026-02-28T08:55:51.838Z",
+      "stats": {
+        "acceptCount": 1,
+        "firstLearned": "2026-02-28T08:55:51.838Z",
+        "lastUsed": "2026-02-28T08:55:51.838Z"
+      }
+    }
+  ]
 }

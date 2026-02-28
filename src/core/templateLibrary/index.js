@@ -296,6 +296,9 @@ class TemplateLibrary {
    * @returns {number} 分钟数
    */
   parseTime(timeStr) {
+    if (typeof timeStr === 'number') {
+      return timeStr * 60;
+    }
     const [hours, minutes] = timeStr.split(':').map(Number);
     return hours * 60 + (minutes || 0);
   }
