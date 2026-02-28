@@ -54,6 +54,8 @@ class Normalizer {
         return this.normalizeInternalCameraValue(type, value);
       case SignalSources.INTERNAL_MIC:
         return this.normalizeInternalMicValue(type, value);
+      case SignalSources.BIOMETRIC:
+        return this.normalizeBiometricValue(type, value);
       case SignalSources.USER_PROFILE:
         return this.normalizeUserProfileValue(type, value);
       case SignalSources.MUSIC_STATE:
@@ -138,6 +140,15 @@ class Normalizer {
         };
       },
       volume_level: (v) => Math.min(1, Math.max(0, v))
+    };
+    return normalizers[type] ? normalizers[type](value) : value;
+  }
+
+  normalizeBiometricValue(type, value) {
+    const normalizers = {
+      heart_rate: (v) => Math.min(200, Math.max(40, v)),
+      stress_level: (v) => Math.min(1, Math.max(0, v)),
+      fatigue_level: (v) => Math.min(1, Math.max(0, v))
     };
     return normalizers[type] ? normalizers[type](value) : value;
   }

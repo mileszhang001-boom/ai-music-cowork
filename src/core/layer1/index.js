@@ -123,20 +123,20 @@ class Layer1Processor {
    */
   normalizeValue(source, type, value) {
     switch (source) {
-      case SignalSources.VHAL:
-        return this.normalizeVHALValue(type, value);
-      case SignalSources.VOICE:
-        return this.normalizeVoiceValue(type, value);
-      case SignalSources.BIOMETRIC:
-        return this.normalizeBiometricValue(type, value);
-      case SignalSources.ENVIRONMENT:
-        return this.normalizeEnvironmentValue(type, value);
-      case SignalSources.USER_PROFILE:
-        return this.normalizeUserProfileValue(type, value);
-      case SignalSources.MUSIC_STATE:
-        return this.normalizeMusicStateValue(type, value);
-      default:
-        return value;
+    case SignalSources.VHAL:
+      return this.normalizeVHALValue(type, value);
+    case SignalSources.VOICE:
+      return this.normalizeVoiceValue(type, value);
+    case SignalSources.BIOMETRIC:
+      return this.normalizeBiometricValue(type, value);
+    case SignalSources.ENVIRONMENT:
+      return this.normalizeEnvironmentValue(type, value);
+    case SignalSources.USER_PROFILE:
+      return this.normalizeUserProfileValue(type, value);
+    case SignalSources.MUSIC_STATE:
+      return this.normalizeMusicStateValue(type, value);
+    default:
+      return value;
     }
   }
 

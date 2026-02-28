@@ -1,5 +1,7 @@
 'use strict';
 
+const { MusicService } = require('../../../../core/music');
+
 const MockTracks = [
   { id: 1, title: '清晨阳光', artist: '自然之声', genre: 'ambient', bpm: 80, energy: 0.3, duration: 240 },
   { id: 2, title: '城市节拍', artist: '电子先锋', genre: 'electronic', bpm: 120, energy: 0.7, duration: 180 },
@@ -16,16 +18,23 @@ class ContentEngine {
     this.config = config;
     this.currentPlaylist = [];
     this.trackLibrary = MockTracks;
+    this.musicService = new MusicService(config.musicService || {});
   }
 
   async execute(action, params = {}) {
     switch (action) {
-      case 'curate_playlist':
-        return this.curatePlaylist(params.hints, params.constraints);
-      case 'get_current':
-        return { playlist: this.currentPlaylist };
-      default:
-        return { error: `Unknown action: ${action}` };
+    case 'curate_playlist':
+      return this.curatePlaylist(params.hints, params.constraints);
+    case 'get_current':
+      return { playlist: this.currentPlaylist };
+    case 'search_music':
+      return await this.searchMusic(params.keyword, params.options);
+    case 'get_play_url':
+      return await this.getPlayableUrl(params.track);
+    case 'enrich_playlist':
+      return await this.enrichPlaylistWithUrls(params.playlist);
+    default:
+      return { error: `Unknown action: ${action}` };
     }
   }
 
@@ -69,6 +78,69 @@ class ContentEngine {
 
   getCurrentPlaylist() {
     return this.currentPlaylist;
+  }
+
+  async searchMusic(keyword, options = {}) {
+    try {
+      const results = await this.musicService.search(keyword, options);
+      return { success: true, results, count: results.length };
+    } catch (error) {
+      console.error('[ContentEngine] Search music error:', error.message);
+      return { success: false, error: error.message, results: [] };
+    }
+  }
+
+  async getPlayableUrl(track) {
+    if (!track) {
+      return { url: null, error: 'No track provided' };
+    }
+
+    try {
+      const result = await this.musicService.getPlayableUrl(track);
+      return result;
+    } catch (error) {
+      console.error('[ContentEngine] Get play URL error:', error.message);
+      return { url: null, error: error.message, track };
+    }
+  }
+
+  async enrichPlaylistWithUrls(playlist = null) {
+    const tracks = playlist || this.currentPlaylist;
+
+    if (!tracks || tracks.length === 0) {
+      return { success: false, error: 'No tracks to enrich', playlist: [] };
+    }
+
+    try {
+      const enrichedTracks = await this.musicService.enrichTracksWithUrls(tracks, { delay: 200 });
+
+      if (!playlist) {
+        this.currentPlaylist = enrichedTracks;
+      }
+
+      return {
+        success: true,
+        playlist: enrichedTracks,
+        total: enrichedTracks.length,
+        withUrls: enrichedTracks.filter(t => t.playUrl).length
+      };
+    } catch (error) {
+      console.error('[ContentEngine] Enrich playlist error:', error.message);
+      return { success: false, error: error.message, playlist: tracks };
+    }
+  }
+
+  async curatePlayablePlaylist(hints = {}, constraints = {}) {
+    const result = this.curatePlaylist(hints, constraints);
+
+    if (result.playlist && result.playlist.length > 0) {
+      const enrichedResult = await this.enrichPlaylistWithUrls(result.playlist);
+      result.playlist = enrichedResult.playlist;
+      result.playableCount = enrichedResult.withUrls;
+      result.note = '播放 URL 有时效性（通常 1 小时），过期后需重新获取';
+    }
+
+    return result;
   }
 }
 

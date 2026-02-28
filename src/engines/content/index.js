@@ -49,24 +49,24 @@ class ContentEngine {
 
   async execute(action, params) {
     switch (action) {
-      case 'curate_playlist':
-        return this.curatePlaylist(params);
-      case 'play':
-        return this.play(params);
-      case 'pause':
-        return this.pause();
-      case 'next':
-        return this.next();
-      case 'previous':
-        return this.previous();
-      case 'set_volume':
-        return this.setVolume(params);
-      case 'update_preferences':
-        return this.updatePreferences(params);
-      case 'get_recommendations':
-        return this.getRecommendations(params);
-      default:
-        throw new Error(`Unknown action: ${action}`);
+    case 'curate_playlist':
+      return this.curatePlaylist(params);
+    case 'play':
+      return this.play(params);
+    case 'pause':
+      return this.pause();
+    case 'next':
+      return this.next();
+    case 'previous':
+      return this.previous();
+    case 'set_volume':
+      return this.setVolume(params);
+    case 'update_preferences':
+      return this.updatePreferences(params);
+    case 'get_recommendations':
+      return this.getRecommendations(params);
+    default:
+      throw new Error(`Unknown action: ${action}`);
     }
   }
 
@@ -274,28 +274,28 @@ class ContentEngine {
       if (!constraint.enforceable) continue;
 
       switch (key) {
-        case 'explicitContent':
-          if (constraint.value === true) {
-            filtered = filtered.filter(t => !t.explicit);
-          }
-          break;
-        case 'minEnergy':
-          if (constraint.type === ConstraintType.HARD) {
-            filtered = filtered.filter(t => t.energy >= constraint.value);
-          }
-          break;
-        case 'maxEnergy':
-          if (constraint.type === ConstraintType.HARD) {
-            filtered = filtered.filter(t => t.energy <= constraint.value);
-          }
-          break;
-        case 'maxDurationSec':
-          let totalDuration = 0;
-          filtered = filtered.filter(t => {
-            totalDuration += t.duration_sec;
-            return totalDuration <= constraint.value;
-          });
-          break;
+      case 'explicitContent':
+        if (constraint.value === true) {
+          filtered = filtered.filter(t => !t.explicit);
+        }
+        break;
+      case 'minEnergy':
+        if (constraint.type === ConstraintType.HARD) {
+          filtered = filtered.filter(t => t.energy >= constraint.value);
+        }
+        break;
+      case 'maxEnergy':
+        if (constraint.type === ConstraintType.HARD) {
+          filtered = filtered.filter(t => t.energy <= constraint.value);
+        }
+        break;
+      case 'maxDurationSec':
+        let totalDuration = 0;
+        filtered = filtered.filter(t => {
+          totalDuration += t.duration_sec;
+          return totalDuration <= constraint.value;
+        });
+        break;
       }
     }
 

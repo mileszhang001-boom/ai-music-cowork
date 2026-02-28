@@ -72,20 +72,20 @@ class LightingEngine {
 
   async execute(action, params) {
     switch (action) {
-      case 'apply_theme':
-        return this.applyTheme(params);
-      case 'set_intensity':
-        return this.setIntensity(params);
-      case 'set_pattern':
-        return this.setPattern(params);
-      case 'zone_control':
-        return this.zoneControl(params);
-      case 'sync_with_music':
-        return this.syncWithMusic(params);
-      case 'adjust_for_energy':
-        return this.adjustForEnergy(params);
-      default:
-        throw new Error(`Unknown action: ${action}`);
+    case 'apply_theme':
+      return this.applyTheme(params);
+    case 'set_intensity':
+      return this.setIntensity(params);
+    case 'set_pattern':
+      return this.setPattern(params);
+    case 'zone_control':
+      return this.zoneControl(params);
+    case 'sync_with_music':
+      return this.syncWithMusic(params);
+    case 'adjust_for_energy':
+      return this.adjustForEnergy(params);
+    default:
+      throw new Error(`Unknown action: ${action}`);
     }
   }
 

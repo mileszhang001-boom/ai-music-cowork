@@ -107,24 +107,24 @@ class AudioEngine {
 
   async execute(action, params) {
     switch (action) {
-      case 'apply_preset':
-        return this.applyPreset(params);
-      case 'set_volume':
-        return this.setVolume(params);
-      case 'set_eq':
-        return this.setEQ(params);
-      case 'toggle_spatial':
-        return this.toggleSpatial(params);
-      case 'mute':
-        return this.mute();
-      case 'unmute':
-        return this.unmute();
-      case 'adjust_for_energy':
-        return this.adjustForEnergy(params);
-      case 'auto_adjust':
-        return this.autoAdjust(params);
-      default:
-        throw new Error(`Unknown action: ${action}`);
+    case 'apply_preset':
+      return this.applyPreset(params);
+    case 'set_volume':
+      return this.setVolume(params);
+    case 'set_eq':
+      return this.setEQ(params);
+    case 'toggle_spatial':
+      return this.toggleSpatial(params);
+    case 'mute':
+      return this.mute();
+    case 'unmute':
+      return this.unmute();
+    case 'adjust_for_energy':
+      return this.adjustForEnergy(params);
+    case 'auto_adjust':
+      return this.autoAdjust(params);
+    default:
+      throw new Error(`Unknown action: ${action}`);
     }
   }
 

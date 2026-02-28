@@ -17,12 +17,12 @@ class AudioEngine {
 
   async execute(action, params = {}) {
     switch (action) {
-      case 'apply_preset':
-        return this.applyPreset(params.preset);
-      case 'get_current':
-        return this.getCurrentState();
-      default:
-        return { error: `Unknown action: ${action}` };
+    case 'apply_preset':
+      return this.applyPreset(params.preset);
+    case 'get_current':
+      return this.getCurrentState();
+    default:
+      return { error: `Unknown action: ${action}` };
     }
   }
 

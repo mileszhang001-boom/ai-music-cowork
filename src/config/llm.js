@@ -70,7 +70,7 @@ const DefaultConfig = {
   model: process.env.LLM_MODEL || Models.QWEN_PLUS,
   region: process.env.LLM_REGION || Regions.BEIJING,
   enableThinking: process.env.LLM_ENABLE_THINKING === 'true' ? true : 
-                  process.env.LLM_ENABLE_THINKING === 'false' ? false : ThinkingMode.AUTO,
+    process.env.LLM_ENABLE_THINKING === 'false' ? false : ThinkingMode.AUTO,
   temperature: parseFloat(process.env.LLM_TEMPERATURE) || 0.7,
   maxTokens: parseInt(process.env.LLM_MAX_TOKENS) || 2000,
   timeout: parseInt(process.env.LLM_TIMEOUT) || 30000,

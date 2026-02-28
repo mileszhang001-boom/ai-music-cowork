@@ -71,6 +71,7 @@ class PerceptionLayer {
       external_camera: {},
       internal_camera: {},
       internal_mic: {},
+      biometric: {},
       user_query: null
     };
 
@@ -90,6 +91,9 @@ class PerceptionLayer {
           break;
         case SignalSources.INTERNAL_MIC:
           this.mergeInternalMicSignal(structured.internal_mic, signal);
+          break;
+        case SignalSources.BIOMETRIC:
+          this.mergeBiometricSignal(structured.biometric, signal);
           break;
         case SignalSources.VOICE:
           structured.user_query = {
@@ -163,6 +167,18 @@ class PerceptionLayer {
     }
     if (signal.type === 'volume_level') {
       internalMic.volume_level = signal.raw_value ?? signal.value ?? 0.3;
+    }
+  }
+
+  mergeBiometricSignal(biometric, signal) {
+    if (signal.type === 'heart_rate') {
+      biometric.heart_rate = signal.raw_value ?? signal.value ?? 70;
+    }
+    if (signal.type === 'stress_level') {
+      biometric.stress_level = signal.raw_value ?? signal.value ?? 0.5;
+    }
+    if (signal.type === 'fatigue_level') {
+      biometric.fatigue_level = signal.raw_value ?? signal.value ?? 0.3;
     }
   }
 

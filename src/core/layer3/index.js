@@ -210,41 +210,41 @@ class Layer3 {
     const value = signal.normalized_value || signal.value;
     
     switch (source) {
-      case 'vhal':
-        if (value.vehicle_speed !== undefined) {
-          context.speed = Math.round(value.vehicle_speed * 120);
-        }
-        if (value.passenger_count !== undefined) {
-          context.passengerCount = value.passenger_count;
-        }
-        break;
-      case 'environment':
-        if (value.time_of_day !== undefined) {
-          context.hour = Math.round(value.time_of_day * 24);
-        }
-        if (value.weather) {
-          context.weather = value.weather;
-        }
-        if (value.temperature !== undefined) {
-          context.temperature = value.temperature;
-        }
-        break;
-      case 'biometric':
-        if (value.fatigue_level !== undefined) {
-          context.fatigueLevel = value.fatigue_level;
-        }
-        if (value.heart_rate !== undefined) {
-          context.heartRate = value.heart_rate;
-        }
-        if (value.stress_level !== undefined) {
-          context.stressLevel = value.stress_level;
-        }
-        break;
-      case 'user_profile':
-        if (value.preferences) {
-          context.userPreferences = value.preferences;
-        }
-        break;
+    case 'vhal':
+      if (value.vehicle_speed !== undefined) {
+        context.speed = Math.round(value.vehicle_speed * 120);
+      }
+      if (value.passenger_count !== undefined) {
+        context.passengerCount = value.passenger_count;
+      }
+      break;
+    case 'environment':
+      if (value.time_of_day !== undefined) {
+        context.hour = Math.round(value.time_of_day * 24);
+      }
+      if (value.weather) {
+        context.weather = value.weather;
+      }
+      if (value.temperature !== undefined) {
+        context.temperature = value.temperature;
+      }
+      break;
+    case 'biometric':
+      if (value.fatigue_level !== undefined) {
+        context.fatigueLevel = value.fatigue_level;
+      }
+      if (value.heart_rate !== undefined) {
+        context.heartRate = value.heart_rate;
+      }
+      if (value.stress_level !== undefined) {
+        context.stressLevel = value.stress_level;
+      }
+      break;
+    case 'user_profile':
+      if (value.preferences) {
+        context.userPreferences = value.preferences;
+      }
+      break;
     }
   }
 

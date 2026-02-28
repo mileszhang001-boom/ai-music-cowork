@@ -7,6 +7,7 @@ const SignalSources = {
   EXTERNAL_CAMERA: 'external_camera',
   INTERNAL_CAMERA: 'internal_camera',
   INTERNAL_MIC: 'internal_mic',
+  BIOMETRIC: 'biometric',
   USER_PROFILE: 'user_profile',
   MUSIC_STATE: 'music_state'
 };
@@ -50,6 +51,11 @@ const SignalConfigs = {
     category: SignalCategories.AUDIO,
     defaultTTL: 500,
     confidenceDecay: 0.2
+  },
+  [SignalSources.BIOMETRIC]: {
+    category: SignalCategories.USER_STATE,
+    defaultTTL: 5000,
+    confidenceDecay: 0.1
   },
   [SignalSources.USER_PROFILE]: {
     category: SignalCategories.USER_STATE,

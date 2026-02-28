@@ -24,12 +24,12 @@ class LightingEngine {
 
   async execute(action, params = {}) {
     switch (action) {
-      case 'apply_theme':
-        return this.applyTheme(params.theme, params.pattern, params.intensity);
-      case 'get_current':
-        return this.getCurrentState();
-      default:
-        return { error: `Unknown action: ${action}` };
+    case 'apply_theme':
+      return this.applyTheme(params.theme, params.pattern, params.intensity);
+    case 'get_current':
+      return this.getCurrentState();
+    default:
+      return { error: `Unknown action: ${action}` };
     }
   }
 
