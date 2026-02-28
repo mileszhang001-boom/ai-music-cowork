@@ -146,8 +146,11 @@ function showJsonInputMode() {
   console.log(`\n${COLORS.bold}${COLORS.green}✓ 调试阶段: ${layer.name}${COLORS.reset}`);
   
   console.log(`\n${COLORS.bold}${COLORS.magenta}【自定义JSON输入模式】${COLORS.reset}`);
-  console.log(`\n  ${COLORS.yellow}请输入JSON数据，按 Enter 确认，Esc 取消:${COLORS.reset}`);
-  console.log(`  ${COLORS.dim}提示: 输入多行JSON，以空行结束${COLORS.reset}\n`);
+  console.log(`\n  ${COLORS.yellow}操作说明:${COLORS.reset}`);
+  console.log(`    ${COLORS.cyan}Enter${COLORS.reset} - 换行`);
+  console.log(`    ${COLORS.cyan}Tab${COLORS.reset}   - 确认执行`);
+  console.log(`    ${COLORS.cyan}Esc${COLORS.reset}   - 取消返回`);
+  console.log(`\n  ${COLORS.dim}请输入JSON数据:${COLORS.reset}\n`);
   
   if (state.jsonInputBuffer) {
     const lines = state.jsonInputBuffer.split('\n');
@@ -801,25 +804,24 @@ async function main() {
     }
 
     if (state.jsonInputMode) {
-      if (key.name === 'return') {
-        if (state.jsonInputBuffer.trim() === '') {
-          try {
-            const jsonStr = state.jsonInputBuffer.trim();
-            if (jsonStr) {
-              state.customInput = JSON.parse(jsonStr);
-              state.jsonInputMode = false;
-              state.jsonInputBuffer = '';
-              state.step = 3;
-              await runAndShowResult();
-            }
-          } catch (e) {
-            console.log(`\n${COLORS.red}JSON解析错误: ${e.message}${COLORS.reset}`);
-            console.log(`${COLORS.yellow}请重新输入或按 Esc 取消${COLORS.reset}`);
+      if (key.name === 'tab') {
+        try {
+          const jsonStr = state.jsonInputBuffer.trim();
+          if (jsonStr) {
+            state.customInput = JSON.parse(jsonStr);
+            state.jsonInputMode = false;
+            state.jsonInputBuffer = '';
+            state.step = 3;
+            await runAndShowResult();
           }
-        } else {
-          state.jsonInputBuffer += '\n';
-          showJsonInputMode();
+        } catch (e) {
+          console.log(`\n${COLORS.red}JSON解析错误: ${e.message}${COLORS.reset}`);
+          console.log(`${COLORS.yellow}请修正JSON或按 Esc 取消${COLORS.reset}`);
+          process.stdout.write('\n继续输入: ');
         }
+      } else if (key.name === 'return') {
+        state.jsonInputBuffer += '\n';
+        showJsonInputMode();
       } else if (key.name === 'backspace') {
         state.jsonInputBuffer = state.jsonInputBuffer.slice(0, -1);
         showJsonInputMode();
