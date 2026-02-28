@@ -29,6 +29,7 @@ class Normalizer {
     return {
       signal_id: `${source}_${type}_${signalTimestamp}`,
       source: source,
+      type: type,
       category: config.category,
       value: this.normalizeValue(source, type, value),
       raw_value: value,
