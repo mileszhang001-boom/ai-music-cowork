@@ -5,3 +5,15 @@ coverage/
 .env
 .env.local
 .nyc_output/
+
+# Android build files
+android-player/app/build/
+android-player/build/
+android-player/.gradle/
+*.apk
+*.aab
+
+# IDE
+.idea/
+*.iml
+.vscode/

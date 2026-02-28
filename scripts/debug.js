@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 
+require('dotenv').config();
+
 const readline = require('readline');
 const fs = require('fs');
 const path = require('path');
@@ -596,7 +598,17 @@ function showLayer3Result(sceneDescriptor, l3, time) {
   console.log(`${COLORS.bold}${COLORS.yellow}════════════════════════════════════════════════════════${COLORS.reset}`);
   
   console.log(`\n  灯光主题: ${COLORS.bold}${lighting?.theme || 'default'}${COLORS.reset}`);
-  console.log(`  主色调: ${Array.isArray(lighting?.colors) ? lighting.colors.join(' → ') : '默认'}`);
+  
+  // 显示色值
+  if (lighting?.colors) {
+    const primary = lighting.colors.primary || 'N/A';
+    const secondary = lighting.colors.secondary || 'N/A';
+    console.log(`  主色调: ${COLORS.red}●${COLORS.reset} ${primary}`);
+    console.log(`  辅助色: ${COLORS.yellow}●${COLORS.reset} ${secondary}`);
+  } else {
+    console.log(`  主色调: 默认`);
+  }
+  
   console.log(`  亮度: ${((lighting?.intensity || 1) * 100).toFixed(0)}%`);
   console.log(`  动态模式: ${lighting?.pattern || 'steady'}`);
   console.log(`  过渡时间: ${lighting?.transition_ms || 1000}ms`);
@@ -746,6 +758,10 @@ function showFullPipelineResult(l1, l2, l3, validation, time) {
 
   console.log(`\n  ${COLORS.yellow}💡 灯光:${COLORS.reset}`);
   console.log(`    主题: ${lighting?.theme || 'default'} (${((lighting?.intensity || 1) * 100).toFixed(0)}%)`);
+  if (lighting?.colors) {
+    console.log(`    主色调: ${COLORS.red}●${COLORS.reset} ${lighting.colors.primary || 'N/A'}`);
+    console.log(`    辅助色: ${COLORS.yellow}●${COLORS.reset} ${lighting.colors.secondary || 'N/A'}`);
+  }
 
   console.log(`\n  ${COLORS.yellow}🔊 音频:${COLORS.reset}`);
   console.log(`    预设: ${audio?.preset || 'standard'} (${audio?.settings?.volume_db || 65}dB)`);
