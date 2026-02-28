@@ -115,7 +115,37 @@ npm run test:integration
 
 # 完整演示
 npm run demo:full
+
+# 交互式调试工具 (推荐)
+npm run debug
 ```
+
+## 调试工具
+
+运行 `npm run debug` 启动交互式调试工具：
+
+```
+🚗 车载座舱 AI 娱乐系统 - 调试工具
+
+【当前设置】
+  调试阶段: 全链路 (Layer 1 → 2 → 3)
+  测试场景: 早晨通勤
+
+【操作选项】
+  1. 选择调试阶段 (Layer 1/2/3/全链路)
+  2. 选择测试场景 (6种预设场景)
+  3. 运行调试
+  4. 查看输入输出对照
+  5. 测试规则校验引擎
+```
+
+## 核心模块
+
+| 模块 | 路径 | 说明 |
+|------|------|------|
+| 规则校验引擎 | `src/core/rulesEngine/` | 安全底线校验，100%拦截违规输出 |
+| 记忆系统 | `src/core/memory/` | 短期/中期/长期记忆，个性化推荐 |
+| 反馈收集器 | `src/core/feedbackCollector/` | 用户行为反馈收集与分析 |
 
 ## 项目结构
 
@@ -126,13 +156,21 @@ ai-music-cowork/
 │   │   ├── perception/     # Layer 1: 物理感知层
 │   │   ├── semantic/       # Layer 2: 语义推理层
 │   │   └── effects/        # Layer 3: 效果生成层
+│   ├── core/
+│   │   ├── rulesEngine/    # 规则校验引擎
+│   │   ├── memory/         # 记忆系统
+│   │   ├── feedbackCollector/ # 反馈收集器
+│   │   ├── llm/            # LLM 客户端
+│   │   └── orchestrator/   # 编排协调器
 │   ├── shared/
 │   │   └── eventBus/       # 事件总线
 │   └── index.js            # 统一入口
 ├── docs/                   # 模块文档
 ├── schemas/                # JSON Schema
 ├── mock_data/              # Mock 数据
-├── scripts/                # 测试脚本
+├── scripts/
+│   ├── debug.js            # 交互式调试工具
+│   └── layer1/layer2/layer3/ # 各层测试脚本
 ├── tests/                  # 单元测试
 ├── spec-all.md             # 技术规范
 ├── plan.md                 # 研发计划
