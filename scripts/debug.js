@@ -4,6 +4,7 @@
 const readline = require('readline');
 const fs = require('fs');
 const path = require('path');
+const { stdin: rawInput, stdout: rawOutput } = require('process');
 
 const { perceptionLayer, SignalSources } = require('../src/layers/perception');
 const { semanticLayer } = require('../src/layers/semantic');
@@ -113,7 +114,8 @@ let rl;
 let state = {
   step: 1,
   selectedLayer: '4',
-  selectedScenario: null
+  selectedScenario: null,
+  pageOffset: 0
 };
 
 function printBox(title, lines, color = COLORS.cyan) {
@@ -172,41 +174,42 @@ function showStep2() {
   
   console.log(`\n${COLORS.bold}${COLORS.yellow}【步骤 2/3】选择测试场景${COLORS.reset}\n`);
   
+  let scenarios, totalScenarios, pageSize = 15;
   if (state.selectedLayer === '1' || state.selectedLayer === '4') {
     console.log(`${COLORS.cyan}  硬件输入场景:${COLORS.reset}`);
-    for (const [k, v] of Object.entries(LAYER1_SCENARIOS)) {
-      const mark = state.selectedScenario === k ? `${COLORS.green}●${COLORS.reset} ` : '○ ';
-      console.log(`  ${mark}${COLORS.bold}${k}${COLORS.reset}. ${v.name}`);
-    }
+    scenarios = Object.entries(LAYER1_SCENARIOS);
+    totalScenarios = scenarios.length;
   } else if (state.selectedLayer === '2') {
     console.log(`${COLORS.cyan}  StandardizedSignals 场景:${COLORS.reset}`);
-    for (const [k, v] of Object.entries(LAYER1_SCENARIOS)) {
-      const mark = state.selectedScenario === k ? `${COLORS.green}●${COLORS.reset} ` : '○ ';
-      console.log(`  ${mark}${COLORS.bold}${k}${COLORS.reset}. ${v.name}`);
-    }
+    scenarios = Object.entries(LAYER1_SCENARIOS);
+    totalScenarios = scenarios.length;
   } else if (state.selectedLayer === '3') {
-    const total = Object.keys(LAYER3_SCENARIOS).length;
-    console.log(`${COLORS.cyan}  Scene Descriptor 场景 (共 ${total} 个):${COLORS.reset}`);
-    
-    const keys = Object.keys(LAYER3_SCENARIOS);
-    const displayKeys = keys.slice(0, 15);
-    
-    displayKeys.forEach(k => {
-      const v = LAYER3_SCENARIOS[k];
-      const mark = state.selectedScenario === k ? `${COLORS.green}●${COLORS.reset} ` : '○ ';
-      const tag = v.isPreset ? `${COLORS.blue}[预]${COLORS.reset}` : `${COLORS.magenta}[变]${COLORS.reset}`;
-      console.log(`  ${mark}${COLORS.bold}${k.padStart(3)}${COLORS.reset}. ${tag} ${v.name}`);
-    });
-    
-    if (keys.length > 15) {
-      console.log(`  ${COLORS.dim}  ... 还有 ${keys.length - 15} 个场景${COLORS.reset}`);
-    }
-    
-    console.log(`\n  ${COLORS.cyan}提示: 输入编号直接选择，或输入 'more' 查看更多${COLORS.reset}`);
+    console.log(`${COLORS.cyan}  Scene Descriptor 场景 (共 ${Object.keys(LAYER3_SCENARIOS).length} 个):${COLORS.reset}`);
+    scenarios = Object.entries(LAYER3_SCENARIOS);
+    totalScenarios = scenarios.length;
   }
   
-  console.log(`\n  ${COLORS.dim}输入数字选择，按回车确认${COLORS.reset}`);
-  console.log(`  ${COLORS.dim}输入 B 返回上一步，Q 退出${COLORS.reset}`);
+  const totalPages = Math.ceil(totalScenarios / pageSize);
+  const currentPage = Math.floor(state.pageOffset / pageSize) + 1;
+  
+  const startIdx = state.pageOffset;
+  const endIdx = Math.min(startIdx + pageSize, totalScenarios);
+  const displayScenarios = scenarios.slice(startIdx, endIdx);
+  
+  displayScenarios.forEach(([k, v], idx) => {
+    const actualIdx = startIdx + idx;
+    const mark = state.selectedScenario === k ? `${COLORS.green}●${COLORS.reset} ` : '○ ';
+    
+    if (state.selectedLayer === '3') {
+      const tag = v.isPreset ? `${COLORS.blue}[预]${COLORS.reset}` : `${COLORS.magenta}[变]${COLORS.reset}`;
+      console.log(`  ${mark}${COLORS.bold}${String(actualIdx + 1).padStart(3)}${COLORS.reset}. ${tag} ${v.name}`);
+    } else {
+      console.log(`  ${mark}${COLORS.bold}${k}${COLORS.reset}. ${v.name}`);
+    }
+  });
+  
+  console.log(`\n  ${COLORS.dim}第 ${currentPage}/${totalPages} 页，共 ${totalScenarios} 个场景${COLORS.reset}`);
+  console.log(`  ${COLORS.cyan}⬆️ 上页  ⬇️ 下页  ⬆️⬇️ 选择  回车确认  Esc 退出${COLORS.reset}`);
 }
 
 async function runAndShowResult() {
@@ -491,7 +494,15 @@ async function main() {
     process.exit(0);
   }
 
-  rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  rawInput.setRawMode(true);
+  rawOutput.write('\x1b[?25l\x1b[?1c\x1b[?1049h');
+  
+  rl = readline.createInterface({ 
+    input: rawInput, 
+    output: rawOutput,
+    terminal: true,
+    historySize: 0
+  });
 
   const prompt = () => {
     if (state.step === 1) {
@@ -501,43 +512,94 @@ async function main() {
     } else if (state.step === 3) {
       return;
     }
-
-    rl.question('\n请输入: ', async (input) => {
-      const cmd = input.trim().toUpperCase();
-
-      if (cmd === 'Q') {
-        console.log(`\n${COLORS.green}再见！${COLORS.reset}\n`);
-        rl.close();
-        process.exit(0);
-      }
-
-      if (state.step === 1) {
-        if (LAYERS[input.trim()]) {
-          state.selectedLayer = input.trim();
-          state.step = 2;
-          state.selectedScenario = state.selectedLayer === '3' ? '1' : '1';
-        }
-      } else if (state.step === 2) {
-        if (cmd === 'B') {
-          state.step = 1;
-        } else if (state.selectedLayer === '3' && LAYER3_SCENARIOS[input.trim()]) {
-          state.selectedScenario = input.trim();
-          state.step = 3;
-          await runAndShowResult();
-          state.step = 1;
-        } else if ((state.selectedLayer === '1' || state.selectedLayer === '2' || state.selectedLayer === '4') && LAYER1_SCENARIOS[input.trim()]) {
-          state.selectedScenario = input.trim();
-          state.step = 3;
-          await runAndShowResult();
-          state.step = 1;
-        }
-      }
-
-      prompt();
-    });
   };
 
   prompt();
+  
+  const handleKeyPress = (str, key) => {
+    if (key.name === 'escape') {
+      console.log(`${COLORS.green}再见！${COLORS.reset}\n`);
+      rl.close();
+      process.exit(0);
+      return;
+    }
+    
+    if (key.name === 'return') {
+      if (state.step === 2) {
+        state.step = 1;
+        prompt();
+      } else if (state.step === 3) {
+        state.step = 1;
+        prompt();
+      }
+      return;
+    }
+    
+    if (state.step === 2) {
+      const pageSize = 15;
+      let totalScenarios;
+      if (state.selectedLayer === '1' || state.selectedLayer === '4') {
+        totalScenarios = Object.keys(LAYER1_SCENARIOS).length;
+      } else if (state.selectedLayer === '2') {
+        totalScenarios = Object.keys(LAYER1_SCENARIOS).length;
+      } else if (state.selectedLayer === '3') {
+        totalScenarios = Object.keys(LAYER3_SCENARIOS).length;
+      }
+      
+      const totalPages = Math.ceil(totalScenarios / pageSize);
+      
+      if (key.name === 'up') {
+        state.pageOffset = Math.max(0, state.pageOffset - pageSize);
+        prompt();
+      } else if (key.name === 'down') {
+        state.pageOffset = Math.min((totalPages - 1) * pageSize, state.pageOffset + pageSize);
+        prompt();
+      }
+    }
+  };
+
+  rawInput.on('keypress', handleKeyPress);
+  
+  rl.question('\n', async (input) => {
+    const cmd = input.trim().toUpperCase();
+
+    if (cmd === 'Q') {
+      console.log(`\n${COLORS.green}再见！${COLORS.reset}\n`);
+      rl.close();
+      process.exit(0);
+    }
+
+    if (state.step === 1) {
+      if (LAYERS[input.trim()]) {
+        state.selectedLayer = input.trim();
+        state.step = 2;
+        state.selectedScenario = state.selectedLayer === '3' ? '1' : '1';
+        state.pageOffset = 0;
+      }
+    } else if (state.step === 2) {
+      if (cmd === 'B') {
+        state.step = 1;
+        state.pageOffset = 0;
+      } else if (state.selectedLayer === '3' && LAYER3_SCENARIOS[input.trim()]) {
+        state.selectedScenario = input.trim();
+        state.step = 3;
+        await runAndShowResult();
+        state.step = 1;
+      } else if ((state.selectedLayer === '1' || state.selectedLayer === '2' || state.selectedLayer === '4') && LAYER1_SCENARIOS[input.trim()]) {
+        state.selectedScenario = input.trim();
+        state.step = 3;
+        await runAndShowResult();
+        state.step = 1;
+      }
+    }
+
+    prompt();
+  });
+
+  rl.on('close', () => {
+    rawInput.setRawMode(false);
+    rawInput.write('\x1b[?1049h\x1b[?25l');
+  });
 }
 
 main().catch(console.error);
