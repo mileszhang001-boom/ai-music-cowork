@@ -7,17 +7,44 @@ const { audioEngine } = require('./engines/audio');
 const { validator } = require('./validator');
 const { EngineTypes, EffectStatus } = require('./types');
 const { eventBus } = require('../../shared/eventBus');
+const { MultiAgentOrchestrator } = require('../../core/agents');
 
-const SCHEMA_VERSION = '1.0';
+const SCHEMA_VERSION = '2.0';
 
 class EffectsLayer {
   constructor(config = {}) {
     this.config = {
+      useMultiAgent: config.useMultiAgent || false,
       debug: config.debug || false,
       ...config
     };
     
-    this._initEngines();
+    this.multiAgentOrchestrator = null;
+    
+    if (this.config.useMultiAgent) {
+      this._initMultiAgent();
+    } else {
+      this._initEngines();
+    }
+  }
+
+  _initMultiAgent() {
+    this.multiAgentOrchestrator = new MultiAgentOrchestrator({
+      debug: this.config.debug,
+      enableLLM: this.config.enableLLM !== false
+    });
+    
+    this.multiAgentOrchestrator.initialize({
+      contentEngine,
+      lightingEngine,
+      audioEngine,
+      llmClient: this.config.llmClient,
+      ruleEngine: this.config.ruleEngine
+    });
+    
+    if (this.config.debug) {
+      console.log('[EffectsLayer] Multi-Agent Orchestrator initialized');
+    }
   }
 
   _initEngines() {
@@ -26,11 +53,50 @@ class EffectsLayer {
     orchestrator.registerEngine(EngineTypes.AUDIO, audioEngine);
   }
 
+  enableMultiAgent(config = {}) {
+    if (!this.multiAgentOrchestrator) {
+      this.config.useMultiAgent = true;
+      this._initMultiAgent();
+    }
+    return this;
+  }
+
+  disableMultiAgent() {
+    if (this.multiAgentOrchestrator) {
+      this.multiAgentOrchestrator.clear();
+      this.multiAgentOrchestrator = null;
+    }
+    this.config.useMultiAgent = false;
+    this._initEngines();
+    return this;
+  }
+
   async process(descriptor) {
     const startTime = Date.now();
 
     if (!descriptor) {
       return this.buildErrorOutput('No scene descriptor provided');
+    }
+
+    if (this.config.useMultiAgent && this.multiAgentOrchestrator) {
+      try {
+        const result = await this.multiAgentOrchestrator.process(descriptor);
+        
+        const validation = validator.validate(result);
+        if (!validation.valid && this.config.debug) {
+          console.warn('[EffectsLayer] Validation warnings:', validation.errors);
+        }
+
+        eventBus.emit('effects.output_generated', result);
+        
+        return result;
+        
+      } catch (error) {
+        if (this.config.debug) {
+          console.error('[EffectsLayer] Multi-Agent error:', error.message);
+        }
+        return this.buildErrorOutput(error.message, descriptor.scene_id);
+      }
     }
 
     try {
@@ -91,7 +157,17 @@ class EffectsLayer {
   }
 
   getEngine(type) {
+    if (this.config.useMultiAgent && this.multiAgentOrchestrator) {
+      return this.multiAgentOrchestrator.getStatus();
+    }
     return orchestrator.getEngine(type);
+  }
+
+  getMetrics() {
+    if (this.multiAgentOrchestrator) {
+      return this.multiAgentOrchestrator.getMetrics();
+    }
+    return null;
   }
 
   getHistory(limit = 10) {
@@ -99,6 +175,9 @@ class EffectsLayer {
   }
 
   clear() {
+    if (this.multiAgentOrchestrator) {
+      this.multiAgentOrchestrator.clear();
+    }
     orchestrator.clear();
   }
 }
