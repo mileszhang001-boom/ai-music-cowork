@@ -454,10 +454,6 @@ async function main() {
       } else if (key.name === 'return') {
         state.step = 3;
         await runAndShowResult();
-        state.step = 1;
-        state.pageOffset = 0;
-        layerIndex = layerKeys.indexOf(state.selectedLayer);
-        showStep1();
       } else if (key.name === 'escape' || key.name === 'b') {
         state.step = 1;
         state.pageOffset = 0;
@@ -465,6 +461,8 @@ async function main() {
       }
     } else if (state.step === 3) {
       state.step = 1;
+      state.pageOffset = 0;
+      layerIndex = layerKeys.indexOf(state.selectedLayer);
       showStep1();
     }
   });
