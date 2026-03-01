@@ -8,15 +8,20 @@ import com.music.semantic.llm.PromptBuilder
 import com.music.semantic.rules.RulesEngine
 import com.music.semantic.template.TemplateManager
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import java.util.UUID
+import kotlin.math.abs
 
 class SemanticEngine(
     context: Context,
     private val llmApiKey: String = "",
     private val llmBaseUrl: String = "https://dashscope.aliyuncs.com/compatible-mode/v1",
-    private val llmModel: String = "qwen-plus"
+    private val llmModel: String = "qwen-plus",
+    private val debounceThreshold: Double = 0.3
 ) {
     private val appContext = context.applicationContext
     
@@ -30,6 +35,14 @@ class SemanticEngine(
         isLenient = true
     }
     
+    private val _sceneDescriptorFlow = MutableStateFlow<SceneDescriptor?>(null)
+    val sceneDescriptorFlow: StateFlow<SceneDescriptor?> = _sceneDescriptorFlow.asStateFlow()
+    
+    private val _engineStateFlow = MutableStateFlow<EngineState>(EngineState.Idle)
+    val engineStateFlow: StateFlow<EngineState> = _engineStateFlow.asStateFlow()
+    
+    private var currentDescriptor: SceneDescriptor? = null
+    
     var isInitialized = false
         private set
     
@@ -40,27 +53,59 @@ class SemanticEngine(
     }
     
     suspend fun processSignals(signals: StandardizedSignals): Result<SceneDescriptor> = withContext(Dispatchers.Default) {
+        _engineStateFlow.value = EngineState.Processing
+        
         try {
             val ruleResult = rulesEngine.matchTemplate(signals)
             
-            if (ruleResult.matched && ruleResult.templateId != null) {
+            val newDescriptor = if (ruleResult.matched && ruleResult.templateId != null) {
                 val template = templateManager.getTemplateById(ruleResult.templateId)
                 if (template != null) {
-                    val descriptor = templateManager.toSceneDescriptor(template)
-                    return@withContext Result.success(descriptor)
+                    templateManager.toSceneDescriptor(template)
+                } else {
+                    generateDescriptor(signals)
                 }
+            } else {
+                generateDescriptor(signals)
             }
             
-            if (llmClient.isReady()) {
-                val descriptor = callLlm(signals)
-                return@withContext Result.success(descriptor)
+            if (shouldUpdateScene(newDescriptor)) {
+                currentDescriptor = newDescriptor
+                _sceneDescriptorFlow.value = newDescriptor
+                _engineStateFlow.value = EngineState.Ready(newDescriptor)
+                Result.success(newDescriptor)
+            } else {
+                val existing = currentDescriptor ?: newDescriptor
+                _engineStateFlow.value = EngineState.Ready(existing)
+                Result.success(existing)
             }
-            
-            val defaultDescriptor = createDefaultDescriptor()
-            Result.success(defaultDescriptor)
         } catch (e: Exception) {
+            _engineStateFlow.value = EngineState.Error(e.message ?: "Unknown error")
             Result.failure(e)
         }
+    }
+    
+    private suspend fun generateDescriptor(signals: StandardizedSignals): SceneDescriptor {
+        if (llmClient.isReady()) {
+            return callLlm(signals)
+        }
+        return createDefaultDescriptor()
+    }
+    
+    private fun shouldUpdateScene(newDescriptor: SceneDescriptor): Boolean {
+        val current = currentDescriptor ?: return true
+        
+        if (current.scene_type != newDescriptor.scene_type) {
+            return true
+        }
+        
+        val valenceDiff = abs(current.intent.mood.valence - newDescriptor.intent.mood.valence)
+        val arousalDiff = abs(current.intent.mood.arousal - newDescriptor.intent.mood.arousal)
+        val energyDiff = abs(current.intent.energy_level - newDescriptor.intent.energy_level)
+        
+        val changeMagnitude = (valenceDiff + arousalDiff + energyDiff) / 3.0
+        
+        return changeMagnitude >= debounceThreshold
     }
     
     private suspend fun callLlm(signals: StandardizedSignals): SceneDescriptor {
@@ -125,4 +170,25 @@ class SemanticEngine(
             )
         )
     }
+    
+    fun getCurrentScene(): SceneDescriptor? = currentDescriptor
+    
+    fun forceUpdate(descriptor: SceneDescriptor) {
+        currentDescriptor = descriptor
+        _sceneDescriptorFlow.value = descriptor
+        _engineStateFlow.value = EngineState.Ready(descriptor)
+    }
+    
+    fun reset() {
+        currentDescriptor = null
+        _sceneDescriptorFlow.value = null
+        _engineStateFlow.value = EngineState.Idle
+    }
+}
+
+sealed class EngineState {
+    object Idle : EngineState()
+    object Processing : EngineState()
+    data class Ready(val scene: SceneDescriptor) : EngineState()
+    data class Error(val message: String) : EngineState()
 }
