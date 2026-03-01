@@ -4,6 +4,13 @@ const fs = require('fs');
 const path = require('path');
 const { LLMClient, Models } = require('../../../../core/llm');
 
+let Database = null;
+try {
+  Database = require('better-sqlite3');
+} catch (e) {
+  console.warn('[ContentEngine] better-sqlite3 not available, local SQLite search disabled');
+}
+
 const MockTracks = [
   { id: 1, title: '清晨阳光', artist: '自然之声', genre: 'ambient', bpm: 80, energy: 0.3, duration: 240 },
   { id: 2, title: '城市节拍', artist: '电子先锋', genre: 'electronic', bpm: 120, energy: 0.7, duration: 180 },
@@ -15,15 +22,27 @@ const MockTracks = [
   { id: 8, title: '周末狂欢', artist: '流行天团', genre: 'pop', bpm: 125, energy: 0.75, duration: 200 }
 ];
 
+const TempoRange = {
+  slow: [60, 90],
+  medium: [90, 120],
+  moderate: [90, 120],
+  fast: [120, 160],
+  upbeat: [120, 160]
+};
+
 class ContentEngine {
   constructor(config = {}) {
     this.config = config;
     this.currentPlaylist = [];
     this.trackLibrary = MockTracks;
     this.musicLibrary = null;
+    this.localDb = null;
+    
     this.libraryPath = config.libraryPath || path.join(__dirname, '../../../../../data/music_library.json');
+    this.localDbPath = config.localDbPath || process.env.LOCAL_MUSIC_DB || '/sdcard/Music/AiMusic/index.db';
     
     this._loadMusicLibrary();
+    this._loadLocalDatabase();
     
     const apiKey = this.config.apiKey || process.env.DASHSCOPE_API_KEY;
     if (apiKey) {
@@ -51,6 +70,27 @@ class ContentEngine {
     }
   }
 
+  _loadLocalDatabase() {
+    if (!Database) {
+      console.warn('[ContentEngine] SQLite not available, local music search disabled');
+      return;
+    }
+    
+    try {
+      if (fs.existsSync(this.localDbPath)) {
+        this.localDb = new Database(this.localDbPath, { readonly: true, fileMustExist: true });
+        
+        const countResult = this.localDb.prepare('SELECT COUNT(*) as count FROM tracks').get();
+        console.log(`[ContentEngine] Loaded local SQLite database with ${countResult.count} tracks from ${this.localDbPath}`);
+      } else {
+        console.warn(`[ContentEngine] Local database not found at ${this.localDbPath}`);
+      }
+    } catch (error) {
+      console.warn('[ContentEngine] Failed to load local database:', error.message);
+      this.localDb = null;
+    }
+  }
+
   _getTotalTracks() {
     if (!this.musicLibrary || !this.musicLibrary.scenes) return 0;
     return Object.values(this.musicLibrary.scenes).reduce((sum, scene) => sum + (scene.tracks?.length || 0), 0);
@@ -68,6 +108,143 @@ class ContentEngine {
   getAvailableScenes() {
     if (!this.musicLibrary || !this.musicLibrary.scenes) return [];
     return Object.keys(this.musicLibrary.scenes);
+  }
+
+  isLocalDbAvailable() {
+    return this.localDb !== null;
+  }
+
+  getLocalDbStats() {
+    if (!this.localDb) return { available: false };
+    
+    try {
+      const countResult = this.localDb.prepare('SELECT COUNT(*) as count FROM tracks').get();
+      const genres = this.localDb.prepare('SELECT DISTINCT genre FROM tracks WHERE genre IS NOT NULL').all();
+      return {
+        available: true,
+        totalTracks: countResult.count,
+        genres: genres.map(g => g.genre)
+      };
+    } catch (error) {
+      return { available: false, error: error.message };
+    }
+  }
+
+  queryLocalMusic(hints = {}) {
+    if (!this.localDb) {
+      return { tracks: [], source: 'unavailable' };
+    }
+
+    try {
+      const conditions = [];
+      const params = [];
+
+      if (hints.genres && hints.genres.length > 0) {
+        const placeholders = hints.genres.map(() => '?').join(',');
+        conditions.push(`genre IN (${placeholders})`);
+        params.push(...hints.genres);
+      }
+
+      if (hints.tempo && TempoRange[hints.tempo]) {
+        const [minBpm, maxBpm] = TempoRange[hints.tempo];
+        conditions.push('bpm BETWEEN ? AND ?');
+        params.push(minBpm, maxBpm);
+      }
+
+      if (hints.energy_level !== undefined) {
+        const energy = hints.energy_level;
+        conditions.push('energy BETWEEN ? AND ?');
+        params.push(Math.max(0, energy - 0.2), Math.min(1, energy + 0.2));
+      }
+
+      if (hints.mood && hints.mood.length > 0) {
+        const moodConditions = hints.mood.map(() => 'mood_tags LIKE ?').join(' OR ');
+        conditions.push(`(${moodConditions})`);
+        params.push(...hints.mood.map(m => `%"${m}"%`));
+      }
+
+      if (hints.scene && hints.scene.length > 0) {
+        const sceneConditions = hints.scene.map(() => 'scene_tags LIKE ?').join(' OR ');
+        conditions.push(`(${sceneConditions})`);
+        params.push(...hints.scene.map(s => `%"${s}"%`));
+      }
+
+      let sql = 'SELECT * FROM tracks';
+      if (conditions.length > 0) {
+        sql += ' WHERE ' + conditions.join(' AND ');
+      }
+      sql += ' ORDER BY RANDOM() LIMIT 20';
+
+      const stmt = this.localDb.prepare(sql);
+      const rows = stmt.all(...params);
+
+      const tracks = rows.map(row => ({
+        id: row.id,
+        title: row.title,
+        artist: row.artist,
+        album: row.album,
+        genre: row.genre,
+        bpm: row.bpm,
+        energy: row.energy,
+        valence: row.valence,
+        moodTags: row.mood_tags ? JSON.parse(row.mood_tags) : [],
+        sceneTags: row.scene_tags ? JSON.parse(row.scene_tags) : [],
+        duration: Math.floor((row.duration_ms || 0) / 1000),
+        durationMs: row.duration_ms,
+        filePath: row.file_path,
+        format: row.format,
+        bitrate: row.bitrate
+      }));
+
+      return { tracks, source: 'local', count: tracks.length };
+    } catch (error) {
+      console.error('[ContentEngine] Local music query error:', error.message);
+      return { tracks: [], source: 'error', error: error.message };
+    }
+  }
+
+  searchLocalMusic(keyword) {
+    if (!this.localDb) {
+      return { tracks: [], source: 'unavailable' };
+    }
+
+    try {
+      const sql = `
+        SELECT * FROM tracks 
+        WHERE tracks_fts MATCH ? 
+        ORDER BY rank 
+        LIMIT 20
+      `;
+      
+      const stmt = this.localDb.prepare(sql);
+      const rows = stmt.all(keyword);
+
+      const tracks = rows.map(row => ({
+        id: row.id,
+        title: row.title,
+        artist: row.artist,
+        album: row.album,
+        genre: row.genre,
+        bpm: row.bpm,
+        energy: row.energy,
+        duration: Math.floor((row.duration_ms || 0) / 1000),
+        filePath: row.file_path,
+        format: row.format
+      }));
+
+      return { tracks, source: 'local', count: tracks.length, keyword };
+    } catch (error) {
+      console.error('[ContentEngine] Local music search error:', error.message);
+      return { tracks: [], source: 'error', error: error.message };
+    }
+  }
+
+  closeLocalDb() {
+    if (this.localDb) {
+      this.localDb.close();
+      this.localDb = null;
+      console.log('[ContentEngine] Local database closed');
+    }
   }
 
   async execute(action, params = {}) {
@@ -157,20 +334,40 @@ Constraints: ${JSON.stringify(constraints)}
     let playlist = [];
     let source = 'mock';
 
-    const availableScenes = this.getAvailableScenes();
-    const isPresetScene = sceneType && availableScenes.includes(sceneType);
-
-    if (isPresetScene && this.musicLibrary) {
-      const sceneTracks = this.getTracksByScene(sceneType);
-      if (sceneTracks.length > 0) {
-        playlist = this._filterTracksByHints(sceneTracks, hints, constraints);
-        source = 'library';
-        console.log(`[ContentEngine] Using library tracks for preset scene: ${sceneType}`);
+    // 第一级：本地 SQLite 音乐库检索 (新增)
+    if (this.localDb) {
+      const localResult = this.queryLocalMusic({
+        ...hints,
+        scene: sceneType ? [sceneType] : undefined
+      });
+      
+      if (localResult.tracks.length > 0) {
+        playlist = localResult.tracks;
+        source = 'local';
+        console.log(`[ContentEngine] Found ${playlist.length} tracks from local database`);
       }
     }
 
+    // 第二级：预设音乐库 (原有逻辑)
+    if (playlist.length === 0) {
+      const availableScenes = this.getAvailableScenes();
+      const isPresetScene = sceneType && availableScenes.includes(sceneType);
+
+      if (isPresetScene && this.musicLibrary) {
+        const sceneTracks = this.getTracksByScene(sceneType);
+        if (sceneTracks.length > 0) {
+          playlist = this._filterTracksByHints(sceneTracks, hints, constraints);
+          source = 'library';
+          console.log(`[ContentEngine] Using library tracks for preset scene: ${sceneType}`);
+        }
+      }
+    }
+
+    // 第三级：LLM 生成 (原有逻辑)
     if (playlist.length === 0 && this.llmClient && this.config.enableLLM) {
       try {
+        const availableScenes = this.getAvailableScenes();
+        const isPresetScene = sceneType && availableScenes.includes(sceneType);
         console.log(`[ContentEngine] Calling LLM for ${isPresetScene ? 'preset' : 'custom'} scene: ${sceneType || 'unknown'}`);
         playlist = await this._generatePlaylistWithLLM(hints, constraints);
         source = 'llm';
@@ -180,6 +377,7 @@ Constraints: ${JSON.stringify(constraints)}
       }
     }
 
+    // 第四级：Mock 数据 (原有逻辑)
     if (playlist.length === 0) {
       playlist = this._filterTracksByHints(this.trackLibrary, hints, constraints);
       source = 'mock';
@@ -201,7 +399,8 @@ Constraints: ${JSON.stringify(constraints)}
       playlist,
       total_duration: totalDuration,
       avg_energy: playlist.reduce((sum, t) => sum + (t.energy || 0), 0) / (playlist.length || 1),
-      source
+      source,
+      localDbAvailable: this.isLocalDbAvailable()
     };
   }
 
