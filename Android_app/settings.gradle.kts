@@ -19,6 +19,7 @@ rootProject.name = "MusicRecommendation"
 include(":core:core-api")
 
 // Features - Perception
+include(":features:perception:module-perception-api")
 include(":features:perception:module-perception")
 include(":features:perception:app-demo-perception")
 
@@ -29,6 +30,10 @@ include(":features:semantic:app-demo-semantic")
 // Features - Generation
 include(":features:generation:module-generation")
 include(":features:generation:app-demo-generation")
+
+// Features - LocalMusic
+include(":features:localmusic:module-localmusic")
+include(":features:localmusic:app-demo-localmusic")
 
 // App
 include(":app:app-main")

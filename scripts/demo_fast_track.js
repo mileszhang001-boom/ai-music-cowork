@@ -6,9 +6,9 @@ const { layer2, SceneTypes } = require('../src/core/layer2');
 const { templateLibrary } = require('../src/core/templateLibrary');
 const { orchestrator, EngineTypes } = require('../src/core/orchestrator');
 const { queryRouter, AnnouncementPriority } = require('../src/core/queryRouter');
-const { contentEngine } = require('../src/engines/content');
-const { lightingEngine } = require('../src/engines/lighting');
-const { audioEngine } = require('../src/engines/audio');
+const { contentEngine } = require('../src/layers/effects/engines/content');
+const { lightingEngine } = require('../src/layers/effects/engines/lighting');
+const { audioEngine } = require('../src/layers/effects/engines/audio');
 
 const COLORS = {
   reset: '\x1b[0m',

@@ -15,9 +15,9 @@ const { queryRouter } = require('../src/core/queryRouter');
 const { templateLibrary } = require('../src/core/templateLibrary');
 const { feedbackManager, FeedbackAction } = require('../src/core/feedback');
 const { eventBus, EventTypes } = require('../src/core/eventBus');
-const { contentEngine } = require('../src/engines/content');
-const { lightingEngine } = require('../src/engines/lighting');
-const { audioEngine } = require('../src/engines/audio');
+const { contentEngine } = require('../src/layers/effects/engines/content');
+const { lightingEngine } = require('../src/layers/effects/engines/lighting');
+const { audioEngine } = require('../src/layers/effects/engines/audio');
 
 const COLORS = {
   reset: '\x1b[0m',

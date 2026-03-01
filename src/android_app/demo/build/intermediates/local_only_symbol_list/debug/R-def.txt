@@ -1,0 +1,8 @@
+R_DEF: Internal format may change without notice
+local
+id btn_start
+id et_url
+id iv_preview
+id tv_logs
+id tv_stats
+layout activity_demo
