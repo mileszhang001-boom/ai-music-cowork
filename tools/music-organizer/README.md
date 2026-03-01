@@ -1,100 +1,99 @@
-# PC端音乐元数据提取工具
+# PC 端音乐元数据提取工具
 
-用于提取音乐文件的元数据并生成 SQLite 索引数据库的命令行工具。
+用于提取音乐文件的元数据并生成 SQLite 索引数据库，支持 LLM 分析音乐标签。
 
-## 功能特性
-
-- 支持多种音频格式：MP3、FLAC、WAV、M4A
-- 提取完整元数据：标题、艺术家、专辑、流派、时长、比特率、采样率
-- 生成 SQLite 数据库，支持 FTS5 全文检索
-- 支持中文拼音转换，便于中文歌曲检索
-- 支持多种导出格式：SQLite、JSON、CSV
-
-## 安装
+## 安装依赖
 
 ```bash
-# 进入工具目录
-cd tools/music-organizer
-
-# 安装依赖
-pip install -r requirements.txt
+pip install mutagen pypinyin requests
 ```
 
 ## 使用方法
 
-### 基本用法
+### 基本用法（只提取元数据）
 
 ```bash
-python organize_music.py --input /path/to/music --output /path/to/index.db
+python organize_music.py -i /path/to/music -o ./index.db
 ```
 
-### 参数说明
-
-| 参数 | 简写 | 说明 | 必需 |
-|------|------|------|------|
-| `--input` | `-i` | 输入音乐目录路径 | 是 |
-| `--output` | `-o` | 输出数据库文件路径 | 是 |
-| `--format` | `-f` | 输出格式：db/json/csv/all | 否（默认：db） |
-
-### 使用示例
+### 使用 LLM 分析标签（推荐）
 
 ```bash
-# 仅生成 SQLite 数据库
-python organize_music.py -i ~/Music -o ./music_index.db
+# 方式1：命令行传入 API Key
+python organize_music.py -i /path/to/music -o ./index.db --llm --api-key sk-xxx
 
-# 同时生成 JSON 和 CSV 文件
-python organize_music.py -i ~/Music -o ./index.db --format all
+# 方式2：使用环境变量
+export DASHSCOPE_API_KEY=sk-xxx
+python organize_music.py -i /path/to/music -o ./index.db --llm
+```
 
-# 仅导出 JSON 格式
-python organize_music.py -i /path/to/music -o ./output.json --format json
+## 参数说明
+
+| 参数 | 说明 |
+|------|------|
+| `-i, --input` | 输入音乐目录路径（必需） |
+| `-o, --output` | 输出数据库文件路径（必需） |
+| `-f, --format` | 输出格式：db / json / all（默认：db） |
+| `--llm` | 使用 LLM 分析音乐标签 |
+| `--api-key` | 阿里云百炼 API Key |
+| `--api-base` | API 地址（默认：阿里云百炼） |
+| `--batch-size` | LLM 批量处理大小（默认：10） |
+
+## LLM 分析说明
+
+使用 LLM 分析每首音乐的以下标签：
+
+| 标签 | 说明 |
+|------|------|
+| `genre` | 主要流派（pop/rock/jazz 等） |
+| `bpm` | 节拍数（60-200） |
+| `energy` | 能量值（0.0-1.0） |
+| `valence` | 情绪正向度（0.0-1.0） |
+| `mood_tags` | 情绪标签（happy/sad/energetic 等） |
+| `scene_tags` | 场景标签（morning_commute/night_drive 等） |
+
+## 输出产物
+
+```
+index.db          # SQLite 数据库（含 FTS5 全文检索）
+index.json        # JSON 格式（可选）
 ```
 
 ## 数据库结构
 
-### tracks 表（主表）
-
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| id | INTEGER | 主键 |
-| title | TEXT | 歌曲标题 |
-| title_pinyin | TEXT | 标题拼音 |
-| artist | TEXT | 艺术家 |
-| artist_pinyin | TEXT | 艺术家拼音 |
-| album | TEXT | 专辑名 |
-| genre | TEXT | 流派 |
-| bpm | INTEGER | 节拍 |
-| energy | REAL | 能量值 |
-| valence | REAL | 情感值 |
-| mood_tags | TEXT | 情绪标签 |
-| scene_tags | TEXT | 场景标签 |
-| duration_ms | INTEGER | 时长（毫秒） |
-| file_path | TEXT | 文件路径 |
-| file_size | INTEGER | 文件大小 |
-| format | TEXT | 格式 |
-| bitrate | INTEGER | 比特率 |
-| sample_rate | INTEGER | 采样率 |
-| play_count | INTEGER | 播放次数 |
-
-### tracks_fts 表（FTS5 全文检索虚拟表）
-
-用于对歌曲标题、艺术家、专辑等字段进行全文检索，支持中文拼音搜索。
-
-## 全文检索示例
-
 ```sql
--- 搜索标题或艺术家包含 "love" 的歌曲
-SELECT * FROM tracks_fts WHERE tracks_fts MATCH 'love';
-
--- 搜索拼音包含 "zhoujielun" 的歌曲（周杰伦）
-SELECT * FROM tracks_fts WHERE tracks_fts MATCH 'artist_pinyin:zhoujielun';
-
--- 组合搜索
-SELECT t.* FROM tracks t
-JOIN tracks_fts fts ON t.id = fts.rowid
-WHERE tracks_fts MATCH 'album:叶惠美';
+CREATE TABLE tracks (
+    id INTEGER PRIMARY KEY,
+    title TEXT NOT NULL,
+    artist TEXT NOT NULL,
+    genre TEXT,
+    bpm INTEGER,
+    energy REAL,
+    valence REAL,
+    mood_tags TEXT,      -- JSON 数组
+    scene_tags TEXT,     -- JSON 数组
+    file_path TEXT NOT NULL,
+    llm_analyzed INTEGER -- 是否经过 LLM 分析
+);
 ```
 
-## 依赖说明
+## 示例输出
 
-- **mutagen**: 音频元数据提取库，支持多种音频格式
-- **pypinyin**: 中文拼音转换库（可选，用于中文检索支持）
+```
+扫描目录: /Users/mi/Music
+发现 1500 个音乐文件
+
+处理 [1/1500]: 周杰伦 - 晴天.mp3
+  LLM 分析中...
+  ✓ 流派: pop, 能量: 0.6, 情绪: ["happy", "nostalgic"]
+
+处理 [2/1500]: Linkin Park - In The End.mp3
+  LLM 分析中...
+  ✓ 流派: rock, 能量: 0.8, 情绪: ["energetic", "dark"]
+
+处理完成:
+  成功: 1500
+  LLM 分析: 1480
+  失败: 20
+  数据库: ./index.db
+```
