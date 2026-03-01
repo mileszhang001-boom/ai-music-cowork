@@ -6,9 +6,9 @@ const { layer2, SceneTypes } = require('../../src/core/layer2');
 const { orchestrator, EngineTypes } = require('../../src/core/orchestrator');
 const { queryRouter, QueryIntentTypes, AnnouncementPriority } = require('../../src/core/queryRouter');
 const { templateLibrary, TemplateLearner } = require('../../src/core/templateLibrary');
-const { contentEngine } = require('../../src/engines/content');
-const { lightingEngine } = require('../../src/engines/lighting');
-const { audioEngine } = require('../../src/engines/audio');
+const { contentEngine } = require('../../src/layers/effects/engines/content');
+const { lightingEngine } = require('../../src/layers/effects/engines/lighting');
+const { audioEngine } = require('../../src/layers/effects/engines/audio');
 const { eventBus, EventTypes } = require('../../src/core/eventBus');
 
 describe('Fast-Track End-to-End Integration (M2 Milestone)', () => {
