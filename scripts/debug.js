@@ -18,6 +18,16 @@ const COLORS = {
   red: '\x1b[31m', cyan: '\x1b[36m', magenta: '\x1b[35m'
 };
 
+const COLOR_NAMES = {
+  '#FF0000': '红色', '#FF5722': '深橙', '#FF6B00': '活力橙', '#FF9800': '琥珀',
+  '#FFD600': '明亮黄', '#FFEB3B': '黄色', '#FFFF00': '纯黄',
+  '#00FF00': '纯绿', '#009688': '青绿', '#00BCD4': '青色', '#4CAF50': '绿色',
+  '#0000FF': '纯蓝', '#2196F3': '蓝色', '#1A237E': '深蓝', '#0D1B2A': '深蓝黑',
+  '#1B263B': '深蓝灰', '#3F51B5': '靛蓝', '#2C5F7C': '蓝灰',
+  '#E91E63': '粉红', '#9C27B0': '紫色', '#4A148C': '深紫', '#FCE4EC': '浅粉',
+  '#1E3A5F': '海军蓝', '#87CEEB': '天蓝', '#FFA500': '橙色'
+};
+
 const LAYERS = {
   '1': { name: 'Layer 1', desc: '物理感知层', input: '硬件输入信号' },
   '2': { name: 'Layer 2', desc: '语义推理层', input: 'StandardizedSignals' },
@@ -134,6 +144,45 @@ function formatTime(timeOfDay) {
   if (timeOfDay < 0.75) return '下午 (14:00-18:00)';
   if (timeOfDay < 0.9) return '傍晚 (18:00-21:00)';
   return '深夜 (21:00-24:00)';
+}
+
+function getColorName(hex) {
+  if (!hex) return '未知';
+  const upperHex = hex.toUpperCase();
+  if (COLOR_NAMES && COLOR_NAMES[upperHex]) return COLOR_NAMES[upperHex];
+  
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  
+  if (r > 200 && g < 100 && b < 100) return '红色系';
+  if (r > 200 && g > 100 && b < 100) return '橙色系';
+  if (r > 200 && g > 200 && b < 100) return '黄色系';
+  if (r < 100 && g > 150 && b < 100) return '绿色系';
+  if (r < 100 && g > 150 && b > 150) return '青色系';
+  if (r < 100 && g < 100 && b > 150) return '蓝色系';
+  if (r > 150 && g < 100 && b > 150) return '紫色系';
+  if (r > 150 && g > 100 && b > 150) return '粉色系';
+  if (r < 50 && g < 50 && b < 50) return '黑色系';
+  if (r < 100 && g < 100 && b < 100) return '深灰色';
+  if (r > 200 && g > 200 && b > 200) return '白色系';
+  
+  return '混合色';
+}
+
+function hexToAnsi(hex) {
+  if (!hex || !hex.startsWith('#')) return '\x1b[0m';
+  
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  
+  const ri = Math.round(r / 51);
+  const gi = Math.round(g / 51);
+  const bi = Math.round(b / 51);
+  
+  const ansiCode = 16 + (ri * 36) + (gi * 6) + bi;
+  return `\x1b[38;5;${ansiCode}m`;
 }
 
 function parseLooseJson(str) {
@@ -572,18 +621,18 @@ function showLayer3Result(sceneDescriptor, l3, time) {
       const num = String(i + 1).padStart(2, ' ');
       const title = track.title || '未知';
       const artist = track.artist || '未知艺术家';
-      const genres = Array.isArray(track.genres) ? track.genres.join(', ') : '未知流派';
+      const genre = track.genre || '未知流派';
       const energy = track.energy || 0;
       const bpm = track.bpm || '--';
-      const duration = track.duration_sec ? `${Math.floor(track.duration_sec / 60)}:${String(track.duration_sec % 60).padStart(2, '0')}` : '--:--';
+      const duration = track.duration ? `${Math.floor(track.duration / 60)}:${String(track.duration % 60).padStart(2, '0')}` : '--:--';
       
       console.log(`  ${COLORS.bold}${num}.${COLORS.reset} ${COLORS.green}${title}${COLORS.reset} - ${COLORS.cyan}${artist}${COLORS.reset}`);
-      console.log(`      ${COLORS.dim}流派: ${genres} | 能量: ${energy.toFixed(1)} | BPM: ${bpm} | 时长: ${duration}${COLORS.reset}`);
+      console.log(`      ${COLORS.dim}流派: ${genre} | 能量: ${energy.toFixed(1)} | BPM: ${bpm} | 时长: ${duration}${COLORS.reset}`);
     });
     
-    const totalDuration = playlist.reduce((sum, t) => sum + (t.duration_sec || 0), 0);
+    const totalDuration = playlist.reduce((sum, t) => sum + (t.duration || 0), 0);
     const avgEnergy = playlist.reduce((sum, t) => sum + (t.energy || 0), 0) / playlist.length;
-    const allGenres = [...new Set(playlist.flatMap(t => t.genres || []))];
+    const allGenres = [...new Set(playlist.map(t => t.genre).filter(Boolean))];
     
     console.log(`\n  ${COLORS.yellow}📊 歌单统计:${COLORS.reset}`);
     console.log(`      总时长: ${Math.floor(totalDuration / 60)}分${totalDuration % 60}秒`);
@@ -654,8 +703,8 @@ function generateExperienceDescription(sceneDescriptor, content, lighting, audio
   
   if (trackCount > 0) {
     desc += `播放${trackCount}首`;
-    if (firstTrack?.genres?.length > 0) {
-      desc += `${firstTrack.genres[0]}风格的`;
+    if (firstTrack?.genre) {
+      desc += `${firstTrack.genre}风格的`;
     }
     desc += '音乐';
   }
@@ -748,19 +797,30 @@ function showFullPipelineResult(l1, l2, l3, validation, time) {
   if (playlist.length > 0) {
     playlist.forEach((track, i) => {
       const num = String(i + 1).padStart(2, ' ');
+      const genre = track.genre || '未知流派';
+      const energy = track.energy || 0;
+      const bpm = track.bpm || '--';
+      const duration = track.duration ? `${Math.floor(track.duration / 60)}:${String(track.duration % 60).padStart(2, '0')}` : '--:--';
       console.log(`    ${num}. ${COLORS.green}${track.title}${COLORS.reset} - ${COLORS.cyan}${track.artist}${COLORS.reset}`);
+      console.log(`        ${COLORS.dim}流派: ${genre} | 能量: ${energy.toFixed(1)} | BPM: ${bpm} | 时长: ${duration}${COLORS.reset}`);
     });
     
-    const totalDuration = playlist.reduce((sum, t) => sum + (t.duration_sec || 0), 0);
+    const totalDuration = playlist.reduce((sum, t) => sum + (t.duration || 0), 0);
     const avgEnergy = playlist.reduce((sum, t) => sum + (t.energy || 0), 0) / playlist.length;
-    console.log(`    ${COLORS.dim}总时长: ${Math.floor(totalDuration / 60)}分 | 平均能量: ${avgEnergy.toFixed(2)}${COLORS.reset}`);
+    const allGenres = [...new Set(playlist.map(t => t.genre).filter(Boolean))];
+    console.log(`\n    ${COLORS.yellow}📊 歌单统计:${COLORS.reset}`);
+    console.log(`        总时长: ${Math.floor(totalDuration / 60)}分${totalDuration % 60}秒`);
+    console.log(`        平均能量: ${avgEnergy.toFixed(2)}`);
+    console.log(`        包含流派: ${allGenres.slice(0, 5).join(', ')}${allGenres.length > 5 ? '...' : ''}`);
   }
 
   console.log(`\n  ${COLORS.yellow}💡 灯光:${COLORS.reset}`);
   console.log(`    主题: ${lighting?.theme || 'default'} (${((lighting?.intensity || 1) * 100).toFixed(0)}%)`);
   if (lighting?.colors) {
-    console.log(`    主色调: ${COLORS.red}●${COLORS.reset} ${lighting.colors.primary || 'N/A'}`);
-    console.log(`    辅助色: ${COLORS.yellow}●${COLORS.reset} ${lighting.colors.secondary || 'N/A'}`);
+    const primary = lighting.colors.primary || 'N/A';
+    const secondary = lighting.colors.secondary || 'N/A';
+    console.log(`    主色调: ${hexToAnsi(primary)}●${COLORS.reset} ${primary} (${getColorName(primary)})`);
+    console.log(`    辅助色: ${hexToAnsi(secondary)}●${COLORS.reset} ${secondary} (${getColorName(secondary)})`);
   }
 
   console.log(`\n  ${COLORS.yellow}🔊 音频:${COLORS.reset}`);

@@ -1,11 +1,21 @@
 'use strict';
 
 const ColorThemes = {
+  // 现有主题
   calm: { primary: '#1A237E', secondary: '#4A148C' },
   warm: { primary: '#FF5722', secondary: '#FF9800' },
   vibrant: { primary: '#E91E63', secondary: '#9C27B0' },
   alert: { primary: '#F44336', secondary: '#FFEB3B' },
-  romantic: { primary: '#E91E63', secondary: '#FCE4EC' }
+  romantic: { primary: '#E91E63', secondary: '#FCE4EC' },
+  
+  // 新增冷色系主题
+  cool: { primary: '#00BCD4', secondary: '#3F51B5' },
+  night: { primary: '#0D1B2A', secondary: '#1B263B' },
+  focus: { primary: '#2196F3', secondary: '#009688' },
+  
+  // 新增活力主题
+  energetic: { primary: '#FF6B00', secondary: '#FFD600' },
+  party: { primary: '#E91E63', secondary: '#00BCD4' }
 };
 
 const Patterns = {

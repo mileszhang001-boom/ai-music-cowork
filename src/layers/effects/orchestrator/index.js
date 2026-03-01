@@ -37,7 +37,8 @@ class Orchestrator {
         try {
           results.content = await contentEngine.execute('curate_playlist', {
             hints: descriptor.hints.music,
-            constraints: descriptor.intent?.constraints
+            constraints: descriptor.intent?.constraints,
+            scene_type: descriptor.scene_type
           });
           commands.content = {
             action: 'play_playlist',

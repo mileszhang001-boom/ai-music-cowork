@@ -70,6 +70,183 @@ class ContentEngine {
     return Object.keys(this.musicLibrary.scenes);
   }
 
+  _searchLibraryByHints(hints = {}, constraints = {}) {
+    if (!this.musicLibrary || !this.musicLibrary.scenes) return [];
+
+    const allTracks = [];
+    const seenIds = new Set();
+    
+    Object.values(this.musicLibrary.scenes).forEach(scene => {
+      if (scene.tracks) {
+        scene.tracks.forEach(track => {
+          if (!seenIds.has(track.id)) {
+            seenIds.add(track.id);
+            allTracks.push({ ...track, _matchScore: 0 });
+          }
+        });
+      }
+    });
+
+    allTracks.forEach(track => {
+      let score = 0;
+      
+      if (hints.genres && hints.genres.length > 0) {
+        if (hints.genres.includes(track.genre)) {
+          score += 30;
+        }
+      }
+      
+      if (hints.tempo) {
+        const tempoRange = {
+          slow: [60, 90],
+          medium: [90, 120],
+          moderate: [90, 120],
+          fast: [120, 160],
+          upbeat: [120, 160]
+        };
+        const range = tempoRange[hints.tempo] || [60, 160];
+        if (track.bpm >= range[0] && track.bpm <= range[1]) {
+          score += 25;
+        }
+      }
+      
+      if (hints.energy_level !== undefined) {
+        const energyDiff = Math.abs(track.energy - hints.energy_level);
+        if (energyDiff <= 0.1) {
+          score += 25;
+        } else if (energyDiff <= 0.2) {
+          score += 15;
+        } else if (energyDiff <= 0.3) {
+          score += 5;
+        }
+      }
+      
+      if (hints.language) {
+        if (Array.isArray(hints.language)) {
+          if (hints.language.includes(track.language)) {
+            score += 20;
+          }
+        } else if (track.language === hints.language) {
+          score += 20;
+        }
+      }
+      
+      if (hints.vocal_style === 'instrumental' && track.language === 'instrumental') {
+        score += 15;
+      }
+      
+      // 新增：标签匹配
+      score += this._matchByTags(track, hints);
+      
+      track._matchScore = score;
+    });
+
+    const matchedTracks = allTracks
+      .filter(t => t._matchScore > 0)
+      .sort((a, b) => b._matchScore - a._matchScore);
+
+    return matchedTracks;
+  }
+
+  _matchByTags(track, hints) {
+    let score = 0;
+    
+    // 情绪标签匹配
+    if (hints.mood && track.mood_tags?.includes(hints.mood)) {
+      score += 25;
+    }
+    if (hints.moods && Array.isArray(hints.moods)) {
+      const matchCount = hints.moods.filter(m => track.mood_tags?.includes(m)).length;
+      score += matchCount * 15;
+    }
+    
+    // 活动标签匹配
+    if (hints.activity && track.activity_tags?.includes(hints.activity)) {
+      score += 20;
+    }
+    if (hints.activities && Array.isArray(hints.activities)) {
+      const matchCount = hints.activities.filter(a => track.activity_tags?.includes(a)).length;
+      score += matchCount * 12;
+    }
+    
+    // 天气标签匹配
+    if (hints.weather && track.weather_tags?.includes(hints.weather)) {
+      score += 15;
+    }
+    
+    // 时间标签匹配
+    if (hints.time && track.time_tags?.includes(hints.time)) {
+      score += 15;
+    }
+    if (hints.time_of_day !== undefined) {
+      const timeTags = this._timeToTags(hints.time_of_day);
+      const matchCount = timeTags.filter(t => track.time_tags?.includes(t)).length;
+      score += matchCount * 10;
+    }
+    
+    // 场景标签匹配
+    if (hints.scene && track.scene_tags?.includes(hints.scene)) {
+      score += 20;
+    }
+    
+    // Valence-Arousal 匹配
+    if (hints.valence !== undefined && track.valence !== undefined) {
+      const valenceDiff = Math.abs(track.valence - hints.valence);
+      score += Math.round((1 - valenceDiff) * 15);
+    }
+    if (hints.arousal !== undefined && track.energy !== undefined) {
+      const arousalDiff = Math.abs(track.energy - hints.arousal);
+      score += Math.round((1 - arousalDiff) * 15);
+    }
+    
+    // 氛围匹配
+    if (hints.atmosphere && track.mood_tags) {
+      const atmosphereMap = {
+        'fresh_morning': ['happy', 'hopeful', 'energetic'],
+        'serene_night': ['calm', 'peaceful', 'melancholy'],
+        'energetic_road_trip': ['energetic', 'happy', 'uplifting'],
+        'romantic_evening': ['romantic', 'peaceful'],
+        'cozy_rain': ['calm', 'melancholy', 'peaceful'],
+        'focus_work': ['calm', 'peaceful'],
+        'party_mode': ['energetic', 'happy', 'uplifting'],
+        'meditation': ['peaceful', 'calm']
+      };
+      const expectedMoods = atmosphereMap[hints.atmosphere] || [];
+      const matchCount = expectedMoods.filter(m => track.mood_tags.includes(m)).length;
+      score += matchCount * 10;
+    }
+    
+    return score;
+  }
+
+  _timeToTags(timeOfDay) {
+    if (timeOfDay < 0.25) return ['late_night', 'night'];
+    if (timeOfDay < 0.4) return ['morning'];
+    if (timeOfDay < 0.6) return ['afternoon'];
+    if (timeOfDay < 0.75) return ['evening'];
+    return ['night', 'late_night'];
+  }
+
+  _buildResult(playlist, source) {
+    const playlistSize = this.config.maxTracks || 10;
+    const finalPlaylist = playlist.slice(0, playlistSize).map((t, index) => ({
+      ...t,
+      id: t.id || `track-${Date.now()}-${index}`,
+      added_at: Date.now()
+    }));
+
+    this.currentPlaylist = finalPlaylist;
+
+    const totalDuration = finalPlaylist.reduce((sum, t) => sum + (t.duration || 0), 0);
+
+    return {
+      playlist: finalPlaylist,
+      total_duration: totalDuration,
+      avg_energy: finalPlaylist.reduce((sum, t) => sum + (t.energy || 0), 0) / (finalPlaylist.length || 1),
+      source
+    };
+  }
+
   async execute(action, params = {}) {
     switch (action) {
       case 'curate_playlist':
@@ -160,49 +337,57 @@ Constraints: ${JSON.stringify(constraints)}
     const availableScenes = this.getAvailableScenes();
     const isPresetScene = sceneType && availableScenes.includes(sceneType);
 
+    // 步骤1: 模板场景 - 直接从曲库获取，快速启播
     if (isPresetScene && this.musicLibrary) {
       const sceneTracks = this.getTracksByScene(sceneType);
       if (sceneTracks.length > 0) {
         playlist = this._filterTracksByHints(sceneTracks, hints, constraints);
         source = 'library';
         console.log(`[ContentEngine] Using library tracks for preset scene: ${sceneType}`);
+        return this._buildResult(playlist, source);
       }
     }
 
-    if (playlist.length === 0 && this.llmClient && this.config.enableLLM) {
+    // 步骤2: 非模板场景 - 先从曲库智能检索
+    const libraryMatches = this._searchLibraryByHints(hints, constraints);
+    const minTracks = constraints.min_tracks || 5;
+    
+    if (libraryMatches.length >= minTracks) {
+      playlist = libraryMatches;
+      source = 'library_search';
+      console.log(`[ContentEngine] Found ${libraryMatches.length} tracks from library search`);
+      return this._buildResult(playlist, source);
+    }
+
+    // 步骤3: 曲库匹配不足 - 调用 LLM 联网搜索
+    if (this.llmClient && this.config.enableLLM) {
       try {
-        console.log(`[ContentEngine] Calling LLM for ${isPresetScene ? 'preset' : 'custom'} scene: ${sceneType || 'unknown'}`);
-        playlist = await this._generatePlaylistWithLLM(hints, constraints);
+        console.log(`[ContentEngine] Library matched ${libraryMatches.length} tracks (< ${minTracks}), calling LLM for more`);
+        const llmPlaylist = await this._generatePlaylistWithLLM(hints, constraints);
+        
+        // 合并曲库匹配和 LLM 生成的结果
+        const llmIds = new Set(llmPlaylist.map(t => t.id));
+        const uniqueLibrary = libraryMatches.filter(t => !llmIds.has(t.id));
+        playlist = [...uniqueLibrary.slice(0, 3), ...llmPlaylist];
         source = 'llm';
-        console.log(`[ContentEngine] LLM generated ${playlist.length} tracks`);
+        console.log(`[ContentEngine] Combined ${uniqueLibrary.length} library + ${llmPlaylist.length} LLM tracks`);
       } catch (error) {
-        console.warn('[ContentEngine] LLM generation failed, falling back to mock logic:', error.message);
+        console.warn('[ContentEngine] LLM generation failed, falling back to library:', error.message);
+        if (libraryMatches.length > 0) {
+          playlist = libraryMatches;
+          source = 'library_search';
+        }
       }
     }
 
+    // 步骤4: 兜底 - 使用 mock 数据
     if (playlist.length === 0) {
       playlist = this._filterTracksByHints(this.trackLibrary, hints, constraints);
       source = 'mock';
       console.log(`[ContentEngine] Using mock data (${playlist.length} tracks)`);
     }
 
-    const playlistSize = constraints.max_tracks || 10;
-    playlist = playlist.slice(0, playlistSize).map((t, index) => ({
-      ...t,
-      id: t.id || `track-${Date.now()}-${index}`,
-      added_at: Date.now()
-    }));
-
-    this.currentPlaylist = playlist;
-
-    const totalDuration = playlist.reduce((sum, t) => sum + (t.duration || 0), 0);
-
-    return {
-      playlist,
-      total_duration: totalDuration,
-      avg_energy: playlist.reduce((sum, t) => sum + (t.energy || 0), 0) / (playlist.length || 1),
-      source
-    };
+    return this._buildResult(playlist, source);
   }
 
   _filterTracksByHints(tracks, hints = {}, constraints = {}) {
