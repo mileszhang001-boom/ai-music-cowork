@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 
+require('dotenv').config();
+
 const { effectsLayer, EngineTypes } = require('../../src/layers/effects');
 const { validator } = require('../../src/layers/effects/validator');
 const { contentEngine } = require('../../src/layers/effects/engines/content');
