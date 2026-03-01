@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
+require('dotenv').config({ path: require('path').join(__dirname, '../.env.local') });
 require('dotenv').config();
 
 const readline = require('readline');

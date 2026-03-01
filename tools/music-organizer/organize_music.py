@@ -2,14 +2,12 @@
 # -*- coding: utf-8 -*-
 """
 PC端音乐元数据提取工具
-用于提取音乐文件的元数据并生成 SQLite 索引数据库
-支持 LLM 分析音乐标签
+用于提取音乐文件的元数据并生成 JSON 索引文件，支持 LLM 分析音乐标签。
 """
 
 import argparse
 import json
 import os
-import sqlite3
 import sys
 import time
 from pathlib import Path
@@ -29,7 +27,6 @@ try:
     PINYIN_AVAILABLE = True
 except ImportError:
     PINYIN_AVAILABLE = False
-    print("警告: pypinyin 库未安装，中文拼音转换功能将不可用")
 
 try:
     import requests
@@ -143,7 +140,6 @@ def get_audio_metadata(file_path: Path) -> Optional[Dict[str, Any]]:
 
 
 def analyze_with_llm(metadata: Dict[str, Any], api_key: str, api_base: str = "https://dashscope.aliyuncs.com/compatible-mode/v1") -> Optional[Dict[str, Any]]:
-    """使用 LLM 分析音乐标签"""
     if not REQUESTS_AVAILABLE or not api_key:
         return None
     
@@ -235,159 +231,16 @@ def scan_music_files(input_dir: Path) -> List[Path]:
     return music_files
 
 
-def create_database(db_path: Path) -> sqlite3.Connection:
-    conn = sqlite3.connect(str(db_path))
-    cursor = conn.cursor()
-    
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS tracks (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL,
-            title_pinyin TEXT,
-            artist TEXT NOT NULL,
-            artist_pinyin TEXT,
-            album TEXT,
-            genre TEXT,
-            year TEXT,
-            bpm INTEGER,
-            energy REAL,
-            valence REAL,
-            mood_tags TEXT,
-            scene_tags TEXT,
-            duration_ms INTEGER,
-            file_path TEXT NOT NULL,
-            file_size INTEGER,
-            format TEXT,
-            bitrate INTEGER,
-            sample_rate INTEGER,
-            play_count INTEGER DEFAULT 0,
-            llm_analyzed INTEGER DEFAULT 0
-        )
-    ''')
-    
-    cursor.execute('''
-        CREATE VIRTUAL TABLE IF NOT EXISTS tracks_fts USING fts5(
-            title, title_pinyin, artist, artist_pinyin,
-            album, genre, mood_tags, scene_tags,
-            content='tracks', content_rowid='id'
-        )
-    ''')
-    
-    cursor.execute('''
-        CREATE TRIGGER IF NOT EXISTS tracks_ai AFTER INSERT ON tracks BEGIN
-            INSERT INTO tracks_fts(rowid, title, title_pinyin, artist, artist_pinyin, album, genre, mood_tags, scene_tags)
-            VALUES (new.id, new.title, new.title_pinyin, new.artist, new.artist_pinyin, new.album, new.genre, new.mood_tags, new.scene_tags);
-        END
-    ''')
-    
-    cursor.execute('''
-        CREATE TRIGGER IF NOT EXISTS tracks_ad AFTER DELETE ON tracks BEGIN
-            INSERT INTO tracks_fts(tracks_fts, rowid, title, title_pinyin, artist, artist_pinyin, album, genre, mood_tags, scene_tags)
-            VALUES('delete', old.id, old.title, old.title_pinyin, old.artist, old.artist_pinyin, old.album, old.genre, old.mood_tags, old.scene_tags);
-        END
-    ''')
-    
-    cursor.execute('''
-        CREATE TRIGGER IF NOT EXISTS tracks_au AFTER UPDATE ON tracks BEGIN
-            INSERT INTO tracks_fts(tracks_fts, rowid, title, title_pinyin, artist, artist_pinyin, album, genre, mood_tags, scene_tags)
-            VALUES('delete', old.id, old.title, old.title_pinyin, old.artist, old.artist_pinyin, old.album, old.genre, old.mood_tags, old.scene_tags);
-            INSERT INTO tracks_fts(rowid, title, title_pinyin, artist, artist_pinyin, album, genre, mood_tags, scene_tags)
-            VALUES (new.id, new.title, new.title_pinyin, new.artist, new.artist_pinyin, new.album, new.genre, new.mood_tags, new.scene_tags);
-        END
-    ''')
-    
-    cursor.execute('CREATE INDEX IF NOT EXISTS idx_genre ON tracks(genre)')
-    cursor.execute('CREATE INDEX IF NOT EXISTS idx_energy ON tracks(energy)')
-    cursor.execute('CREATE INDEX IF NOT EXISTS idx_bpm ON tracks(bpm)')
-    
-    conn.commit()
-    return conn
-
-
-def insert_track(conn: sqlite3.Connection, metadata: Dict[str, Any], llm_tags: Optional[Dict[str, Any]] = None) -> int:
-    cursor = conn.cursor()
-    
-    genre = llm_tags.get('genre') if llm_tags else metadata.get('genre')
-    bpm = llm_tags.get('bpm') if llm_tags else None
-    energy = llm_tags.get('energy') if llm_tags else None
-    valence = llm_tags.get('valence') if llm_tags else None
-    mood_tags = llm_tags.get('mood_tags') if llm_tags else None
-    scene_tags = llm_tags.get('scene_tags') if llm_tags else None
-    llm_analyzed = 1 if llm_tags else 0
-    
-    cursor.execute('''
-        INSERT INTO tracks (
-            title, title_pinyin, artist, artist_pinyin, album, genre, year,
-            bpm, energy, valence, mood_tags, scene_tags,
-            duration_ms, file_path, file_size, format, bitrate, sample_rate, llm_analyzed
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ''', (
-        metadata['title'],
-        metadata['title_pinyin'],
-        metadata['artist'],
-        metadata['artist_pinyin'],
-        metadata['album'],
-        genre,
-        metadata.get('year'),
-        bpm,
-        energy,
-        valence,
-        mood_tags,
-        scene_tags,
-        metadata['duration_ms'],
-        metadata['file_path'],
-        metadata['file_size'],
-        metadata['format'],
-        metadata['bitrate'],
-        metadata['sample_rate'],
-        llm_analyzed
-    ))
-    
-    conn.commit()
-    return cursor.lastrowid
-
-
-def export_to_json(conn: sqlite3.Connection, output_path: Path):
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM tracks')
-    columns = [description[0] for description in cursor.description]
-    
-    tracks = []
-    for row in cursor.fetchall():
-        track = dict(zip(columns, row))
-        tracks.append(track)
-    
-    with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(tracks, f, ensure_ascii=False, indent=2)
-    
-    print(f"已导出 {len(tracks)} 条记录到 {output_path}")
-
-
 def main():
     parser = argparse.ArgumentParser(
-        description='PC端音乐元数据提取工具（支持 LLM 分析标签）',
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog='''
-示例:
-  # 基本用法（只提取元数据）
-  %(prog)s -i /path/to/music -o ./index.db
-  
-  # 使用 LLM 分析标签
-  %(prog)s -i /path/to/music -o ./index.db --llm --api-key YOUR_API_KEY
-  
-  # 使用环境变量设置 API Key
-  export DASHSCOPE_API_KEY=YOUR_API_KEY
-  %(prog)s -i /path/to/music -o ./index.db --llm
-        '''
+        description='PC端音乐元数据提取工具（生成 JSON 格式）'
     )
     
     parser.add_argument('-i', '--input', required=True, help='输入音乐目录路径')
-    parser.add_argument('-o', '--output', required=True, help='输出数据库文件路径')
-    parser.add_argument('-f', '--format', choices=['db', 'json', 'all'], default='db', help='输出格式')
+    parser.add_argument('-o', '--output', required=True, help='输出 JSON 文件路径')
     parser.add_argument('--llm', action='store_true', help='使用 LLM 分析音乐标签')
     parser.add_argument('--api-key', help='阿里云百炼 API Key（或设置 DASHSCOPE_API_KEY 环境变量）')
     parser.add_argument('--api-base', default='https://dashscope.aliyuncs.com/compatible-mode/v1', help='API 地址')
-    parser.add_argument('--batch-size', type=int, default=10, help='LLM 批量处理大小')
     
     args = parser.parse_args()
     
@@ -403,8 +256,6 @@ def main():
     api_key = args.api_key or os.environ.get('DASHSCOPE_API_KEY')
     if args.llm and not api_key:
         print("错误: 使用 LLM 分析需要提供 API Key")
-        print("  方式1: --api-key YOUR_API_KEY")
-        print("  方式2: export DASHSCOPE_API_KEY=YOUR_API_KEY")
         sys.exit(1)
     
     print(f"扫描目录: {input_dir}")
@@ -415,19 +266,14 @@ def main():
         print("未找到支持的音乐文件 (MP3/FLAC/WAV/M4A)")
         sys.exit(0)
     
-    db_path = output_path if output_path.suffix == '.db' else output_path.with_suffix('.db')
-    conn = create_database(db_path)
-    
-    success_count = 0
+    tracks = []
     llm_count = 0
-    error_count = 0
     
     for i, file_path in enumerate(music_files, 1):
         print(f"处理 [{i}/{len(music_files)}]: {file_path.name}")
         
         metadata = get_audio_metadata(file_path)
         if not metadata:
-            error_count += 1
             continue
         
         llm_tags = None
@@ -440,25 +286,40 @@ def main():
             else:
                 print(f"  ✗ LLM 分析失败，使用原始元数据")
             
-            if i % args.batch_size == 0:
+            if i % 10 == 0:
                 time.sleep(1)
         
-        insert_track(conn, metadata, llm_tags)
-        success_count += 1
+        track = {
+            'id': i,
+            'title': metadata['title'],
+            'title_pinyin': metadata['title_pinyin'],
+            'artist': metadata['artist'],
+            'artist_pinyin': metadata['artist_pinyin'],
+            'album': metadata['album'],
+            'genre': llm_tags.get('genre') if llm_tags else metadata.get('genre'),
+            'year': metadata.get('year'),
+            'bpm': llm_tags.get('bpm') if llm_tags else None,
+            'energy': llm_tags.get('energy') if llm_tags else None,
+            'valence': llm_tags.get('valence') if llm_tags else None,
+            'mood_tags': llm_tags.get('mood_tags') if llm_tags else None,
+            'scene_tags': llm_tags.get('scene_tags') if llm_tags else None,
+            'duration_ms': metadata['duration_ms'],
+            'file_path': metadata['file_path'],
+            'file_size': metadata['file_size'],
+            'format': metadata['format'],
+            'bitrate': metadata['bitrate'],
+            'sample_rate': metadata['sample_rate'],
+            'llm_analyzed': 1 if llm_tags else 0
+        }
+        tracks.append(track)
     
-    conn.close()
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(tracks, f, ensure_ascii=False, indent=2)
     
     print(f"\n处理完成:")
-    print(f"  成功: {success_count}")
+    print(f"  成功: {len(tracks)}")
     print(f"  LLM 分析: {llm_count}")
-    print(f"  失败: {error_count}")
-    print(f"  数据库: {db_path}")
-    
-    if args.format in ['json', 'all']:
-        json_path = db_path.with_suffix('.json')
-        conn = sqlite3.connect(str(db_path))
-        export_to_json(conn, json_path)
-        conn.close()
+    print(f"  输出文件: {output_path}")
 
 
 if __name__ == '__main__':
