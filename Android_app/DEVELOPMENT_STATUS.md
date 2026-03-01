@@ -56,7 +56,46 @@ Android_app/
 │   │   └── app-demo-localmusic/       # ✅ Demo APK
 │   │       └── MainActivity.kt
 │   │
-│   └── generation/                    # 生成层
+│   ├── layer3/                        # 生成层（Layer3）
+│   │   ├── layer3-api/                # ✅ 接口定义
+│   │   │   ├── IGenerationEngine.kt   # 生成引擎接口
+│   │   │   ├── IContentEngine.kt      # 内容引擎接口
+│   │   │   ├── ILightingEngine.kt     # 灯光引擎接口
+│   │   │   ├── IAudioEngine.kt        # 音频引擎接口
+│   │   │   ├── IAmbientLightController.kt # 氛围灯控制器接口
+│   │   │   ├── Layer3Config.kt        # 配置类
+│   │   │   └── Layer3Error.kt         # 错误定义
+│   │   ├── layer3-sdk/                # ✅ SDK 实现
+│   │   │   ├── Layer3SDK.kt           # SDK 主入口
+│   │   │   ├── engine/
+│   │   │   │   ├── ContentEngine.kt   # 音乐推荐引擎
+│   │   │   │   ├── LightingEngine.kt  # 灯光控制引擎
+│   │   │   │   ├── AudioEngine.kt     # 音频配置引擎
+│   │   │   │   └── GenerationEngine.kt# 场景生成引擎
+│   │   │   ├── data/
+│   │   │   │   ├── MusicLibraryLoader.kt  # 音乐库加载器
+│   │   │   │   ├── SceneTemplateLoader.kt # 场景模板加载器
+│   │   │   │   └── CacheManager.kt    # 缓存管理器
+│   │   │   ├── algorithm/
+│   │   │   │   ├── MusicScorer.kt     # 音乐评分算法
+│   │   │   │   ├── ArtistDiversityFilter.kt # 艺术家多样性过滤
+│   │   │   │   ├── SceneKeywordMatcher.kt   # 场景关键词匹配
+│   │   │   │   └── ColorAdjuster.kt   # 颜色调整器
+│   │   │   └── assets/                # 测试数据
+│   │   │       ├── music_library.json # 音乐库
+│   │   │       ├── preset_templates.json # 场景模板
+│   │   │       ├── scene_keyword_mapping.json # 场景关键词映射
+│   │   │       └── template_analysis.json # 模板分析
+│   │   └── app-demo-layer3/           # ✅ Demo APK
+│   │       ├── MainActivity.kt        # 主界面
+│   │       ├── ui/
+│   │       │   ├── SceneSelectionScreen.kt # 场景选择界面
+│   │       │   ├── ResultDisplayScreen.kt  # 结果展示界面
+│   │       │   └── Theme.kt           # 主题配置
+│   │       └── controller/
+│   │           └── MockAmbientLightController.kt # Mock 氛围灯控制器
+│   │
+│   └── generation/                    # 生成层（旧架构，待整合）
 │       ├── module-generation/         # ❌ SDK 实现（待开发）
 │       └── app-demo-generation/       # ❌ Demo APK（待开发）
 │
@@ -81,14 +120,17 @@ Android_app/
 | `module-perception` | 8 | ✅ 完成 | 李翰铭 |
 | `module-semantic` | 5 | ✅ 完成 | Trae AI |
 | `module-localmusic` | 8 | ✅ 完成 | - |
+| `layer3-api` | 6 | ✅ 完成 | Trae AI |
+| `layer3-sdk` | 15+ | ✅ 完成 | Trae AI |
 | `app-demo-semantic` | 1 | ✅ 完成 | Trae AI |
 | `app-demo-localmusic` | 1 | ✅ 完成 | - |
+| `app-demo-layer3` | 5 | ✅ 完成 | Trae AI |
 | `app-demo-perception` | 0 | ❌ 待开发 | - |
-| `module-generation` | 0 | ❌ 待开发 | - |
-| `app-demo-generation` | 0 | ❌ 待开发 | - |
+| `module-generation` | 0 | ❌ 待整合 | - |
+| `app-demo-generation` | 0 | ❌ 待整合 | - |
 | `app-main` | 0 | ❌ 待开发 | - |
 
-**总计**：30 个 Kotlin 文件，7 个模块已完成，4 个模块待开发
+**总计**：50+ 个 Kotlin 文件，10 个模块已完成，4 个模块待开发/整合
 
 ---
 
@@ -124,14 +166,18 @@ Android_app/
 └─────────────────────────────────────────────────────────────────┘
                               ↓
 ┌─────────────────────────────────────────────────────────────────┐
-│  Layer 3: 生成层 (module-generation) ❌ 待开发                   │
+│  Layer 3: 生成层 (layer3-sdk) ✅                                │
 │  ┌─────────────────────────────────────────────────────────────┐│
 │  │ GenerationEngine                                            ││
-│  │ ├── LocalMusicRepository (歌曲查询)                         ││
-│  │ ├── MusicPlayer (ExoPlayer 播放)                            ││
-│  │ ├── IAmbientLightController (氛围灯接口)                    ││
-│  │ ├── IVolumeController (音量控制接口)                        ││
-│  │ └── EffectExecutor (命令执行器)                             ││
+│  │ ├── ContentEngine (音乐推荐)                                ││
+│  │ │   ├── MusicScorer (评分算法)                              ││
+│  │ │   ├── ArtistDiversityFilter (多样性限制)                  ││
+│  │ │   └── CacheManager (缓存管理)                             ││
+│  │ ├── LightingEngine (灯光控制)                               ││
+│  │ │   ├── SceneKeywordMatcher (场景匹配)                      ││
+│  │ │   └── ColorAdjuster (颜色调整)                            ││
+│  │ ├── AudioEngine (音频配置)                                  ││
+│  │ └── IAmbientLightController (氛围灯接口，由 APK 注入)       ││
 │  └─────────────────────────────────────────────────────────────┘│
 │                              ↓                                   │
 │                      EffectCommands (core-api)                  │
@@ -140,49 +186,9 @@ Android_app/
 
 ---
 
-## 四、待实现功能清单
+## 四、SDK 对外接口
 
-### 4.1 感知层 Demo APK (`app-demo-perception`)
-
-| 功能 | 说明 | 状态 |
-|------|------|------|
-| 权限申请 | CAMERA, RECORD_AUDIO, ACCESS_FINE_LOCATION | ❌ |
-| UI 界面 | 展示传感器数据和 StandardizedSignals JSON | ❌ |
-| SDK 集成 | 初始化 PerceptionEngine 并展示数据流 | ❌ |
-
-### 4.2 生成层 SDK (`module-generation`)
-
-| 功能 | 说明 | 状态 |
-|------|------|------|
-| GenerationEngine | 主引擎入口 | ❌ |
-| MusicPlayer | 封装 Media3 ExoPlayer | ❌ |
-| IAmbientLightController | 氛围灯控制接口 | ❌ |
-| IVolumeController | 音量控制接口 | ❌ |
-| EffectExecutor | 执行 EffectCommands | ❌ |
-
-### 4.3 生成层 Demo APK (`app-demo-generation`)
-
-| 功能 | 说明 | 状态 |
-|------|------|------|
-| Mock 硬件实现 | MockAmbientLightController（屏幕颜色模拟） | ❌ |
-| UI 界面 | 展示 SceneDescriptor 输入和执行效果 | ❌ |
-| SDK 集成 | 初始化 GenerationEngine 并执行命令 | ❌ |
-
-### 4.4 主 APK (`app-main`)
-
-| 功能 | 说明 | 状态 |
-|------|------|------|
-| 全链路集成 | 感知 → 语义 → 生成 | ❌ |
-| Hilt 依赖注入 | 统一管理 SDK 实例 | ❌ |
-| 权限管理 | 合并所有权限申请 | ❌ |
-| 主界面 UI | 显示当前场景和播放状态 | ❌ |
-| 生命周期管理 | 前后台切换时 SDK 暂停/恢复 | ❌ |
-
----
-
-## 五、SDK 对外接口
-
-### 5.1 感知层 SDK
+### 4.1 感知层 SDK
 
 ```kotlin
 interface IPerceptionEngine {
@@ -203,7 +209,7 @@ data class PerceptionConfig(
 )
 ```
 
-### 5.2 语义层 SDK
+### 4.2 语义层 SDK
 
 ```kotlin
 class SemanticEngine(
@@ -217,7 +223,7 @@ class SemanticEngine(
 }
 ```
 
-### 5.3 本地音乐 SDK
+### 4.3 本地音乐 SDK
 
 ```kotlin
 class LocalMusicRepository(private val musicIndex: LocalMusicIndex) {
@@ -232,14 +238,123 @@ class LocalMusicRepository(private val musicIndex: LocalMusicIndex) {
 }
 ```
 
+### 4.4 Layer3 生成层 SDK
+
+```kotlin
+// 初始化
+val config = Layer3Config.Builder()
+    .setContentProvider(ContentProviderConfig(providerType = "local"))
+    .build()
+Layer3SDK.init(context, config)
+
+// 获取引擎
+val generationEngine = Layer3SDK.getGenerationEngine()
+val contentEngine = Layer3SDK.getContentEngine()
+val lightingEngine = Layer3SDK.getLightingEngine()
+val audioEngine = Layer3SDK.getAudioEngine()
+
+// 生成场景效果
+val sceneDescriptor = generationEngine.generateScene("morning_commute").getOrThrow()
+val effects = generationEngine.generateEffects(sceneDescriptor).getOrThrow()
+
+// 生成播放列表
+val playlist = contentEngine.generatePlaylist(sceneDescriptor).getOrThrow()
+
+// 生成灯光配置
+val lighting = lightingEngine.generateLighting(sceneDescriptor).getOrThrow()
+
+// 生成音频配置
+val audio = audioEngine.generateAudioConfig(sceneDescriptor).getOrThrow()
+
+// 销毁
+Layer3SDK.destroy()
+```
+
+#### 接口定义
+
+```kotlin
+interface IGenerationEngine {
+    val effectCommandsFlow: Flow<EffectCommands>
+    suspend fun generateScene(sceneId: String): Result<SceneDescriptor>
+    suspend fun generateEffects(scene: SceneDescriptor): Result<EffectCommands>
+    fun start()
+    fun stop()
+    fun destroy()
+    fun updateConfig(config: Layer3Config)
+}
+
+interface IContentEngine {
+    val playlistFlow: Flow<List<Track>>
+    suspend fun generatePlaylist(scene: SceneDescriptor): Result<List<Track>>
+    fun play(playlist: List<Track>)
+    fun pause()
+    fun resume()
+    fun stop()
+    fun next()
+    fun previous()
+}
+
+interface ILightingEngine {
+    val lightingStateFlow: Flow<LightingCommand>
+    suspend fun generateLighting(scene: SceneDescriptor): Result<LightingCommand>
+    fun applyLighting(command: LightingCommand)
+    fun setTheme(theme: String)
+    fun setIntensity(intensity: Double)
+}
+
+interface IAudioEngine {
+    val audioStateFlow: Flow<AudioCommand>
+    suspend fun generateAudioConfig(scene: SceneDescriptor): Result<AudioCommand>
+    fun applyAudioConfig(command: AudioCommand)
+    fun setPreset(preset: String)
+    fun setVolume(volumeDb: Int)
+}
+
+// 氛围灯控制器接口（非标硬件，由 APK 注入）
+interface IAmbientLightController {
+    suspend fun connect(): Boolean
+    suspend fun disconnect()
+    fun setZoneColor(zoneId: Int, color: Int)
+    fun setAllColors(colors: Map<Int, Int>)
+    fun startMusicSync(bpm: Int)
+    fun stopMusicSync()
+}
+```
+
+---
+
+## 五、模块依赖关系
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                         core-api                            │
+│  (Layer1Models, Layer2Models, Layer3Models)                 │
+└─────────────────────────────────────────────────────────────┘
+         ↓              ↓              ↓              ↓
+┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
+│ perception  │ │  semantic   │ │ localmusic  │ │   layer3    │
+│    -api     │ │             │ │             │ │    -api     │
+└─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘
+         ↓              ↓              ↓              ↓
+┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
+│ perception  │ │  semantic   │ │ localmusic  │ │   layer3    │
+│    -sdk     │ │    -sdk     │ │    -sdk     │ │    -sdk     │
+└─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘
+         ↓              ↓              ↓              ↓
+┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
+│    demo     │ │    demo     │ │    demo     │ │    demo     │
+│ perception  │ │  semantic   │ │ localmusic  │ │   layer3    │
+└─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘
+```
+
 ---
 
 ## 六、开发优先级
 
 | 优先级 | 模块 | 工作量 | 依赖 | 状态 |
 |--------|------|--------|------|------|
-| P0 | `module-generation` | 3-5 天 | 无 | ❌ 待开发 |
-| P1 | `app-demo-generation` | 1-2 天 | module-generation | ❌ 待开发 |
+| P0 | `layer3-sdk` | 3-5 天 | core-api | ✅ 完成 |
+| P1 | `app-demo-layer3` | 1-2 天 | layer3-sdk | ✅ 完成 |
 | P2 | `app-demo-perception` | 1-2 天 | module-perception | ❌ 待开发 |
 | P3 | `app-main` | 3-5 天 | 所有 SDK | ❌ 待开发 |
 
@@ -249,6 +364,8 @@ class LocalMusicRepository(private val musicIndex: LocalMusicIndex) {
 
 | 日期 | 变更内容 | 提交者 |
 |------|----------|--------|
+| 2026-03-01 | 完成 Layer3 SDK 和 Demo APK | Trae AI |
+| 2026-03-01 | 对齐 Layer3 SDK 到 core-api 数据模型 | Trae AI |
 | 2026-03-01 | 对齐感知层数据模型到 core-api | Trae AI |
 | 2026-03-01 | 整合李翰铭的感知层 SDK | Trae AI |
 | 2026-03-01 | 完成语义层 SDK 和 Demo APK | Trae AI |
