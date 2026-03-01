@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:core-api"))
     implementation(project(":features:layer3:layer3-api"))
     
     implementation(libs.androidx.core.ktx)

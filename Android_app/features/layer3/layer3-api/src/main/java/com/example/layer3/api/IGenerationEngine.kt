@@ -1,7 +1,7 @@
 package com.example.layer3.api
 
-import com.example.layer3.api.model.SceneDescriptor
-import com.example.layer3.api.model.EffectCommands
+import com.music.core.api.models.SceneDescriptor
+import com.music.core.api.models.EffectCommands
 import kotlinx.coroutines.flow.Flow
 
 interface IGenerationEngine {

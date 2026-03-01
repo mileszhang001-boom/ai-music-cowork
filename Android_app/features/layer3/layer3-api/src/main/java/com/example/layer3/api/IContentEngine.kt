@@ -1,53 +1,23 @@
 package com.example.layer3.api
 
-import com.example.layer3.api.model.SceneDescriptor
-import com.example.layer3.api.model.Track
-import com.example.layer3.api.model.Playlist
-import com.example.layer3.api.model.PlaylistRecommendation
+import com.music.core.api.models.SceneDescriptor
+import com.music.core.api.models.Track
 import kotlinx.coroutines.flow.Flow
 
 interface IContentEngine {
-    val currentPlaylistFlow: Flow<Playlist?>
-    val currentTrackFlow: Flow<Track?>
-    val playbackStateFlow: Flow<PlaybackState>
+    val playlistFlow: Flow<List<Track>>
     
-    suspend fun generatePlaylist(scene: SceneDescriptor): Result<Playlist>
+    suspend fun generatePlaylist(scene: SceneDescriptor): Result<List<Track>>
     
-    suspend fun getRecommendations(basedOn: String, limit: Int = 10): Result<PlaylistRecommendation>
+    fun play(playlist: List<Track>)
     
-    suspend fun playPlaylist(playlist: Playlist): Result<Unit>
+    fun pause()
     
-    suspend fun playTrack(track: Track): Result<Unit>
+    fun resume()
     
-    suspend fun pause(): Result<Unit>
+    fun stop()
     
-    suspend fun resume(): Result<Unit>
+    fun next()
     
-    suspend fun next(): Result<Unit>
-    
-    suspend fun previous(): Result<Unit>
-    
-    suspend fun seek(positionMs: Long): Result<Unit>
-    
-    suspend fun setVolume(level: Double): Result<Unit>
-    
-    fun getCurrentTrack(): Track?
-    
-    fun getCurrentPlaylist(): Playlist?
-    
-    fun getPlaybackState(): PlaybackState
-}
-
-data class PlaybackState(
-    val is_playing: Boolean = false,
-    val position_ms: Long = 0,
-    val duration_ms: Long = 0,
-    val shuffle_enabled: Boolean = false,
-    val repeat_mode: RepeatMode = RepeatMode.OFF
-)
-
-enum class RepeatMode {
-    OFF,
-    ONE,
-    ALL
+    fun previous()
 }

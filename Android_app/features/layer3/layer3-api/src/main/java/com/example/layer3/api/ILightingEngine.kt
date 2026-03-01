@@ -1,43 +1,17 @@
 package com.example.layer3.api
 
-import com.example.layer3.api.model.SceneDescriptor
-import com.example.layer3.api.model.LightingConfig
-import com.example.layer3.api.model.ZoneConfig
+import com.music.core.api.models.SceneDescriptor
+import com.music.core.api.models.LightingCommand
 import kotlinx.coroutines.flow.Flow
 
 interface ILightingEngine {
-    val currentConfigFlow: Flow<LightingConfig?>
-    val lightingStateFlow: Flow<LightingState>
+    val lightingStateFlow: Flow<LightingCommand>
     
-    suspend fun generateLightingConfig(scene: SceneDescriptor): Result<LightingConfig>
+    suspend fun generateLighting(scene: SceneDescriptor): Result<LightingCommand>
     
-    suspend fun applyConfig(config: LightingConfig): Result<Unit>
+    fun applyLighting(command: LightingCommand)
     
-    suspend fun setZoneConfig(zoneId: String, zoneConfig: ZoneConfig): Result<Unit>
+    fun setTheme(theme: String)
     
-    suspend fun setBrightness(level: Double): Result<Unit>
-    
-    suspend fun setColor(hex: String): Result<Unit>
-    
-    suspend fun setPattern(pattern: String): Result<Unit>
-    
-    suspend fun enableMusicSync(enabled: Boolean): Result<Unit>
-    
-    suspend fun turnOff(): Result<Unit>
-    
-    suspend fun turnOn(): Result<Unit>
-    
-    fun getCurrentConfig(): LightingConfig?
-    
-    fun getLightingState(): LightingState
-    
-    fun getAvailableZones(): List<String>
+    fun setIntensity(intensity: Double)
 }
-
-data class LightingState(
-    val is_on: Boolean = false,
-    val active_zones: List<String> = emptyList(),
-    val current_pattern: String = "static",
-    val brightness: Double = 1.0,
-    val music_sync_enabled: Boolean = false
-)
