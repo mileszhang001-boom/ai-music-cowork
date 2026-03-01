@@ -1,5 +1,6 @@
 package com.music.localmusic
 
+import android.content.Context
 import android.util.Log
 import com.music.localmusic.models.Track
 import org.json.JSONArray
@@ -7,7 +8,9 @@ import org.json.JSONObject
 import java.io.File
 
 class LocalMusicIndex private constructor(
-    private val jsonPath: String
+    private val context: Context?,
+    private val jsonPath: String?,
+    private val useAssets: Boolean
 ) {
     private var tracks: List<Track> = emptyList()
     private var isInitialized = false
@@ -15,26 +18,47 @@ class LocalMusicIndex private constructor(
     companion object {
         private const val TAG = "LocalMusicIndex"
         private const val DEFAULT_JSON_PATH = "/sdcard/Music/AiMusic/index.json"
+        private const val DEFAULT_ASSETS_PATH = "index.json"
         
         @Volatile
         private var instance: LocalMusicIndex? = null
         
+        @Deprecated("Use getInstance(context) for assets loading")
         fun getInstance(jsonPath: String = DEFAULT_JSON_PATH): LocalMusicIndex {
             return instance ?: synchronized(this) {
-                instance ?: LocalMusicIndex(jsonPath).also { instance = it }
+                instance ?: LocalMusicIndex(null, jsonPath, false).also { instance = it }
+            }
+        }
+        
+        fun getInstance(context: Context): LocalMusicIndex {
+            return instance ?: synchronized(this) {
+                instance ?: LocalMusicIndex(context, null, true).also { instance = it }
+            }
+        }
+        
+        fun getInstance(context: Context, jsonPath: String): LocalMusicIndex {
+            return instance ?: synchronized(this) {
+                instance ?: LocalMusicIndex(context, jsonPath, false).also { instance = it }
             }
         }
     }
     
     fun initialize(): Boolean {
         return try {
-            val jsonFile = File(jsonPath)
-            if (!jsonFile.exists()) {
-                Log.e(TAG, "JSON file not found: $jsonPath")
+            val jsonString = when {
+                useAssets && context != null -> loadFromAssets()
+                jsonPath != null -> loadFromFile(jsonPath)
+                else -> {
+                    Log.e(TAG, "No valid loading method specified")
+                    return false
+                }
+            }
+            
+            if (jsonString == null) {
+                Log.e(TAG, "Failed to load JSON data")
                 return false
             }
             
-            val jsonString = jsonFile.readText()
             tracks = parseJsonTracks(jsonString)
             
             if (tracks.isNotEmpty()) {
@@ -48,6 +72,29 @@ class LocalMusicIndex private constructor(
         } catch (e: Exception) {
             Log.e(TAG, "Failed to initialize LocalMusicIndex", e)
             false
+        }
+    }
+    
+    private fun loadFromAssets(): String? {
+        return try {
+            context?.assets?.open(DEFAULT_ASSETS_PATH)?.bufferedReader()?.use { it.readText() }
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to load from assets: $DEFAULT_ASSETS_PATH", e)
+            null
+        }
+    }
+    
+    private fun loadFromFile(path: String): String? {
+        return try {
+            val jsonFile = File(path)
+            if (!jsonFile.exists()) {
+                Log.e(TAG, "JSON file not found: $path")
+                return null
+            }
+            jsonFile.readText()
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to load from file: $path", e)
+            null
         }
     }
     
