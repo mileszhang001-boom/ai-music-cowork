@@ -35,5 +35,10 @@ include(":features:generation:app-demo-generation")
 include(":features:localmusic:module-localmusic")
 include(":features:localmusic:app-demo-localmusic")
 
+// Features - Layer3
+include(":features:layer3:layer3-api")
+include(":features:layer3:layer3-sdk")
+include(":features:layer3:app-demo-layer3")
+
 // App
 include(":app:app-main")
