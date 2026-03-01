@@ -1,0 +1,79 @@
+{
+  "type": "object",
+  "properties": {
+    "version": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "signals": {
+      "type": "object",
+      "properties": {
+        "vehicle": {
+          "type": "object",
+          "properties": {
+            "speed_kmh": { "type": "number" },
+            "passenger_count": { "type": "integer" },
+            "gear": { "type": "string" }
+          }
+        },
+        "environment": {
+          "type": "object",
+          "properties": {
+            "time_of_day": { "type": "number" },
+            "weather": { "type": "string" },
+            "temperature": { "type": "number" },
+            "date_type": { "type": "string", "enum": ["weekday", "weekend", "holiday"] }
+          }
+        },
+        "external_camera": {
+          "type": "object",
+          "properties": {
+            "primary_color": { "type": "string" },
+            "secondary_color": { "type": "string" },
+            "brightness": { "type": "number" },
+            "scene_description": { "type": "string" }
+          }
+        },
+        "internal_camera": {
+          "type": "object",
+          "properties": {
+            "mood": { "type": "string" },
+            "confidence": { "type": "number" },
+            "passengers": {
+              "type": "object",
+              "properties": {
+                "children": { "type": "integer" },
+                "adults": { "type": "integer" },
+                "seniors": { "type": "integer" }
+              }
+            }
+          }
+        },
+        "internal_mic": {
+          "type": "object",
+          "properties": {
+            "volume_level": { "type": "number" },
+            "has_voice": { "type": "boolean" },
+            "voice_count": { "type": "integer" },
+            "noise_level": { "type": "number" }
+          }
+        },
+        "user_query": {
+          "type": ["object", "null"],
+          "properties": {
+            "text": { "type": "string" },
+            "intent": { "type": "string" },
+            "confidence": { "type": "number" }
+          }
+        }
+      },
+      "required": ["vehicle", "environment", "external_camera", "internal_camera"]
+    },
+    "confidence": {
+      "type": "object",
+      "properties": {
+        "overall": { "type": "number" },
+        "by_source": { "type": "object" }
+      }
+    }
+  },
+  "required": ["version", "timestamp", "signals", "confidence"]
+}
