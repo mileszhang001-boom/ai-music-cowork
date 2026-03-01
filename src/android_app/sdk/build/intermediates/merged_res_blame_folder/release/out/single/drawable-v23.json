@@ -1,0 +1,6 @@
+[
+    {
+        "merged": "com.example.perception.sdk-merged_res-19:/drawable-v23/abc_control_background_material.xml",
+        "source": "com.example.perception.sdk-appcompat-1.6.1-5:/drawable-v23/abc_control_background_material.xml"
+    }
+]

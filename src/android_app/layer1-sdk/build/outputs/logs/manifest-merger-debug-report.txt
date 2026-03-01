@@ -1,0 +1,25 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml:2:13-83
+INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml:2:13-83
+INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml:2:13-83
+	package
+		INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
+		ADDED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml:2:13-83
+		INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
+	xmlns:android
+		ADDED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml:2:23-81
+uses-sdk
+INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml reason: use-sdk injection requested
+INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
+INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
+INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
+INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
+	android:targetSdkVersion
+		INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
+		ADDED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
+		INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
+	android:minSdkVersion
+		INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
+		ADDED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
+		INJECTED from /Users/mi/Documents/ai-music-cowork/src/android_app/layer1-sdk/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13138885031927571780.xml
