@@ -1,0 +1,447 @@
+{
+  "template_id": "TPL_004",
+  "template_name": "疲劳提醒",
+  "scene_type": "fatigue_alert",
+  "category": "state",
+  "generated_at": "2026-03-01T13:30:47.377Z",
+  "playlist": [
+    {
+      "id": "246a7f82-6a37-4e8c-8a5f-7302130a19d2",
+      "title": "Smells Like Teen Spirit",
+      "artist": "Nirvana",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.35,
+      "duration_ms": 278376,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Nirvana - Smells Like Teen Spirit.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.35",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "7efc11fd-6361-4b78-bb07-8b14e956c09a",
+      "title": "Seven Nation Army",
+      "artist": "The White Stripes",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.62,
+      "duration_ms": 238368,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The White Stripes - Seven Nation Army.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "c0b1f470-8737-4ba4-b38e-2e266c614de6",
+      "title": "Strobe",
+      "artist": "Deadmau5",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 128,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 636912,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deadmau5 - Strobe.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.42",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "4ab33d9a-9e94-43ee-abdb-7982a0bd7d22",
+      "title": "Radioactive",
+      "artist": "Imagine Dragons",
+      "album": null,
+      "genre": "rock",
+      "bpm": 124,
+      "energy": 0.85,
+      "valence": 0.62,
+      "duration_ms": 261072,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Imagine Dragons - Radioactive.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "13f25741-d601-4afb-958d-59bc53133175",
+      "title": "Hotel California",
+      "artist": "Eagles",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.65,
+      "valence": 0.48,
+      "duration_ms": 391368,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Eagles - Hotel California.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.48",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "02e8d790-d47d-4b14-bdad-6257742d6e1f",
+      "title": "Believer",
+      "artist": "Imagine Dragons",
+      "album": null,
+      "genre": "rock",
+      "bpm": 124,
+      "energy": 0.88,
+      "valence": 0.72,
+      "duration_ms": 216576,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Imagine Dragons - Believer.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.88",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "328a9036-2d34-4d8d-8f1a-97bd7815eebb",
+      "title": "倔强",
+      "artist": "五月天",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.78,
+      "valence": 0.65,
+      "duration_ms": 263328,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/五月天 - 倔强.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.78",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "f4dc8a73-bd87-4059-b5d7-c2c8d5da301a",
+      "title": "Drive My Car",
+      "artist": "The Beatles",
+      "album": null,
+      "genre": "rock",
+      "bpm": 132,
+      "energy": 0.78,
+      "valence": 0.65,
+      "duration_ms": 148920,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Beatles - Drive My Car.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.78",
+        "tempo:132"
+      ]
+    },
+    {
+      "id": "d706c5be-f3d3-4591-b5bb-70d6f3278d53",
+      "title": "公路之歌",
+      "artist": "痛仰乐队",
+      "album": null,
+      "genre": "rock",
+      "bpm": 124,
+      "energy": 0.78,
+      "valence": 0.65,
+      "duration_ms": 184848,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/痛仰乐队 - 公路之歌.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.78",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "2b2b1c65-ed0e-4d2d-b9dc-e746d5ad20bb",
+      "title": "Born to Run",
+      "artist": "Bruce Springsteen",
+      "album": null,
+      "genre": "rock",
+      "bpm": 128,
+      "energy": 0.89,
+      "valence": 0.76,
+      "duration_ms": 333048,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bruce Springsteen - Born to Run.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.89",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "8fcee3b2-1433-430d-9736-eb2d0d339f86",
+      "title": "Immortals",
+      "artist": "Fall Out Boy",
+      "album": null,
+      "genre": "rock",
+      "bpm": 128,
+      "energy": 0.85,
+      "valence": 0.72,
+      "duration_ms": 189456,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Fall Out Boy - Immortals.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "05594ef5-e78c-461e-9bb5-5b2e80a79351",
+      "title": "Back in Black",
+      "artist": "ACDC",
+      "album": null,
+      "genre": "rock",
+      "bpm": 148,
+      "energy": 0.92,
+      "valence": 0.75,
+      "duration_ms": 253872,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/ACDC - Back in Black.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "tempo:148"
+      ]
+    },
+    {
+      "id": "f8d53440-cdee-4053-8e76-266ef8d66e0a",
+      "title": "Warriors",
+      "artist": "Imagine Dragons",
+      "album": null,
+      "genre": "rock",
+      "bpm": 124,
+      "energy": 0.89,
+      "valence": 0.76,
+      "duration_ms": 170112,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Imagine Dragons - Warriors.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.89",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "01ba80ec-8be7-44a8-8074-250a0f6ee2dc",
+      "title": "I Drove All Night",
+      "artist": "Roy Orbison",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.75,
+      "valence": 0.62,
+      "duration_ms": 226464,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Roy Orbison - I Drove All Night.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.75",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "ca2efda7-080d-4e94-9ed1-f52fa7daca9b",
+      "title": "Road to Nowhere",
+      "artist": "Talking Heads",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.72,
+      "valence": 0.58,
+      "duration_ms": 249816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Talking Heads - Road to Nowhere.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.72",
+        "valence:0.58",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "8f4633f8-39f9-4b44-a77d-3b0534e619b1",
+      "title": "Radar Love",
+      "artist": "Golden Earring",
+      "album": null,
+      "genre": "rock",
+      "bpm": 128,
+      "energy": 0.85,
+      "valence": 0.72,
+      "duration_ms": 303048,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Golden Earring - Radar Love.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "232494c8-6975-4636-a4a1-4c0f4cc7aaa0",
+      "title": "Sweet Child O Mine",
+      "artist": "Guns N Roses",
+      "album": null,
+      "genre": "rock",
+      "bpm": 124,
+      "energy": 0.85,
+      "valence": 0.72,
+      "duration_ms": 302976,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Guns N Roses - Sweet Child O Mine.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "0b1a98ae-3920-4647-9548-db465c0c507a",
+      "title": "我的天空",
+      "artist": "南征北战NZBZ",
+      "album": null,
+      "genre": "rock",
+      "bpm": 128,
+      "energy": 0.78,
+      "valence": 0.65,
+      "duration_ms": 233280,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/南征北战NZBZ - 我的天空.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.78",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "8167d631-d1cc-4aff-a694-d5fffd62f779",
+      "title": "Viva La Vida",
+      "artist": "Coldplay",
+      "album": null,
+      "genre": "rock",
+      "bpm": 130,
+      "energy": 0.78,
+      "valence": 0.65,
+      "duration_ms": 242136,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Coldplay - Viva La Vida.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.78",
+        "tempo:130"
+      ]
+    },
+    {
+      "id": "533265df-c0ff-4130-8dbd-7bb2c66bc6ad",
+      "title": "Paradise City",
+      "artist": "Guns N Roses",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 408216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Guns N Roses - Paradise City.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "eb8342e5-537b-47fe-aff9-ca3e357b6ca2",
+      "title": "Nightcall",
+      "artist": "Kavinsky",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 110,
+      "energy": 0.65,
+      "valence": 0.4,
+      "duration_ms": 256896,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Kavinsky - Nightcall.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.40"
+      ]
+    },
+    {
+      "id": "4266a9a4-9de2-4cd0-92c2-7f88195198a5",
+      "title": "Song 2",
+      "artist": "Blur",
+      "album": null,
+      "genre": "rock",
+      "bpm": 152,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 122568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Blur - Song 2.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "tempo:152"
+      ]
+    },
+    {
+      "id": "cbef498d-2055-45be-a9f2-024001f88bb3",
+      "title": "Thunderstruck",
+      "artist": "ACDC",
+      "album": null,
+      "genre": "rock",
+      "bpm": 132,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 292968,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/ACDC - Thunderstruck.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "tempo:132"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 23,
+    "avg_score": 70,
+    "total_duration_ms": 6204624,
+    "total_duration_minutes": 103
+  },
+  "mood_mapping": {
+    "valence": 0.4,
+    "arousal": 0.9,
+    "energy": 0.9
+  },
+  "music_requirements": {
+    "genres": [
+      "electronic",
+      "rock"
+    ],
+    "tempo": "fast",
+    "mood_characteristics": {
+      "valence_level": "slightly_negative",
+      "energy_level": "very_high",
+      "description": "紧急唤醒场景，需要高能量刺激性的音乐"
+    }
+  }
+}

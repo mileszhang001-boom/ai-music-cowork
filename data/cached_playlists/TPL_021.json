@@ -1,0 +1,612 @@
+{
+  "template_id": "TPL_021",
+  "template_name": "晴天驾驶",
+  "scene_type": "sunny_day",
+  "category": "weather",
+  "generated_at": "2026-03-01T13:30:47.392Z",
+  "playlist": [
+    {
+      "id": "7b030129-8d39-49c4-b331-7ed415177cf0",
+      "title": "外婆的澎湖湾",
+      "artist": "潘安邦",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.78,
+      "duration_ms": 182760,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/潘安邦 - 外婆的澎湖湾.mp3",
+      "score": 88,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.78",
+        "tempo:92",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "fa3fd368-17f3-46cb-bbe2-af22621f7202",
+      "title": "Perfect",
+      "artist": "Ed Sheeran",
+      "album": null,
+      "genre": "pop",
+      "bpm": 94,
+      "energy": 0.62,
+      "valence": 0.78,
+      "duration_ms": 281880,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Ed Sheeran - Perfect.mp3",
+      "score": 86,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.62",
+        "valence:0.78",
+        "tempo:94",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "fe989a6c-121a-487a-93bd-b95e45b7d5d0",
+      "title": "晴天",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 318288,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 晴天.mp3",
+      "score": 85,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.68",
+        "tempo:92",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "15e1ede3-42b1-4800-aad2-a489b5f81848",
+      "title": "Sunday Morning",
+      "artist": "Maroon 5",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 264360,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Maroon 5 - Sunday Morning.mp3",
+      "score": 85,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "3352a087-0f34-445a-84e9-dd331be5f940",
+      "title": "告白气球",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.82,
+      "duration_ms": 215616,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 告白气球.mp3",
+      "score": 85,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.82",
+        "tempo:92",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "b130b68c-adc1-45c7-a731-2d6d0a3af857",
+      "title": "California Dreamin",
+      "artist": "The Mamas  The Papas",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.55,
+      "valence": 0.68,
+      "duration_ms": 157512,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Mamas  The Papas - California Dreamin.mp3",
+      "score": 85,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.55",
+        "valence:0.68",
+        "tempo:92",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "cb3e99e3-fb4e-4708-b5c3-d740e3a0b9f6",
+      "title": "阳光宅男",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.82,
+      "duration_ms": 221640,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 阳光宅男.mp3",
+      "score": 84,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.68",
+        "valence:0.82",
+        "tempo:92",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "694e2eaf-07d1-4658-b41d-e7f321b33dc2",
+      "title": "Sunflower",
+      "artist": "Post Malone  Swae Lee",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.75,
+      "duration_ms": 161712,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Post Malone  Swae Lee - Sunflower.mp3",
+      "score": 83,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.68",
+        "valence:0.75",
+        "tempo:92",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "c48c00a5-9271-4e1d-8d06-7755b603187a",
+      "title": "Banana Pancakes",
+      "artist": "Jack Johnson",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.72,
+      "duration_ms": 191952,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Jack Johnson - Banana Pancakes.mp3",
+      "score": 83,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "valence:0.72",
+        "tempo:92",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "641a81cf-a8f7-4d51-8dbc-74500d6b4a42",
+      "title": "Im Yours",
+      "artist": "Jason Mraz",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.85,
+      "duration_ms": 221808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Jason Mraz - Im Yours.mp3",
+      "score": 83,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.68",
+        "valence:0.85",
+        "tempo:92",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "7fd9edc0-d278-4b26-a251-69864d41075e",
+      "title": "Peaches",
+      "artist": "Justin Bieber",
+      "album": null,
+      "genre": "pop",
+      "bpm": 95,
+      "energy": 0.72,
+      "valence": 0.85,
+      "duration_ms": 197808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Justin Bieber - Peaches.mp3",
+      "score": 82,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.85",
+        "tempo:95",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "1406376d-195b-4d77-9298-f399734dcebb",
+      "title": "Good Morning",
+      "artist": "Max Frost",
+      "album": null,
+      "genre": "pop",
+      "bpm": 112,
+      "energy": 0.75,
+      "valence": 0.82,
+      "duration_ms": 162648,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Max Frost - Good Morning.mp3",
+      "score": 82,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.82",
+        "tempo:112",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "7386df79-4db5-4c01-8a26-6cfc303a120e",
+      "title": "学猫叫",
+      "artist": "小潘潘",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.75,
+      "valence": 0.88,
+      "duration_ms": 216072,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/小潘潘 - 学猫叫.mp3",
+      "score": 80,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.88",
+        "tempo:120",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "d995683c-0308-48cf-9a44-5a9732a2b7b8",
+      "title": "Dont Worry Be Happy",
+      "artist": "Bobby McFerrin",
+      "album": null,
+      "genre": "pop",
+      "bpm": 116,
+      "energy": 0.72,
+      "valence": 0.95,
+      "duration_ms": 231696,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bobby McFerrin - Dont Worry Be Happy.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.95",
+        "tempo:116",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "b6b666f8-eb4e-4e34-afc4-a49e05cccd3a",
+      "title": "甜蜜蜜",
+      "artist": "邓丽君",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.82,
+      "duration_ms": 209928,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/邓丽君 - 甜蜜蜜.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.82",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "d9dd18dd-d360-4ecf-8227-d857f65dfb32",
+      "title": "早安晨之美",
+      "artist": "卢广仲",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.78,
+      "duration_ms": 214704,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/卢广仲 - 早安晨之美.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "02ca84d0-3808-4ce6-be34-1ada2fa50f30",
+      "title": "Watermelon Sugar",
+      "artist": "Harry Styles",
+      "album": null,
+      "genre": "pop",
+      "bpm": 95,
+      "energy": 0.82,
+      "valence": 0.91,
+      "duration_ms": 188856,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Harry Styles - Watermelon Sugar.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.91",
+        "tempo:95",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "0be18308-14d7-4f08-81d2-10499285b516",
+      "title": "Try Everything",
+      "artist": "Shakira",
+      "album": null,
+      "genre": "pop",
+      "bpm": 104,
+      "energy": 0.82,
+      "valence": 0.91,
+      "duration_ms": 202344,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Shakira - Try Everything.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.91",
+        "tempo:104",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "8ff39e1f-8fe6-4463-a698-bf50cd486350",
+      "title": "日不落",
+      "artist": "蔡依林",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 221880,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/蔡依林 - 日不落.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.92",
+        "tempo:120",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "94769d2c-c01c-43bc-bb4e-affe9468afe4",
+      "title": "Best Day of My Life",
+      "artist": "American Authors",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 220224,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/American Authors - Best Day of My Life.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.92",
+        "tempo:120",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "a4cefed0-2891-44cf-9b3a-4a72a632d447",
+      "title": "On Top of the World",
+      "artist": "Imagine Dragons",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 241968,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Imagine Dragons - On Top of the World.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.92",
+        "tempo:120",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "50208715-b31d-4283-be2e-b47cc79de7a2",
+      "title": "Sailing",
+      "artist": "Rod Stewart",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 265272,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Rod Stewart - Sailing.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.68",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "863353b8-d7b5-4d12-ab4c-5d67ad33337e",
+      "title": "Butter",
+      "artist": "BTS",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 182688,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/BTS - Butter.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.92",
+        "tempo:120",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "459d35fa-0200-42b2-a349-d9277749141f",
+      "title": "Your Song",
+      "artist": "Elton John",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 228360,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Elton John - Your Song.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.72",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "f2f5f1f4-24d9-4e16-8de7-e01da1ac7907",
+      "title": "春风十里",
+      "artist": "鹿先森乐队",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 396840,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/鹿先森乐队 - 春风十里.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.72",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "01092ea7-717b-468f-9fef-8eaa3f9a3638",
+      "title": "少年",
+      "artist": "梦然",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 260952,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/梦然 - 少年.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "5abd3a6f-a012-43a6-a6af-e61f01fec571",
+      "title": "Cant Stop the Feeling",
+      "artist": "Justin Timberlake",
+      "album": null,
+      "genre": "pop",
+      "bpm": 113,
+      "energy": 0.88,
+      "valence": 0.92,
+      "duration_ms": 285864,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Justin Timberlake - Cant Stop the Feeling.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.92",
+        "tempo:113",
+        "scene:sunny_day"
+      ]
+    },
+    {
+      "id": "c054008d-5e5d-4aac-8f65-85acc0bed204",
+      "title": "去大理",
+      "artist": "郝云",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 233424,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/郝云 - 去大理.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.68",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "984363f3-eb7d-4135-b88b-0b1f2a1e4aeb",
+      "title": "兰花草",
+      "artist": "银霞",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 182136,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/银霞 - 兰花草.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.68",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "fe9c1d56-e0ca-4e27-a178-d842c44aa3e4",
+      "title": "Brand New Day",
+      "artist": "Sting",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 237144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Sting - Brand New Day.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 30,
+    "avg_score": 80,
+    "total_duration_ms": 6798336,
+    "total_duration_minutes": 113
+  },
+  "mood_mapping": {
+    "valence": 0.8,
+    "arousal": 0.5,
+    "energy": 0.5
+  },
+  "music_requirements": {
+    "genres": [
+      "pop",
+      "folk"
+    ],
+    "tempo": "moderate",
+    "mood_characteristics": {
+      "valence_level": "very_positive",
+      "energy_level": "moderate",
+      "description": "阳光明媚氛围，适合轻快愉悦的音乐"
+    }
+  }
+}

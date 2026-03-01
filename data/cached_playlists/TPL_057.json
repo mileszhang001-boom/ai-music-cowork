@@ -1,0 +1,521 @@
+{
+  "template_id": "TPL_057",
+  "template_name": "压力释放",
+  "scene_type": "stress_mode",
+  "category": "state",
+  "generated_at": "2026-03-01T13:30:47.419Z",
+  "playlist": [
+    {
+      "id": "13f25741-d601-4afb-958d-59bc53133175",
+      "title": "Hotel California",
+      "artist": "Eagles",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.65,
+      "valence": 0.48,
+      "duration_ms": 391368,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Eagles - Hotel California.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.65",
+        "valence:0.48",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "7a8797db-4b1d-4472-b120-e81a70f4a22d",
+      "title": "Running on Empty",
+      "artist": "Jackson Browne",
+      "album": null,
+      "genre": "rock",
+      "bpm": 112,
+      "energy": 0.65,
+      "valence": 0.48,
+      "duration_ms": 300000,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Jackson Browne - Running on Empty.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.65",
+        "valence:0.48",
+        "tempo:112"
+      ]
+    },
+    {
+      "id": "7afa1aa8-5335-47f6-982f-abf969588fa9",
+      "title": "西湖",
+      "artist": "痛仰乐队",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.52,
+      "duration_ms": 254016,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/痛仰乐队 - 西湖.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.65",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "19a32781-e932-4e82-ac50-59a05c9588a6",
+      "title": "Against the Wind",
+      "artist": "Bob Seger",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.52,
+      "duration_ms": 333936,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bob Seger - Against the Wind.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.65",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "0974269b-806f-466d-b4b8-14b6b4800839",
+      "title": "Rain",
+      "artist": "The Beatles",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 188208,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Beatles - Rain.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.65",
+        "valence:0.42",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "0aff7e2e-e32a-4e0d-bcef-afdd1aedaaaf",
+      "title": "突然的自我",
+      "artist": "伍佰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.55,
+      "duration_ms": 215280,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/伍佰 - 突然的自我.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.68",
+        "valence:0.55",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "c948c68d-5dfd-4207-b1ab-a3d3b0c11250",
+      "title": "春天里",
+      "artist": "汪峰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.55,
+      "duration_ms": 284568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/汪峰 - 春天里.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.68",
+        "valence:0.55",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "34e88352-1c71-4b5a-816c-2d707c3e2b51",
+      "title": "美丽新世界",
+      "artist": "伍佰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.55,
+      "duration_ms": 206112,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/伍佰 - 美丽新世界.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.68",
+        "valence:0.55",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "8375e212-e8c5-4afc-b3f8-606e9db15649",
+      "title": "浪人情歌",
+      "artist": "伍佰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 270048,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/伍佰 - 浪人情歌.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.65",
+        "valence:0.42",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "78d61bac-9df2-4622-8f79-def1ea84b77f",
+      "title": "Have You Ever Seen the Rain",
+      "artist": "Creedence Clearwater Revival",
+      "album": null,
+      "genre": "rock",
+      "bpm": 112,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 183744,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Creedence Clearwater Revival - Have You Ever Seen the Rain.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.65",
+        "valence:0.42",
+        "tempo:112"
+      ]
+    },
+    {
+      "id": "e274e90c-8d33-4fab-9734-0a189a830075",
+      "title": "Wholl Stop the Rain",
+      "artist": "Creedence Clearwater Revival",
+      "album": null,
+      "genre": "rock",
+      "bpm": 104,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 150048,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Creedence Clearwater Revival - Wholl Stop the Rain.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.65",
+        "valence:0.42",
+        "tempo:104"
+      ]
+    },
+    {
+      "id": "52dcfa97-3624-4a59-8173-b8c5de12d409",
+      "title": "Unfinished Sympathy",
+      "artist": "Massive Attack",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 90,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 319872,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Massive Attack - Unfinished Sympathy.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.65",
+        "valence:0.42",
+        "tempo:90"
+      ]
+    },
+    {
+      "id": "ab68b1ea-4c71-4170-8ac0-ddac341b0be6",
+      "title": "Everyday Is a Winding Road",
+      "artist": "Sheryl Crow",
+      "album": null,
+      "genre": "rock",
+      "bpm": 112,
+      "energy": 0.68,
+      "valence": 0.55,
+      "duration_ms": 253320,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Sheryl Crow - Everyday Is a Winding Road.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.68",
+        "valence:0.55",
+        "tempo:112"
+      ]
+    },
+    {
+      "id": "eb8342e5-537b-47fe-aff9-ca3e357b6ca2",
+      "title": "Nightcall",
+      "artist": "Kavinsky",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 110,
+      "energy": 0.65,
+      "valence": 0.4,
+      "duration_ms": 256896,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Kavinsky - Nightcall.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.65",
+        "valence:0.40",
+        "tempo:110"
+      ]
+    },
+    {
+      "id": "a7f5188c-e791-4429-b39f-285896534acf",
+      "title": "Kentucky Rain",
+      "artist": "Elvis Presley",
+      "album": null,
+      "genre": "rock",
+      "bpm": 84,
+      "energy": 0.52,
+      "valence": 0.38,
+      "duration_ms": 198504,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Elvis Presley - Kentucky Rain.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.52",
+        "valence:0.38"
+      ]
+    },
+    {
+      "id": "e0b1f15d-8d53-4357-ad99-38717c33ff2f",
+      "title": "曾经的你",
+      "artist": "许巍",
+      "album": null,
+      "genre": "rock",
+      "bpm": 84,
+      "energy": 0.62,
+      "valence": 0.58,
+      "duration_ms": 262464,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/许巍 - 曾经的你.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.62",
+        "valence:0.58"
+      ]
+    },
+    {
+      "id": "ed440239-c5e6-4887-8647-f9bd49db03f2",
+      "title": "再见杰克",
+      "artist": "痛仰乐队",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.72,
+      "valence": 0.45,
+      "duration_ms": 273816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/痛仰乐队 - 再见杰克.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.72",
+        "valence:0.45",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "ca2efda7-080d-4e94-9ed1-f52fa7daca9b",
+      "title": "Road to Nowhere",
+      "artist": "Talking Heads",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.72,
+      "valence": 0.58,
+      "duration_ms": 249816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Talking Heads - Road to Nowhere.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.72",
+        "valence:0.58",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "dba68332-1c35-4ba6-a6c1-5dadd4727d7f",
+      "title": "伤心的人别听慢歌",
+      "artist": "五月天",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.32,
+      "duration_ms": 219456,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/五月天 - 伤心的人别听慢歌.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.65",
+        "valence:0.32",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "eb518a73-a0fe-42e7-b790-da5988ada3ea",
+      "title": "Angel",
+      "artist": "Massive Attack",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.32,
+      "duration_ms": 323448,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Massive Attack - Angel.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.45",
+        "valence:0.32",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "cb91231b-2d90-41f5-a734-873fc9d8f03c",
+      "title": "Paradise Circus",
+      "artist": "Massive Attack",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.32,
+      "duration_ms": 297816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Massive Attack - Paradise Circus.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.45",
+        "valence:0.32",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "4f271f84-2d18-448b-8db0-229b7599a3b9",
+      "title": "Demons",
+      "artist": "Imagine Dragons",
+      "album": null,
+      "genre": "rock",
+      "bpm": 102,
+      "energy": 0.78,
+      "valence": 0.42,
+      "duration_ms": 177216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Imagine Dragons - Demons.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.42",
+        "tempo:102"
+      ]
+    },
+    {
+      "id": "c0b1f470-8737-4ba4-b38e-2e266c614de6",
+      "title": "Strobe",
+      "artist": "Deadmau5",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 128,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 636912,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deadmau5 - Strobe.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.65",
+        "valence:0.42"
+      ]
+    },
+    {
+      "id": "0cbec36e-f286-498d-9ba4-085f9ee5567a",
+      "title": "Only Happy When It Rains",
+      "artist": "Garbage",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.32,
+      "duration_ms": 241992,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Garbage - Only Happy When It Rains.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.68",
+        "valence:0.32",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "5afaa9d3-3a9d-4e75-83cd-1605e6d99e26",
+      "title": "Electric Feel",
+      "artist": "MGMT",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 110,
+      "energy": 0.72,
+      "valence": 0.68,
+      "duration_ms": 228480,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/MGMT - Electric Feel.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.72",
+        "valence:0.68",
+        "tempo:110"
+      ]
+    },
+    {
+      "id": "f7d317db-c2ae-4ec0-abe9-df074917d907",
+      "title": "Free Fallin",
+      "artist": "Tom Petty",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.72,
+      "duration_ms": 254712,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Tom Petty - Free Fallin.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.65",
+        "tempo:92"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 26,
+    "avg_score": 74,
+    "total_duration_ms": 6972048,
+    "total_duration_minutes": 116
+  },
+  "mood_mapping": {
+    "valence": 0.5,
+    "arousal": 0.55,
+    "energy": 0.55
+  },
+  "music_requirements": {
+    "genres": [
+      "rock",
+      "electronic"
+    ],
+    "tempo": "moderate",
+    "mood_characteristics": {
+      "valence_level": "neutral",
+      "energy_level": "moderate",
+      "description": "压力释放氛围，适合宣泄情绪的音乐"
+    }
+  }
+}

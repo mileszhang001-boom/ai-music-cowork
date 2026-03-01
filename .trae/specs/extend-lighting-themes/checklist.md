@@ -1,0 +1,8 @@
+- [x] ColorThemes 对象包含 10 个主题定义
+- [x] cool 主题色值正确：primary: '#00BCD4', secondary: '#3F51B5'
+- [x] night 主题色值正确：primary: '#0D1B2A', secondary: '#1B263B'
+- [x] focus 主题色值正确：primary: '#2196F3', secondary: '#009688'
+- [x] energetic 主题色值正确：primary: '#FF6B00', secondary: '#FFD600'
+- [x] party 主题色值正确：primary: '#E91E63', secondary: '#00BCD4'
+- [x] 调试工具能正确显示新增主题的色值
+- [x] 所有场景模板的 color_theme 都能匹配到对应主题

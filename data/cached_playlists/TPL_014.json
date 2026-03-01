@@ -1,0 +1,577 @@
+{
+  "template_id": "TPL_014",
+  "template_name": "夕阳驾驶",
+  "scene_type": "sunset_drive",
+  "category": "time",
+  "generated_at": "2026-03-01T13:30:47.386Z",
+  "playlist": [
+    {
+      "id": "8f74ca05-fb51-48e3-a9c5-f50539e5dc20",
+      "title": "清晨",
+      "artist": "李健",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.68,
+      "duration_ms": 284208,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/李健 - 清晨.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "valence:0.68",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "54df8d8f-4393-49bb-9a94-a52bd8e4cb7a",
+      "title": "Better Together",
+      "artist": "Jack Johnson",
+      "album": null,
+      "genre": "folk",
+      "bpm": 84,
+      "energy": 0.35,
+      "valence": 0.72,
+      "duration_ms": 207720,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Jack Johnson - Better Together.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "valence:0.72",
+        "tempo:84"
+      ]
+    },
+    {
+      "id": "8fa7e41e-a689-490c-8a7d-de5ca1e2ca7a",
+      "title": "Morning Has Broken",
+      "artist": "Cat Stevens",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.78,
+      "duration_ms": 199440,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Cat Stevens - Morning Has Broken.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "valence:0.78",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "c48c00a5-9271-4e1d-8d06-7755b603187a",
+      "title": "Banana Pancakes",
+      "artist": "Jack Johnson",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.72,
+      "duration_ms": 191952,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Jack Johnson - Banana Pancakes.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "valence:0.72"
+      ]
+    },
+    {
+      "id": "e26df07e-433f-41d7-8411-59528eebe801",
+      "title": "乡间的小路",
+      "artist": "齐豫",
+      "album": null,
+      "genre": "folk",
+      "bpm": 84,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 210696,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/齐豫 - 乡间的小路.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.68",
+        "tempo:84"
+      ]
+    },
+    {
+      "id": "4ea33d4d-6a51-4bd1-9fdf-c09b9f17833f",
+      "title": "光",
+      "artist": "陈粒",
+      "album": null,
+      "genre": "indie",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.62,
+      "duration_ms": 143208,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/陈粒 - 光.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:indie",
+        "energy:0.45",
+        "valence:0.62",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "c054008d-5e5d-4aac-8f65-85acc0bed204",
+      "title": "去大理",
+      "artist": "郝云",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 233424,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/郝云 - 去大理.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.68"
+      ]
+    },
+    {
+      "id": "984363f3-eb7d-4135-b88b-0b1f2a1e4aeb",
+      "title": "兰花草",
+      "artist": "银霞",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 182136,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/银霞 - 兰花草.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.68"
+      ]
+    },
+    {
+      "id": "f2f5f1f4-24d9-4e16-8de7-e01da1ac7907",
+      "title": "春风十里",
+      "artist": "鹿先森乐队",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 396840,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/鹿先森乐队 - 春风十里.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.72"
+      ]
+    },
+    {
+      "id": "7b030129-8d39-49c4-b331-7ed415177cf0",
+      "title": "外婆的澎湖湾",
+      "artist": "潘安邦",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.78,
+      "duration_ms": 182760,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/潘安邦 - 外婆的澎湖湾.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.78"
+      ]
+    },
+    {
+      "id": "a940f1f7-59dc-4268-80f4-6ef804f00901",
+      "title": "童年",
+      "artist": "罗大佑",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.62,
+      "duration_ms": 232656,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/罗大佑 - 童年.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.62"
+      ]
+    },
+    {
+      "id": "7a6bb56f-7707-42d2-93ad-4ad5df934262",
+      "title": "奇妙能力歌",
+      "artist": "陈粒",
+      "album": null,
+      "genre": "indie",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.6,
+      "duration_ms": 253416,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/陈粒 - 奇妙能力歌.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:indie",
+        "energy:0.45",
+        "valence:0.60",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "d9dd18dd-d360-4ecf-8227-d857f65dfb32",
+      "title": "早安晨之美",
+      "artist": "卢广仲",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.78,
+      "duration_ms": 214704,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/卢广仲 - 早安晨之美.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.78"
+      ]
+    },
+    {
+      "id": "ece0392f-ee97-451e-b3ee-3d825765b0f7",
+      "title": "Leaving on a Jet Plane",
+      "artist": "John Denver",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.6,
+      "duration_ms": 220368,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/John Denver - Leaving on a Jet Plane.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.60"
+      ]
+    },
+    {
+      "id": "24c65538-b062-4ca7-82c7-4a29ab7dee6c",
+      "title": "理想",
+      "artist": "赵雷",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.52,
+      "duration_ms": 267432,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/赵雷 - 理想.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.52",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "725d19ba-0098-44c2-aa56-10a312708c9c",
+      "title": "董小姐",
+      "artist": "宋冬野",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 313512,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/宋冬野 - 董小姐.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "b9552d84-c897-4c5f-b009-030c801f8af6",
+      "title": "南方姑娘",
+      "artist": "赵雷",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 335040,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/赵雷 - 南方姑娘.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "8a446cf1-0d7c-4a01-a720-60a88bd142cf",
+      "title": "Old Pine",
+      "artist": "Ben Howard",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 333792,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Ben Howard - Old Pine.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "6231c22e-e0c6-496e-8422-7ab03fe42ea1",
+      "title": "三十岁的女人",
+      "artist": "赵雷",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 348168,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/赵雷 - 三十岁的女人.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "c5171e75-8d02-4d1a-ab68-91cebc0b20fb",
+      "title": "鸽子",
+      "artist": "宋冬野",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 246552,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/宋冬野 - 鸽子.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "26d91288-9580-4b4c-86dd-1ce375da6a19",
+      "title": "安和桥",
+      "artist": "宋冬野",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 251616,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/宋冬野 - 安和桥.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "ed559003-a82e-47f4-bcbd-6f0084739dbb",
+      "title": "Fast Car",
+      "artist": "Tracy Chapman",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 266256,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Tracy Chapman - Fast Car.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "993e8ea4-d7b3-4d0b-ba31-935bbf593b50",
+      "title": "北方女王",
+      "artist": "尧十三",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 365640,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/尧十三 - 北方女王.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "c2ddb899-593e-430b-a8ae-b18155e1b5ef",
+      "title": "深夜",
+      "artist": "李健",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 305040,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/李健 - 深夜.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "47bf1020-bdc4-4345-a0c1-29e1deb363b4",
+      "title": "玫瑰",
+      "artist": "贰佰",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 293952,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/贰佰 - 玫瑰.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "c7853c58-0494-455f-9bfa-15701ef6ec16",
+      "title": "The Wolves",
+      "artist": "Ben Howard",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 198576,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Ben Howard - The Wolves.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "c75c1678-63aa-46e4-81de-ebb5c422b906",
+      "title": "Blowin in the Wind",
+      "artist": "Bob Dylan",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 170208,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bob Dylan - Blowin in the Wind.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35"
+      ]
+    },
+    {
+      "id": "395153ed-9ddd-4945-b485-14778387a7bc",
+      "title": "Postcards From Italy",
+      "artist": "Beirut",
+      "album": null,
+      "genre": "indie",
+      "bpm": 92,
+      "energy": 0.58,
+      "valence": 0.63,
+      "duration_ms": 257375,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Beirut - Postcards From Italy.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:indie",
+        "valence:0.63"
+      ]
+    },
+    {
+      "id": "654df8e1-1837-478b-a513-3d77822093cf",
+      "title": "Scarborough Fair",
+      "artist": "Simon  Garfunkel",
+      "album": null,
+      "genre": "folk",
+      "bpm": 68,
+      "energy": 0.32,
+      "valence": 0.41,
+      "duration_ms": 191640,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Simon  Garfunkel - Scarborough Fair.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.32",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "57a24487-1ed6-4a90-8431-c8016568f1e9",
+      "title": "沧海一声笑",
+      "artist": "许冠杰",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 180048,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/许冠杰 - 沧海一声笑.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:folk",
+        "valence:0.78",
+        "tempo:72"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 30,
+    "avg_score": 73,
+    "total_duration_ms": 7478375,
+    "total_duration_minutes": 125
+  },
+  "mood_mapping": {
+    "valence": 0.7,
+    "arousal": 0.35,
+    "energy": 0.35
+  },
+  "music_requirements": {
+    "genres": [
+      "folk",
+      "indie"
+    ],
+    "tempo": "slow",
+    "mood_characteristics": {
+      "valence_level": "positive",
+      "energy_level": "low_moderate",
+      "description": "夕阳美好氛围，适合温暖抒情的音乐"
+    }
+  }
+}

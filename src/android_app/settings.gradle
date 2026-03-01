@@ -16,3 +16,6 @@ rootProject.name = "Layer1Perception"
 include ':app'
 include ':layer1-api'
 include ':layer1-sdk'
+include ':layer3-api'
+include ':layer3-sdk'
+include ':app-demo-layer3'

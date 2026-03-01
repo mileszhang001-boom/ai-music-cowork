@@ -1,0 +1,3 @@
+- [x] 成功分析项目结构，明确 Layer 1、Layer 2、Layer 3 的关系。
+- [x] 成功明确 Layer 3 的核心职责（接收 Scene Descriptor，协调内容、灯光、音效引擎，输出 EffectCommands）。
+- [x] 成功向用户输出理解，且未调试或修改 Layer 3 以外的代码。

@@ -1,0 +1,501 @@
+{
+  "template_id": "TPL_059",
+  "template_name": "平静驾驶",
+  "scene_type": "calm_mode",
+  "category": "state",
+  "generated_at": "2026-03-01T13:30:47.420Z",
+  "playlist": [
+    {
+      "id": "930e6378-0c50-44e9-87b3-4bf2d78fc389",
+      "title": "Sail Away",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.6,
+      "duration_ms": 267168,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Sail Away.mp3",
+      "score": 80,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.60",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "974be0b2-6525-4491-b14e-4e0d33e52ace",
+      "title": "Zen Garden",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.6,
+      "duration_ms": 11266056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Zen Garden.mp3",
+      "score": 80,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.60",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "5efa44ff-764d-4ee5-a9c1-a57e770b75fa",
+      "title": "Spiral",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.6,
+      "duration_ms": 342144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - Spiral.mp3",
+      "score": 80,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.60",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "c45db85e-713c-49de-b7ae-204789983818",
+      "title": "Prayer for Peace",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.65,
+      "duration_ms": 3829728,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Prayer for Peace.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.65",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "481e01db-460b-4798-96df-6bf48764a961",
+      "title": "Chakra Healing",
+      "artist": "Steven Halpern",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.6,
+      "duration_ms": 3713904,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Steven Halpern - Chakra Healing.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.60",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "81cb7dc7-fe60-45bb-b4b9-b936550019ad",
+      "title": "Green Music",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.68,
+      "duration_ms": 2754144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - Green Music.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.68",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "7cfbdd73-6d69-43ab-af77-08f961ac5d28",
+      "title": "Flora",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.68,
+      "duration_ms": 3520608,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - Flora.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.68",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "38cb1048-7756-46a2-bab8-7de1501de96f",
+      "title": "Inner Peace",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 62,
+      "energy": 0.25,
+      "valence": 0.68,
+      "duration_ms": 3829728,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Inner Peace.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.68",
+        "tempo:62"
+      ]
+    },
+    {
+      "id": "d62cec03-b6c1-41c6-8af1-a0315f36a235",
+      "title": "Corcovado",
+      "artist": "Antonio Carlos Jobim",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.6,
+      "duration_ms": 145968,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Antonio Carlos Jobim - Corcovado.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.60"
+      ]
+    },
+    {
+      "id": "765e9064-fb52-4aa0-949a-d427e5ad9b49",
+      "title": "May It Be",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.35,
+      "valence": 0.62,
+      "duration_ms": 214152,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - May It Be.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.35",
+        "valence:0.62",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "460faee4-e8e5-40c7-81cb-c6b69c74d546",
+      "title": "Arrival of the Birds",
+      "artist": "The Cinematic Orchestra",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.68,
+      "duration_ms": 462672,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cinematic Orchestra - Arrival of the Birds.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.35",
+        "valence:0.68",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "0d24bc18-7901-4516-a765-e3e0e8d41191",
+      "title": "Only Time",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 215808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Only Time.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.42",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "ed5da1b1-3c02-4606-b409-22e79118e8c8",
+      "title": "On Earth as It Is in Heaven",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 64,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 2741106,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - On Earth as It Is in Heaven.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.42",
+        "tempo:64"
+      ]
+    },
+    {
+      "id": "107c7df0-d58d-4b6c-85f7-23a8060339ba",
+      "title": "Solari",
+      "artist": "Hammock",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.4,
+      "duration_ms": 44112,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hammock - Solari.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.40",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "aa8cb65a-5ab7-4fe8-a505-33bac0942aae",
+      "title": "Ambient 1 Music for Airports",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.45,
+      "duration_ms": 2919120,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - Ambient 1 Music for Airports.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.45",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "91824b3b-9837-4dc1-ac5a-507cf0111bc1",
+      "title": "Tibetan Bells",
+      "artist": "Henry Wolff  Nancy Hennings",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.45,
+      "duration_ms": 2103432,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Henry Wolff  Nancy Hennings - Tibetan Bells.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.45",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "231b25e4-03b5-4029-9f6f-fcb7ee289dc4",
+      "title": "The Nearness of You",
+      "artist": "Norah Jones",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.48,
+      "duration_ms": 187704,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Norah Jones - The Nearness of You.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.48",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "d5790f74-d64b-4d3e-9ddc-b8b4ff478291",
+      "title": "Deep Theta",
+      "artist": "Steven Halpern",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.4,
+      "duration_ms": 4760568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Steven Halpern - Deep Theta.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.40",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "ea6caca9-68d1-48c2-bf6d-1442ab0334b3",
+      "title": "The Blue Notebooks",
+      "artist": "Max Richter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 64,
+      "energy": 0.25,
+      "valence": 0.32,
+      "duration_ms": 2284944,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Max Richter - The Blue Notebooks.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "tempo:64"
+      ]
+    },
+    {
+      "id": "a510a1c9-cb57-4316-990d-5496b00086d9",
+      "title": "被遗忘的时光",
+      "artist": "蔡琴",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 190440,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/蔡琴 - 被遗忘的时光.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "2e7c6f43-497a-4965-87d7-6a44dfe6d3bb",
+      "title": "Come Away with Me",
+      "artist": "Norah Jones",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.48,
+      "duration_ms": 194568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Norah Jones - Come Away with Me.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.48"
+      ]
+    },
+    {
+      "id": "161c8e46-9fda-4fb9-a3e9-72ab40a45ec7",
+      "title": "Autumn Leaves",
+      "artist": "Nat King Cole",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 160824,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Nat King Cole - Autumn Leaves.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.42"
+      ]
+    },
+    {
+      "id": "aa657c3d-de3b-47d2-9435-699735dc5ab5",
+      "title": "Avril 14th",
+      "artist": "Aphex Twin",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.35,
+      "duration_ms": 125544,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Aphex Twin - Avril 14th.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "e016dcd7-a4fa-4143-8065-17035e129d7b",
+      "title": "Misty",
+      "artist": "Ella Fitzgerald",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 174792,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Ella Fitzgerald - Misty.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.45",
+        "valence:0.68"
+      ]
+    },
+    {
+      "id": "657f9b80-127f-49bb-af37-83c00dc1c253",
+      "title": "Music for Airports",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.4,
+      "duration_ms": 2919120,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - Music for Airports.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.15",
+        "valence:0.40",
+        "tempo:60"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 25,
+    "avg_score": 75,
+    "total_duration_ms": 49368354,
+    "total_duration_minutes": 823
+  },
+  "mood_mapping": {
+    "valence": 0.6,
+    "arousal": 0.25,
+    "energy": 0.25
+  },
+  "music_requirements": {
+    "genres": [
+      "jazz",
+      "ambient"
+    ],
+    "tempo": "slow",
+    "mood_characteristics": {
+      "valence_level": "positive",
+      "energy_level": "low",
+      "description": "平静驾驶氛围，适合舒缓的音乐"
+    }
+  }
+}

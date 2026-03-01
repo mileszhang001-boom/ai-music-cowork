@@ -8,8 +8,10 @@ PC端音乐元数据提取工具
 import argparse
 import json
 import os
+import re
 import sys
 import time
+import uuid
 from pathlib import Path
 from typing import Optional, Dict, Any, List
 
@@ -18,6 +20,8 @@ try:
     from mutagen.flac import FLAC
     from mutagen.mp3 import MP3
     from mutagen.m4a import M4A
+    from mutagen.oggvorbis import OggVorbis
+    from mutagen.wave import WAVE
 except ImportError:
     print("错误: 请先安装 mutagen 库: pip install mutagen")
     sys.exit(1)
@@ -34,7 +38,7 @@ try:
 except ImportError:
     REQUESTS_AVAILABLE = False
 
-SUPPORTED_FORMATS = {'.mp3', '.flac', '.wav', '.m4a'}
+SUPPORTED_FORMATS = {'.mp3', '.flac', '.wav', '.m4a', '.ogg'}
 
 GENRE_LIST = [
     'pop', 'rock', 'jazz', 'classical', 'electronic', 'folk', 'rnb',
@@ -64,6 +68,29 @@ def to_pinyin(text: str) -> Optional[str]:
         return ' '.join(pinyin_list)
     except Exception:
         return None
+
+
+def parse_filename(file_path: Path) -> Dict[str, Optional[str]]:
+    result = {'artist': None, 'title': None}
+    stem = file_path.stem
+    
+    patterns = [
+        r'^(.+?)\s*-\s*(.+)$',
+        r'^(.+?)\s*–\s*(.+)$',
+        r'^(.+?)\s*—\s*(.+)$',
+    ]
+    
+    for pattern in patterns:
+        match = re.match(pattern, stem)
+        if match:
+            result['artist'] = match.group(1).strip()
+            result['title'] = match.group(2).strip()
+            break
+    
+    if not result['title']:
+        result['title'] = stem
+    
+    return result
 
 
 def get_audio_metadata(file_path: Path) -> Optional[Dict[str, Any]]:
@@ -117,17 +144,32 @@ def get_audio_metadata(file_path: Path) -> Optional[Dict[str, Any]]:
             metadata['album'] = audio_full.get('\xa9alb', [None])[0]
             metadata['genre'] = audio_full.get('\xa9gen', [None])[0]
             metadata['year'] = audio_full.get('\xa9day', [None])[0]
+        elif file_path.suffix.lower() == '.ogg':
+            audio_full = OggVorbis(str(file_path))
+            metadata['title'] = audio_full.get('title', [None])[0]
+            metadata['artist'] = audio_full.get('artist', [None])[0]
+            metadata['album'] = audio_full.get('album', [None])[0]
+            metadata['genre'] = audio_full.get('genre', [None])[0]
+            metadata['year'] = audio_full.get('date', [None])[0]
+        elif file_path.suffix.lower() == '.wav':
+            try:
+                audio_full = WAVE(str(file_path))
+                if hasattr(audio_full, 'tags') and audio_full.tags:
+                    metadata['title'] = audio_full.tags.get('Title', [None])[0] if 'Title' in audio_full.tags else None
+                    metadata['artist'] = audio_full.tags.get('Artist', [None])[0] if 'Artist' in audio_full.tags else None
+            except Exception:
+                pass
         else:
             metadata['title'] = audio.get('title', [None])[0]
             metadata['artist'] = audio.get('artist', [None])[0]
             metadata['album'] = audio.get('album', [None])[0]
             metadata['genre'] = audio.get('genre', [None])[0]
         
+        parsed = parse_filename(file_path)
         if not metadata['title']:
-            metadata['title'] = file_path.stem
-        
+            metadata['title'] = parsed['title'] or file_path.stem
         if not metadata['artist']:
-            metadata['artist'] = '未知艺术家'
+            metadata['artist'] = parsed['artist'] or '未知艺术家'
         
         metadata['title_pinyin'] = to_pinyin(metadata['title'])
         metadata['artist_pinyin'] = to_pinyin(metadata['artist'])
@@ -231,6 +273,10 @@ def scan_music_files(input_dir: Path) -> List[Path]:
     return music_files
 
 
+def generate_unique_id() -> str:
+    return str(uuid.uuid4())
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='PC端音乐元数据提取工具（生成 JSON 格式）'
@@ -238,6 +284,7 @@ def main():
     
     parser.add_argument('-i', '--input', required=True, help='输入音乐目录路径')
     parser.add_argument('-o', '--output', required=True, help='输出 JSON 文件路径')
+    parser.add_argument('--base', action='store_true', help='生成基础索引（不使用 LLM 分析，llm_analyzed: 0）')
     parser.add_argument('--llm', action='store_true', help='使用 LLM 分析音乐标签')
     parser.add_argument('--api-key', help='阿里云百炼 API Key（或设置 DASHSCOPE_API_KEY 环境变量）')
     parser.add_argument('--api-base', default='https://dashscope.aliyuncs.com/compatible-mode/v1', help='API 地址')
@@ -258,12 +305,62 @@ def main():
         print("错误: 使用 LLM 分析需要提供 API Key")
         sys.exit(1)
     
+    if args.base:
+        print(f"扫描目录: {input_dir}")
+        music_files = scan_music_files(input_dir)
+        print(f"发现 {len(music_files)} 个音乐文件")
+        
+        if not music_files:
+            print("未找到支持的音乐文件 (MP3/FLAC/WAV/M4A/OGG)")
+            sys.exit(0)
+        
+        tracks = []
+        
+        for i, file_path in enumerate(music_files, 1):
+            print(f"处理 [{i}/{len(music_files)}]: {file_path.name}")
+            
+            metadata = get_audio_metadata(file_path)
+            if not metadata:
+                continue
+            
+            track = {
+                'id': generate_unique_id(),
+                'title': metadata['title'],
+                'title_pinyin': metadata['title_pinyin'],
+                'artist': metadata['artist'],
+                'artist_pinyin': metadata['artist_pinyin'],
+                'album': metadata['album'],
+                'genre': metadata.get('genre'),
+                'year': metadata.get('year'),
+                'bpm': None,
+                'energy': None,
+                'valence': None,
+                'mood_tags': None,
+                'scene_tags': None,
+                'duration_ms': metadata['duration_ms'],
+                'file_path': metadata['file_path'],
+                'file_size': metadata['file_size'],
+                'format': metadata['format'],
+                'bitrate': metadata['bitrate'],
+                'sample_rate': metadata['sample_rate'],
+                'llm_analyzed': 0
+            }
+            tracks.append(track)
+        
+        with open(output_path, 'w', encoding='utf-8') as f:
+            json.dump(tracks, f, ensure_ascii=False, indent=2)
+        
+        print(f"\n基础索引生成完成:")
+        print(f"  成功: {len(tracks)}")
+        print(f"  输出文件: {output_path}")
+        return
+    
     print(f"扫描目录: {input_dir}")
     music_files = scan_music_files(input_dir)
     print(f"发现 {len(music_files)} 个音乐文件")
     
     if not music_files:
-        print("未找到支持的音乐文件 (MP3/FLAC/WAV/M4A)")
+        print("未找到支持的音乐文件 (MP3/FLAC/WAV/M4A/OGG)")
         sys.exit(0)
     
     tracks = []
@@ -290,7 +387,7 @@ def main():
                 time.sleep(1)
         
         track = {
-            'id': i,
+            'id': generate_unique_id(),
             'title': metadata['title'],
             'title_pinyin': metadata['title_pinyin'],
             'artist': metadata['artist'],

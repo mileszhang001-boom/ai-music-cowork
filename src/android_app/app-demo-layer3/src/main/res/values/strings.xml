@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Layer3 Demo</string>
+    <string name="scene_selection_title">场景选择</string>
+    <string name="scene_selection_subtitle">选择一个驾驶场景，系统将为您生成对应的歌单和灯光配置</string>
+    <string name="loading_message">正在生成推荐...</string>
+    <string name="playlist_title">推荐歌单</string>
+    <string name="lighting_config_title">灯光配置</string>
+    <string name="apply_lighting">应用灯光配置</string>
+    <string name="applying">正在应用...</string>
+    <string name="back">返回</string>
+    <string name="tracks_count">%d 首歌曲</string>
+    <string name="bpm_format">%d BPM</string>
+    <string name="brightness_format">%d%%</string>
+</resources>

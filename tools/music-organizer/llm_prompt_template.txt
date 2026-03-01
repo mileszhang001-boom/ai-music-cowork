@@ -1,0 +1,437 @@
+================================================================================
+                    音乐标签分析 LLM 提示词模板
+                    Music Tag Analysis LLM Prompt Template
+================================================================================
+版本: 1.0.0
+适用模型: GPT-4, Claude, Qwen-Plus, DeepSeek 等
+================================================================================
+
+## 系统提示词 (System Prompt)
+
+你是一位专业的音乐分析师，擅长分析歌曲的特征和标签。你的任务是根据歌曲的基本信息，
+推断出标准化的音乐标签，用于音乐推荐系统的场景匹配。
+
+你需要输出符合以下规范的 JSON 格式数据：
+- 所有数值字段必须在指定范围内
+- 标签字段必须从预定义的枚举值中选择
+- 输出必须是合法的 JSON 格式，不要包含任何其他文字说明
+
+================================================================================
+
+## 用户提示词模板 (User Prompt Template)
+
+请分析以下歌曲的音乐特征，并生成标准化的标签数据。
+
+### 歌曲信息
+- 歌名: {{title}}
+- 歌手: {{artist}}
+- 专辑: {{album}}
+- 原有流派: {{genre}}
+- 时长: {{duration_sec}} 秒
+- 语言: {{language}}
+
+### 分析要求
+
+请根据歌名、歌手、专辑名称等信息，推断以下标签：
+
+#### 1. 主要流派 (genre) [必填]
+从以下选项中选择一个最匹配的流派：
+- pop (流行)
+- rock (摇滚)
+- jazz (爵士)
+- classical (古典)
+- electronic (电子)
+- folk (民谣)
+- rnb (节奏布鲁斯)
+- hip_hop (嘻哈)
+- country (乡村)
+- ambient (氛围音乐)
+- blues (蓝调)
+- metal (金属)
+- punk (朋克)
+- reggae (雷鬼)
+- latin (拉丁)
+- indie (独立)
+- soul (灵魂乐)
+- funk (放克)
+- disco (迪斯科)
+- lofi (低保真)
+- ballad (抒情)
+- acoustic (原声)
+- soundtrack (原声带)
+- world (世界音乐)
+- children (儿童音乐)
+- religious (宗教音乐)
+- other (其他)
+
+#### 2. 节拍速度 (bpm) [可选]
+估算歌曲的每分钟节拍数，范围: 40-220
+- 慢歌: 60-90
+- 中速: 90-120
+- 快歌: 120-150
+- 极快: 150+
+
+#### 3. 能量值 (energy) [必填]
+衡量歌曲的活力和强度，范围: 0.0-1.0
+- 0.0-0.3: 低能量 (柔和、安静、舒缓)
+- 0.3-0.6: 中等能量 (平衡、温和)
+- 0.6-1.0: 高能量 (激烈、动感、强劲)
+
+#### 4. 情绪正向度 (valence) [必填]
+衡量歌曲传递的积极/消极情绪，范围: 0.0-1.0
+- 0.0-0.3: 负面情绪 (悲伤、愤怒、压抑、忧郁)
+- 0.3-0.6: 中性情绪 (复杂、矛盾、平静)
+- 0.6-1.0: 正面情绪 (快乐、愉悦、积极、希望)
+
+#### 5. 可舞性 (danceability) [可选]
+衡量歌曲是否适合跳舞，范围: 0.0-1.0
+- 0.0-0.3: 不适合跳舞
+- 0.3-0.6: 中等可舞性
+- 0.6-1.0: 适合跳舞
+
+#### 6. 原声程度 (acousticness) [可选]
+衡量歌曲是否为原声乐器演奏，范围: 0.0-1.0
+- 0.0-0.3: 电子/合成音为主
+- 0.3-0.7: 混合
+- 0.7-1.0: 原声乐器为主
+
+#### 7. 纯音乐程度 (instrumentalness) [可选]
+衡量歌曲是否无人声，范围: 0.0-1.0
+- 0.0-0.5: 有人声
+- 0.5-1.0: 纯音乐
+
+#### 8. 情绪标签 (mood_tags) [必填，1-5个]
+从以下选项中选择 1-5 个最匹配的情绪标签：
+happy, sad, energetic, calm, romantic, melancholy, peaceful, excited, 
+nostalgic, hopeful, dark, bright, dreamy, aggressive, relaxing, 
+uplifting, sentimental, playful, mysterious, epic
+
+#### 9. 活动标签 (activity_tags) [可选，0-5个]
+从以下选项中选择适合的活动场景：
+driving, working, exercise, relax, party, sleep, study, cooking, 
+cleaning, gaming, meditation, yoga, running, walking, commute
+
+#### 10. 天气标签 (weather_tags) [可选，0-3个]
+从以下选项中选择适合的天气场景：
+sunny, rainy, cloudy, snowy, windy, stormy, foggy, clear_night
+
+#### 11. 时间标签 (time_tags) [可选，0-3个]
+从以下选项中选择适合的时间段：
+morning (06:00-09:00), afternoon (09:00-17:00), evening (17:00-21:00),
+night (21:00-00:00), late_night (00:00-06:00), dawn (05:00-07:00), dusk (17:00-19:00)
+
+#### 12. 场景标签 (scene_tags) [可选，0-5个]
+从以下选项中选择适合的场景：
+morning_commute, night_drive, road_trip, party, romantic_date, 
+focus_work, relax, workout, sleep, meditation, rainy_day, sunny_day, 
+winter, summer, family_trip, city, highway, home, office, cafe, outdoor
+
+### 输出格式
+
+请严格按照以下 JSON 格式输出，不要添加任何其他文字：
+
+```json
+{
+  "genre": "流派",
+  "bpm": 节拍数,
+  "energy": 能量值,
+  "valence": 情绪正向度,
+  "danceability": 可舞性,
+  "acousticness": 原声程度,
+  "instrumentalness": 纯音乐程度,
+  "mood_tags": ["情绪标签1", "情绪标签2"],
+  "activity_tags": ["活动标签1", "活动标签2"],
+  "weather_tags": ["天气标签"],
+  "time_tags": ["时间标签"],
+  "scene_tags": ["场景标签1", "场景标签2"]
+}
+```
+
+### 分析参考指南
+
+#### 歌手风格参考
+- 周杰伦: pop, ballad, 中国风
+- 林俊杰: pop, ballad
+- 陈奕迅: pop, ballad
+- 五月天: rock, pop
+- Beyond: rock
+- 邓紫棋: pop, rock
+- Taylor Swift: pop, country
+- Ed Sheeran: pop, folk
+- The Beatles: rock, pop
+- Linkin Park: rock, metal
+- Deadmau5: electronic, house
+- Enya: ambient, new age
+- 痛仰乐队: rock, folk
+
+#### BPM 估算参考
+- 抒情慢歌: 60-80
+- 流行中速: 90-120
+- 舞曲/电子: 120-140
+- 摇滚快歌: 130-160
+- 金属/朋克: 150-200
+
+#### 能量值估算参考
+- 摇篮曲/冥想音乐: 0.1-0.2
+- 抒情慢歌: 0.2-0.4
+- 流行中速: 0.4-0.6
+- 摇滚/舞曲: 0.6-0.8
+- 金属/电子舞曲: 0.8-1.0
+
+#### 情绪正向度估算参考
+- 悲伤/忧郁歌曲: 0.1-0.3
+- 中性/复杂情绪: 0.3-0.6
+- 快乐/积极歌曲: 0.6-0.8
+- 极度欢快/庆祝: 0.8-1.0
+
+================================================================================
+
+## 示例输入输出
+
+### 示例 1: 中文流行歌曲
+
+输入:
+```
+歌名: 晴天
+歌手: 周杰伦
+专辑: 叶惠美
+原有流派: 未知
+时长: 269 秒
+语言: zh
+```
+
+输出:
+```json
+{
+  "genre": "pop",
+  "bpm": 75,
+  "energy": 0.45,
+  "valence": 0.55,
+  "danceability": 0.45,
+  "acousticness": 0.65,
+  "instrumentalness": 0.05,
+  "mood_tags": ["nostalgic", "romantic", "sentimental"],
+  "activity_tags": ["driving", "relax"],
+  "weather_tags": ["sunny", "cloudy"],
+  "time_tags": ["afternoon", "evening"],
+  "scene_tags": ["home", "city"]
+}
+```
+
+### 示例 2: 电子音乐
+
+输入:
+```
+歌名: Strobe
+歌手: Deadmau5
+专辑: For Lack of a Better Name
+原有流派: Electronic
+时长: 637 秒
+语言: instrumental
+```
+
+输出:
+```json
+{
+  "genre": "electronic",
+  "bpm": 128,
+  "energy": 0.75,
+  "valence": 0.70,
+  "danceability": 0.85,
+  "acousticness": 0.05,
+  "instrumentalness": 0.95,
+  "mood_tags": ["energetic", "uplifting", "dreamy"],
+  "activity_tags": ["party", "exercise", "driving"],
+  "weather_tags": ["clear_night"],
+  "time_tags": ["night", "late_night"],
+  "scene_tags": ["night_drive", "party"]
+}
+```
+
+### 示例 3: 摇滚歌曲
+
+输入:
+```
+歌名: 海阔天空
+歌手: Beyond
+专辑: 乐与怒
+原有流派: Rock
+时长: 326 秒
+语言: zh
+```
+
+输出:
+```json
+{
+  "genre": "rock",
+  "bpm": 135,
+  "energy": 0.80,
+  "valence": 0.70,
+  "danceability": 0.60,
+  "acousticness": 0.30,
+  "instrumentalness": 0.10,
+  "mood_tags": ["energetic", "hopeful", "uplifting"],
+  "activity_tags": ["driving", "exercise"],
+  "weather_tags": ["sunny"],
+  "time_tags": ["afternoon", "evening"],
+  "scene_tags": ["road_trip", "highway"]
+}
+```
+
+### 示例 4: 氛围音乐
+
+输入:
+```
+歌名: Only Time
+歌手: Enya
+专辑: A Day Without Rain
+原有流派: New Age
+时长: 218 秒
+语言: en
+```
+
+输出:
+```json
+{
+  "genre": "ambient",
+  "bpm": 65,
+  "energy": 0.25,
+  "valence": 0.50,
+  "danceability": 0.25,
+  "acousticness": 0.85,
+  "instrumentalness": 0.40,
+  "mood_tags": ["peaceful", "dreamy", "relaxing"],
+  "activity_tags": ["relax", "meditation", "sleep"],
+  "weather_tags": ["rainy", "cloudy"],
+  "time_tags": ["night", "late_night"],
+  "scene_tags": ["home", "meditation"]
+}
+```
+
+================================================================================
+
+## 批量处理模式
+
+当需要批量处理多首歌曲时，可以使用以下格式：
+
+### 批量输入格式
+```
+请分析以下歌曲列表，为每首歌曲生成标签：
+
+1. 歌名: {{title1}}, 歌手: {{artist1}}, 专辑: {{album1}}
+2. 歌名: {{title2}}, 歌手: {{artist2}}, 专辑: {{album2}}
+...
+```
+
+### 批量输出格式
+```json
+[
+  {
+    "title": "{{title1}}",
+    "artist": "{{artist1}}",
+    "genre": "...",
+    ...
+  },
+  {
+    "title": "{{title2}}",
+    "artist": "{{artist2}}",
+    "genre": "...",
+    ...
+  }
+]
+```
+
+================================================================================
+
+## API 调用示例 (Python)
+
+```python
+import requests
+import json
+
+def analyze_music_tags(metadata: dict, api_key: str, api_base: str) -> dict:
+    """
+    使用 LLM 分析音乐标签
+    
+    Args:
+        metadata: 歌曲元数据 (title, artist, album, genre, duration_sec, language)
+        api_key: API 密钥
+        api_base: API 基础地址
+    
+    Returns:
+        标签字典
+    """
+    
+    prompt = f"""请分析以下歌曲的音乐特征，并生成标准化的标签数据。
+
+### 歌曲信息
+- 歌名: {metadata.get('title', '')}
+- 歌手: {metadata.get('artist', '')}
+- 专辑: {metadata.get('album', '')}
+- 原有流派: {metadata.get('genre', '未知')}
+- 时长: {metadata.get('duration_sec', 0)} 秒
+- 语言: {metadata.get('language', '未知')}
+
+请输出 JSON 格式的标签数据，包含以下字段：
+genre, bpm, energy, valence, danceability, acousticness, instrumentalness,
+mood_tags, activity_tags, weather_tags, time_tags, scene_tags
+
+只输出 JSON，不要其他文字。"""
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    
+    data = {
+        "model": "qwen-plus",
+        "messages": [
+            {"role": "system", "content": "你是一位专业的音乐分析师，擅长分析歌曲特征并生成标准化标签。"},
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.3,
+        "max_tokens": 500
+    }
+    
+    response = requests.post(
+        f"{api_base}/chat/completions",
+        headers=headers,
+        json=data,
+        timeout=30
+    )
+    
+    if response.status_code == 200:
+        result = response.json()
+        content = result['choices'][0]['message']['content']
+        json_str = content.replace('```json', '').replace('```', '').strip()
+        return json.loads(json_str)
+    else:
+        raise Exception(f"API 调用失败: {response.status_code}")
+
+# 使用示例
+metadata = {
+    'title': '晴天',
+    'artist': '周杰伦',
+    'album': '叶惠美',
+    'genre': '',
+    'duration_sec': 269,
+    'language': 'zh'
+}
+
+tags = analyze_music_tags(metadata, api_key="your_api_key", api_base="https://dashscope.aliyuncs.com/compatible-mode/v1")
+print(json.dumps(tags, ensure_ascii=False, indent=2))
+```
+
+================================================================================
+
+## 注意事项
+
+1. **输出格式**: 必须输出合法的 JSON 格式，不要包含 Markdown 代码块标记或其他文字
+2. **数值范围**: 所有数值字段必须在指定范围内，超出范围的值会导致验证失败
+3. **标签枚举**: 标签字段必须从预定义的枚举值中选择，自定义标签会被忽略
+4. **必填字段**: genre, energy, valence, mood_tags 是必填字段
+5. **数组长度**: mood_tags 1-5个，其他标签数组 0-5个
+6. **语言处理**: 纯音乐 instrumentalness 应设为 0.9 以上
+7. **流派判断**: 优先根据歌手风格判断，其次根据歌名和专辑名
+
+================================================================================

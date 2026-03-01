@@ -1,0 +1,578 @@
+{
+  "template_id": "TPL_019",
+  "template_name": "雪夜驾驶",
+  "scene_type": "night_drive",
+  "category": "time",
+  "generated_at": "2026-03-01T13:30:47.390Z",
+  "playlist": [
+    {
+      "id": "dd12255d-559c-4c33-95c7-bd826e2fd402",
+      "title": "Storms in Africa",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 244560,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Storms in Africa.mp3",
+      "score": 82,
+      "match_reasons": [
+        "genre:ambient",
+        "valence:0.42",
+        "tempo:68",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "d5359d97-6df1-4d89-87d8-617784c114d8",
+      "title": "To Build a Home",
+      "artist": "The Cinematic Orchestra",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 369720,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cinematic Orchestra - To Build a Home.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:ambient",
+        "valence:0.28",
+        "tempo:72",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "657f9b80-127f-49bb-af37-83c00dc1c253",
+      "title": "Music for Airports",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.4,
+      "duration_ms": 2919120,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - Music for Airports.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.15",
+        "valence:0.40",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "c3157865-2f2d-484f-83bb-554b8f28ba4e",
+      "title": "Ambient 1 The Plateaux of Mirror",
+      "artist": "Brian Eno  Harold Budd",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.35,
+      "duration_ms": 253920,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno  Harold Budd - Ambient 1 The Plateaux of Mirror.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.15",
+        "valence:0.35",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "b0f1a85d-bcf9-42f6-a293-93568fdd442f",
+      "title": "Ambient 2 The Plateaux of Mirror",
+      "artist": "Harold Budd",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.35,
+      "duration_ms": 253920,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Harold Budd - Ambient 2 The Plateaux of Mirror.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.15",
+        "valence:0.35",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "d5790f74-d64b-4d3e-9ddc-b8b4ff478291",
+      "title": "Deep Theta",
+      "artist": "Steven Halpern",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.4,
+      "duration_ms": 4760568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Steven Halpern - Deep Theta.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.40",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "79292d61-4497-4a9e-8d45-83393a58bb89",
+      "title": "Gymnopédie No1",
+      "artist": "Erik Satie",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.35,
+      "duration_ms": 237816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Erik Satie - Gymnopédie No1.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.20",
+        "valence:0.35",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "aa657c3d-de3b-47d2-9435-699735dc5ab5",
+      "title": "Avril 14th",
+      "artist": "Aphex Twin",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.35,
+      "duration_ms": 125544,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Aphex Twin - Avril 14th.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.35",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "abca3c5c-cad5-452d-808f-674794864bd0",
+      "title": "Spiegel im Spiegel",
+      "artist": "Arvo Pärt",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.3,
+      "duration_ms": 610080,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Arvo Pärt - Spiegel im Spiegel.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.15",
+        "valence:0.30",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "765e9064-fb52-4aa0-949a-d427e5ad9b49",
+      "title": "May It Be",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.35,
+      "valence": 0.62,
+      "duration_ms": 214152,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - May It Be.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "tempo:68",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "107c7df0-d58d-4b6c-85f7-23a8060339ba",
+      "title": "Solari",
+      "artist": "Hammock",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.4,
+      "duration_ms": 44112,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hammock - Solari.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.40",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "aa8cb65a-5ab7-4fe8-a505-33bac0942aae",
+      "title": "Ambient 1 Music for Airports",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.45,
+      "duration_ms": 2919120,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - Ambient 1 Music for Airports.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.45",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "91824b3b-9837-4dc1-ac5a-507cf0111bc1",
+      "title": "Tibetan Bells",
+      "artist": "Henry Wolff  Nancy Hennings",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.45,
+      "duration_ms": 2103432,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Henry Wolff  Nancy Hennings - Tibetan Bells.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.45",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "c5e52afa-a26f-4018-bfd1-58c87d781411",
+      "title": "Solfeggio",
+      "artist": "Arvo Pärt",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.25,
+      "valence": 0.4,
+      "duration_ms": 219456,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Arvo Pärt - Solfeggio.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.25",
+        "valence:0.40",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "7b76fd84-db91-4319-aec2-c1654c47f12f",
+      "title": "Weightless",
+      "artist": "Marconi Union",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.3,
+      "duration_ms": 488928,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Marconi Union - Weightless.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.15",
+        "valence:0.30",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "18246e1d-f64b-4a54-82d3-566601a436d7",
+      "title": "The Great Silence",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.4,
+      "duration_ms": 320064,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - The Great Silence.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.40",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "430ef069-97a0-4227-8737-4edc8a52e77d",
+      "title": "Sleep",
+      "artist": "Max Richter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.3,
+      "duration_ms": 30262056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Max Richter - Sleep.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.15",
+        "valence:0.30",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "0d24bc18-7901-4516-a765-e3e0e8d41191",
+      "title": "Only Time",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 215808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Only Time.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.42",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "ed5da1b1-3c02-4606-b409-22e79118e8c8",
+      "title": "On Earth as It Is in Heaven",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 64,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 2741106,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - On Earth as It Is in Heaven.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.42",
+        "tempo:64"
+      ]
+    },
+    {
+      "id": "99869f4b-80a1-4049-be9a-78ac231a6c2d",
+      "title": "Gnossienne No1",
+      "artist": "Erik Satie",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.25,
+      "valence": 0.35,
+      "duration_ms": 204288,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Erik Satie - Gnossienne No1.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.25",
+        "valence:0.35",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "f23d6d23-a82a-4f50-8794-2ef2c172c792",
+      "title": "Reverence",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.45,
+      "duration_ms": 306456,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Reverence.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.45",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "5256aec8-d15c-4534-bdd9-d40acc5ff978",
+      "title": "雨霖铃",
+      "artist": "童丽",
+      "album": null,
+      "genre": "classical",
+      "bpm": 64,
+      "energy": 0.25,
+      "valence": 0.32,
+      "duration_ms": 202776,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/童丽 - 雨霖铃.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.25",
+        "valence:0.32",
+        "tempo:64"
+      ]
+    },
+    {
+      "id": "ea6caca9-68d1-48c2-bf6d-1442ab0334b3",
+      "title": "The Blue Notebooks",
+      "artist": "Max Richter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 64,
+      "energy": 0.25,
+      "valence": 0.32,
+      "duration_ms": 2284944,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Max Richter - The Blue Notebooks.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.32",
+        "tempo:64"
+      ]
+    },
+    {
+      "id": "388a23b5-532c-4f6f-8b50-f94fa10f4df4",
+      "title": "Pavane pour une infante défunte",
+      "artist": "Maurice Ravel",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.35,
+      "valence": 0.4,
+      "duration_ms": 377088,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Maurice Ravel - Pavane pour une infante défunte.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:classical",
+        "valence:0.40",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "f20da254-1dd7-4e11-bb96-2dac841c6c16",
+      "title": "On the Nature of Daylight",
+      "artist": "Max Richter",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.25,
+      "valence": 0.3,
+      "duration_ms": 396144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Max Richter - On the Nature of Daylight.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.25",
+        "valence:0.30",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "1950c3b5-4178-4ae9-9681-9ff96afc4dcf",
+      "title": "Syrinx",
+      "artist": "Claude Debussy",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.35,
+      "valence": 0.4,
+      "duration_ms": 201600,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Claude Debussy - Syrinx.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:classical",
+        "valence:0.40",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "c733fece-5662-4119-9b6a-89e6b0e4c960",
+      "title": "Nocturne in E-flat Major",
+      "artist": "Frédéric Chopin",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.35,
+      "valence": 0.4,
+      "duration_ms": 284088,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Frédéric Chopin - Nocturne in E-flat Major.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:classical",
+        "valence:0.40",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "02228aff-c37c-4831-ba78-9e5c1ebe4cd5",
+      "title": "Für Alina",
+      "artist": "Arvo Pärt",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.25,
+      "valence": 0.3,
+      "duration_ms": 220104,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Arvo Pärt - Für Alina.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.25",
+        "valence:0.30",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "d3fa8213-13cf-42c7-a92c-31a37f398e4d",
+      "title": "Music for a Summer Evening",
+      "artist": "Morton Feldman",
+      "album": null,
+      "genre": "classical",
+      "bpm": 52,
+      "energy": 0.18,
+      "valence": 0.35,
+      "duration_ms": 716856,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Morton Feldman - Music for a Summer Evening.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.18",
+        "valence:0.35"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 29,
+    "avg_score": 75,
+    "total_duration_ms": 54497826,
+    "total_duration_minutes": 908
+  },
+  "mood_mapping": {
+    "valence": 0.4,
+    "arousal": 0.1,
+    "energy": 0.1
+  },
+  "music_requirements": {
+    "genres": [
+      "classical",
+      "ambient"
+    ],
+    "tempo": "slow",
+    "mood_characteristics": {
+      "valence_level": "slightly_negative",
+      "energy_level": "very_low",
+      "description": "雪夜宁静氛围，适合极简安静的音乐"
+    }
+  }
+}

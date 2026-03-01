@@ -1,0 +1,449 @@
+{
+  "template_id": "TPL_033",
+  "template_name": "亲子出游",
+  "scene_type": "family_outing",
+  "category": "social",
+  "generated_at": "2026-03-01T13:30:47.402Z",
+  "playlist": [
+    {
+      "id": "fa3fd368-17f3-46cb-bbe2-af22621f7202",
+      "title": "Perfect",
+      "artist": "Ed Sheeran",
+      "album": null,
+      "genre": "pop",
+      "bpm": 94,
+      "energy": 0.62,
+      "valence": 0.78,
+      "duration_ms": 281880,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Ed Sheeran - Perfect.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.62",
+        "valence:0.78",
+        "tempo:94"
+      ]
+    },
+    {
+      "id": "38706451-9ba1-49c8-ab7d-13a7fce95b94",
+      "title": "Twinkle Twinkle Little Star",
+      "artist": "Childrens Song",
+      "album": null,
+      "genre": "children",
+      "bpm": 100,
+      "energy": 0.45,
+      "valence": 0.85,
+      "duration_ms": 153888,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Childrens Song - Twinkle Twinkle Little Star.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:children",
+        "energy:0.45",
+        "valence:0.85",
+        "tempo:100"
+      ]
+    },
+    {
+      "id": "01092ea7-717b-468f-9fef-8eaa3f9a3638",
+      "title": "少年",
+      "artist": "梦然",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 260952,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/梦然 - 少年.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "b1f103a7-d0fc-4934-aadb-626d395d10d5",
+      "title": "听妈妈的话",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 265056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 听妈妈的话.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "fe30fb9e-80f8-4779-958d-26b14c29196f",
+      "title": "采莲谣",
+      "artist": "儿童歌曲",
+      "album": null,
+      "genre": "children",
+      "bpm": 100,
+      "energy": 0.65,
+      "valence": 0.82,
+      "duration_ms": 189768,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/儿童歌曲 - 采莲谣.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:children",
+        "energy:0.65",
+        "valence:0.82",
+        "tempo:100"
+      ]
+    },
+    {
+      "id": "128aa254-316d-43d8-b924-40edcfd53a7d",
+      "title": "You Are My Sunshine",
+      "artist": "Childrens Song",
+      "album": null,
+      "genre": "children",
+      "bpm": 100,
+      "energy": 0.65,
+      "valence": 0.85,
+      "duration_ms": 153024,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Childrens Song - You Are My Sunshine.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:children",
+        "energy:0.65",
+        "valence:0.85",
+        "tempo:100"
+      ]
+    },
+    {
+      "id": "fe9c1d56-e0ca-4e27-a178-d842c44aa3e4",
+      "title": "Brand New Day",
+      "artist": "Sting",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 237144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Sting - Brand New Day.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "cf18e867-2051-4683-8ed7-99fe47138acb",
+      "title": "Raindrops Keep Fallin on My Head",
+      "artist": "BJ Thomas",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 176136,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/BJ Thomas - Raindrops Keep Fallin on My Head.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "b877a70d-a381-45a5-80eb-5429d7f936ad",
+      "title": "Count on Me",
+      "artist": "Bruno Mars",
+      "album": null,
+      "genre": "pop",
+      "bpm": 96,
+      "energy": 0.65,
+      "valence": 0.82,
+      "duration_ms": 192936,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bruno Mars - Count on Me.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.82",
+        "tempo:96"
+      ]
+    },
+    {
+      "id": "15e1ede3-42b1-4800-aad2-a489b5f81848",
+      "title": "Sunday Morning",
+      "artist": "Maroon 5",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 264360,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Maroon 5 - Sunday Morning.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "5e57034b-24a0-417d-863c-43587cbedcab",
+      "title": "稻香",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 84,
+      "energy": 0.52,
+      "valence": 0.78,
+      "duration_ms": 223800,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 稻香.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.52",
+        "valence:0.78"
+      ]
+    },
+    {
+      "id": "85286006-24b3-4e7e-9b21-2ca6982ab7f3",
+      "title": "小燕子",
+      "artist": "儿童合唱团",
+      "album": null,
+      "genre": "children",
+      "bpm": 104,
+      "energy": 0.65,
+      "valence": 0.82,
+      "duration_ms": 93024,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/儿童合唱团 - 小燕子.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:children",
+        "energy:0.65",
+        "valence:0.82",
+        "tempo:104"
+      ]
+    },
+    {
+      "id": "3352a087-0f34-445a-84e9-dd331be5f940",
+      "title": "告白气球",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.82,
+      "duration_ms": 215616,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 告白气球.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.82",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "2d39e414-a7f7-48fd-bdae-79530a0dd0eb",
+      "title": "一分钱",
+      "artist": "儿童歌曲",
+      "album": null,
+      "genre": "children",
+      "bpm": 100,
+      "energy": 0.65,
+      "valence": 0.85,
+      "duration_ms": 142752,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/儿童歌曲 - 一分钱.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:children",
+        "energy:0.65",
+        "valence:0.85",
+        "tempo:100"
+      ]
+    },
+    {
+      "id": "b130b68c-adc1-45c7-a731-2d6d0a3af857",
+      "title": "California Dreamin",
+      "artist": "The Mamas  The Papas",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.55,
+      "valence": 0.68,
+      "duration_ms": 157512,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Mamas  The Papas - California Dreamin.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.55",
+        "valence:0.68",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "b6b666f8-eb4e-4e34-afc4-a49e05cccd3a",
+      "title": "甜蜜蜜",
+      "artist": "邓丽君",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.82,
+      "duration_ms": 209928,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/邓丽君 - 甜蜜蜜.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.82",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "9788711c-856e-4c59-9fc3-b89791c91082",
+      "title": "一分钱",
+      "artist": "儿童合唱团",
+      "album": null,
+      "genre": "children",
+      "bpm": 100,
+      "energy": 0.65,
+      "valence": 0.85,
+      "duration_ms": 135648,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/儿童合唱团 - 一分钱.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:children",
+        "energy:0.65",
+        "valence:0.85",
+        "tempo:100"
+      ]
+    },
+    {
+      "id": "03b69518-47fc-49f3-99ec-202ced7d7dbd",
+      "title": "小燕子",
+      "artist": "儿童歌曲",
+      "album": null,
+      "genre": "children",
+      "bpm": 100,
+      "energy": 0.65,
+      "valence": 0.85,
+      "duration_ms": 145656,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/儿童歌曲 - 小燕子.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:children",
+        "energy:0.65",
+        "valence:0.85",
+        "tempo:100"
+      ]
+    },
+    {
+      "id": "8eb851b0-3be0-4c7d-8422-adcebf9cb70d",
+      "title": "兄弟",
+      "artist": "任贤齐",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.72,
+      "duration_ms": 292848,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/任贤齐 - 兄弟.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.72",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "8d5c317e-2b46-408d-a62d-5d9b707597b6",
+      "title": "黄昏晓",
+      "artist": "王心凌",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.62,
+      "valence": 0.71,
+      "duration_ms": 285696,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/王心凌 - 黄昏晓.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.62",
+        "valence:0.71",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "8f3c7bf5-ea1a-4734-a1e6-040ceec41a4f",
+      "title": "让我们荡起双桨",
+      "artist": "儿童合唱团",
+      "album": null,
+      "genre": "children",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.88,
+      "duration_ms": 156144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/儿童合唱团 - 让我们荡起双桨.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:children",
+        "energy:0.65",
+        "valence:0.88",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "5c4af492-f6aa-48af-8171-044099bcf022",
+      "title": "Brave",
+      "artist": "Sara Bareilles",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.75,
+      "duration_ms": 237816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Sara Bareilles - Brave.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.68",
+        "valence:0.75",
+        "tempo:92"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 22,
+    "avg_score": 76,
+    "total_duration_ms": 4471584,
+    "total_duration_minutes": 75
+  },
+  "mood_mapping": {
+    "valence": 0.8,
+    "arousal": 0.55,
+    "energy": 0.55
+  },
+  "music_requirements": {
+    "genres": [
+      "children",
+      "pop"
+    ],
+    "tempo": "moderate",
+    "mood_characteristics": {
+      "valence_level": "very_positive",
+      "energy_level": "moderate",
+      "description": "亲子欢乐氛围，适合儿童友好的音乐"
+    }
+  }
+}

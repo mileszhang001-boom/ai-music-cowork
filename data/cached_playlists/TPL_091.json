@@ -1,0 +1,450 @@
+{
+  "template_id": "TPL_091",
+  "template_name": "早高峰",
+  "scene_type": "morning_commute",
+  "category": "time",
+  "generated_at": "2026-03-01T13:30:47.443Z",
+  "playlist": [
+    {
+      "id": "0d000b14-5ffb-48b6-9cf4-09cbe674db95",
+      "title": "White Ferrari",
+      "artist": "Frank Ocean",
+      "album": null,
+      "genre": "rnb",
+      "bpm": 68,
+      "energy": 0.32,
+      "valence": 0.41,
+      "duration_ms": 248832,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Frank Ocean - White Ferrari.mp3",
+      "score": 68,
+      "match_reasons": [
+        "energy:0.32",
+        "valence:0.41",
+        "tempo:68",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "b56467c9-301d-4e6d-b24c-2ce455042725",
+      "title": "Someone Like You",
+      "artist": "Adele",
+      "album": null,
+      "genre": "pop",
+      "bpm": 69,
+      "energy": 0.32,
+      "valence": 0.28,
+      "duration_ms": 284952,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Adele - Someone Like You.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.32",
+        "valence:0.28",
+        "tempo:69",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "8e7a3f1d-179a-48eb-a37f-944a8c1c2c7f",
+      "title": "Holocene",
+      "artist": "Bon Iver",
+      "album": null,
+      "genre": "indie",
+      "bpm": 68,
+      "energy": 0.32,
+      "valence": 0.28,
+      "duration_ms": 343632,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bon Iver - Holocene.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.32",
+        "valence:0.28",
+        "tempo:68",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "5110d2ce-a7fc-4452-8158-31838eac6a9d",
+      "title": "Ivy",
+      "artist": "Frank Ocean",
+      "album": null,
+      "genre": "rnb",
+      "bpm": 68,
+      "energy": 0.32,
+      "valence": 0.28,
+      "duration_ms": 249240,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Frank Ocean - Ivy.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.32",
+        "valence:0.28",
+        "tempo:68",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "4c6fd0d8-54a8-4b4e-bc92-2faae16fc7fb",
+      "title": "听见下雨的声音",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.42,
+      "valence": 0.38,
+      "duration_ms": 283392,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 听见下雨的声音.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.42",
+        "valence:0.38",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "725d19ba-0098-44c2-aa56-10a312708c9c",
+      "title": "董小姐",
+      "artist": "宋冬野",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 313512,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/宋冬野 - 董小姐.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "d5359d97-6df1-4d89-87d8-617784c114d8",
+      "title": "To Build a Home",
+      "artist": "The Cinematic Orchestra",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 369720,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cinematic Orchestra - To Build a Home.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "d0e04a01-32f7-4273-aebb-df25061c6e6d",
+      "title": "后来",
+      "artist": "刘若英",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 340152,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/刘若英 - 后来.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "e9feb5bc-ebfa-4ddc-9b3f-2d92112bad74",
+      "title": "Futura Free",
+      "artist": "Frank Ocean",
+      "album": null,
+      "genre": "rnb",
+      "bpm": 68,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 564192,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Frank Ocean - Futura Free.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:68",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "92a65041-839a-46e0-9f53-50f6eb9cee8d",
+      "title": "梵高先生",
+      "artist": "李志",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 230904,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/李志 - 梵高先生.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "6231c22e-e0c6-496e-8422-7ab03fe42ea1",
+      "title": "三十岁的女人",
+      "artist": "赵雷",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 348168,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/赵雷 - 三十岁的女人.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "eb9b9e35-9488-4553-91c6-fc35b53a8617",
+      "title": "Dust in the Wind",
+      "artist": "Kansas",
+      "album": null,
+      "genre": "rock",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 199728,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Kansas - Dust in the Wind.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "c5171e75-8d02-4d1a-ab68-91cebc0b20fb",
+      "title": "鸽子",
+      "artist": "宋冬野",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 246552,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/宋冬野 - 鸽子.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "b5b07c5b-ec89-4cdf-b845-05e087198473",
+      "title": "Landslide",
+      "artist": "Fleetwood Mac",
+      "album": null,
+      "genre": "rock",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 236640,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Fleetwood Mac - Landslide.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "ed559003-a82e-47f4-bcbd-6f0084739dbb",
+      "title": "Fast Car",
+      "artist": "Tracy Chapman",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 266256,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Tracy Chapman - Fast Car.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "f7a4af3c-4729-4584-a144-e11baf2c3abb",
+      "title": "关于郑州的记忆",
+      "artist": "李志",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 360576,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/李志 - 关于郑州的记忆.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "004da6de-a020-4dee-9c4e-172a2c73fd30",
+      "title": "成都",
+      "artist": "赵雷",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 364248,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/赵雷 - 成都.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "5a5eb5e9-ae60-42e8-ac2b-1848ee28c589",
+      "title": "斑马斑马",
+      "artist": "宋冬野",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 252720,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/宋冬野 - 斑马斑马.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "5fd39c6a-15a1-4805-8e58-cfb1625e26c1",
+      "title": "Against All Odds",
+      "artist": "Phil Collins",
+      "album": null,
+      "genre": "pop",
+      "bpm": 76,
+      "energy": 0.42,
+      "valence": 0.38,
+      "duration_ms": 210768,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Phil Collins - Against All Odds.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.42",
+        "valence:0.38",
+        "tempo:76",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "993e8ea4-d7b3-4d0b-ba31-935bbf593b50",
+      "title": "北方女王",
+      "artist": "尧十三",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 365640,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/尧十三 - 北方女王.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "e5ec67fc-de65-47e5-99f4-aa5862a4e909",
+      "title": "Early Morning Rain",
+      "artist": "Gordon Lightfoot",
+      "album": null,
+      "genre": "folk",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 198096,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Gordon Lightfoot - Early Morning Rain.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "14019867-8f38-4375-a005-26d9076951ba",
+      "title": "突然好想你",
+      "artist": "五月天",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.32,
+      "duration_ms": 286296,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/五月天 - 突然好想你.mp3",
+      "score": 65,
+      "match_reasons": [
+        "energy:0.45",
+        "valence:0.32",
+        "tempo:72",
+        "scene:morning_commute"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 22,
+    "avg_score": 66,
+    "total_duration_ms": 6564216,
+    "total_duration_minutes": 109
+  },
+  "mood_mapping": {
+    "valence": 0.35,
+    "arousal": 0.3,
+    "energy": 0.3
+  },
+  "music_requirements": {
+    "genres": [
+      "podcast",
+      "lo-fi"
+    ],
+    "tempo": "slow",
+    "mood_characteristics": {
+      "valence_level": "slightly_negative",
+      "energy_level": "low",
+      "description": "早高峰拥堵氛围，适合耐心的内容"
+    }
+  }
+}

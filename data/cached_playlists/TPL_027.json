@@ -1,0 +1,519 @@
+{
+  "template_id": "TPL_027",
+  "template_name": "小雨绵绵",
+  "scene_type": "rainy_day",
+  "category": "weather",
+  "generated_at": "2026-03-01T13:30:47.397Z",
+  "playlist": [
+    {
+      "id": "231b25e4-03b5-4029-9f6f-fcb7ee289dc4",
+      "title": "The Nearness of You",
+      "artist": "Norah Jones",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.48,
+      "duration_ms": 187704,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Norah Jones - The Nearness of You.mp3",
+      "score": 86,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.48",
+        "tempo:72",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "a510a1c9-cb57-4316-990d-5496b00086d9",
+      "title": "被遗忘的时光",
+      "artist": "蔡琴",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 190440,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/蔡琴 - 被遗忘的时光.mp3",
+      "score": 85,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "2e7c6f43-497a-4965-87d7-6a44dfe6d3bb",
+      "title": "Come Away with Me",
+      "artist": "Norah Jones",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.48,
+      "duration_ms": 194568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Norah Jones - Come Away with Me.mp3",
+      "score": 85,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.48",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "161c8e46-9fda-4fb9-a3e9-72ab40a45ec7",
+      "title": "Autumn Leaves",
+      "artist": "Nat King Cole",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 160824,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Nat King Cole - Autumn Leaves.mp3",
+      "score": 84,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.42",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "9f7e4305-cb32-44f7-8c27-f26cd85d8062",
+      "title": "Dont Know Why",
+      "artist": "Norah Jones",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 182952,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Norah Jones - Dont Know Why.mp3",
+      "score": 84,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.42",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "68e49c4d-fe91-4c38-bbe4-f31154d8f1e8",
+      "title": "All of Me",
+      "artist": "Billie Holiday",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 231792,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Billie Holiday - All of Me.mp3",
+      "score": 84,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.42",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "daf586b9-ed69-4070-888e-c4ea8de9b98e",
+      "title": "Rainy Night",
+      "artist": "Chet Baker",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 864048,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Chet Baker - Rainy Night.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "75da7581-ce01-4ce8-9c7f-9b510340c654",
+      "title": "Blue in Green",
+      "artist": "Miles Davis",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 338688,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Miles Davis - Blue in Green.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "5dafab7d-9a62-47f1-a745-fcbbb176da8a",
+      "title": "Round Midnight",
+      "artist": "Thelonious Monk",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 1063344,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Thelonious Monk - Round Midnight.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "62d4629b-f197-450f-a622-e58f65c43ff1",
+      "title": "Blue Moon",
+      "artist": "Billie Holiday",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 205872,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Billie Holiday - Blue Moon.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "8b444f27-d702-4818-814b-c040857fcdde",
+      "title": "Stormy Weather",
+      "artist": "Billie Holiday",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 227256,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Billie Holiday - Stormy Weather.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "7f24e8d6-b278-4fa8-8fbf-fc9f067c5ca2",
+      "title": "Kind of Blue",
+      "artist": "Miles Davis",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 3350160,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Miles Davis - Kind of Blue.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.45",
+        "valence:0.38",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "24526da2-96a6-4193-9ad0-3c547b4e3403",
+      "title": "My Funny Valentine",
+      "artist": "Chet Baker",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 141168,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Chet Baker - My Funny Valentine.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.42"
+      ]
+    },
+    {
+      "id": "d62cec03-b6c1-41c6-8af1-a0315f36a235",
+      "title": "Corcovado",
+      "artist": "Antonio Carlos Jobim",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.6,
+      "duration_ms": 145968,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Antonio Carlos Jobim - Corcovado.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.35",
+        "valence:0.60"
+      ]
+    },
+    {
+      "id": "f23d6d23-a82a-4f50-8794-2ef2c172c792",
+      "title": "Reverence",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.45,
+      "duration_ms": 306456,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Reverence.mp3",
+      "score": 69,
+      "match_reasons": [
+        "energy:0.25",
+        "valence:0.45",
+        "tempo:68",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "e016dcd7-a4fa-4143-8065-17035e129d7b",
+      "title": "Misty",
+      "artist": "Ella Fitzgerald",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 174792,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Ella Fitzgerald - Misty.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.45",
+        "valence:0.68"
+      ]
+    },
+    {
+      "id": "7da75d13-510d-4968-a36b-4b090bdeb1ac",
+      "title": "La Vie En Rose",
+      "artist": "Édith Piaf",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 187344,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Édith Piaf - La Vie En Rose.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:jazz",
+        "energy:0.45",
+        "valence:0.68"
+      ]
+    },
+    {
+      "id": "0d24bc18-7901-4516-a765-e3e0e8d41191",
+      "title": "Only Time",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 215808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Only Time.mp3",
+      "score": 68,
+      "match_reasons": [
+        "energy:0.25",
+        "valence:0.42",
+        "tempo:68",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "ed5da1b1-3c02-4606-b409-22e79118e8c8",
+      "title": "On Earth as It Is in Heaven",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 64,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 2741106,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - On Earth as It Is in Heaven.mp3",
+      "score": 68,
+      "match_reasons": [
+        "energy:0.25",
+        "valence:0.42",
+        "tempo:64",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "bc0f2cc1-38b1-40f1-8f79-8f7e79721ea3",
+      "title": "Watermark",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 145128,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Watermark.mp3",
+      "score": 68,
+      "match_reasons": [
+        "energy:0.25",
+        "valence:0.42",
+        "tempo:68",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "107c7df0-d58d-4b6c-85f7-23a8060339ba",
+      "title": "Solari",
+      "artist": "Hammock",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.4,
+      "duration_ms": 44112,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hammock - Solari.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.25",
+        "valence:0.40",
+        "tempo:68",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "aa8cb65a-5ab7-4fe8-a505-33bac0942aae",
+      "title": "Ambient 1 Music for Airports",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.45,
+      "duration_ms": 2919120,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - Ambient 1 Music for Airports.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.20",
+        "valence:0.45",
+        "tempo:60",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "f2083eac-7a11-4fc3-857f-477baca56ccb",
+      "title": "Kiss the Rain",
+      "artist": "Yiruma",
+      "album": null,
+      "genre": "other",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.4,
+      "duration_ms": 232320,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Yiruma - Kiss the Rain.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.25",
+        "valence:0.40",
+        "tempo:72",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "91824b3b-9837-4dc1-ac5a-507cf0111bc1",
+      "title": "Tibetan Bells",
+      "artist": "Henry Wolff  Nancy Hennings",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.45,
+      "duration_ms": 2103432,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Henry Wolff  Nancy Hennings - Tibetan Bells.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.20",
+        "valence:0.45",
+        "tempo:60",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "c5e52afa-a26f-4018-bfd1-58c87d781411",
+      "title": "Solfeggio",
+      "artist": "Arvo Pärt",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.25,
+      "valence": 0.4,
+      "duration_ms": 219456,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Arvo Pärt - Solfeggio.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.25",
+        "valence:0.40",
+        "tempo:60",
+        "scene:rainy_day"
+      ]
+    },
+    {
+      "id": "930e6378-0c50-44e9-87b3-4bf2d78fc389",
+      "title": "Sail Away",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.6,
+      "duration_ms": 267168,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Sail Away.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.25",
+        "valence:0.60",
+        "tempo:68",
+        "scene:rainy_day"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 26,
+    "avg_score": 75,
+    "total_duration_ms": 17041026,
+    "total_duration_minutes": 284
+  },
+  "mood_mapping": {
+    "valence": 0.5,
+    "arousal": 0.25,
+    "energy": 0.25
+  },
+  "music_requirements": {
+    "genres": [
+      "jazz",
+      "lo-fi"
+    ],
+    "tempo": "slow",
+    "mood_characteristics": {
+      "valence_level": "neutral",
+      "energy_level": "low",
+      "description": "小雨舒缓氛围，适合柔和的音乐"
+    }
+  }
+}

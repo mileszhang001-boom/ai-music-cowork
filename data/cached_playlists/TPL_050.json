@@ -1,0 +1,412 @@
+{
+  "template_id": "TPL_050",
+  "template_name": "心情低落",
+  "scene_type": "solo_drive",
+  "category": "social",
+  "generated_at": "2026-03-01T13:30:47.414Z",
+  "playlist": [
+    {
+      "id": "dbb41f86-dbf2-4fa6-8890-47fcde19491a",
+      "title": "雨声",
+      "artist": "蔡琴",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.32,
+      "duration_ms": 224880,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/蔡琴 - 雨声.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.25",
+        "valence:0.32",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "412e5987-fa9f-45fd-8c78-c40c8490b49b",
+      "title": "听雨",
+      "artist": "童丽",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.35,
+      "duration_ms": 221064,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/童丽 - 听雨.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.25",
+        "valence:0.35",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "59185c9c-cf20-43d9-b376-1d6daa510d11",
+      "title": "当爱已成往事",
+      "artist": "林忆莲  李宗盛",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 277008,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/林忆莲  李宗盛 - 当爱已成往事.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "3d2a1165-1741-4fbc-b697-b7d5b3fb7942",
+      "title": "独角戏",
+      "artist": "许茹芸",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 275328,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/许茹芸 - 独角戏.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "5f80e0ec-d270-4f76-9fae-efa81c70ea78",
+      "title": "一千个伤心的理由",
+      "artist": "张学友",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 276696,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/张学友 - 一千个伤心的理由.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "ff7735de-a1b2-4a99-b016-44fa19e3af5a",
+      "title": "雨季不再来",
+      "artist": "齐秦",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 218664,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/齐秦 - 雨季不再来.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "a17e855c-3c38-48e0-a3ed-cd04390a6fa8",
+      "title": "领悟",
+      "artist": "辛晓琪",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 314016,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/辛晓琪 - 领悟.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "b11e8db6-38e2-4c89-b931-2452a1e38bdc",
+      "title": "止战之殇",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 277704,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 止战之殇.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "c5956ecb-c6a2-4ef3-a067-25eccffa6082",
+      "title": "分手总要在雨天",
+      "artist": "张学友",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 290808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/张学友 - 分手总要在雨天.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "1e237fb7-d8a7-46b4-a9a0-77c8d8e499c9",
+      "title": "烟花易冷",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 266472,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 烟花易冷.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "8efd153e-b120-41e5-afa3-d92a0fdd71b3",
+      "title": "雨一直下",
+      "artist": "张宇",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 287016,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/张宇 - 雨一直下.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "f394ffa5-b26d-4ed7-9521-2ac5a6300a72",
+      "title": "过火",
+      "artist": "张信哲",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 303264,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/张信哲 - 过火.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "8a6e2026-083c-4f13-8883-60432b3413d0",
+      "title": "菊花台",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 295272,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 菊花台.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "a980c12d-964f-4945-9693-98093218285d",
+      "title": "用心良苦",
+      "artist": "张宇",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.38,
+      "valence": 0.32,
+      "duration_ms": 271512,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/张宇 - 用心良苦.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.38",
+        "valence:0.32",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "ed56484f-f965-475b-9360-d02a44e77d03",
+      "title": "夜雨寄北",
+      "artist": "龚玥",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 68,
+      "energy": 0.32,
+      "valence": 0.41,
+      "duration_ms": 245664,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/龚玥 - 夜雨寄北.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.32",
+        "valence:0.41",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "db717d1d-cc88-41d4-bab7-a553c379d5fe",
+      "title": "吻别",
+      "artist": "张学友",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 304608,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/张学友 - 吻别.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "29beedaa-810f-45da-aa08-8b20ddfa4685",
+      "title": "潇湘雨",
+      "artist": "胡杨林",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 302976,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/胡杨林 - 潇湘雨.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "5445cda9-976c-4702-a1b0-4fd70dc92f5f",
+      "title": "烟雨蒙蒙",
+      "artist": "赵薇",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 238272,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/赵薇 - 烟雨蒙蒙.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "2e920cdb-622a-4c5e-b959-f7ca30a25aec",
+      "title": "爱如潮水",
+      "artist": "张信哲",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 236424,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/张信哲 - 爱如潮水.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "046e67b1-0e88-4c8e-a97d-85092b0eb512",
+      "title": "雨夜花",
+      "artist": "邓丽君",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 163032,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/邓丽君 - 雨夜花.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:ballad",
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:72"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 20,
+    "avg_score": 74,
+    "total_duration_ms": 5290680,
+    "total_duration_minutes": 88
+  },
+  "mood_mapping": {
+    "valence": 0.3,
+    "arousal": 0.2,
+    "energy": 0.2
+  },
+  "music_requirements": {
+    "genres": [
+      "ballad",
+      "piano"
+    ],
+    "tempo": "slow",
+    "mood_characteristics": {
+      "valence_level": "slightly_negative",
+      "energy_level": "very_low",
+      "description": "心情低落氛围，适合抚慰心灵的音乐"
+    }
+  }
+}
