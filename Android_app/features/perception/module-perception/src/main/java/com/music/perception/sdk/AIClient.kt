@@ -2,9 +2,9 @@ package com.music.perception.sdk
 
 import android.util.Log
 import com.music.perception.api.PerceptionConfig
-import com.music.perception.api.data.ExternalCameraSignal
-import com.music.perception.api.data.InternalCameraSignal
-import com.music.perception.api.data.PassengersDetail
+import com.music.core.api.models.ExternalCamera
+import com.music.core.api.models.InternalCamera
+import com.music.core.api.models.Passengers
 import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -22,7 +22,7 @@ class AIClient(private val config: PerceptionConfig) {
     private val gson = Gson()
     private val baseUrl = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
 
-    fun analyzeExternalCamera(base64Image: String): ExternalCameraSignal {
+    fun analyzeExternalCamera(base64Image: String): ExternalCamera {
         try {
             val jsonBody = JSONObject()
             jsonBody.put("model", "qwen-vl-max")
@@ -71,7 +71,13 @@ class AIClient(private val config: PerceptionConfig) {
                 val jsonEnd = content.lastIndexOf("}")
                 if (jsonStart != -1 && jsonEnd != -1) {
                     val cleanJson = content.substring(jsonStart, jsonEnd + 1)
-                    return gson.fromJson(cleanJson, ExternalCameraSignal::class.java)
+                    val parsed = gson.fromJson(cleanJson, ExternalCameraResponse::class.java)
+                    return ExternalCamera(
+                        primary_color = parsed.primary_color,
+                        secondary_color = null,
+                        brightness = parsed.brightness,
+                        scene_description = parsed.scene_description
+                    )
                 }
             } else {
                 Log.e("AIClient", "API Error: ${response.code} $responseBody")
@@ -80,18 +86,25 @@ class AIClient(private val config: PerceptionConfig) {
             Log.e("AIClient", "Exception: ${e.message}")
         }
 
-        return getMockExternalCameraSignal()
+        return getMockExternalCamera()
     }
 
-    private fun getMockExternalCameraSignal(): ExternalCameraSignal {
-        return ExternalCameraSignal(
+    private data class ExternalCameraResponse(
+        val scene_description: String?,
+        val primary_color: String?,
+        val brightness: Double?
+    )
+
+    private fun getMockExternalCamera(): ExternalCamera {
+        return ExternalCamera(
             scene_description = "city_driving_mock",
             primary_color = "#808080",
+            secondary_color = null,
             brightness = 0.5
         )
     }
 
-    fun analyzeInternalCamera(base64Image: String): InternalCameraSignal {
+    fun analyzeInternalCamera(base64Image: String): InternalCamera {
         try {
             val jsonBody = JSONObject()
             jsonBody.put("model", "qwen-vl-max")
@@ -140,7 +153,16 @@ class AIClient(private val config: PerceptionConfig) {
                 val jsonEnd = content.lastIndexOf("}")
                 if (jsonStart != -1 && jsonEnd != -1) {
                     val cleanJson = content.substring(jsonStart, jsonEnd + 1)
-                    return gson.fromJson(cleanJson, InternalCameraSignal::class.java)
+                    val parsed = gson.fromJson(cleanJson, InternalCameraResponse::class.java)
+                    return InternalCamera(
+                        mood = parsed.mood,
+                        confidence = parsed.confidence,
+                        passengers = Passengers(
+                            children = parsed.passengers?.children ?: 0,
+                            adults = parsed.passengers?.adults ?: 1,
+                            seniors = parsed.passengers?.seniors ?: 0
+                        )
+                    )
                 }
             } else {
                 Log.e("AIClient", "API Error: ${response.code} $responseBody")
@@ -149,14 +171,26 @@ class AIClient(private val config: PerceptionConfig) {
             Log.e("AIClient", "Exception: ${e.message}")
         }
 
-        return getMockInternalCameraSignal()
+        return getMockInternalCamera()
     }
 
-    private fun getMockInternalCameraSignal(): InternalCameraSignal {
-        return InternalCameraSignal(
+    private data class InternalCameraResponse(
+        val mood: String?,
+        val confidence: Double?,
+        val passengers: PassengersResponse?
+    )
+
+    private data class PassengersResponse(
+        val children: Int?,
+        val adults: Int?,
+        val seniors: Int?
+    )
+
+    private fun getMockInternalCamera(): InternalCamera {
+        return InternalCamera(
             mood = "neutral",
             confidence = 0.85,
-            passengers = PassengersDetail(adults = 1)
+            passengers = Passengers(adults = 1)
         )
     }
 }

@@ -6,7 +6,7 @@ import android.util.Base64
 import androidx.lifecycle.LifecycleOwner
 import com.music.perception.api.IPerceptionEngine
 import com.music.perception.api.PerceptionConfig
-import com.music.perception.api.data.*
+import com.music.core.api.models.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -102,10 +102,11 @@ class PerceptionEngine(
         val localAnalysis = localImageAnalyzer.analyze(bitmapToProcess)
         val aiResult = aiClient.analyzeExternalCamera(imageBase64)
         
-        val finalExternalSignal = aiResult.copy(
+        val finalExternalSignal = ExternalCamera(
             primary_color = localAnalysis.primaryColor,
             secondary_color = localAnalysis.secondaryColor,
-            brightness = localAnalysis.brightness
+            brightness = localAnalysis.brightness,
+            scene_description = aiResult.scene_description
         )
 
         // Internal Camera
@@ -117,21 +118,18 @@ class PerceptionEngine(
             val internalBase64 = Base64.encodeToString(internalBytes, Base64.NO_WRAP)
             
             val rawSignal = aiClient.analyzeInternalCamera(internalBase64)
-            val validationResult = confidenceValidator.validate(rawSignal.confidence)
+            val validationResult = confidenceValidator.validate(rawSignal.confidence ?: 0.0)
             
-            if (validationResult.isValid) {
-                rawSignal
-            } else {
-                rawSignal.copy(
-                    mood = "uncertain (low confidence: ${validationResult.formattedConfidence})",
-                    confidence = rawSignal.confidence
-                )
-            }
+            InternalCamera(
+                mood = if (validationResult.isValid) rawSignal.mood else "uncertain",
+                confidence = rawSignal.confidence,
+                passengers = rawSignal.passengers
+            )
         } else {
-            InternalCameraSignal(
+            InternalCamera(
                 mood = "unknown",
                 confidence = 0.0,
-                passengers = PassengersDetail(0, 0, 0)
+                passengers = Passengers(children = 0, adults = 0, seniors = 0)
             )
         }
 
@@ -139,8 +137,12 @@ class PerceptionEngine(
         val weatherResult = weatherService.getCurrentWeather()
 
         val signals = Signals(
-            vehicle = VehicleSignal(speed_kmh = location?.speed?.times(3.6) ?: 0.0),
-            environment = EnvironmentSignal(
+            vehicle = Vehicle(
+                speed_kmh = location?.speed?.times(3.6),
+                passenger_count = 1,
+                gear = "D"
+            ),
+            environment = Environment(
                 time_of_day = getHourOfDay(),
                 weather = weatherResult.weather,
                 temperature = weatherResult.temperature,
@@ -148,7 +150,7 @@ class PerceptionEngine(
             ),
             external_camera = finalExternalSignal,
             internal_camera = internalSignal,
-            internal_mic = InternalMicSignal(
+            internal_mic = InternalMic(
                 volume_level = micData.volume,
                 has_voice = micData.hasVoice,
                 voice_count = micData.voiceCount,

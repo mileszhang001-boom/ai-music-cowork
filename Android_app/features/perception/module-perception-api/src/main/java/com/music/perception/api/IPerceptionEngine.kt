@@ -1,6 +1,6 @@
 package com.music.perception.api
 
-import com.music.perception.api.data.StandardizedSignals
+import com.music.core.api.models.StandardizedSignals
 import kotlinx.coroutines.flow.Flow
 
 interface IPerceptionEngine {
