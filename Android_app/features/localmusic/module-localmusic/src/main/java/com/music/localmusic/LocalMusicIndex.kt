@@ -1,15 +1,30 @@
 package com.music.localmusic
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Environment
 import android.util.Log
+import androidx.core.content.ContextCompat
 import com.music.localmusic.models.Track
 import org.json.JSONArray
-import org.json.JSONObject
 import java.io.File
+
+data class LocalMusicConfig(
+    val storagePath: String = DEFAULT_STORAGE_PATH,
+    val indexDbPath: String = DEFAULT_INDEX_DB_PATH,
+    val indexJsonPath: String = DEFAULT_INDEX_JSON_PATH
+) {
+    companion object {
+        const val DEFAULT_STORAGE_PATH = "/sdcard/Music/AiMusic/"
+        const val DEFAULT_INDEX_DB_PATH = "/sdcard/Music/AiMusic/index.db"
+        const val DEFAULT_INDEX_JSON_PATH = "/sdcard/Music/AiMusic/index.json"
+    }
+}
 
 class LocalMusicIndex private constructor(
     private val context: Context?,
-    private val jsonPath: String?,
+    private val config: LocalMusicConfig,
     private val useAssets: Boolean
 ) {
     private var tracks: List<Track> = emptyList()
@@ -17,37 +32,85 @@ class LocalMusicIndex private constructor(
     
     companion object {
         private const val TAG = "LocalMusicIndex"
-        private const val DEFAULT_JSON_PATH = "/sdcard/Music/AiMusic/index.json"
         private const val DEFAULT_ASSETS_PATH = "index.json"
         
         @Volatile
         private var instance: LocalMusicIndex? = null
         
+        private var customConfig: LocalMusicConfig = LocalMusicConfig()
+        
+        fun setConfig(config: LocalMusicConfig) {
+            customConfig = config
+        }
+        
+        fun getConfig(): LocalMusicConfig = customConfig
+        
         @Deprecated("Use getInstance(context) for assets loading")
-        fun getInstance(jsonPath: String = DEFAULT_JSON_PATH): LocalMusicIndex {
+        fun getInstance(jsonPath: String = customConfig.indexJsonPath): LocalMusicIndex {
             return instance ?: synchronized(this) {
-                instance ?: LocalMusicIndex(null, jsonPath, false).also { instance = it }
+                instance ?: LocalMusicIndex(null, LocalMusicConfig(indexJsonPath = jsonPath), false).also { instance = it }
             }
         }
         
         fun getInstance(context: Context): LocalMusicIndex {
             return instance ?: synchronized(this) {
-                instance ?: LocalMusicIndex(context, null, true).also { instance = it }
+                instance ?: LocalMusicIndex(context, customConfig, true).also { instance = it }
+            }
+        }
+        
+        fun getInstance(context: Context, config: LocalMusicConfig): LocalMusicIndex {
+            customConfig = config
+            return instance ?: synchronized(this) {
+                instance ?: LocalMusicIndex(context, config, false).also { instance = it }
             }
         }
         
         fun getInstance(context: Context, jsonPath: String): LocalMusicIndex {
-            return instance ?: synchronized(this) {
-                instance ?: LocalMusicIndex(context, jsonPath, false).also { instance = it }
-            }
+            val config = LocalMusicConfig(indexJsonPath = jsonPath)
+            return getInstance(context, config)
+        }
+        
+        fun hasStoragePermission(context: Context): Boolean {
+            val readPermission = ContextCompat.checkSelfPermission(
+                context, Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+            
+            val writePermission = ContextCompat.checkSelfPermission(
+                context, Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+            
+            return readPermission && writePermission
+        }
+        
+        fun isExternalStorageWritable(): Boolean {
+            return Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
+        }
+        
+        fun isExternalStorageReadable(): Boolean {
+            return Environment.getExternalStorageState() in 
+                setOf(Environment.MEDIA_MOUNTED, Environment.MEDIA_MOUNTED_READ_ONLY)
         }
     }
     
     fun initialize(): Boolean {
         return try {
+            if (!useAssets && context != null) {
+                if (!hasStoragePermission(context)) {
+                    Log.e(TAG, "Storage permission not granted")
+                    return false
+                }
+                
+                if (!isExternalStorageReadable()) {
+                    Log.e(TAG, "External storage is not readable")
+                    return false
+                }
+                
+                ensureStorageDirectoryExists()
+            }
+            
             val jsonString = when {
                 useAssets && context != null -> loadFromAssets()
-                jsonPath != null -> loadFromFile(jsonPath)
+                !useAssets -> loadFromFile(config.indexJsonPath)
                 else -> {
                     Log.e(TAG, "No valid loading method specified")
                     return false
@@ -63,7 +126,7 @@ class LocalMusicIndex private constructor(
             
             if (tracks.isNotEmpty()) {
                 isInitialized = true
-                Log.i(TAG, "LocalMusicIndex initialized with ${tracks.size} tracks")
+                Log.i(TAG, "LocalMusicIndex initialized with ${tracks.size} tracks from ${config.indexJsonPath}")
                 true
             } else {
                 Log.e(TAG, "No tracks found in JSON file")
@@ -73,6 +136,36 @@ class LocalMusicIndex private constructor(
             Log.e(TAG, "Failed to initialize LocalMusicIndex", e)
             false
         }
+    }
+    
+    private fun ensureStorageDirectoryExists(): Boolean {
+        return try {
+            val storageDir = File(config.storagePath)
+            if (!storageDir.exists()) {
+                val created = storageDir.mkdirs()
+                if (created) {
+                    Log.i(TAG, "Created storage directory: ${config.storagePath}")
+                } else {
+                    Log.w(TAG, "Failed to create storage directory: ${config.storagePath}")
+                }
+                return created
+            }
+            true
+        } catch (e: Exception) {
+            Log.e(TAG, "Error ensuring storage directory exists", e)
+            false
+        }
+    }
+    
+    fun getStoragePath(): String = config.storagePath
+    
+    fun getIndexDbPath(): String = config.indexDbPath
+    
+    fun getIndexJsonPath(): String = config.indexJsonPath
+    
+    fun checkPermissions(): Boolean {
+        if (context == null) return false
+        return hasStoragePermission(context) && isExternalStorageReadable()
     }
     
     private fun loadFromAssets(): String? {
