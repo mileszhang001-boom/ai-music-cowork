@@ -167,6 +167,7 @@ class ContentEngine(
             "traffic_jam", "focus_work" -> listOf("children", "disney")
             "workout" -> listOf("children", "disney", "lullaby")
             "meditation" -> listOf("children", "disney")
+            // children_board 和 kids_mode 不排除儿童歌曲
             else -> emptyList()
         }
     }
@@ -177,7 +178,7 @@ class ContentEngine(
     private fun getChineseWeight(sceneType: String): Double {
         return when (sceneType) {
             "fatigue_alert" -> 5.0   // 疲劳提醒：降低中文权重，更多英文高能量歌曲
-            "kids_mode" -> 15.0      // 儿童模式：提高中文权重
+            "kids_mode", "children_board" -> 15.0  // 儿童模式：提高中文权重
             "family_outing" -> 12.0  // 家庭出行：提高中文权重
             "romantic_date" -> 8.0   // 浪漫约会：适中
             else -> 10.0             // 默认
@@ -190,10 +191,10 @@ class ContentEngine(
     private fun getChineseRatio(sceneType: String): Double {
         return when (sceneType) {
             "fatigue_alert" -> 0.4   // 疲劳提醒：40% 中文
-            "kids_mode" -> 0.9       // 儿童模式：90% 中文
+            "kids_mode", "children_board" -> 0.9  // 儿童模式：90% 中文
             "family_outing" -> 0.8   // 家庭出行：80% 中文
             "romantic_date" -> 0.6   // 浪漫约会：60% 中文
-            "rainy_night" -> 0.6     // 雨夜行车：60% 中文
+            "rainy_night", "rainy_emo" -> 0.6  // 雨夜行车：60% 中文
             "road_trip" -> 0.5       // 朋友出游：50% 中文
             else -> 0.6              // 默认：60% 中文
         }
