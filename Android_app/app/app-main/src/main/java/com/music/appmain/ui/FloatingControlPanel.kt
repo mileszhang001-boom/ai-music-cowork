@@ -1,6 +1,7 @@
 package com.music.appmain.ui
 
 import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.horizontalScroll
@@ -13,7 +14,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -102,6 +105,12 @@ private fun ControlPopup(
     onScenarioClick: (SceneScenario) -> Unit,
     onDismiss: () -> Unit
 ) {
+    var layer1Json by remember(signals) { mutableStateOf(signals?.let { json.encodeToString(it) } ?: "{}") }
+    var layer2Json by remember(sceneDescriptor) { mutableStateOf(sceneDescriptor?.let { json.encodeToString(it) } ?: "{}") }
+    var layer3Json by remember(effectCommands) { mutableStateOf(effectCommands?.let { json.encodeToString(it) } ?: "{}") }
+    
+    var animTrigger by remember { mutableStateOf(0) }
+
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(
@@ -119,38 +128,64 @@ private fun ControlPopup(
             Card(
                 modifier = Modifier
                     .fillMaxWidth(0.4f)
-                    .fillMaxHeight(0.9f),
+                    .fillMaxHeight(0.4f),
                 colors = CardDefaults.cardColors(
                     containerColor = Color(0xFF1E1E2E)
                 ),
                 shape = RoundedCornerShape(24.dp)
             ) {
-                Row(
+                Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                        .padding(16.dp)
                 ) {
-                    // 左侧控制栏 - 20%
+                    // 关闭按钮 - 左上角
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Start
+                    ) {
+                        IconButton(
+                            onClick = onDismiss,
+                            modifier = Modifier.size(36.dp)
+                        ) {
+                            Text(
+                                text = "✕",
+                                fontSize = 18.sp,
+                                color = Color.White.copy(alpha = 0.7f)
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    // 控制栏 - 主按钮 + 6场景按钮
                     ControlSection(
                         isRunning = isRunning,
                         onStart = onStart,
                         onStop = onStop,
-                        onScenarioClick = onScenarioClick,
-                        onDismiss = onDismiss,
+                        onScenarioClick = { scenario ->
+                            onScenarioClick(scenario)
+                            animTrigger++
+                            layer1Json = signals?.let { json.encodeToString(it) } ?: "{}"
+                            layer2Json = sceneDescriptor?.let { json.encodeToString(it) } ?: "{}"
+                            layer3Json = effectCommands?.let { json.encodeToString(it) } ?: "{}"
+                        },
                         modifier = Modifier
-                            .weight(0.2f)
-                            .fillMaxHeight()
+                            .fillMaxWidth()
+                            .height(120.dp)
                     )
 
-                    // 右侧数据栏 - 80%
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // JSON 展示栏
                     JsonDataSection(
-                        signals = signals,
-                        sceneDescriptor = sceneDescriptor,
-                        effectCommands = effectCommands,
+                        layer1Json = layer1Json,
+                        layer2Json = layer2Json,
+                        layer3Json = layer3Json,
+                        animTrigger = animTrigger,
                         modifier = Modifier
-                            .weight(0.8f)
-                            .fillMaxHeight()
+                            .fillMaxWidth()
+                            .weight(1f)
                     )
                 }
             }
@@ -164,69 +199,43 @@ private fun ControlSection(
     onStart: () -> Unit,
     onStop: () -> Unit,
     onScenarioClick: (SceneScenario) -> Unit,
-    onDismiss: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Row(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        // 关闭按钮
-        IconButton(
-            onClick = onDismiss,
-            modifier = Modifier.size(40.dp)
-        ) {
-            Text(
-                text = "✕",
-                fontSize = 20.sp,
-                color = Color.White.copy(alpha = 0.7f)
-            )
-        }
-
-        Spacer(modifier = Modifier.height(24.dp))
-
         // 主控制按钮
-        FloatingActionButton(
-            onClick = {
-                if (isRunning) onStop() else onStart()
-            },
-            modifier = Modifier.size(64.dp),
-            containerColor = if (isRunning) Color(0xFFF44336) else CarTheme.AccentCyan,
-            contentColor = Color.White,
-            shape = CircleShape
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.width(72.dp)
         ) {
+            FloatingActionButton(
+                onClick = {
+                    if (isRunning) onStop() else onStart()
+                },
+                modifier = Modifier.size(56.dp),
+                containerColor = if (isRunning) Color(0xFFF44336) else CarTheme.AccentCyan,
+                contentColor = Color.White,
+                shape = CircleShape
+            ) {
+                Text(
+                    text = if (isRunning) "⏹" else "▶",
+                    fontSize = 24.sp
+                )
+            }
             Text(
-                text = if (isRunning) "⏹" else "▶",
-                fontSize = 28.sp
+                text = if (isRunning) "停止" else "开始",
+                style = MaterialTheme.typography.labelSmall,
+                color = Color.White.copy(alpha = 0.7f),
+                modifier = Modifier.padding(top = 4.dp)
             )
         }
 
-        Text(
-            text = if (isRunning) "停止" else "开始",
-            style = MaterialTheme.typography.bodySmall,
-            color = Color.White.copy(alpha = 0.7f),
-            modifier = Modifier.padding(top = 4.dp)
-        )
-
-        Spacer(modifier = Modifier.height(20.dp))
-
-        Text(
-            text = "场景验证",
-            style = MaterialTheme.typography.titleSmall,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.White,
-            modifier = Modifier.align(Alignment.Start)
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        // 场景按钮列表
-        val scrollState = rememberScrollState()
+        // 6个场景按钮 - 2行3列
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .verticalScroll(scrollState),
+            modifier = Modifier.weight(1f),
             verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             val scenarios = listOf(
@@ -238,12 +247,32 @@ private fun ControlSection(
                 SceneScenario("fatigue_alert", "😴 疲劳提醒", "检测到疲劳", Color(0xFFF44336))
             )
 
-            scenarios.forEach { scenario ->
-                ScenarioButton(
-                    scenario = scenario,
-                    onClick = { onScenarioClick(scenario) },
-                    modifier = Modifier.fillMaxWidth()
-                )
+            // 第一行3个
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                scenarios.take(3).forEach { scenario ->
+                    ScenarioButton(
+                        scenario = scenario,
+                        onClick = { onScenarioClick(scenario) },
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+
+            // 第二行3个
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                scenarios.drop(3).forEach { scenario ->
+                    ScenarioButton(
+                        scenario = scenario,
+                        onClick = { onScenarioClick(scenario) },
+                        modifier = Modifier.weight(1f)
+                    )
+                }
             }
         }
     }
@@ -257,16 +286,16 @@ private fun ScenarioButton(
 ) {
     Button(
         onClick = onClick,
-        modifier = modifier.height(44.dp),
+        modifier = modifier.height(36.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = scenario.color
         ),
-        shape = RoundedCornerShape(10.dp),
-        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)
+        shape = RoundedCornerShape(8.dp),
+        contentPadding = PaddingValues(horizontal = 4.dp, vertical = 2.dp)
     ) {
         Text(
             text = scenario.name,
-            style = MaterialTheme.typography.bodySmall,
+            style = MaterialTheme.typography.labelSmall,
             fontWeight = FontWeight.SemiBold,
             color = Color.White,
             maxLines = 1,
@@ -278,33 +307,37 @@ private fun ScenarioButton(
 
 @Composable
 private fun JsonDataSection(
-    signals: StandardizedSignals?,
-    sceneDescriptor: SceneDescriptor?,
-    effectCommands: EffectCommands?,
+    layer1Json: String,
+    layer2Json: String,
+    layer3Json: String,
+    animTrigger: Int,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(6.dp)
     ) {
         // Layer 1
         JsonPanel(
-            title = "Layer 1",
-            jsonContent = signals?.let { json.encodeToString(it) } ?: "{}",
+            title = "Layer 1 - 感知层",
+            jsonContent = layer1Json,
+            animTrigger = animTrigger,
             modifier = Modifier.weight(1f)
         )
 
         // Layer 2
         JsonPanel(
-            title = "Layer 2",
-            jsonContent = sceneDescriptor?.let { json.encodeToString(it) } ?: "{}",
+            title = "Layer 2 - 推理层",
+            jsonContent = layer2Json,
+            animTrigger = animTrigger,
             modifier = Modifier.weight(1f)
         )
 
         // Layer 3
         JsonPanel(
-            title = "Layer 3",
-            jsonContent = effectCommands?.let { json.encodeToString(it) } ?: "{}",
+            title = "Layer 3 - 生成层",
+            jsonContent = layer3Json,
+            animTrigger = animTrigger,
             modifier = Modifier.weight(1f)
         )
     }
@@ -314,27 +347,51 @@ private fun JsonDataSection(
 private fun JsonPanel(
     title: String,
     jsonContent: String,
+    animTrigger: Int,
     modifier: Modifier = Modifier
 ) {
+    val alpha by animateFloatAsState(
+        targetValue = if (animTrigger > 0) 0.5f else 1f,
+        animationSpec = keyframes {
+            durationMillis = 300
+            0.5f at 150
+            1f at 300
+        },
+        label = "fade"
+    )
+    
+    val scale by animateFloatAsState(
+        targetValue = if (animTrigger > 0) 0.98f else 1f,
+        animationSpec = keyframes {
+            durationMillis = 300
+            0.98f at 150
+            1f at 300
+        },
+        label = "scale"
+    )
+
     Card(
-        modifier = modifier,
+        modifier = modifier.alpha(alpha).graphicsLayer {
+            scaleX = scale
+            scaleY = scale
+        },
         colors = CardDefaults.cardColors(
             containerColor = Color(0xFF0D1117)
         ),
-        shape = RoundedCornerShape(12.dp)
+        shape = RoundedCornerShape(8.dp)
     ) {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleSmall,
+                style = MaterialTheme.typography.labelMedium,
                 fontWeight = FontWeight.Bold,
                 color = CarTheme.AccentCyan,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(CarTheme.AccentCyan.copy(alpha = 0.1f))
-                    .padding(8.dp)
+                    .background(CarTheme.AccentCyan.copy(alpha = 0.15f))
+                    .padding(horizontal = 8.dp, vertical = 6.dp)
             )
 
             val scrollState = rememberScrollState()
@@ -344,14 +401,14 @@ private fun JsonPanel(
                 text = jsonContent,
                 style = MaterialTheme.typography.bodySmall.copy(
                     fontFamily = FontFamily.Monospace,
-                    lineHeight = 12.sp
+                    lineHeight = 10.sp
                 ),
                 color = Color(0xFF79C0FF),
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(scrollState)
                     .horizontalScroll(horizontalScrollState)
-                    .padding(8.dp)
+                    .padding(6.dp)
             )
         }
     }
