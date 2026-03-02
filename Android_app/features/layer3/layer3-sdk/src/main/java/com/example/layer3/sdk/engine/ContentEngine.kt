@@ -28,10 +28,8 @@ class ContentEngine(
 
     override suspend fun generatePlaylist(scene: SceneDescriptor): Result<List<Track>> {
         return try {
-            val config = LocalMusicIndex.getConfig()
-            Log.i(TAG, "Using config: indexJsonPath=${config.indexJsonPath}, storagePath=${config.storagePath}")
-            
-            val localMusicIndex = LocalMusicIndex.forceReinitialize(context, config)
+            // 使用 assets 模式加载 index.json
+            val localMusicIndex = LocalMusicIndex.getInstance(context)
             if (!localMusicIndex.initialize()) {
                 Log.e(TAG, "Failed to initialize LocalMusicIndex")
             }
@@ -78,6 +76,14 @@ class ContentEngine(
             hints?.music?.genres?.let { genres ->
                 if (track.genre != null && genres.any { it.equals(track.genre, ignoreCase = true) }) {
                     score += 15.0
+                }
+                // 中英文歌曲匹配：如果场景需要中文歌曲
+                val needsChinese = genres.any { it.contains("chinese", ignoreCase = true) }
+                val isChinese = track.genre?.contains("chinese", ignoreCase = true) == true
+                if (needsChinese && isChinese) {
+                    score += 10.0
+                } else if (!needsChinese && !isChinese) {
+                    score += 5.0
                 }
             }
             

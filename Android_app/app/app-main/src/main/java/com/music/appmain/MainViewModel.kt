@@ -22,14 +22,18 @@ import com.music.localmusic.player.RepeatMode
 import com.music.localmusic.player.ShuffleMode
 import com.music.localmusic.util.CoverGenerator
 import com.music.localmusic.models.Track
+import com.music.appmain.voice.VoiceInputState
 import com.music.perception.api.PerceptionConfig
 import com.music.perception.sdk.PerceptionEngine
 import com.music.semantic.EngineState
 import com.music.semantic.SemanticEngine
+import com.music.appmain.voice.VoiceInputCallback
+import com.music.appmain.voice.VoiceInputService
+import com.music.appmain.TtsCallback
+import com.music.appmain.TtsService
+import com.music.appmain.audio.AudioDuckManager
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class MainViewModel(
@@ -177,20 +181,20 @@ class MainViewModel(
             }
         }
         
-        val externalFilesDir = context.getExternalFilesDir(null)?.absolutePath 
-            ?: "/data/data/com.music.appmain/files"
+        // 使用 assets 模式加载 index.json，音乐文件存储在 /data/local/tmp/aimusic/
+        val publicMusicDir = "/data/local/tmp/aimusic"
         val config = LocalMusicConfig(
-            storagePath = externalFilesDir,
-            indexJsonPath = "$externalFilesDir/index.json"
+            storagePath = publicMusicDir,
+            indexJsonPath = "index.json"  // assets 中的文件名
         )
         LocalMusicIndex.setConfig(config)
-        localMusicIndex = LocalMusicIndex.getInstance(context, config)
+        localMusicIndex = LocalMusicIndex.getInstance(context)
         val indexInitialized = localMusicIndex?.initialize() ?: false
         _localMusicReady.value = indexInitialized
         _trackCount.value = localMusicIndex?.getTrackCount() ?: 0
         
         if (indexInitialized) {
-            Log.i(TAG, "本地音乐索引初始化成功，共 ${_trackCount.value} 首曲目")
+            Log.i(TAG, "本地音乐索引初始化成功（从 assets 加载），共 ${_trackCount.value} 首曲目")
         } else {
             Log.w(TAG, "本地音乐索引初始化失败")
         }
@@ -225,7 +229,7 @@ class MainViewModel(
 
     override fun onReadyForSpeech() {
         Log.i(TAG, "语音输入: 准备就绪")
-        _voiceInputState.value = VoiceInputState.Listening
+        _voiceInputState.value = VoiceInputState.Listening()
     }
 
     override fun onBeginningOfSpeech() {
@@ -258,6 +262,22 @@ class MainViewModel(
         _voiceInputState.value = VoiceInputState.Error(message)
     }
 
+    override fun onError(error: Int) {
+        val errorMessage = when (error) {
+            android.speech.SpeechRecognizer.ERROR_AUDIO -> "音频错误"
+            android.speech.SpeechRecognizer.ERROR_CLIENT -> "客户端错误"
+            android.speech.SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS -> "权限不足"
+            android.speech.SpeechRecognizer.ERROR_NETWORK -> "网络错误"
+            android.speech.SpeechRecognizer.ERROR_NETWORK_TIMEOUT -> "网络超时"
+            android.speech.SpeechRecognizer.ERROR_NO_MATCH -> "无法识别"
+            android.speech.SpeechRecognizer.ERROR_RECOGNIZER_BUSY -> "识别器忙"
+            android.speech.SpeechRecognizer.ERROR_SERVER -> "服务器错误"
+            android.speech.SpeechRecognizer.ERROR_SPEECH_TIMEOUT -> "语音超时"
+            else -> "未知错误: $error"
+        }
+        onVoiceError(errorMessage)
+    }
+
     fun startVoiceInput() {
         if (_isRunning.value) {
             stop()
@@ -265,7 +285,7 @@ class MainViewModel(
         
         audioDuckManager.duck()
         voiceInputService.startListening()
-        _voiceInputState.value = VoiceInputState.Listening
+        _voiceInputState.value = VoiceInputState.Listening()
         _voiceRecognizedText.value = ""
         Log.i(TAG, "开始语音输入")
     }
@@ -694,8 +714,6 @@ class MainViewModel(
         val simulatedSignals = when (scenarioId) {
             "rainy_emo" -> createRainyEmoSignals()
             "children_board" -> createChildrenBoardSignals()
-            "rain_stops" -> createRainStopsSignals()
-            "noisy_car" -> createNoisyCarSignals()
             "user_pop" -> createUserPopSignals()
             "beach_vacation" -> createBeachVacationSignals()
             "romantic_date" -> createRomanticDateSignals()
@@ -766,24 +784,24 @@ class MainViewModel(
             timestamp = java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", java.util.Locale.US).format(java.util.Date()),
             signals = com.music.core.api.models.Signals(
                 vehicle = com.music.core.api.models.Vehicle(
-                    speed_kmh = 30.0,
+                    speed_kmh = 25.0,
                     passenger_count = 4,
                     gear = "D"
                 ),
                 environment = com.music.core.api.models.Environment(
-                    time_of_day = 14.0,
+                    time_of_day = 9.0,
                     weather = "sunny",
-                    temperature = 25.0,
+                    temperature = 22.0,
                     date_type = "weekend"
                 ),
                 external_camera = com.music.core.api.models.ExternalCamera(
-                    scene_description = "suburban_street",
+                    scene_description = "school_zone_morning",
                     primary_color = "#FF6F00",
-                    secondary_color = "#FFCA28",
-                    brightness = 0.8
+                    secondary_color = "#FFB300",
+                    brightness = 0.85
                 ),
                 internal_camera = com.music.core.api.models.InternalCamera(
-                    mood = "happy",
+                    mood = "playful",
                     confidence = 0.9,
                     passengers = com.music.core.api.models.Passengers(
                         children = 2,
@@ -792,92 +810,10 @@ class MainViewModel(
                     )
                 ),
                 internal_mic = com.music.core.api.models.InternalMic(
-                    volume_level = 0.7,
+                    volume_level = 0.8,
                     has_voice = true,
                     voice_count = 4,
-                    noise_level = 0.5
-                )
-            ),
-            confidence = com.music.core.api.models.Confidence(overall = 0.9)
-        )
-    }
-    
-    private fun createRainStopsSignals(): StandardizedSignals {
-        return StandardizedSignals(
-            timestamp = java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", java.util.Locale.US).format(java.util.Date()),
-            signals = com.music.core.api.models.Signals(
-                vehicle = com.music.core.api.models.Vehicle(
-                    speed_kmh = 50.0,
-                    passenger_count = 1,
-                    gear = "D"
-                ),
-                environment = com.music.core.api.models.Environment(
-                    time_of_day = 16.0,
-                    weather = "sunny",
-                    temperature = 22.0,
-                    date_type = "weekday"
-                ),
-                external_camera = com.music.core.api.models.ExternalCamera(
-                    scene_description = "rainbow_after_rain",
-                    primary_color = "#00BCD4",
-                    secondary_color = "#4DD0E1",
-                    brightness = 0.85
-                ),
-                internal_camera = com.music.core.api.models.InternalCamera(
-                    mood = "happy",
-                    confidence = 0.9,
-                    passengers = com.music.core.api.models.Passengers(
-                        children = 0,
-                        adults = 1,
-                        seniors = 0
-                    )
-                ),
-                internal_mic = com.music.core.api.models.InternalMic(
-                    volume_level = 0.3,
-                    has_voice = false,
-                    voice_count = 0,
-                    noise_level = 0.15
-                )
-            ),
-            confidence = com.music.core.api.models.Confidence(overall = 0.9)
-        )
-    }
-    
-    private fun createNoisyCarSignals(): StandardizedSignals {
-        return StandardizedSignals(
-            timestamp = java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", java.util.Locale.US).format(java.util.Date()),
-            signals = com.music.core.api.models.Signals(
-                vehicle = com.music.core.api.models.Vehicle(
-                    speed_kmh = 35.0,
-                    passenger_count = 5,
-                    gear = "D"
-                ),
-                environment = com.music.core.api.models.Environment(
-                    time_of_day = 19.0,
-                    weather = "cloudy",
-                    temperature = 20.0,
-                    date_type = "weekend"
-                ),
-                external_camera = com.music.core.api.models.ExternalCamera(
-                    scene_description = "city_evening",
-                    primary_color = "#D500F9",
-                    secondary_color = "#EA80FC",
-                    brightness = 0.5
-                ),
-                internal_camera = com.music.core.api.models.InternalCamera(
-                    mood = "excited",
-                    confidence = 0.8,
-                    passengers = com.music.core.api.models.Passengers(
-                        children = 1,
-                        adults = 3,
-                        seniors = 1
-                    )
-                ),
-                internal_mic = com.music.core.api.models.InternalMic(
-                    volume_level = 0.9,
-                    has_voice = true,
-                    voice_count = 5,
-                    noise_level = 0.8
+                    noise_level = 0.6
                 )
             ),
             confidence = com.music.core.api.models.Confidence(overall = 0.9)
@@ -930,24 +866,24 @@ class MainViewModel(
             timestamp = java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", java.util.Locale.US).format(java.util.Date()),
             signals = com.music.core.api.models.Signals(
                 vehicle = com.music.core.api.models.Vehicle(
-                    speed_kmh = 60.0,
+                    speed_kmh = 80.0,
                     passenger_count = 2,
                     gear = "D"
                 ),
                 environment = com.music.core.api.models.Environment(
-                    time_of_day = 14.0,
+                    time_of_day = 16.0,
                     weather = "sunny",
-                    temperature = 32.0,
+                    temperature = 30.0,
                     date_type = "weekend"
                 ),
                 external_camera = com.music.core.api.models.ExternalCamera(
-                    scene_description = "coastal_highway_beach",
-                    primary_color = "#00B8D4",
-                    secondary_color = "#80DEEA",
-                    brightness = 0.95
+                    scene_description = "coastal_highway_sunset_beach",
+                    primary_color = "#00695C",
+                    secondary_color = "#4DB6AC",
+                    brightness = 0.9
                 ),
                 internal_camera = com.music.core.api.models.InternalCamera(
-                    mood = "relaxed",
+                    mood = "vacation",
                     confidence = 0.9,
                     passengers = com.music.core.api.models.Passengers(
                         children = 0,
@@ -956,10 +892,10 @@ class MainViewModel(
                     )
                 ),
                 internal_mic = com.music.core.api.models.InternalMic(
-                    volume_level = 0.3,
+                    volume_level = 0.4,
                     has_voice = true,
                     voice_count = 2,
-                    noise_level = 0.2
+                    noise_level = 0.15
                 )
             ),
             confidence = com.music.core.api.models.Confidence(overall = 0.9)

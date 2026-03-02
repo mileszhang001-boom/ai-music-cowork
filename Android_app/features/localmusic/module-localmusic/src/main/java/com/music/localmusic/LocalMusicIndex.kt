@@ -16,9 +16,9 @@ data class LocalMusicConfig(
     val indexJsonPath: String = DEFAULT_INDEX_JSON_PATH
 ) {
     companion object {
-        const val DEFAULT_STORAGE_PATH = "/sdcard/Music/AiMusic/"
-        const val DEFAULT_INDEX_DB_PATH = "/sdcard/Music/AiMusic/index.db"
-        const val DEFAULT_INDEX_JSON_PATH = "/sdcard/Music/AiMusic/index.json"
+        const val DEFAULT_STORAGE_PATH = "/data/local/tmp/aimusic/"
+        const val DEFAULT_INDEX_DB_PATH = "/data/local/tmp/aimusic/index.db"
+        const val DEFAULT_INDEX_JSON_PATH = "index.json"  // assets 中的文件名
     }
 }
 
@@ -85,6 +85,11 @@ class LocalMusicIndex private constructor(
         }
         
         fun hasStoragePermission(context: Context): Boolean {
+            // Android 11+ (API 30+) 分区存储
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                return true
+            }
+            
             val readPermission = ContextCompat.checkSelfPermission(
                 context, Manifest.permission.READ_EXTERNAL_STORAGE
             ) == PackageManager.PERMISSION_GRANTED

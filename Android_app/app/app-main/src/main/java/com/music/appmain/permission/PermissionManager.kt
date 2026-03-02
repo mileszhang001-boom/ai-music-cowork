@@ -41,7 +41,6 @@ class PermissionManager(private val activity: ComponentActivity) {
 
     private val _permissionResults = MutableStateFlow<List<PermissionResult>>(emptyList())
     val permissionResults: StateFlow<List<PermissionResult>> = _permissionResults.asStateFlow()
-
     private var onPermissionsResultCallback: ((List<PermissionResult>) -> Unit)? = null
 
     private val permissionLauncher = activity.registerForActivityResult(

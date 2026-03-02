@@ -3,6 +3,7 @@ package com.music.perception.sdk
 import android.content.Context
 import android.graphics.Bitmap
 import android.util.Base64
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import com.music.perception.api.IPerceptionEngine
 import com.music.perception.api.PerceptionConfig
@@ -88,6 +89,9 @@ class PerceptionEngine(
     private suspend fun processFrame() {
         val location = sensorManager.currentLocation
         val micData = sensorManager.getAudioMetrics()
+        
+        // 添加音频调试日志
+        Log.d("PerceptionEngine", "MicData: volume=${String.format("%.3f", micData.volume)}, hasVoice=${micData.hasVoice}, voiceCount=${micData.voiceCount}, noiseLevel=${String.format("%.3f", micData.noiseLevel)}")
         
         val bitmapToProcess = currentBitmap?.let { bmp ->
             if (bmp.width >= 10 && bmp.height >= 10) {
