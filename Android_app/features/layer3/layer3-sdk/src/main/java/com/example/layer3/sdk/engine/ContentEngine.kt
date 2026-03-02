@@ -142,7 +142,7 @@ class ContentEngine(
             
             track.sceneTags?.let { tags ->
                 if (tags.any { it.equals(scene.scene_type, ignoreCase = true) }) {
-                    score += 25.0
+                    score += 35.0
                 }
             }
             
