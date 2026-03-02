@@ -40,7 +40,7 @@ class MainViewModel(
     private val llmApiKey: String = "",
     private val llmBaseUrl: String = "https://dashscope.aliyuncs.com/compatible-mode/v1",
     private val llmModel: String = "qwen-plus"
-) : AndroidViewModel(application), TtsCallback, VoiceInputCallback {
+) : AndroidViewModel(application), TtsCallback {
 
     companion object {
         private const val TAG = "MainViewModel"
@@ -53,7 +53,7 @@ class MainViewModel(
 
     private val ttsService: TtsService = TtsService(context)
     private val audioDuckManager: AudioDuckManager = AudioDuckManager(context)
-    private val voiceInputService: VoiceInputService = VoiceInputService(context)
+    // private val voiceInputService: VoiceInputService = VoiceInputService(context)
     
     private var musicPlayer: MusicPlayer? = null
     private var localMusicIndex: LocalMusicIndex? = null
@@ -76,14 +76,14 @@ class MainViewModel(
     private val _isInitialized = MutableStateFlow(false)
     val isInitializedFlow: StateFlow<Boolean> = _isInitialized.asStateFlow()
     
-    private val _voiceInputState = MutableStateFlow<VoiceInputState>(VoiceInputState.Idle)
-    val voiceInputStateFlow: StateFlow<VoiceInputState> = _voiceInputState.asStateFlow()
+    // private val _voiceInputState = MutableStateFlow<VoiceInputState>(VoiceInputState.Idle)
+    // val voiceInputStateFlow: StateFlow<VoiceInputState> = _voiceInputState.asStateFlow()
     
-    private val _voiceRecognizedText = MutableStateFlow("")
-    val voiceRecognizedTextFlow: StateFlow<String> = _voiceRecognizedText.asStateFlow()
+    // private val _voiceRecognizedText = MutableStateFlow("")
+    // val voiceRecognizedTextFlow: StateFlow<String> = _voiceRecognizedText.asStateFlow()
     
-    private val _voiceAmplitude = MutableStateFlow(0f)
-    val voiceAmplitudeFlow: StateFlow<Float> = _voiceAmplitude.asStateFlow()
+    // private val _voiceAmplitude = MutableStateFlow(0f)
+    // val voiceAmplitudeFlow: StateFlow<Float> = _voiceAmplitude.asStateFlow()
     
     private val _playerState = MutableStateFlow<PlayerState>(PlayerState.Idle)
     val playerStateFlow: StateFlow<PlayerState> = _playerState.asStateFlow()
@@ -122,15 +122,15 @@ class MainViewModel(
     init {
         initializeEngines()
         initializeTts()
-        initializeVoiceInput()
+        // initializeVoiceInput()
         initializeMusicPlayer()
     }
     
-    private fun initializeVoiceInput() {
-        voiceInputService.setCallback(this)
-        voiceInputService.createSpeechRecognizer()
-        Log.i(TAG, "语音输入服务初始化完成")
-    }
+    // private fun initializeVoiceInput() {
+    //     voiceInputService.setCallback(this)
+    //     voiceInputService.createSpeechRecognizer()
+    //     Log.i(TAG, "语音输入服务初始化完成")
+    // }
     
     private fun initializeMusicPlayer() {
         musicPlayer = MusicPlayer(context)
@@ -223,66 +223,66 @@ class MainViewModel(
         audioDuckManager.unduck()
     }
 
-    override fun onReadyForSpeech() {
-        Log.i(TAG, "语音输入: 准备就绪")
-        _voiceInputState.value = VoiceInputState.Listening
-    }
+    // override fun onReadyForSpeech() {
+    //     Log.i(TAG, "语音输入: 准备就绪")
+    //     _voiceInputState.value = VoiceInputState.Listening
+    // }
 
-    override fun onBeginningOfSpeech() {
-        Log.i(TAG, "语音输入: 开始说话")
-    }
+    // override fun onBeginningOfSpeech() {
+    //     Log.i(TAG, "语音输入: 开始说话")
+    // }
 
-    override fun onRmsChanged(rmsdB: Float) {
-        val normalizedAmplitude = ((rmsdB + 2f) / 12f).coerceIn(0f, 1f)
-        _voiceAmplitude.value = normalizedAmplitude
-        _voiceInputState.value = VoiceInputState.Processing((normalizedAmplitude * 100).toInt())
-    }
+    // override fun onRmsChanged(rmsdB: Float) {
+    //     val normalizedAmplitude = ((rmsdB + 2f) / 12f).coerceIn(0f, 1f)
+    //     _voiceAmplitude.value = normalizedAmplitude
+    //     _voiceInputState.value = VoiceInputState.Processing((normalizedAmplitude * 100).toInt())
+    // }
 
-    override fun onEndOfSpeech() {
-        Log.i(TAG, "语音输入: 说话结束")
-        _voiceInputState.value = VoiceInputState.Processing()
-    }
+    // override fun onEndOfSpeech() {
+    //     Log.i(TAG, "语音输入: 说话结束")
+    //     _voiceInputState.value = VoiceInputState.Processing()
+    // }
 
-    override fun onResult(text: String) {
-        Log.i(TAG, "语音输入识别结果: $text")
-        _voiceRecognizedText.value = text
-        _voiceInputState.value = VoiceInputState.Result(text)
-        
-        if (text.isNotBlank()) {
-            processVoiceQuery(text)
-        }
-    }
+    // override fun onResult(text: String) {
+    //     Log.i(TAG, "语音输入识别结果: $text")
+    //     _voiceRecognizedText.value = text
+    //     _voiceInputState.value = VoiceInputState.Result(text)
+    //     
+    //     if (text.isNotBlank()) {
+    //         processVoiceQuery(text)
+    //     }
+    // }
 
-    override fun onVoiceError(message: String) {
-        Log.e(TAG, "语音输入错误: $message")
-        _voiceInputState.value = VoiceInputState.Error(message)
-    }
+    // override fun onVoiceError(message: String) {
+    //     Log.e(TAG, "语音输入错误: $message")
+    //     _voiceInputState.value = VoiceInputState.Error(message)
+    // }
 
-    fun startVoiceInput() {
-        if (_isRunning.value) {
-            stop()
-        }
-        
-        audioDuckManager.duck()
-        voiceInputService.startListening()
-        _voiceInputState.value = VoiceInputState.Listening
-        _voiceRecognizedText.value = ""
-        Log.i(TAG, "开始语音输入")
-    }
+    // fun startVoiceInput() {
+    //     if (_isRunning.value) {
+    //         stop()
+    //     }
+    //     
+    //     audioDuckManager.duck()
+    //     voiceInputService.startListening()
+    //     _voiceInputState.value = VoiceInputState.Listening
+    //     _voiceRecognizedText.value = ""
+    //     Log.i(TAG, "开始语音输入")
+    // }
 
-    fun stopVoiceInput() {
-        voiceInputService.stopListening()
-        audioDuckManager.unduck()
-        Log.i(TAG, "停止语音输入")
-    }
+    // fun stopVoiceInput() {
+    //     voiceInputService.stopListening()
+    //     audioDuckManager.unduck()
+    //     Log.i(TAG, "停止语音输入")
+    // }
 
-    fun cancelVoiceInput() {
-        voiceInputService.cancel()
-        audioDuckManager.unduck()
-        _voiceInputState.value = VoiceInputState.Idle
-        _voiceRecognizedText.value = ""
-        Log.i(TAG, "取消语音输入")
-    }
+    // fun cancelVoiceInput() {
+    //     voiceInputService.cancel()
+    //     audioDuckManager.unduck()
+    //     _voiceInputState.value = VoiceInputState.Idle
+    //     _voiceRecognizedText.value = ""
+    //     Log.i(TAG, "取消语音输入")
+    // }
 
     private fun processVoiceQuery(query: String) {
         Log.i(TAG, "处理语音查询: $query")
@@ -1064,7 +1064,7 @@ class MainViewModel(
 
         ttsService.shutdown()
         audioDuckManager.release()
-        voiceInputService.destroy()
+        // voiceInputService.destroy()
         
         musicPlayer?.release()
         musicPlayer = null

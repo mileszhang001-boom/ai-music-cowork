@@ -29,6 +29,8 @@ import com.music.appmain.permission.PermissionManager
 import com.music.appmain.permission.PermissionsState
 import com.music.appmain.ui.SceneScenario
 import com.music.appmain.ui.PlayerControlBar
+import com.music.appmain.ui.CarAIPanel
+import com.music.appmain.ui.CarTheme
 import com.music.localmusic.player.PlayerState
 import com.music.localmusic.player.PlaybackInfo
 import com.music.perception.api.PerceptionConfig
@@ -119,9 +121,9 @@ private fun MainScreen(
     val currentAlbumArt by viewModel.currentAlbumArtFlow.collectAsState()
     val playlist by viewModel.playlistFlow.collectAsState()
     val playlistIndex by viewModel.playlistIndexFlow.collectAsState()
-    val voiceInputState by viewModel.voiceInputStateFlow.collectAsState()
-    val voiceRecognizedText by viewModel.voiceRecognizedTextFlow.collectAsState()
-    val voiceAmplitude by viewModel.voiceAmplitudeFlow.collectAsState()
+    // val voiceInputState by viewModel.voiceInputStateFlow.collectAsState()
+    // val voiceRecognizedText by viewModel.voiceRecognizedTextFlow.collectAsState()
+    // val voiceAmplitude by viewModel.voiceAmplitudeFlow.collectAsState()
     
     var showPermissionDialog by remember { mutableStateOf(false) }
     var hasShownPermissionDialog by remember { mutableStateOf(false) }
@@ -140,99 +142,22 @@ private fun MainScreen(
     Row(
         modifier = Modifier
             .fillMaxSize()
-            .padding(8.dp)
     ) {
-        Column(
-            modifier = Modifier
-                .weight(2f)
-                .fillMaxHeight()
-        ) {
-            ControlPanel(
-                isRunning = isRunning,
-                isInitialized = isInitialized,
-                permissionsGranted = permissionsState.value.allGranted,
-                voiceInputState = voiceInputState,
-                voiceRecognizedText = voiceRecognizedText,
-                voiceAmplitude = voiceAmplitude,
-                onStart = { viewModel.start() },
-                onStop = { viewModel.stop() },
-                onRequestPermissions = { permissionManager.requestPermissions() },
-                onScenarioClick = { scenario ->
-                    if (isRunning) {
-                        viewModel.stop()
-                    }
-                    viewModel.simulateScenario(scenario.id)
-                    isLoading = true
-                    displayLayer1 = null
-                    displayLayer2 = null
-                    displayLayer3 = null
-                },
-                onVoiceInputStart = { viewModel.startVoiceInput() },
-                onVoiceInputStop = { viewModel.stopVoiceInput() },
-                onVoiceInputCancel = { viewModel.cancelVoiceInput() },
-                modifier = Modifier.fillMaxWidth()
-            )
-            
-            Spacer(modifier = Modifier.height(8.dp))
-            
-            LaunchedEffect(isLoading, standardizedSignals, sceneDescriptor, effectCommands) {
-                if (isLoading) {
-                    delay(1000)
-                    displayLayer1 = standardizedSignals?.let { 
-                        try { Json { prettyPrint = true }.encodeToString(it) } catch (e: Exception) { "序列化错误: ${e.message}" }
-                    }
-                    delay(1000)
-                    displayLayer2 = sceneDescriptor?.let { 
-                        try { Json { prettyPrint = true }.encodeToString(it) } catch (e: Exception) { "序列化错误: ${e.message}" }
-                    }
-                    delay(1000)
-                    displayLayer3 = effectCommands?.let { 
-                        try { Json { prettyPrint = true }.encodeToString(it) } catch (e: Exception) { "序列化错误: ${e.message}" }
-                    }
-                    isLoading = false
-                } else {
-                    displayLayer1 = standardizedSignals?.let { 
-                        try { Json { prettyPrint = true }.encodeToString(it) } catch (e: Exception) { "序列化错误: ${e.message}" }
-                    }
-                    displayLayer2 = sceneDescriptor?.let { 
-                        try { Json { prettyPrint = true }.encodeToString(it) } catch (e: Exception) { "序列化错误: ${e.message}" }
-                    }
-                    displayLayer3 = effectCommands?.let { 
-                        try { Json { prettyPrint = true }.encodeToString(it) } catch (e: Exception) { "序列化错误: ${e.message}" }
-                    }
+        CarAIPanel(
+            signals = standardizedSignals,
+            sceneDescriptor = sceneDescriptor,
+            effectCommands = effectCommands,
+            isRunning = isRunning,
+            onStart = { viewModel.start() },
+            onStop = { viewModel.stop() },
+            onScenarioClick = { scenario ->
+                if (isRunning) {
+                    viewModel.stop()
                 }
-            }
-            
-            LayerJsonPanels(
-                layer1Data = if (isLoading && displayLayer1 == null) "Loading..." else displayLayer1,
-                layer2Data = if (isLoading && displayLayer2 == null) "Loading..." else displayLayer2,
-                layer3Data = if (isLoading && displayLayer3 == null) "Loading..." else displayLayer3,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-            )
-        }
-        
-        Spacer(modifier = Modifier.width(8.dp))
-        
-        PlayerControlBar(
-            playerState = playerState,
-            playbackInfo = playbackInfo,
-            playlistSize = viewModel.playlistSizeFlow.collectAsState().value,
-            currentIndex = playlistIndex,
-            repeatMode = repeatMode,
-            currentAlbumArt = currentAlbumArt,
-            playlist = playlist,
-            onPause = { viewModel.pause() },
-            onResume = { viewModel.resume() },
-            onNext = { viewModel.next() },
-            onPrevious = { viewModel.previous() },
-            onSeek = { viewModel.seekTo(it) },
-            onToggleRepeatMode = { viewModel.toggleRepeatMode() },
-            onPlayTrack = { index -> viewModel.playTrackAtIndex(index) },
+                viewModel.simulateScenario(scenario.id)
+            },
             modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight()
+                .fillMaxSize()
         )
     }
     
@@ -263,16 +188,16 @@ private fun ControlPanel(
     isRunning: Boolean,
     isInitialized: Boolean,
     permissionsGranted: Boolean,
-    voiceInputState: VoiceInputState,
-    voiceRecognizedText: String,
-    voiceAmplitude: Float,
+    // voiceInputState: VoiceInputState,
+    // voiceRecognizedText: String,
+    // voiceAmplitude: Float,
     onStart: () -> Unit,
     onStop: () -> Unit,
     onRequestPermissions: () -> Unit,
     onScenarioClick: (SceneScenario) -> Unit,
-    onVoiceInputStart: () -> Unit,
-    onVoiceInputStop: () -> Unit,
-    onVoiceInputCancel: () -> Unit,
+    // onVoiceInputStart: () -> Unit,
+    // onVoiceInputStop: () -> Unit,
+    // onVoiceInputCancel: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val scenarios = listOf(
@@ -286,7 +211,8 @@ private fun ControlPanel(
         SceneScenario("fatigue_alert", "疲劳提醒", "检测到疲劳", Color(0xFFF44336))
     )
     
-    val isListening = voiceInputState is VoiceInputState.Listening || voiceInputState is VoiceInputState.Processing
+    // val isListening = voiceInputState is VoiceInputState.Listening || voiceInputState is VoiceInputState.Processing
+    val isListening = false
     
     Card(
         modifier = modifier,
@@ -320,16 +246,16 @@ private fun ControlPanel(
             
             Spacer(modifier = Modifier.height(8.dp))
             
-            VoiceInputButton(
-                voiceInputState = voiceInputState,
-                voiceRecognizedText = voiceRecognizedText,
-                voiceAmplitude = voiceAmplitude,
-                onStart = onVoiceInputStart,
-                onStop = onVoiceInputStop,
-                onCancel = onVoiceInputCancel,
-                enabled = isInitialized && permissionsGranted && !isRunning,
-                modifier = Modifier.fillMaxWidth()
-            )
+            // VoiceInputButton(
+            //     voiceInputState = voiceInputState,
+            //     voiceRecognizedText = voiceRecognizedText,
+            //     voiceAmplitude = voiceAmplitude,
+            //     onStart = onVoiceInputStart,
+            //     onStop = onVoiceInputStop,
+            //     onCancel = onVoiceInputCancel,
+            //     enabled = isInitialized && permissionsGranted && !isRunning,
+            //     modifier = Modifier.fillMaxWidth()
+            // )
             
             Spacer(modifier = Modifier.height(12.dp))
             
@@ -373,107 +299,107 @@ private fun ControlPanel(
     }
 }
 
-@Composable
-private fun VoiceInputButton(
-    voiceInputState: VoiceInputState,
-    voiceRecognizedText: String,
-    voiceAmplitude: Float,
-    onStart: () -> Unit,
-    onStop: () -> Unit,
-    onCancel: () -> Unit,
-    enabled: Boolean,
-    modifier: Modifier = Modifier
-) {
-    val isListening = voiceInputState is VoiceInputState.Listening || voiceInputState is VoiceInputState.Processing
-    val isError = voiceInputState is VoiceInputState.Error
-    val hasResult = voiceInputState is VoiceInputState.Result
-    
-    val backgroundColor = when {
-        isListening -> Color(0xFFE91E63)
-        isError -> Color(0xFFF44336)
-        hasResult -> Color(0xFF4CAF50)
-        else -> Color(0xFF2196F3)
-    }
-    
-    val buttonText = when {
-        isListening -> "正在聆听..."
-        isError -> (voiceInputState as VoiceInputState.Error).message
-        hasResult -> voiceRecognizedText.ifEmpty { "识别完成" }
-        else -> "🎤 语音输入"
-    }
-    
-    val pulseScale = if (isListening) {
-        1f + voiceAmplitude * 0.1f
-    } else {
-        1f
-    }
-    
-    Card(
-        modifier = modifier
-            .height(48.dp)
-            .graphicsLayer {
-                scaleX = pulseScale
-                scaleY = pulseScale
-            },
-        colors = CardDefaults.cardColors(containerColor = backgroundColor),
-        shape = RoundedCornerShape(8.dp),
-        onClick = {
-            if (!enabled) return@Card
-            when {
-                isListening -> onStop()
-                else -> onStart()
-            }
-        }
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 12.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
-            ) {
-                if (isListening) {
-                    androidx.compose.animation.AnimatedVisibility(
-                        visible = true,
-                        enter = androidx.compose.animation.fadeIn(),
-                        exit = androidx.compose.animation.fadeOut()
-                    ) {
-                        androidx.compose.foundation.layout.Box(
-                            modifier = Modifier
-                                .size(16.dp)
-                                .background(Color.White.copy(alpha = 0.3f), androidx.compose.foundation.shape.CircleShape)
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                }
-                
-                Text(
-                    text = buttonText,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-            }
-            
-            if (isListening) {
-                LinearProgressIndicator(
-                    progress = { voiceAmplitude },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(2.dp)
-                        .align(Alignment.BottomCenter),
-                    color = Color.White.copy(alpha = 0.5f),
-                    trackColor = Color.White.copy(alpha = 0.2f)
-                )
-            }
-        }
-    }
-}
+// @Composable
+// private fun VoiceInputButton(
+//     voiceInputState: VoiceInputState,
+//     voiceRecognizedText: String,
+//     voiceAmplitude: Float,
+//     onStart: () -> Unit,
+//     onStop: () -> Unit,
+//     onCancel: () -> Unit,
+//     enabled: Boolean,
+//     modifier: Modifier = Modifier
+// ) {
+//     val isListening = voiceInputState is VoiceInputState.Listening || voiceInputState is VoiceInputState.Processing
+//     val isError = voiceInputState is VoiceInputState.Error
+//     val hasResult = voiceInputState is VoiceInputState.Result
+//     
+//     val backgroundColor = when {
+//         isListening -> Color(0xFFE91E63)
+//         isError -> Color(0xFFF44336)
+//         hasResult -> Color(0xFF4CAF50)
+//         else -> Color(0xFF2196F3)
+//     }
+//     
+//     val buttonText = when {
+//         isListening -> "正在聆听..."
+//         isError -> (voiceInputState as VoiceInputState.Error).message
+//         hasResult -> voiceRecognizedText.ifEmpty { "识别完成" }
+//         else -> "🎤 语音输入"
+//     }
+//     
+//     val pulseScale = if (isListening) {
+//         1f + voiceAmplitude * 0.1f
+//     } else {
+//         1f
+//     }
+//     
+//     Card(
+//         modifier = modifier
+//             .height(48.dp)
+//             .graphicsLayer {
+//                 scaleX = pulseScale
+//                 scaleY = pulseScale
+//             },
+//         colors = CardDefaults.cardColors(containerColor = backgroundColor),
+//         shape = RoundedCornerShape(8.dp),
+//         onClick = {
+//             if (!enabled) return@Card
+//             when {
+//                 isListening -> onStop()
+//                 else -> onStart()
+//             }
+//         }
+//     ) {
+//         Box(
+//             modifier = Modifier
+//                 .fillMaxSize()
+//                 .padding(horizontal = 12.dp),
+//             contentAlignment = Alignment.Center
+//         ) {
+//             Row(
+//                 verticalAlignment = Alignment.CenterVertically,
+//                 horizontalArrangement = Arrangement.Center
+//             ) {
+//                 if (isListening) {
+//                     androidx.compose.animation.AnimatedVisibility(
+//                         visible = true,
+//                         enter = androidx.compose.animation.fadeIn(),
+//                         exit = androidx.compose.animation.fadeOut()
+//                     ) {
+//                         androidx.compose.foundation.layout.Box(
+//                             modifier = Modifier
+//                                 .size(16.dp)
+//                                 .background(Color.White.copy(alpha = 0.3f), androidx.compose.foundation.shape.CircleShape)
+//                         )
+//                     }
+//                     Spacer(modifier = Modifier.width(8.dp))
+//                 }
+//                 
+//                 Text(
+//                     text = buttonText,
+//                     style = MaterialTheme.typography.titleMedium,
+//                     fontWeight = FontWeight.Bold,
+//                     color = Color.White,
+//                     maxLines = 1,
+//                     overflow = TextOverflow.Ellipsis
+//                 )
+//             }
+//             
+//             if (isListening) {
+//                 LinearProgressIndicator(
+//                     progress = { voiceAmplitude },
+//                     modifier = Modifier
+//                         .fillMaxWidth()
+//                         .height(2.dp)
+//                         .align(Alignment.BottomCenter),
+//                     color = Color.White.copy(alpha = 0.5f),
+//                     trackColor = Color.White.copy(alpha = 0.2f)
+//                 )
+//             }
+//         }
+//     }
+// }
 
 @Composable
 private fun ScenarioChip(
