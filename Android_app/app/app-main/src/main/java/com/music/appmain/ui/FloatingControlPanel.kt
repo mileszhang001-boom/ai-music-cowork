@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
@@ -78,10 +79,7 @@ fun FloatingControlPanel(
             isRunning = isRunning,
             onStart = onStart,
             onStop = onStop,
-            onScenarioClick = { scenario ->
-                onScenarioClick(scenario)
-                showPopup = false
-            },
+            onScenarioClick = onScenarioClick,
             onDismiss = { showPopup = false }
         )
     }
@@ -104,8 +102,6 @@ private fun ControlPopup(
     onScenarioClick: (SceneScenario) -> Unit,
     onDismiss: () -> Unit
 ) {
-    var selectedJson by remember { mutableStateOf<String?>(null) }
-
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(
@@ -122,78 +118,40 @@ private fun ControlPopup(
         ) {
             Card(
                 modifier = Modifier
-                    .fillMaxWidth(0.95f)
+                    .fillMaxWidth(0.4f)
                     .fillMaxHeight(0.9f),
                 colors = CardDefaults.cardColors(
                     containerColor = Color(0xFF1E1E2E)
                 ),
                 shape = RoundedCornerShape(24.dp)
             ) {
-                Column(
+                Row(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(20.dp)
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            text = "控制面板",
-                            style = MaterialTheme.typography.titleLarge,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White
-                        )
-                        
-                        if (selectedJson != null) {
-                            TextButton(onClick = { selectedJson = null }) {
-                                Text("← 返回", color = CarTheme.AccentCyan)
-                            }
-                        }
-                        
-                        IconButton(
-                            onClick = onDismiss,
-                            modifier = Modifier.size(32.dp)
-                        ) {
-                            Text(
-                                text = "✕",
-                                fontSize = 20.sp,
-                                color = Color.White.copy(alpha = 0.7f)
-                            )
-                        }
-                    }
+                    // 左侧控制栏 - 20%
+                    ControlSection(
+                        isRunning = isRunning,
+                        onStart = onStart,
+                        onStop = onStop,
+                        onScenarioClick = onScenarioClick,
+                        onDismiss = onDismiss,
+                        modifier = Modifier
+                            .weight(0.2f)
+                            .fillMaxHeight()
+                    )
 
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    AnimatedContent(
-                        targetState = selectedJson,
-                        transitionSpec = {
-                            fadeIn() + slideInHorizontally() togetherWith fadeOut() + slideOutHorizontally()
-                        },
-                        label = "json_content"
-                    ) { jsonContent ->
-                        if (jsonContent != null) {
-                            JsonDisplayPanel(
-                                jsonContent = jsonContent,
-                                modifier = Modifier.fillMaxSize()
-                            )
-                        } else {
-                            ControlContent(
-                                isRunning = isRunning,
-                                onStart = onStart,
-                                onStop = onStop,
-                                onScenarioClick = { scenario ->
-                                    onScenarioClick(scenario)
-                                },
-                                onJsonClick = { json -> selectedJson = json },
-                                signals = signals,
-                                sceneDescriptor = sceneDescriptor,
-                                effectCommands = effectCommands,
-                                modifier = Modifier.fillMaxSize()
-                            )
-                        }
-                    }
+                    // 右侧数据栏 - 80%
+                    JsonDataSection(
+                        signals = signals,
+                        sceneDescriptor = sceneDescriptor,
+                        effectCommands = effectCommands,
+                        modifier = Modifier
+                            .weight(0.8f)
+                            .fillMaxHeight()
+                    )
                 }
             }
         }
@@ -201,62 +159,75 @@ private fun ControlPopup(
 }
 
 @Composable
-private fun ControlContent(
+private fun ControlSection(
     isRunning: Boolean,
     onStart: () -> Unit,
     onStop: () -> Unit,
     onScenarioClick: (SceneScenario) -> Unit,
-    onJsonClick: (String) -> Unit,
-    signals: StandardizedSignals?,
-    sceneDescriptor: SceneDescriptor?,
-    effectCommands: EffectCommands?,
+    onDismiss: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // 关闭按钮
+        IconButton(
+            onClick = onDismiss,
+            modifier = Modifier.size(40.dp)
+        ) {
+            Text(
+                text = "✕",
+                fontSize = 20.sp,
+                color = Color.White.copy(alpha = 0.7f)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        // 主控制按钮
         FloatingActionButton(
             onClick = {
                 if (isRunning) onStop() else onStart()
             },
-            modifier = Modifier.size(72.dp),
+            modifier = Modifier.size(64.dp),
             containerColor = if (isRunning) Color(0xFFF44336) else CarTheme.AccentCyan,
             contentColor = Color.White,
             shape = CircleShape
         ) {
             Text(
                 text = if (isRunning) "⏹" else "▶",
-                fontSize = 32.sp
+                fontSize = 28.sp
             )
         }
 
         Text(
-            text = if (isRunning) "停止运行" else "开始运行",
-            style = MaterialTheme.typography.bodyMedium,
+            text = if (isRunning) "停止" else "开始",
+            style = MaterialTheme.typography.bodySmall,
             color = Color.White.copy(alpha = 0.7f),
-            modifier = Modifier.padding(top = 8.dp)
+            modifier = Modifier.padding(top = 4.dp)
         )
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
             text = "场景验证",
-            style = MaterialTheme.typography.titleMedium,
+            style = MaterialTheme.typography.titleSmall,
             fontWeight = FontWeight.SemiBold,
             color = Color.White,
             modifier = Modifier.align(Alignment.Start)
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
+        // 场景按钮列表
         val scrollState = rememberScrollState()
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f)
                 .verticalScroll(scrollState),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
             val scenarios = listOf(
                 SceneScenario("rainy_emo", "🌧 雨天emo", "雨天+低落情绪", Color(0xFF5C6BC0)),
@@ -267,78 +238,14 @@ private fun ControlContent(
                 SceneScenario("fatigue_alert", "😴 疲劳提醒", "检测到疲劳", Color(0xFFF44336))
             )
 
-            scenarios.chunked(2).forEach { rowScenarios ->
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    rowScenarios.forEach { scenario ->
-                        Column(modifier = Modifier.weight(1f)) {
-                            ScenarioButton(
-                                scenario = scenario,
-                                onClick = { onScenarioClick(scenario) },
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.spacedBy(4.dp)
-                            ) {
-                                JsonButton(
-                                    label = "L1",
-                                    onClick = {
-                                        val jsonStr = signals?.let { json.encodeToString(it) } ?: "{}"
-                                        onJsonClick("=== Layer 1 感知层 ===\n$jsonStr")
-                                    },
-                                    modifier = Modifier.weight(1f)
-                                )
-                                JsonButton(
-                                    label = "L2",
-                                    onClick = {
-                                        val jsonStr = sceneDescriptor?.let { json.encodeToString(it) } ?: "{}"
-                                        onJsonClick("=== Layer 2 推理层 ===\n$jsonStr")
-                                    },
-                                    modifier = Modifier.weight(1f)
-                                )
-                                JsonButton(
-                                    label = "L3",
-                                    onClick = {
-                                        val jsonStr = effectCommands?.let { json.encodeToString(it) } ?: "{}"
-                                        onJsonClick("=== Layer 3 生成层 ===\n$jsonStr")
-                                    },
-                                    modifier = Modifier.weight(1f)
-                                )
-                            }
-                        }
-                    }
-                    if (rowScenarios.size == 1) {
-                        Spacer(modifier = Modifier.weight(1f))
-                    }
-                }
+            scenarios.forEach { scenario ->
+                ScenarioButton(
+                    scenario = scenario,
+                    onClick = { onScenarioClick(scenario) },
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
         }
-    }
-}
-
-@Composable
-private fun JsonButton(
-    label: String,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    TextButton(
-        onClick = onClick,
-        modifier = modifier.height(28.dp),
-        colors = ButtonDefaults.textButtonColors(
-            contentColor = CarTheme.AccentCyan.copy(alpha = 0.8f)
-        ),
-        contentPadding = PaddingValues(horizontal = 4.dp, vertical = 0.dp)
-    ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelSmall,
-            fontWeight = FontWeight.Medium
-        )
     }
 }
 
@@ -350,26 +257,62 @@ private fun ScenarioButton(
 ) {
     Button(
         onClick = onClick,
-        modifier = modifier.height(48.dp),
+        modifier = modifier.height(44.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = scenario.color
         ),
-        shape = RoundedCornerShape(12.dp),
-        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
+        shape = RoundedCornerShape(10.dp),
+        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)
     ) {
         Text(
             text = scenario.name,
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodySmall,
             fontWeight = FontWeight.SemiBold,
             color = Color.White,
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis
+            overflow = TextOverflow.Ellipsis,
+            textAlign = TextAlign.Center
         )
     }
 }
 
 @Composable
-private fun JsonDisplayPanel(
+private fun JsonDataSection(
+    signals: StandardizedSignals?,
+    sceneDescriptor: SceneDescriptor?,
+    effectCommands: EffectCommands?,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        // Layer 1
+        JsonPanel(
+            title = "Layer 1",
+            jsonContent = signals?.let { json.encodeToString(it) } ?: "{}",
+            modifier = Modifier.weight(1f)
+        )
+
+        // Layer 2
+        JsonPanel(
+            title = "Layer 2",
+            jsonContent = sceneDescriptor?.let { json.encodeToString(it) } ?: "{}",
+            modifier = Modifier.weight(1f)
+        )
+
+        // Layer 3
+        JsonPanel(
+            title = "Layer 3",
+            jsonContent = effectCommands?.let { json.encodeToString(it) } ?: "{}",
+            modifier = Modifier.weight(1f)
+        )
+    }
+}
+
+@Composable
+private fun JsonPanel(
+    title: String,
     jsonContent: String,
     modifier: Modifier = Modifier
 ) {
@@ -380,21 +323,36 @@ private fun JsonDisplayPanel(
         ),
         shape = RoundedCornerShape(12.dp)
     ) {
-        val scrollState = rememberScrollState()
-        val horizontalScrollState = rememberScrollState()
-        
-        Text(
-            text = jsonContent,
-            style = MaterialTheme.typography.bodySmall.copy(
-                fontFamily = FontFamily.Monospace,
-                lineHeight = 14.sp
-            ),
-            color = Color(0xFF79C0FF),
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
-                .horizontalScroll(horizontalScrollState)
-                .padding(16.dp)
-        )
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleSmall,
+                fontWeight = FontWeight.Bold,
+                color = CarTheme.AccentCyan,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(CarTheme.AccentCyan.copy(alpha = 0.1f))
+                    .padding(8.dp)
+            )
+
+            val scrollState = rememberScrollState()
+            val horizontalScrollState = rememberScrollState()
+
+            Text(
+                text = jsonContent,
+                style = MaterialTheme.typography.bodySmall.copy(
+                    fontFamily = FontFamily.Monospace,
+                    lineHeight = 12.sp
+                ),
+                color = Color(0xFF79C0FF),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scrollState)
+                    .horizontalScroll(horizontalScrollState)
+                    .padding(8.dp)
+            )
+        }
     }
 }
