@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -43,13 +43,4 @@ dependencies {
     
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
-}
-
-tasks.register("prefetchPlaylists") {
-    doLast {
-        exec {
-            workingDir = file("../../../../src/layers/effects/engines/content")
-            commandLine("node", "prefetcher.js")
-        }
-    }
 }
