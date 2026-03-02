@@ -113,12 +113,29 @@ private fun ControlPopup(
                         .padding(20.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = "控制面板",
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "控制面板",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.White
+                        )
+                        
+                        IconButton(
+                            onClick = onDismiss,
+                            modifier = Modifier.size(32.dp)
+                        ) {
+                            Text(
+                                text = "✕",
+                                fontSize = 20.sp,
+                                color = Color.White.copy(alpha = 0.7f)
+                            )
+                        }
+                    }
 
                     Spacer(modifier = Modifier.height(20.dp))
 
@@ -165,14 +182,12 @@ private fun ControlPopup(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         val scenarios = listOf(
-                            SceneScenario("rainy_emo", "雨天emo", "雨天+低落情绪", Color(0xFF5C6BC0)),
-                            SceneScenario("children_board", "小朋友上车", "检测到儿童乘客", Color(0xFFFF9800)),
-                            SceneScenario("rain_stops", "雨过天晴", "天气转晴+愉悦", Color(0xFF4CAF50)),
-                            SceneScenario("noisy_car", "车内吵闹", "多人+高音量", Color(0xFFE91E63)),
-                            SceneScenario("user_pop", "我喜欢流行乐", "用户偏好输入", Color(0xFF9C27B0)),
-                            SceneScenario("beach_vacation", "海边度假", "海边场景+放松", Color(0xFF00BCD4)),
-                            SceneScenario("romantic_date", "浪漫约会", "夜晚+浪漫氛围", Color(0xFFE91E63)),
-                            SceneScenario("fatigue_alert", "疲劳提醒", "检测到疲劳", Color(0xFFF44336))
+                            SceneScenario("rainy_emo", "🌧 雨天emo", "雨天+低落情绪", Color(0xFF5C6BC0)),
+                            SceneScenario("children_board", "👶 小朋友上车", "检测到儿童乘客", Color(0xFFFF9800)),
+                            SceneScenario("user_pop", "🎵 我喜欢流行乐", "用户偏好输入", Color(0xFF9C27B0)),
+                            SceneScenario("beach_vacation", "🏖️ 海边度假", "海边场景+放松", Color(0xFF00BCD4)),
+                            SceneScenario("romantic_date", "💕 浪漫约会", "夜晚+浪漫氛围", Color(0xFFE91E63)),
+                            SceneScenario("fatigue_alert", "😴 疲劳提醒", "检测到疲劳", Color(0xFFF44336))
                         )
 
                         scenarios.chunked(2).forEach { rowScenarios ->
