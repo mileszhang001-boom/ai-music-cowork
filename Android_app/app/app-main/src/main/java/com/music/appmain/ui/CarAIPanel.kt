@@ -19,6 +19,9 @@ import androidx.compose.ui.unit.dp
 import com.music.core.api.models.StandardizedSignals
 import com.music.core.api.models.SceneDescriptor
 import com.music.core.api.models.EffectCommands
+import com.music.localmusic.models.Track
+import com.music.localmusic.player.PlaybackInfo
+import com.music.localmusic.player.PlayerState
 
 /**
  * 车载座舱 AI 娱乐系统主面板
@@ -33,6 +36,15 @@ fun CarAIPanel(
     onStart: () -> Unit = {},
     onStop: () -> Unit = {},
     onScenarioClick: (SceneScenario) -> Unit = {},
+    playerState: PlayerState = PlayerState.Idle,
+    playbackInfo: PlaybackInfo = PlaybackInfo(),
+    playlist: List<Track> = emptyList(),
+    currentTrackIndex: Int = -1,
+    onPlayPause: () -> Unit = {},
+    onNext: () -> Unit = {},
+    onPrevious: () -> Unit = {},
+    onSeek: (Long) -> Unit = {},
+    onPlayTrack: (Int) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -113,6 +125,15 @@ fun CarAIPanel(
             // 右侧生成层 - 68%
             RightGenerationPanel(
                 effectCommands = effectCommands,
+                playerState = playerState,
+                playbackInfo = playbackInfo,
+                playlist = playlist,
+                currentTrackIndex = currentTrackIndex,
+                onPlayPause = onPlayPause,
+                onNext = onNext,
+                onPrevious = onPrevious,
+                onSeek = onSeek,
+                onPlayTrack = onPlayTrack,
                 modifier = Modifier
                     .weight(0.68f)
                     .fillMaxHeight()
@@ -172,6 +193,15 @@ private fun LeftInfoPanel(
 @Composable
 private fun RightGenerationPanel(
     effectCommands: EffectCommands?,
+    playerState: PlayerState,
+    playbackInfo: PlaybackInfo,
+    playlist: List<Track>,
+    currentTrackIndex: Int,
+    onPlayPause: () -> Unit,
+    onNext: () -> Unit,
+    onPrevious: () -> Unit,
+    onSeek: (Long) -> Unit,
+    onPlayTrack: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -183,7 +213,18 @@ private fun RightGenerationPanel(
                 .fillMaxWidth()
                 .fillMaxHeight()
         ) {
-            Layer3DataPanel(effectCommands = effectCommands)
+            Layer3DataPanel(
+                effectCommands = effectCommands,
+                playerState = playerState,
+                playbackInfo = playbackInfo,
+                playlist = playlist,
+                currentTrackIndex = currentTrackIndex,
+                onPlayPause = onPlayPause,
+                onNext = onNext,
+                onPrevious = onPrevious,
+                onSeek = onSeek,
+                onPlayTrack = onPlayTrack
+            )
         }
     }
 }

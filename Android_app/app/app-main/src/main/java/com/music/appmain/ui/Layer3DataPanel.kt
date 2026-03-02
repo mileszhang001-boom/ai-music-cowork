@@ -1,405 +1,401 @@
 package com.music.appmain.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.music.core.api.models.EffectCommands
+import com.music.localmusic.models.Track
+import com.music.localmusic.player.PlaybackInfo
+import com.music.localmusic.player.PlayerState
 
-/**
- * Layer 3 生成层 - Web UI 风格
- * 将 EffectCommands 数据转换为沉浸式展示
- */
 @Composable
 fun Layer3DataPanel(
     effectCommands: EffectCommands?,
+    playerState: PlayerState,
+    playbackInfo: PlaybackInfo,
+    playlist: List<Track>,
+    currentTrackIndex: Int,
+    onPlayPause: () -> Unit,
+    onNext: () -> Unit,
+    onPrevious: () -> Unit,
+    onSeek: (Long) -> Unit,
+    onPlayTrack: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(24.dp)
+            .padding(16.dp)
     ) {
-        // 场景信息头部
-        SceneInfoHeader(effectCommands)
+        // 第一层：场景 + 音效模式
+        SceneInfoSection(effectCommands)
 
-        Spacer(modifier = Modifier.height(24.dp))
+        HorizontalDivider(
+            modifier = Modifier.padding(vertical = 12.dp),
+            thickness = 1.dp,
+            color = CarTheme.TextMuted.copy(alpha = 0.2f)
+        )
 
-        // 歌单展示区
-        PlaylistDisplay(effectCommands)
+        // 第二层：播放器播控
+        PlayerControlSection(
+            playerState = playerState,
+            playbackInfo = playbackInfo,
+            currentTrack = playlist.getOrNull(currentTrackIndex),
+            onPlayPause = onPlayPause,
+            onNext = onNext,
+            onPrevious = onPrevious,
+            onSeek = onSeek
+        )
 
-        Spacer(modifier = Modifier.weight(1f))
+        HorizontalDivider(
+            modifier = Modifier.padding(vertical = 12.dp),
+            thickness = 1.dp,
+            color = CarTheme.TextMuted.copy(alpha = 0.2f)
+        )
+
+        // 第三层：歌单列表
+        PlaylistSection(
+            playlist = playlist,
+            currentTrackIndex = currentTrackIndex,
+            onPlayTrack = onPlayTrack,
+            modifier = Modifier.weight(1f)
+        )
     }
 }
 
-/**
- * 场景信息头部 - lighting-theme / audio-preset
- */
 @Composable
-private fun SceneInfoHeader(effectCommands: EffectCommands?) {
-    Column(
+private fun SceneInfoSection(effectCommands: EffectCommands?) {
+    Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.End
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = extractLightingTheme(effectCommands),
-            style = MaterialTheme.typography.headlineMedium.copy(
+        Column {
+            Text(
+                text = "场景",
+                style = MaterialTheme.typography.labelMedium,
+                color = CarTheme.TextMuted
+            )
+            Text(
+                text = extractLightingTheme(effectCommands),
+                style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
-                letterSpacing = 2.sp,
-                color = CarTheme.TextPrimary
-            ),
-            textAlign = TextAlign.End
-        )
+                color = CarTheme.AccentCyan
+            )
+        }
 
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Text(
-            text = extractAudioPreset(effectCommands),
-            style = MaterialTheme.typography.bodyLarge.copy(
-                color = CarTheme.TextSecondary,
-                letterSpacing = 1.sp
-            ),
-            textAlign = TextAlign.End
-        )
+        Column(
+            horizontalAlignment = Alignment.End
+        ) {
+            Text(
+                text = "音效",
+                style = MaterialTheme.typography.labelMedium,
+                color = CarTheme.TextMuted
+            )
+            Text(
+                text = extractAudioPreset(effectCommands),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                color = CarTheme.AccentPurple
+            )
+        }
     }
 }
 
-/**
- * 歌单展示 - 上一首/当前首/下一首
- */
 @Composable
-private fun PlaylistDisplay(effectCommands: EffectCommands?) {
-    val playlist = extractPlaylist(effectCommands)
-    val currentIndex = 0
-
-    val prevTrack = playlist.getOrNull(currentIndex - 1) ?: playlist.lastOrNull()
-    val currentTrack = playlist.getOrNull(currentIndex)
-    val nextTrack = playlist.getOrNull(currentIndex + 1) ?: playlist.firstOrNull()
+private fun PlayerControlSection(
+    playerState: PlayerState,
+    playbackInfo: PlaybackInfo,
+    currentTrack: Track?,
+    onPlayPause: () -> Unit,
+    onNext: () -> Unit,
+    onPrevious: () -> Unit,
+    onSeek: (Long) -> Unit
+) {
+    val isPlaying = playerState is PlayerState.Playing
 
     Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.End,
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        modifier = Modifier.fillMaxWidth()
     ) {
-        // 上一首
-        if (playlist.size > 1 && prevTrack != null) {
-            PlaylistItem(
-                label = "上一首",
-                title = prevTrack.title,
-                artist = prevTrack.artist,
-                isCurrent = false,
-                modifier = Modifier.padding(end = 40.dp)
-            )
-        }
-
-        // 当前首
+        // 当前播放歌曲信息
         if (currentTrack != null) {
-            PlaylistItem(
-                label = "正在播放",
-                title = currentTrack.title,
-                artist = currentTrack.artist,
-                isCurrent = true,
-                modifier = Modifier.padding(end = 20.dp)
+            Text(
+                text = currentTrack.title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
+                color = CarTheme.TextPrimary,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.fillMaxWidth()
             )
-        }
-
-        // 下一首
-        if (nextTrack != null) {
-            PlaylistItem(
-                label = "下一首",
-                title = nextTrack.title,
-                artist = nextTrack.artist,
-                isCurrent = false,
-                modifier = Modifier.padding(end = 10.dp)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = currentTrack.artist,
+                style = MaterialTheme.typography.bodyMedium,
+                color = CarTheme.TextSecondary,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.fillMaxWidth()
             )
-        }
-        
-        // 如果没有歌单，显示提示
-        if (playlist.isEmpty()) {
+        } else {
             Text(
                 text = "等待生成歌单...",
                 style = MaterialTheme.typography.bodyMedium,
-                color = CarTheme.TextMuted,
-                textAlign = TextAlign.End,
-                modifier = Modifier.padding(end = 20.dp)
-            )
-        }
-    }
-}
-
-/**
- * 歌单项 - 标题 + 艺术家两行
- */
-@Composable
-private fun PlaylistItem(
-    label: String,
-    title: String,
-    artist: String,
-    isCurrent: Boolean,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.End
-    ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelSmall.copy(
-                color = CarTheme.TextMuted.copy(alpha = 0.5f)
-            ),
-            textAlign = TextAlign.End
-        )
-        
-        Text(
-            text = title,
-            style = if (isCurrent) {
-                CarTheme.LyricsCurrent.copy(
-                    brush = Brush.linearGradient(
-                        colors = listOf(
-                            CarTheme.AccentCyan,
-                            CarTheme.TextPrimary,
-                            CarTheme.AccentPurple
-                        )
-                    )
-                )
-            } else {
-                CarTheme.LyricsMuted.copy(
-                    fontSize = 22.sp,
-                    color = CarTheme.TextMuted.copy(alpha = if (isCurrent) 1f else 0.4f)
-                )
-            },
-            textAlign = TextAlign.End,
-            maxLines = 1
-        )
-        
-        Text(
-            text = artist,
-            style = MaterialTheme.typography.bodyMedium.copy(
-                color = CarTheme.TextSecondary.copy(alpha = if (isCurrent) 0.8f else 0.5f)
-            ),
-            textAlign = TextAlign.End,
-            maxLines = 1
-        )
-    }
-}
-
-/**
- * 歌词展示 - 3行
- */
-@Composable
-private fun LyricsDisplay(effectCommands: EffectCommands?) {
-    val lyrics = extractLyrics(effectCommands)
-
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.End
-    ) {
-        // 上一句
-        if (lyrics.size > 1) {
-            Text(
-                text = lyrics[lyrics.size - 2],
-                style = CarTheme.LyricsMuted.copy(
-                    fontSize = 24.sp,
-                    color = CarTheme.TextMuted.copy(alpha = 0.3f)
-                ),
-                textAlign = TextAlign.End,
-                modifier = Modifier.padding(end = 20.dp)
+                color = CarTheme.TextMuted
             )
         }
 
-        // 当前句
-        if (lyrics.isNotEmpty()) {
-            Box(
-                modifier = Modifier.padding(vertical = 12.dp)
-            ) {
-                Text(
-                    text = lyrics.last(),
-                    style = CarTheme.LyricsCurrent.copy(
-                        brush = Brush.linearGradient(
-                            colors = listOf(
-                                CarTheme.AccentCyan,
-                                CarTheme.TextPrimary,
-                                CarTheme.AccentPurple
-                            )
-                        )
-                    ),
-                    textAlign = TextAlign.End
-                )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // 进度条（可拖动）
+        var sliderPosition by remember { mutableFloatStateOf(0f) }
+        var isDragging by remember { mutableStateOf(false) }
+
+        val progress = if (playbackInfo.duration > 0) {
+            playbackInfo.currentPosition.toFloat() / playbackInfo.duration.toFloat()
+        } else {
+            0f
+        }
+
+        LaunchedEffect(progress) {
+            if (!isDragging) {
+                sliderPosition = progress
             }
         }
 
-        // 下一句
-        Text(
-            text = "下一句歌词...",
-            style = CarTheme.LyricsNormal.copy(
-                color = CarTheme.TextSecondary.copy(alpha = 0.5f)
-            ),
-            textAlign = TextAlign.End,
-            modifier = Modifier.padding(end = 10.dp)
-        )
-    }
-}
-
-/**
- * 歌曲预览
- */
-@Composable
-private fun SongPreview(effectCommands: EffectCommands?) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.End,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        // 上一首
-        PreviewCard(
-            icon = "⏮",
-            label = "上一首",
-            title = extractPrevSong(effectCommands),
-            artist = "未知艺术家",
-            opacity = 0.6f
-        )
-
-        Spacer(modifier = Modifier.width(16.dp))
-
-        // 下一首
-        PreviewCard(
-            icon = "⏭",
-            label = "下一首",
-            title = extractNextSong(effectCommands),
-            artist = "智能推荐",
-            opacity = 0.8f
-        )
-    }
-}
-
-/**
- * 预览卡片
- */
-@Composable
-private fun PreviewCard(
-    icon: String,
-    label: String,
-    title: String,
-    artist: String,
-    opacity: Float
-) {
-    Row(
-        modifier = Modifier
-            .background(
-                color = CarTheme.GlassBg.copy(alpha = opacity),
-                shape = RoundedCornerShape(16.dp)
+        Slider(
+            value = sliderPosition,
+            onValueChange = { value ->
+                isDragging = true
+                sliderPosition = value
+            },
+            onValueChangeFinished = {
+                isDragging = false
+                val newPosition = (sliderPosition * playbackInfo.duration).toLong()
+                onSeek(newPosition)
+            },
+            modifier = Modifier.fillMaxWidth(),
+            colors = SliderDefaults.colors(
+                thumbColor = CarTheme.AccentCyan,
+                activeTrackColor = CarTheme.AccentCyan,
+                inactiveTrackColor = CarTheme.TextMuted.copy(alpha = 0.2f)
             )
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        // 图标
-        Box(
+        )
+
+        Row(
             modifier = Modifier
-                .size(44.dp)
-                .background(
-                    brush = Brush.linearGradient(
-                        colors = listOf(
-                            Color.White.copy(alpha = 0.1f),
-                            Color.White.copy(alpha = 0.05f)
-                        )
-                    ),
-                    shape = RoundedCornerShape(12.dp)
-                ),
-            contentAlignment = Alignment.Center
+                .fillMaxWidth()
+                .padding(horizontal = 4.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = icon,
-                fontSize = 18.sp
+                text = formatDuration(playbackInfo.currentPosition),
+                style = MaterialTheme.typography.labelSmall,
+                color = CarTheme.TextMuted
+            )
+            Text(
+                text = formatDuration(playbackInfo.duration),
+                style = MaterialTheme.typography.labelSmall,
+                color = CarTheme.TextMuted
             )
         }
 
-        // 信息
-        Column {
-            Text(
-                text = label.uppercase(),
-                style = CarTheme.ChipLabel
-            )
-            Text(
-                text = title,
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    fontWeight = FontWeight.Medium,
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // 播放控制按钮
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            IconButton(
+                onClick = onPrevious,
+                modifier = Modifier.size(48.dp)
+            ) {
+                Text(
+                    text = "⏮",
+                    fontSize = 24.sp,
                     color = CarTheme.TextPrimary
                 )
-            )
-            Text(
-                text = artist,
-                style = MaterialTheme.typography.bodySmall.copy(
-                    color = CarTheme.TextSecondary
+            }
+
+            Spacer(modifier = Modifier.width(24.dp))
+
+            FloatingActionButton(
+                onClick = onPlayPause,
+                modifier = Modifier.size(56.dp),
+                containerColor = CarTheme.AccentCyan,
+                contentColor = Color.White,
+                shape = CircleShape
+            ) {
+                Icon(
+                    imageVector = if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
+                    contentDescription = if (isPlaying) "暂停" else "播放",
+                    modifier = Modifier.size(28.dp)
                 )
-            )
+            }
+
+            Spacer(modifier = Modifier.width(24.dp))
+
+            IconButton(
+                onClick = onNext,
+                modifier = Modifier.size(48.dp)
+            ) {
+                Text(
+                    text = "⏭",
+                    fontSize = 24.sp,
+                    color = CarTheme.TextPrimary
+                )
+            }
         }
     }
 }
 
-/**
- * 提取歌曲标题
- */
-private fun extractSongTitle(effectCommands: EffectCommands?): String {
-    return effectCommands?.commands?.content?.playlist?.firstOrNull()?.title
-        ?: effectCommands?.scene_id?.let { "场景 $it" }
-        ?: "夜雨寄北"
-}
-
-/**
- * 提取艺术家
- */
-private fun extractArtist(effectCommands: EffectCommands?): String {
-    return effectCommands?.commands?.content?.playlist?.firstOrNull()?.artist
-        ?: effectCommands?.commands?.content?.playlist?.firstOrNull()?.let { track ->
-            track.energy?.let { "能量 ${(it * 100).toInt()}% · 智能生成" }
-        }
-        ?: "林宥嘉 · 忧郁蓝调"
-}
-
-/**
- * 提取歌词
- */
-private fun extractLyrics(effectCommands: EffectCommands?): List<String> {
-    // 从 EffectCommands 中提取或生成歌词
-    val playlist = effectCommands?.commands?.content?.playlist
-    return playlist?.map { it.title }?.filter { it.isNotEmpty() }
-        ?: listOf(
-            "窗外的雨下了一整夜",
-            "我在车里听着老唱片",
-            "那些回不去的时光啊",
-            "像你的温柔在耳边回响"
+@Composable
+private fun PlaylistSection(
+    playlist: List<Track>,
+    currentTrackIndex: Int,
+    onPlayTrack: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(modifier = modifier) {
+        Text(
+            text = "歌单列表",
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.SemiBold,
+            color = CarTheme.TextMuted,
+            modifier = Modifier.padding(bottom = 8.dp)
         )
+
+        if (playlist.isNotEmpty()) {
+            val listState = rememberLazyListState()
+
+            LaunchedEffect(currentTrackIndex) {
+                if (currentTrackIndex >= 0 && currentTrackIndex < playlist.size) {
+                    listState.animateScrollToItem(currentTrackIndex)
+                }
+            }
+
+            LazyColumn(
+                state = listState,
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                itemsIndexed(playlist) { index, track ->
+                    PlaylistTrackItem(
+                        index = index + 1,
+                        title = track.title,
+                        artist = track.artist,
+                        isPlaying = index == currentTrackIndex,
+                        onClick = { onPlayTrack(index) }
+                    )
+                }
+            }
+        } else {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "等待生成歌单...",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = CarTheme.TextMuted
+                )
+            }
+        }
+    }
 }
 
-/**
- * 提取上一首
- */
-private fun extractPrevSong(effectCommands: EffectCommands?): String {
-    return effectCommands?.commands?.content?.playlist?.getOrNull(0)?.title
-        ?: "演员"
+@Composable
+private fun PlaylistTrackItem(
+    index: Int,
+    title: String,
+    artist: String,
+    isPlaying: Boolean,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() },
+        colors = CardDefaults.cardColors(
+            containerColor = if (isPlaying) {
+                CarTheme.AccentCyan.copy(alpha = 0.1f)
+            } else {
+                Color.Transparent
+            }
+        ),
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "$index",
+                style = MaterialTheme.typography.labelMedium,
+                color = if (isPlaying) CarTheme.AccentCyan else CarTheme.TextMuted,
+                modifier = Modifier.width(24.dp)
+            )
+
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = if (isPlaying) FontWeight.SemiBold else FontWeight.Normal,
+                    color = if (isPlaying) CarTheme.TextPrimary else CarTheme.TextMuted,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = artist,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = CarTheme.TextSecondary,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+
+            if (isPlaying) {
+                Text(
+                    text = "▶",
+                    fontSize = 14.sp,
+                    color = CarTheme.AccentCyan
+                )
+            }
+        }
+    }
 }
 
-/**
- * 提取下一首
- */
-private fun extractNextSong(effectCommands: EffectCommands?): String {
-    return effectCommands?.commands?.content?.playlist?.getOrNull(2)?.title
-        ?: "成全"
+private fun formatDuration(millis: Long): String {
+    val totalSeconds = millis / 1000
+    val minutes = totalSeconds / 60
+    val seconds = totalSeconds % 60
+    return String.format("%d:%02d", minutes, seconds)
 }
 
-/**
- * 提取灯光主题
- */
 private fun extractLightingTheme(effectCommands: EffectCommands?): String {
     val theme = effectCommands?.commands?.lighting?.theme
         ?: effectCommands?.commands?.lighting?.action
@@ -425,9 +421,6 @@ private fun mapLightingTheme(theme: String?): String {
     }
 }
 
-/**
- * 提取音频预设
- */
 private fun extractAudioPreset(effectCommands: EffectCommands?): String {
     val preset = effectCommands?.commands?.audio?.preset
         ?: effectCommands?.commands?.audio?.action
@@ -453,12 +446,4 @@ private fun mapAudioPreset(preset: String?): String {
         "default", "none", "" -> "标准音效"
         else -> preset ?: "标准音效"
     }
-}
-
-/**
- * 提取歌单
- */
-private fun extractPlaylist(effectCommands: EffectCommands?): List<com.music.core.api.models.Track> {
-    return effectCommands?.commands?.content?.playlist
-        ?: emptyList()
 }

@@ -159,6 +159,21 @@ private fun MainScreen(
                 }
                 viewModel.simulateScenario(scenario.id)
             },
+            playerState = playerState,
+            playbackInfo = playbackInfo,
+            playlist = playlist,
+            currentTrackIndex = playlistIndex,
+            onPlayPause = {
+                if (playerState is com.music.localmusic.player.PlayerState.Playing) {
+                    viewModel.pause()
+                } else {
+                    viewModel.resume()
+                }
+            },
+            onNext = { viewModel.next() },
+            onPrevious = { viewModel.previous() },
+            onSeek = { position -> viewModel.seekTo(position) },
+            onPlayTrack = { index -> viewModel.playTrackAtIndex(index) },
             modifier = Modifier
                 .fillMaxSize()
         )

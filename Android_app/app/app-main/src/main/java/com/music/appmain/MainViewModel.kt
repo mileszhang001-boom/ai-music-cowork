@@ -682,10 +682,12 @@ class MainViewModel(
         if (index < 0 || index >= playlist.size) return
         
         val storagePath = LocalMusicIndex.getConfig().storagePath
-        val track = playlist[index]
         
-        musicPlayer?.play(track, "$storagePath/music/${track.filePath}")
         _playlistIndex.value = index
+        
+        musicPlayer?.play(playlist, startIndex = index) { track ->
+            "$storagePath/music/${track.filePath}"
+        }
     }
     
     private fun updatePlaylistIndex() {
