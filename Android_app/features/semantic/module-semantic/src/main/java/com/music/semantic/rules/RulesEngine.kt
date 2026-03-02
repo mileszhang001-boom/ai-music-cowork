@@ -85,7 +85,7 @@ class RulesEngine {
         }
         
         if (isEveningCommute(context)) {
-            candidates.add("TPL_013" to 0.8)
+            candidates.add("TPL_014" to 0.8)
         }
         
         if (isNightDrive(context)) {
@@ -122,7 +122,7 @@ class RulesEngine {
             context.hour in 6..9 -> "TPL_001"
             context.hour in 10..12 -> "TPL_012"
             context.hour in 13..17 -> "TPL_012"
-            context.hour in 17..20 -> "TPL_013"
+            context.hour in 17..20 -> "TPL_014"
             context.hour in 20..24 -> "TPL_002"
             else -> "TPL_002"
         }
@@ -272,7 +272,8 @@ class RulesEngine {
             "TPL_021" -> "晴天驾驶"
             "TPL_022" -> "雨天驾驶"
             "TPL_012" -> "下午兜风"
-            "TPL_013" -> "傍晚通勤"
+            "TPL_013" -> "儿童模式"
+            "TPL_014" -> "傍晚通勤"
             "TPL_031" -> "独自驾驶"
             "TPL_032" -> "情侣约会"
             "TPL_041" -> "派对模式"

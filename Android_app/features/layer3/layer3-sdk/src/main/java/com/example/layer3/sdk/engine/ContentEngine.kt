@@ -74,11 +74,9 @@ class ContentEngine(
         val intent = scene.intent
         val sceneType = scene.scene_type
         
-        // 场景类型过滤：排除不合适的内容
         val excludedGenres = getExcludedGenres(sceneType)
         
         val scoredTracks = localTracks.mapNotNull { track ->
-            // 检查是否在排除列表
             val trackGenre = track.genre?.lowercase() ?: ""
             if (excludedGenres.any { ex -> trackGenre.contains(ex.lowercase()) }) {
                 return@mapNotNull null
@@ -87,10 +85,13 @@ class ContentEngine(
             var score = 0.0
             
             val isChinese = track.genre?.contains("chinese", ignoreCase = true) == true
+            val baseGenre = trackGenre.removePrefix("chinese_")
             
             hints?.music?.genres?.let { genres ->
                 if (track.genre != null && genres.any { it.equals(track.genre, ignoreCase = true) }) {
                     score += 25.0
+                } else if (isChinese && genres.any { it.equals(baseGenre, ignoreCase = true) }) {
+                    score += 22.0
                 }
                 val needsChinese = genres.any { it.contains("chinese", ignoreCase = true) }
                 if (needsChinese && isChinese) {
@@ -98,7 +99,10 @@ class ContentEngine(
                 }
             }
             
-            // 根据场景类型动态调整中文歌曲权重
+            if (sceneType == "kids_mode" && trackGenre.contains("children")) {
+                score += 50.0
+            }
+            
             val chineseWeight = getChineseWeight(sceneType)
             if (isChinese) {
                 score += chineseWeight
@@ -134,15 +138,19 @@ class ContentEngine(
             
             track.moodTags?.let { tags ->
                 intent.atmosphere?.let { atm ->
-                    if (tags.any { it.contains(atm, ignoreCase = true) }) {
+                    val atmParts = atm.split("_")
+                    if (tags.any { tag ->
+                        tag.contains(atm, ignoreCase = true) ||
+                        atmParts.any { part -> part.length > 3 && tag.contains(part, ignoreCase = true) }
+                    }) {
                         score += 25.0
                     }
                 }
             }
             
             track.sceneTags?.let { tags ->
-                if (tags.any { it.equals(scene.scene_type, ignoreCase = true) }) {
-                    score += 35.0
+                if (tags.any { it.equals(sceneType, ignoreCase = true) }) {
+                    score += 25.0
                 }
             }
             
@@ -152,23 +160,23 @@ class ContentEngine(
         return scoredTracks.map { it.first }
     }
     
-    /**
-     * 获取场景类型对应的排除 Genre 列表
-     */
     private fun getExcludedGenres(sceneType: String): List<String> {
         return when (sceneType) {
+            "kids_mode" -> emptyList()
             "fatigue_alert" -> listOf("children", "disney", "lullaby")
-            "romantic_date" -> listOf("children", "disney")
-            "rainy_emo", "rainy_night" -> listOf("children", "disney")
-            "road_trip", "party" -> listOf("children", "disney", "lullaby")
+            "couple_date", "romantic_mode" -> listOf("children", "disney")
             "night_drive", "late_night_solo" -> listOf("children", "disney")
-            "morning_commute", "highway_cruise" -> listOf("children", "disney")
-            "beach_vacation", "sunset_drive" -> listOf("children", "disney")
-            "traffic_jam", "focus_work" -> listOf("children", "disney")
-            "workout" -> listOf("children", "disney", "lullaby")
-            "meditation" -> listOf("children", "disney")
-            // children_board 和 kids_mode 不排除儿童歌曲
-            else -> emptyList()
+            "solo_drive", "focus_mode", "meditation_mode" -> listOf("children", "disney")
+            "road_trip", "friends_gathering", "party_mode" -> listOf("children", "disney", "lullaby")
+            "morning_commute", "evening_commute", "dawn_commute" -> listOf("children", "disney")
+            "highway_drive", "long_distance" -> listOf("children", "disney")
+            "traffic_jam", "construction_zone" -> listOf("children", "disney")
+            "sunset_drive", "scenic_route" -> listOf("children", "disney")
+            "workout", "energetic_mode" -> listOf("children", "disney", "lullaby")
+            "stress_mode", "calm_mode" -> listOf("children", "disney")
+            "special_event", "holiday_travel" -> listOf("children", "disney")
+            "nostalgic_mode", "adventure_mode" -> listOf("children", "disney")
+            else -> listOf("children", "disney")
         }
     }
     
@@ -177,11 +185,18 @@ class ContentEngine(
      */
     private fun getChineseWeight(sceneType: String): Double {
         return when (sceneType) {
-            "fatigue_alert" -> 5.0   // 疲劳提醒：降低中文权重，更多英文高能量歌曲
-            "kids_mode", "children_board" -> 15.0  // 儿童模式：提高中文权重
-            "family_outing" -> 12.0  // 家庭出行：提高中文权重
-            "romantic_date" -> 8.0   // 浪漫约会：适中
-            else -> 10.0             // 默认
+            "kids_mode" -> 15.0
+            "family_outing" -> 10.0
+            "couple_date", "romantic_mode" -> 12.0
+            "morning_commute", "evening_commute", "dawn_commute" -> 10.0
+            "road_trip", "friends_gathering", "party_mode" -> 10.0
+            "traffic_jam", "construction_zone" -> 10.0
+            "rainy_day", "rainy_night", "rainy_mood" -> 10.0
+            "nostalgic_mode" -> 12.0
+            "fatigue_alert" -> 8.0
+            "focus_mode", "meditation_mode" -> 3.0
+            "workout", "energetic_mode" -> 5.0
+            else -> 8.0
         }
     }
     
@@ -190,13 +205,19 @@ class ContentEngine(
      */
     private fun getChineseRatio(sceneType: String): Double {
         return when (sceneType) {
-            "fatigue_alert" -> 0.4   // 疲劳提醒：40% 中文
-            "kids_mode", "children_board" -> 0.9  // 儿童模式：90% 中文
-            "family_outing" -> 0.8   // 家庭出行：80% 中文
-            "romantic_date" -> 0.6   // 浪漫约会：60% 中文
-            "rainy_night", "rainy_emo" -> 0.6  // 雨夜行车：60% 中文
-            "road_trip" -> 0.5       // 朋友出游：50% 中文
-            else -> 0.6              // 默认：60% 中文
+            "kids_mode" -> 0.9
+            "family_outing" -> 0.8
+            "couple_date", "romantic_mode" -> 0.6
+            "morning_commute", "evening_commute", "dawn_commute" -> 0.6
+            "road_trip", "friends_gathering" -> 0.5
+            "party_mode" -> 0.4
+            "traffic_jam", "construction_zone" -> 0.6
+            "rainy_day", "rainy_night", "rainy_mood" -> 0.6
+            "nostalgic_mode" -> 0.7
+            "fatigue_alert" -> 0.4
+            "focus_mode", "meditation_mode" -> 0.3
+            "workout", "energetic_mode" -> 0.3
+            else -> 0.6
         }
     }
     
@@ -206,6 +227,11 @@ class ContentEngine(
      * - 中英文混合：根据场景类型动态调整比例
      * - BPM 渐进：在满足比例的前提下按 BPM 排序
      */
+    private fun isChinesesTrack(track: com.music.localmusic.models.Track): Boolean {
+        if (track.genre?.contains("chinese", ignoreCase = true) == true) return true
+        return track.title.any { it in '\u4e00'..'\u9fff' }
+    }
+
     private fun arrangePlaylist(
         tracks: List<com.music.localmusic.models.Track>,
         scene: SceneDescriptor
@@ -214,14 +240,13 @@ class ContentEngine(
         
         val sceneType = scene.scene_type
         
-        // 分组：中文歌曲、英文歌曲（已按分数排序）
-        val chineseTracks = tracks.filter { 
-            it.genre?.contains("chinese", ignoreCase = true) == true 
+        if (sceneType == "kids_mode") {
+            return tracks.take(PLAYLIST_SIZE)
         }
         
-        val englishTracks = tracks.filter { 
-            it.genre?.contains("chinese", ignoreCase = true) != true 
-        }
+        val chineseTracks = tracks.filter { isChinesesTrack(it) }
+        
+        val englishTracks = tracks.filter { !isChinesesTrack(it) }
         
         // 动态编排策略：根据场景类型调整中英文比例
         val chineseRatio = getChineseRatio(sceneType)
@@ -246,8 +271,10 @@ class ContentEngine(
         val remaining = (chineseTracks.drop(targetChineseCount) + englishTracks.drop(targetEnglishCount))
             .sortedBy { it.bpm ?: 120 }
         
-        while (result.size < PLAYLIST_SIZE && remaining.isNotEmpty()) {
-            result.add(remaining.first())
+        var idx = 0
+        while (result.size < PLAYLIST_SIZE && idx < remaining.size) {
+            result.add(remaining[idx])
+            idx++
         }
         
         val chineseAdded = result.count { it.genre?.contains("chinese", ignoreCase = true) == true }

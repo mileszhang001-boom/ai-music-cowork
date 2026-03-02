@@ -131,7 +131,7 @@ class SceneRecognizer {
     const hasChildren = passengers && passengers.children > 0;
 
     if (hasChildren) {
-      return SceneTypes.FAMILY_OUTING;
+      return SceneTypes.KIDS_MODE;
     }
 
     if (social > 0.5 && energy > 0.7) {
