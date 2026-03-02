@@ -71,9 +71,9 @@ private fun MainScreen(
     
     val perceptionConfig = remember {
         PerceptionConfig(
-            ipCameraUrl = "",
-            ipCameraUsername = "",
-            ipCameraPassword = "",
+            ipCameraUrl = "http://172.31.2.252:8081/video",
+            ipCameraUsername = "admin",
+            ipCameraPassword = "123456",
             dashScopeApiKey = "sk-fb1a1b32bf914059a043ee4ebd1c845a"
         )
     }
