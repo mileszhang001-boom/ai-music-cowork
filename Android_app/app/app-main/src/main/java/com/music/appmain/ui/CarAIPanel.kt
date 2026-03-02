@@ -121,6 +121,9 @@ fun CarAIPanel(
 
         // 浮动控制面板
         FloatingControlPanel(
+            signals = signals,
+            sceneDescriptor = sceneDescriptor,
+            effectCommands = effectCommands,
             isRunning = isRunning,
             onStart = onStart,
             onStop = onStop,
