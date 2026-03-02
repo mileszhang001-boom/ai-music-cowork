@@ -34,13 +34,17 @@ android {
 
 dependencies {
     implementation(project(":core:core-api"))
-    
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
-    
+
     implementation(libs.androidx.media3.exoplayer)
     implementation(libs.androidx.media3.ui)
-    
+
+    implementation("androidx.media:media:1.7.0")
+
+    implementation(libs.kotlinx.serialization.json)
+
     testImplementation(libs.junit)
 }

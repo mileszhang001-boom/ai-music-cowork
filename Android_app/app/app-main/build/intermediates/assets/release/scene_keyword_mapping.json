@@ -1,0 +1,260 @@
+{
+  "version": "1.0",
+  "description": "场景关键词映射配置 - 基于网易云音乐、QQ音乐、酷狗音乐等平台的热门歌单分析",
+  "scene_keywords": {
+    "morning_commute": {
+      "name": "早晨通勤",
+      "keywords": ["早晨", "上班", "通勤", "唤醒", "活力", "清新", "阳光", "正能量"],
+      "music_features": {
+        "energy_range": [0.4, 0.7],
+        "valence_range": [0.5, 0.8],
+        "bpm_range": [90, 130],
+        "preferred_genres": ["pop", "indie", "folk", "dance"],
+        "avoid_genres": ["metal", "dark_ambient"]
+      },
+      "mood_tags": ["energetic", "uplifting", "fresh", "positive"],
+      "high_freq_songs": [
+        {"title": "如果爱忘了", "artist": "汪苏泷/单依纯"},
+        {"title": "孤独患者", "artist": "陈奕迅"},
+        {"title": "江南", "artist": "林俊杰"}
+      ]
+    },
+    "night_drive": {
+      "name": "夜间驾驶",
+      "keywords": ["夜晚", "深夜", "开车", "兜风", "城市夜景", "放松", "静谧"],
+      "music_features": {
+        "energy_range": [0.2, 0.5],
+        "valence_range": [0.3, 0.6],
+        "bpm_range": [70, 110],
+        "preferred_genres": ["jazz", "lo-fi", "electronic", "r&b", "ambient"],
+        "avoid_genres": ["children", "party"]
+      },
+      "mood_tags": ["calm", "relaxing", "melancholy", "peaceful"],
+      "high_freq_songs": [
+        {"title": "Shake", "artist": "Furkan Soysal"},
+        {"title": "Get Busy", "artist": "Furkan Soysal"},
+        {"title": "Yellow Submarine", "artist": "The Beatles"}
+      ]
+    },
+    "road_trip": {
+      "name": "公路旅行",
+      "keywords": ["旅行", "公路", "自驾", "自由", "风景", "冒险", "探索"],
+      "music_features": {
+        "energy_range": [0.5, 0.8],
+        "valence_range": [0.6, 0.9],
+        "bpm_range": [100, 140],
+        "preferred_genres": ["rock", "pop", "folk", "country", "indie"],
+        "avoid_genres": ["classical", "ambient"]
+      },
+      "mood_tags": ["energetic", "adventurous", "free", "uplifting"],
+      "high_freq_songs": []
+    },
+    "family_outing": {
+      "name": "家庭出行",
+      "keywords": ["家庭", "亲子", "孩子", "温馨", "幸福", "全家", "出游"],
+      "music_features": {
+        "energy_range": [0.4, 0.7],
+        "valence_range": [0.6, 0.9],
+        "bpm_range": [80, 120],
+        "preferred_genres": ["pop", "folk", "children", "soundtrack"],
+        "avoid_genres": ["metal", "electronic", "hip-hop"]
+      },
+      "mood_tags": ["happy", "warm", "sweet", "playful"],
+      "high_freq_songs": [
+        {"title": "爸爸去哪儿", "artist": "林志颖"},
+        {"title": "父亲", "artist": "筷子兄弟"},
+        {"title": "大王叫我来巡山", "artist": "赵英俊"},
+        {"title": "你笑起来真好看", "artist": "李昕融"},
+        {"title": "吉祥三宝", "artist": "布仁巴雅尔"},
+        {"title": "栀子花开", "artist": "何炅"},
+        {"title": "相亲相爱一家人", "artist": "群星"},
+        {"title": "幸福家家有", "artist": "TFBOYS"}
+      ]
+    },
+    "romantic_date": {
+      "name": "浪漫约会",
+      "keywords": ["浪漫", "约会", "情侣", "爱情", "甜蜜", "心动", "表白"],
+      "music_features": {
+        "energy_range": [0.3, 0.6],
+        "valence_range": [0.6, 0.9],
+        "bpm_range": [70, 110],
+        "preferred_genres": ["r&b", "pop", "jazz", "ballad"],
+        "avoid_genres": ["metal", "electronic", "punk"]
+      },
+      "mood_tags": ["romantic", "sweet", "tender", "loving"],
+      "high_freq_songs": [
+        {"title": "明明很爱你", "artist": "品冠/梁静茹"},
+        {"title": "好想你", "artist": "朱主爱"},
+        {"title": "只对你有感觉", "artist": "Hebe/飞轮海"},
+        {"title": "别叫我达芬奇", "artist": "小鬼王琳凯"},
+        {"title": "因为爱情", "artist": "陈奕迅/王菲"},
+        {"title": "有点甜", "artist": "汪苏泷/By2"},
+        {"title": "青柠", "artist": "徐秉龙/桃十五"},
+        {"title": "非酋", "artist": "薛明媛/朱贺"}
+      ]
+    },
+    "party": {
+      "name": "派对",
+      "keywords": ["派对", "聚会", "狂欢", "跳舞", "热闹", "嗨"],
+      "music_features": {
+        "energy_range": [0.7, 1.0],
+        "valence_range": [0.7, 1.0],
+        "bpm_range": [120, 160],
+        "preferred_genres": ["electronic", "dance", "pop", "hip-hop"],
+        "avoid_genres": ["classical", "ambient", "ballad"]
+      },
+      "mood_tags": ["energetic", "excited", "fun", "upbeat"],
+      "high_freq_songs": []
+    },
+    "workout": {
+      "name": "运动健身",
+      "keywords": ["运动", "健身", "跑步", "锻炼", "力量", "燃脂"],
+      "music_features": {
+        "energy_range": [0.7, 1.0],
+        "valence_range": [0.6, 0.9],
+        "bpm_range": [130, 180],
+        "preferred_genres": ["electronic", "rock", "hip-hop", "pop"],
+        "avoid_genres": ["classical", "jazz", "ambient"]
+      },
+      "mood_tags": ["energetic", "motivated", "powerful", "intense"],
+      "high_freq_songs": []
+    },
+    "focus_work": {
+      "name": "专注工作",
+      "keywords": ["工作", "学习", "专注", "效率", "思考", "安静"],
+      "music_features": {
+        "energy_range": [0.2, 0.5],
+        "valence_range": [0.4, 0.7],
+        "bpm_range": [60, 100],
+        "preferred_genres": ["ambient", "classical", "lo-fi", "instrumental"],
+        "avoid_genres": ["rock", "metal", "electronic"]
+      },
+      "mood_tags": ["calm", "focused", "peaceful", "concentrated"],
+      "high_freq_songs": []
+    },
+    "rainy_day": {
+      "name": "雨天",
+      "keywords": ["雨天", "下雨", "雨声", "忧郁", "安静"],
+      "music_features": {
+        "energy_range": [0.2, 0.5],
+        "valence_range": [0.3, 0.6],
+        "bpm_range": [60, 100],
+        "preferred_genres": ["jazz", "ballad", "ambient", "classical"],
+        "avoid_genres": ["metal", "party", "dance"]
+      },
+      "mood_tags": ["melancholy", "calm", "peaceful", "nostalgic"],
+      "high_freq_songs": []
+    },
+    "cloudy_day": {
+      "name": "阴天",
+      "keywords": ["阴天", "阴沉", "多云", "灰暗", "压抑", "沉闷"],
+      "music_features": {
+        "energy_range": [0.2, 0.4],
+        "valence_range": [0.2, 0.45],
+        "bpm_range": [60, 90],
+        "preferred_genres": ["lo-fi", "ambient", "ballad", "indie"],
+        "avoid_genres": ["pop", "dance", "party", "metal"]
+      },
+      "mood_tags": ["melancholy", "gloomy", "sad", "nostalgic"],
+      "high_freq_songs": []
+    },
+    "traffic_jam": {
+      "name": "交通拥堵",
+      "keywords": ["堵车", "拥堵", "等待", "耐心", "烦躁", "高峰"],
+      "music_features": {
+        "energy_range": [0.2, 0.5],
+        "valence_range": [0.4, 0.7],
+        "bpm_range": [60, 100],
+        "preferred_genres": ["podcast", "audiobook", "lo-fi", "jazz"],
+        "avoid_genres": ["metal", "electronic"]
+      },
+      "mood_tags": ["calm", "patient", "relaxed", "peaceful"],
+      "high_freq_songs": []
+    },
+    "fatigue_alert": {
+      "name": "疲劳提醒",
+      "keywords": ["疲劳", "困倦", "提神", "唤醒", "警觉", "休息"],
+      "music_features": {
+        "energy_range": [0.8, 1.0],
+        "valence_range": [0.5, 0.8],
+        "bpm_range": [140, 180],
+        "preferred_genres": ["electronic", "rock", "metal", "dance"],
+        "avoid_genres": ["ambient", "ballad", "classical"]
+      },
+      "mood_tags": ["alert", "energetic", "awake", "intense"],
+      "high_freq_songs": []
+    },
+    "holiday_travel": {
+      "name": "假期旅行",
+      "keywords": ["假期", "度假", "旅行", "放松", "休闲", "景点"],
+      "music_features": {
+        "energy_range": [0.5, 0.8],
+        "valence_range": [0.7, 1.0],
+        "bpm_range": [90, 130],
+        "preferred_genres": ["pop", "folk", "indie", "reggae"],
+        "avoid_genres": ["metal", "dark_ambient"]
+      },
+      "mood_tags": ["happy", "relaxed", "joyful", "carefree"],
+      "high_freq_songs": []
+    },
+    "sunset_drive": {
+      "name": "夕阳驾驶",
+      "keywords": ["夕阳", "黄昏", "傍晚", "日落", "温暖", "浪漫"],
+      "music_features": {
+        "energy_range": [0.3, 0.6],
+        "valence_range": [0.5, 0.8],
+        "bpm_range": [70, 110],
+        "preferred_genres": ["folk", "indie", "pop", "r&b"],
+        "avoid_genres": ["metal", "electronic"]
+      },
+      "mood_tags": ["warm", "romantic", "peaceful", "nostalgic"],
+      "high_freq_songs": []
+    }
+  },
+  "keyword_matching_rules": {
+    "description": "关键词匹配规则 - 用于从用户输入中提取场景",
+    "priority_order": [
+      "fatigue_alert",
+      "traffic_jam",
+      "rainy_day",
+      "holiday_travel",
+      "sunset_drive",
+      "romantic_date",
+      "family_outing",
+      "party",
+      "workout",
+      "focus_work",
+      "road_trip",
+      "night_drive",
+      "morning_commute"
+    ],
+    "min_keyword_matches": 2,
+    "confidence_threshold": 0.6
+  },
+  "feature_weights": {
+    "description": "音乐特征权重配置 - 基于音乐平台推荐算法优化",
+    "genre_match": 25,
+    "energy_match": 20,
+    "valence_match": 20,
+    "bpm_match": 15,
+    "mood_tag_match": 15,
+    "scene_tag_match": 5
+  },
+  "platform_insights": {
+    "netease_cloud_music": {
+      "recommendation_factors": ["用户偏好", "歌单热度", "歌曲特征", "场景适配"],
+      "scene_playlist_count": 10000,
+      "avg_playlist_size": 50
+    },
+    "qq_music": {
+      "recommendation_factors": ["品牌调性", "场景关键词", "热度排名", "AI推荐"],
+      "scene_categories": 50,
+      "keyword_matching_accuracy": 0.85
+    },
+    "kugou_music": {
+      "recommendation_factors": ["驾驶场景", "节奏匹配", "用户反馈", "实时热度"],
+      "driving_scene_focus": true,
+      "bpm_importance": "high"
+    }
+  }
+}

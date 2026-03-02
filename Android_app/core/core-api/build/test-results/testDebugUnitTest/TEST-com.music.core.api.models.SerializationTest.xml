@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.music.core.api.models.SerializationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-03-02T09:38:06" hostname="bogon" time="0.029">
+  <properties/>
+  <testcase name="testStandardizedSignalsSerialization" classname="com.music.core.api.models.SerializationTest" time="0.023"/>
+  <testcase name="testEffectCommandsSerialization" classname="com.music.core.api.models.SerializationTest" time="0.003"/>
+  <testcase name="testSceneDescriptorSerialization" classname="com.music.core.api.models.SerializationTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

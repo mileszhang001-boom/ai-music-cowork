@@ -180,10 +180,10 @@ dependencies {
 
 ```kotlin
 val config = PerceptionConfig(
-    ipCameraUrl = "http://192.168.1.100:8080/video",
+    ipCameraUrl = "http://172.31.2.252:8081/video",
     ipCameraUsername = "admin",
-    ipCameraPassword = "password",
-    dashScopeApiKey = "your-dashscope-api-key",
+    ipCameraPassword = "123456",
+    dashScopeApiKey = "sk-fb1a1b32bf914059a043ee4ebd1c845a",
     refreshIntervalMs = 3000L  // 数据刷新间隔（毫秒）
 )
 ```
@@ -255,10 +255,10 @@ class MainActivity : AppCompatActivity() {
     
     private fun initializePerceptionEngine() {
         val config = PerceptionConfig(
-            ipCameraUrl = "http://192.168.1.100:8080/video",
+            ipCameraUrl = "http://172.31.2.252:8081/video",
             ipCameraUsername = "admin",
-            ipCameraPassword = "password",
-            dashScopeApiKey = "your-api-key",
+            ipCameraPassword = "123456",
+            dashScopeApiKey = "sk-fb1a1b32bf914059a043ee4ebd1c845a",
             refreshIntervalMs = 3000L
         )
         
@@ -439,10 +439,10 @@ interface FrameCallback {
 
 ```kotlin
 val config = PerceptionConfig(
-    ipCameraUrl = "http://192.168.1.100:8080/video",
+    ipCameraUrl = "http://172.31.2.252:8081/video",
     ipCameraUsername = "admin",
-    ipCameraPassword = "password",
-    dashScopeApiKey = "api-key",
+    ipCameraPassword = "123456",
+    dashScopeApiKey = "sk-fb1a1b32bf914059a043ee4ebd1c845a",
     refreshIntervalMs = 3000L
 )
 
@@ -503,10 +503,10 @@ data class Passengers(
 
 ```kotlin
 val config = PerceptionConfig(
-    ipCameraUrl = "...",
-    ipCameraUsername = "...",
-    ipCameraPassword = "...",
-    dashScopeApiKey = "your-api-key",
+    ipCameraUrl = "http://172.31.2.252:8081/video",
+    ipCameraUsername = "admin",
+    ipCameraPassword = "123456",
+    dashScopeApiKey = "sk-fb1a1b32bf914059a043ee4ebd1c845a",
     refreshIntervalMs = 3000L
 )
 
@@ -647,10 +647,10 @@ class PerceptionActivity : AppCompatActivity() {
     
     private fun initializePerceptionEngine() {
         val config = PerceptionConfig(
-            ipCameraUrl = "http://192.168.1.100:8080/video",
+            ipCameraUrl = "http://172.31.2.252:8081/video",
             ipCameraUsername = "admin",
-            ipCameraPassword = "password",
-            dashScopeApiKey = "your-api-key",
+            ipCameraPassword = "123456",
+            dashScopeApiKey = "sk-fb1a1b32bf914059a043ee4ebd1c845a",
             refreshIntervalMs = 3000L
         )
         
@@ -708,9 +708,9 @@ class SettingsActivity : AppCompatActivity() {
         }
         
         // IP 摄像头设置
-        binding.etIpCameraUrl.setText("http://192.168.1.100:8080/video")
+        binding.etIpCameraUrl.setText("http://172.31.2.252:8081/video")
         binding.etIpCameraUsername.setText("admin")
-        binding.etIpCameraPassword.setText("password")
+        binding.etIpCameraPassword.setText("123456")
         
         binding.btnSave.setOnClickListener {
             saveIpCameraSettings()
@@ -766,10 +766,10 @@ public class PerceptionActivity extends AppCompatActivity {
     
     private void initializePerceptionEngine() {
         PerceptionConfig config = new PerceptionConfig(
-            "http://192.168.1.100:8080/video",
+            "http://172.31.2.252:8081/video",
             "admin",
-            "password",
-            "your-api-key",
+            "123456",
+            "sk-fb1a1b32bf914059a043ee4ebd1c845a",
             3000L
         );
         
@@ -822,7 +822,7 @@ import json
 from datetime import datetime
 
 class PerceptionSDKClient:
-    def __init__(self, api_key, base_url="http://192.168.1.100:8080"):
+    def __init__(self, api_key, base_url="http://172.31.2.252:8081"):
         self.api_key = api_key
         self.base_url = base_url
         self.dashscope_url = "https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions"
@@ -939,7 +939,7 @@ class PerceptionSDKClient:
 
 # 使用示例
 if __name__ == "__main__":
-    client = PerceptionSDKClient(api_key="your-dashscope-api-key")
+    client = PerceptionSDKClient(api_key="sk-fb1a1b32bf914059a043ee4ebd1c845a")
     
     # 分析车外摄像头
     external_result = client.analyze_external_camera("external_camera.jpg")
@@ -1283,7 +1283,7 @@ adb logcat | grep OkHttp
 
 # 测试 API 连接
 curl -X POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions \
-  -H "Authorization: Bearer your-api-key" \
+  -H "Authorization: Bearer sk-fb1a1b32bf914059a043ee4ebd1c845a" \
   -H "Content-Type: application/json" \
   -d '{"model":"qwen-vl-max","messages":[]}'
 ```

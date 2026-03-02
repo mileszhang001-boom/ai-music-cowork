@@ -1,0 +1,173 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.music.appmain"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.CAMERA" />
+11-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:5:5-65
+11-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:5:22-62
+12    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+12-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:6:5-71
+12-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:6:22-68
+13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+13-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:7:5-79
+13-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:7:22-76
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:8:5-80
+14-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:8:22-77
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:9:5-67
+15-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:9:22-64
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->[androidx.media3:media3-common:1.2.1] /Users/mi/.gradle/caches/8.9/transforms/7058b445c6fb8d9026abd7507649ceb6/transformed/media3-common-1.2.1/AndroidManifest.xml:22:5-79
+16-->[androidx.media3:media3-common:1.2.1] /Users/mi/.gradle/caches/8.9/transforms/7058b445c6fb8d9026abd7507649ceb6/transformed/media3-common-1.2.1/AndroidManifest.xml:22:22-76
+17
+18    <permission
+18-->[androidx.core:core:1.12.0] /Users/mi/.gradle/caches/8.9/transforms/ceda85779ef1113f822ee4f06fc5ab54/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+19        android:name="com.music.appmain.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+19-->[androidx.core:core:1.12.0] /Users/mi/.gradle/caches/8.9/transforms/ceda85779ef1113f822ee4f06fc5ab54/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+20        android:protectionLevel="signature" />
+20-->[androidx.core:core:1.12.0] /Users/mi/.gradle/caches/8.9/transforms/ceda85779ef1113f822ee4f06fc5ab54/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+21
+22    <uses-permission android:name="com.music.appmain.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+22-->[androidx.core:core:1.12.0] /Users/mi/.gradle/caches/8.9/transforms/ceda85779ef1113f822ee4f06fc5ab54/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+22-->[androidx.core:core:1.12.0] /Users/mi/.gradle/caches/8.9/transforms/ceda85779ef1113f822ee4f06fc5ab54/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+23
+24    <application
+24-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:11:5-28:19
+25        android:allowBackup="true"
+25-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:12:9-35
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.12.0] /Users/mi/.gradle/caches/8.9/transforms/ceda85779ef1113f822ee4f06fc5ab54/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+27        android:debuggable="true"
+28        android:extractNativeLibs="false"
+29        android:label="@string/app_name"
+29-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:13:9-41
+30        android:supportsRtl="true"
+30-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:14:9-35
+31        android:theme="@android:style/Theme.Material.Light.NoActionBar" >
+31-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:15:9-72
+32        <activity
+32-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:18:9-27:20
+33            android:name="com.music.appmain.MainActivity"
+33-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:19:13-41
+34            android:exported="true"
+34-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:20:13-36
+35            android:label="@string/app_name"
+35-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:21:13-45
+36            android:theme="@android:style/Theme.Material.Light.NoActionBar" >
+36-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:22:13-76
+37            <intent-filter>
+37-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:23:13-26:29
+38                <action android:name="android.intent.action.MAIN" />
+38-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:24:17-69
+38-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:24:25-66
+39
+40                <category android:name="android.intent.category.LAUNCHER" />
+40-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:25:17-77
+40-->/Users/mi/Documents/ai-music-cowork/Android_app/app/app-main/src/main/AndroidManifest.xml:25:27-74
+41            </intent-filter>
+42        </activity>
+43
+44        <service
+44-->[androidx.camera:camera-camera2:1.3.1] /Users/mi/.gradle/caches/8.9/transforms/f5f8ce40c2103bbb6bcf5d6a4ecd6f76/transformed/camera-camera2-1.3.1/AndroidManifest.xml:24:9-33:19
+45            android:name="androidx.camera.core.impl.MetadataHolderService"
+45-->[androidx.camera:camera-camera2:1.3.1] /Users/mi/.gradle/caches/8.9/transforms/f5f8ce40c2103bbb6bcf5d6a4ecd6f76/transformed/camera-camera2-1.3.1/AndroidManifest.xml:25:13-75
+46            android:enabled="false"
+46-->[androidx.camera:camera-camera2:1.3.1] /Users/mi/.gradle/caches/8.9/transforms/f5f8ce40c2103bbb6bcf5d6a4ecd6f76/transformed/camera-camera2-1.3.1/AndroidManifest.xml:26:13-36
+47            android:exported="false" >
+47-->[androidx.camera:camera-camera2:1.3.1] /Users/mi/.gradle/caches/8.9/transforms/f5f8ce40c2103bbb6bcf5d6a4ecd6f76/transformed/camera-camera2-1.3.1/AndroidManifest.xml:27:13-37
+48            <meta-data
+48-->[androidx.camera:camera-camera2:1.3.1] /Users/mi/.gradle/caches/8.9/transforms/f5f8ce40c2103bbb6bcf5d6a4ecd6f76/transformed/camera-camera2-1.3.1/AndroidManifest.xml:30:13-32:89
+49                android:name="androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER"
+49-->[androidx.camera:camera-camera2:1.3.1] /Users/mi/.gradle/caches/8.9/transforms/f5f8ce40c2103bbb6bcf5d6a4ecd6f76/transformed/camera-camera2-1.3.1/AndroidManifest.xml:31:17-103
+50                android:value="androidx.camera.camera2.Camera2Config$DefaultProvider" />
+50-->[androidx.camera:camera-camera2:1.3.1] /Users/mi/.gradle/caches/8.9/transforms/f5f8ce40c2103bbb6bcf5d6a4ecd6f76/transformed/camera-camera2-1.3.1/AndroidManifest.xml:32:17-86
+51        </service>
+52
+53        <provider
+53-->[androidx.emoji2:emoji2:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/d6fab6e4211ab22e5c534037921840f0/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+54            android:name="androidx.startup.InitializationProvider"
+54-->[androidx.emoji2:emoji2:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/d6fab6e4211ab22e5c534037921840f0/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+55            android:authorities="com.music.appmain.androidx-startup"
+55-->[androidx.emoji2:emoji2:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/d6fab6e4211ab22e5c534037921840f0/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+56            android:exported="false" >
+56-->[androidx.emoji2:emoji2:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/d6fab6e4211ab22e5c534037921840f0/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+57            <meta-data
+57-->[androidx.emoji2:emoji2:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/d6fab6e4211ab22e5c534037921840f0/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+58                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+58-->[androidx.emoji2:emoji2:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/d6fab6e4211ab22e5c534037921840f0/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+59                android:value="androidx.startup" />
+59-->[androidx.emoji2:emoji2:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/d6fab6e4211ab22e5c534037921840f0/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+60            <meta-data
+60-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/mi/.gradle/caches/8.9/transforms/fe0392303f2d520a75e6115093152e47/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
+61                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+61-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/mi/.gradle/caches/8.9/transforms/fe0392303f2d520a75e6115093152e47/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
+62                android:value="androidx.startup" />
+62-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/mi/.gradle/caches/8.9/transforms/fe0392303f2d520a75e6115093152e47/transformed/lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+63            <meta-data
+63-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+64                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+64-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+65                android:value="androidx.startup" />
+65-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+66        </provider>
+67
+68        <activity
+68-->[androidx.compose.ui:ui-test-manifest:1.6.1] /Users/mi/.gradle/caches/8.9/transforms/c3551e9144db79a5aba72eb08a5bbdba/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:23:9-25:39
+69            android:name="androidx.activity.ComponentActivity"
+69-->[androidx.compose.ui:ui-test-manifest:1.6.1] /Users/mi/.gradle/caches/8.9/transforms/c3551e9144db79a5aba72eb08a5bbdba/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:24:13-63
+70            android:exported="true" />
+70-->[androidx.compose.ui:ui-test-manifest:1.6.1] /Users/mi/.gradle/caches/8.9/transforms/c3551e9144db79a5aba72eb08a5bbdba/transformed/ui-test-manifest-1.6.1/AndroidManifest.xml:25:13-36
+71        <activity
+71-->[androidx.compose.ui:ui-tooling-android:1.6.1] /Users/mi/.gradle/caches/8.9/transforms/6a4a1a8e19052ae32ba1d26ec65148e9/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+72            android:name="androidx.compose.ui.tooling.PreviewActivity"
+72-->[androidx.compose.ui:ui-tooling-android:1.6.1] /Users/mi/.gradle/caches/8.9/transforms/6a4a1a8e19052ae32ba1d26ec65148e9/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+73            android:exported="true" />
+73-->[androidx.compose.ui:ui-tooling-android:1.6.1] /Users/mi/.gradle/caches/8.9/transforms/6a4a1a8e19052ae32ba1d26ec65148e9/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+74
+75        <receiver
+75-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+76            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+76-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+77            android:directBootAware="false"
+77-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+78            android:enabled="true"
+78-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+79            android:exported="true"
+79-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+80            android:permission="android.permission.DUMP" >
+80-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+81            <intent-filter>
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+82                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+82-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+82-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+83            </intent-filter>
+84            <intent-filter>
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+85                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+85-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+85-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+86            </intent-filter>
+87            <intent-filter>
+87-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+88                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+88-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+88-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+89            </intent-filter>
+90            <intent-filter>
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+91                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+91-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/mi/.gradle/caches/8.9/transforms/8fdad67de6065396c5358afdca962f23/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+92            </intent-filter>
+93        </receiver>
+94    </application>
+95
+96</manifest>

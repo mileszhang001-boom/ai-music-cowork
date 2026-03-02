@@ -1,0 +1,14 @@
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/util/JsonLoader.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/data/SceneTemplateLoader.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/algorithm/SceneKeywordMatcher.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/algorithm/MusicScorer.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/util/Logger.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/Layer3SDK.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/engine/LightingEngine.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/algorithm/ArtistDiversityFilter.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/engine/AudioEngine.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/engine/ContentEngine.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/data/MusicLibraryLoader.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/algorithm/ColorAdjuster.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/engine/GenerationEngine.kt
+/Users/mi/Documents/ai-music-cowork/Android_app/features/layer3/layer3-sdk/src/main/java/com/example/layer3/sdk/data/CacheManager.kt

@@ -2,16 +2,16 @@ package com.music.localmusic.session
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.support.v4.media.MediaMetadataCompat
-import android.support.v4.media.session.MediaSessionCompat
-import android.support.v4.media.session.PlaybackStateCompat
+import androidx.media.session.MediaSession
+import androidx.media.MediaMetadata
+import androidx.media.session.PlaybackState
 import com.music.localmusic.models.Track
 
 class MediaSessionManager(private val context: Context) {
-    
-    private var mediaSession: MediaSessionCompat? = null
+
+    private var mediaSession: MediaSession? = null
     private var callback: MediaSessionCallback? = null
-    
+
     interface MediaSessionCallback {
         fun onPlay()
         fun onPause()
@@ -20,14 +20,10 @@ class MediaSessionManager(private val context: Context) {
         fun onSkipToPrevious()
         fun onSeekTo(positionMs: Long)
     }
-    
+
     fun initialize() {
-        mediaSession = MediaSessionCompat(context, "CarMusicPlayer").apply {
-            setFlags(
-                MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS or
-                MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS
-            )
-            setCallback(object : MediaSessionCompat.Callback() {
+        mediaSession = MediaSession.Builder(context, "CarMusicPlayer").build().apply {
+            setCallback(object : MediaSession.Callback() {
                 override fun onPlay() {
                     callback?.onPlay()
                 }
@@ -56,40 +52,39 @@ class MediaSessionManager(private val context: Context) {
     }
     
     fun updateMetadata(track: Track, duration: Long, albumArt: Bitmap? = null) {
-        val metadataBuilder = MediaMetadataCompat.Builder()
-            .putString(MediaMetadataCompat.METADATA_KEY_TITLE, track.title)
-            .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, track.artist)
-            .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration)
-        
+        val metadataBuilder = MediaMetadata.Builder()
+            .putString(MediaMetadata.METADATA_KEY_TITLE, track.title)
+            .putString(MediaMetadata.METADATA_KEY_ARTIST, track.artist)
+            .putLong(MediaMetadata.METADATA_KEY_DURATION, duration)
+
         track.album?.let {
-            metadataBuilder.putString(MediaMetadataCompat.METADATA_KEY_ALBUM, it)
+            metadataBuilder.putString(MediaMetadata.METADATA_KEY_ALBUM, it)
         }
-        
+
         albumArt?.let {
-            metadataBuilder.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, it)
+            metadataBuilder.putBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART, it)
         }
-        
+
         mediaSession?.setMetadata(metadataBuilder.build())
     }
-    
+
     fun updatePlaybackState(state: Int, position: Long = 0) {
-        val playbackState = PlaybackStateCompat.Builder()
+        val playbackState = PlaybackState.Builder()
             .setActions(
-                PlaybackStateCompat.ACTION_PLAY or
-                PlaybackStateCompat.ACTION_PAUSE or
-                PlaybackStateCompat.ACTION_STOP or
-                PlaybackStateCompat.ACTION_SKIP_TO_NEXT or
-                PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS or
-                PlaybackStateCompat.ACTION_SEEK_TO
+                PlaybackState.ACTION_PLAY or
+                PlaybackState.ACTION_PAUSE or
+                PlaybackState.ACTION_STOP or
+                PlaybackState.ACTION_SKIP_TO_NEXT or
+                PlaybackState.ACTION_SKIP_TO_PREVIOUS or
+                PlaybackState.ACTION_SEEK_TO
             )
             .setState(state, position, 1.0f)
             .build()
-        
+
         mediaSession?.setPlaybackState(playbackState)
     }
-    
+
     fun release() {
-        mediaSession?.isActive = false
         mediaSession?.release()
         mediaSession = null
     }
