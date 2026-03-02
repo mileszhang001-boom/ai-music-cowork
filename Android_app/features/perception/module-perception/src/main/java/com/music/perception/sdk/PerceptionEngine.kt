@@ -17,6 +17,15 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
+/**
+ * 感知引擎 - 负责采集和处理车辆感知数据
+ * 
+ * 功能：
+ * - 采集车内/外摄像头图像
+ * - 采集麦克风音频数据
+ * - 通过AI分析图像获取乘客、情绪等信息
+ * - 使用一致性校验器确保数据稳定性
+ */
 class PerceptionEngine(
     private val context: Context,
     private var config: PerceptionConfig,
@@ -31,7 +40,7 @@ class PerceptionEngine(
     private var aiClient = AIClient(config)
     private val weatherService = WeatherService()
     private val localImageAnalyzer = LocalImageAnalyzer()
-    private val confidenceValidator = ConfidenceValidator(0.6)
+    private val consistencyValidator = ConsistencyValidator()
     
     private val cameraSource = CameraSource(context, lifecycleOwner)
     private var ipCameraSource = IpCameraSource(config)
@@ -77,7 +86,7 @@ class PerceptionEngine(
                 try {
                     processFrame()
                 } catch (e: Exception) {
-                    e.printStackTrace()
+                    Log.e("PerceptionEngine", "处理帧失败: ${e.message}", e)
                 }
                 val elapsedTime = System.currentTimeMillis() - loopStartTime
                 val delayTime = (config.refreshIntervalMs - elapsedTime).coerceAtLeast(0)
@@ -86,11 +95,14 @@ class PerceptionEngine(
         }
     }
 
+    /**
+     * 处理单帧数据
+     * 采集所有传感器数据，进行AI分析，并通过一致性校验后输出
+     */
     private suspend fun processFrame() {
         val location = sensorManager.currentLocation
         val micData = sensorManager.getAudioMetrics()
         
-        // 添加音频调试日志
         Log.d("PerceptionEngine", "MicData: volume=${String.format("%.3f", micData.volume)}, hasVoice=${micData.hasVoice}, voiceCount=${micData.voiceCount}, noiseLevel=${String.format("%.3f", micData.noiseLevel)}")
         
         val bitmapToProcess = currentBitmap?.let { bmp ->
@@ -133,12 +145,11 @@ class PerceptionEngine(
             val internalBase64 = Base64.encodeToString(internalBytes, Base64.NO_WRAP)
             
             val rawSignal = aiClient.analyzeInternalCamera(internalBase64)
-            val validationResult = confidenceValidator.validate(rawSignal.confidence ?: 0.0)
             
             InternalCamera(
-                mood = if (validationResult.isValid) rawSignal.mood else "uncertain",
+                mood = rawSignal.mood ?: "unknown",
                 confidence = rawSignal.confidence,
-                passengers = rawSignal.passengers
+                passengers = rawSignal.passengers ?: Passengers(children = 0, adults = 0, seniors = 0)
             )
         } else {
             InternalCamera(
@@ -178,7 +189,20 @@ class PerceptionEngine(
             confidence = Confidence(overall = 0.9)
         )
 
-        _signalsFlow.emit(output)
+        val consistencyResult = consistencyValidator.validate(output)
+        
+        Log.d("PerceptionEngine", "一致性校验: isConsistent=${consistencyResult.isConsistent}, " +
+                "score=${String.format("%.2f", consistencyResult.consistencyScore)}, " +
+                "sampleCount=${consistencyResult.sampleCount}, " +
+                "matchingFields=${consistencyResult.matchingFields.size}, " +
+                "differingFields=${consistencyResult.differingFields}")
+        
+        if (consistencyResult.isConsistent || consistencyResult.sampleCount >= 5) {
+            _signalsFlow.emit(output)
+            Log.d("PerceptionEngine", "数据已发送: consistent=${consistencyResult.isConsistent}, waitTime=${consistencyResult.waitTimeMs}ms")
+        } else {
+            Log.d("PerceptionEngine", "数据未发送，等待一致性确认... (样本数: ${consistencyResult.sampleCount})")
+        }
     }
 
     override fun stop() {

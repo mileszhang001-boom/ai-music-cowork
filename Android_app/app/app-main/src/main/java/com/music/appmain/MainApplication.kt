@@ -64,7 +64,7 @@ class MainApplication : Application() {
             ipCameraUsername: String = "",
             ipCameraPassword: String = "",
             dashScopeApiKey: String = "sk-fb1a1b32bf914059a043ee4ebd1c845a",
-            refreshIntervalMs: Long = 3000L
+            refreshIntervalMs: Long = 2000L
         ): PerceptionConfig {
             return PerceptionConfig.Builder()
                 .setIpCameraUrl(ipCameraUrl)
