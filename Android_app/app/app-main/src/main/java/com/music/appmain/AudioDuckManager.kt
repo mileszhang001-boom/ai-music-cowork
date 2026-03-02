@@ -11,17 +11,24 @@ class AudioDuckManager(private val context: Context) {
     
     companion object {
         private const val TAG = "AudioDuckManager"
-        private const val DUCK_VOLUME = 0.3f
-        private const val STREAM_TYPE = AudioManager.STREAM_MUSIC
+        private const val DUCK_VOLUME_RATIO = 0.3f
     }
     
     private val audioManager: AudioManager = 
         context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     
-    private var originalVolume: Int = 0
-    private var maxVolume: Int = 0
     private var isDucked: Boolean = false
     private var audioFocusRequest: AudioFocusRequest? = null
+    private var volumeCallback: VolumeCallback? = null
+    
+    interface VolumeCallback {
+        fun onDuckVolume(ratio: Float)
+        fun onRestoreVolume()
+    }
+    
+    fun setVolumeCallback(callback: VolumeCallback) {
+        this.volumeCallback = callback
+    }
     
     private val audioFocusChangeListener = AudioManager.OnAudioFocusChangeListener { focusChange ->
         when (focusChange) {
@@ -44,12 +51,6 @@ class AudioDuckManager(private val context: Context) {
         }
     }
     
-    init {
-        maxVolume = audioManager.getStreamMaxVolume(STREAM_TYPE)
-        originalVolume = audioManager.getStreamVolume(STREAM_TYPE)
-        Log.d(TAG, "Initialized with maxVolume=$maxVolume, originalVolume=$originalVolume")
-    }
-    
     fun duck(): Boolean {
         if (isDucked) {
             Log.w(TAG, "Already ducked, skipping")
@@ -57,22 +58,14 @@ class AudioDuckManager(private val context: Context) {
         }
         
         return try {
-            originalVolume = audioManager.getStreamVolume(STREAM_TYPE)
-            
             val focusGranted = requestAudioFocus()
             if (!focusGranted) {
                 Log.w(TAG, "Failed to gain audio focus, proceeding with duck anyway")
             }
             
-            val duckedVolume = (maxVolume * DUCK_VOLUME).toInt().coerceAtLeast(1)
-            audioManager.setStreamVolume(
-                STREAM_TYPE,
-                duckedVolume,
-                AudioManager.FLAG_SHOW_UI
-            )
-            
+            volumeCallback?.onDuckVolume(DUCK_VOLUME_RATIO)
             isDucked = true
-            Log.i(TAG, "Ducked volume from $originalVolume to $duckedVolume")
+            Log.i(TAG, "Ducked volume to ${DUCK_VOLUME_RATIO * 100}%")
             true
         } catch (e: Exception) {
             Log.e(TAG, "Failed to duck volume", e)
@@ -90,7 +83,7 @@ class AudioDuckManager(private val context: Context) {
             restoreVolume()
             abandonAudioFocus()
             isDucked = false
-            Log.i(TAG, "Unducked volume restored to $originalVolume")
+            Log.i(TAG, "Unducked volume restored")
             true
         } catch (e: Exception) {
             Log.e(TAG, "Failed to unduck volume", e)
@@ -99,14 +92,7 @@ class AudioDuckManager(private val context: Context) {
     }
     
     private fun restoreVolume() {
-        val currentVolume = audioManager.getStreamVolume(STREAM_TYPE)
-        if (currentVolume != originalVolume) {
-            audioManager.setStreamVolume(
-                STREAM_TYPE,
-                originalVolume,
-                AudioManager.FLAG_SHOW_UI
-            )
-        }
+        volumeCallback?.onRestoreVolume()
     }
     
     private fun requestAudioFocus(): Boolean {
@@ -128,7 +114,7 @@ class AudioDuckManager(private val context: Context) {
             @Suppress("DEPRECATION")
             val result = audioManager.requestAudioFocus(
                 audioFocusChangeListener,
-                STREAM_TYPE,
+                AudioManager.STREAM_MUSIC,
                 AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK
             )
             result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
@@ -149,15 +135,12 @@ class AudioDuckManager(private val context: Context) {
     
     fun isDucked(): Boolean = isDucked
     
-    fun getCurrentVolume(): Int = audioManager.getStreamVolume(STREAM_TYPE)
-    
-    fun getOriginalVolume(): Int = originalVolume
-    
     fun release() {
         if (isDucked) {
             unduck()
         }
         abandonAudioFocus()
+        volumeCallback = null
         Log.d(TAG, "AudioDuckManager released")
     }
 }

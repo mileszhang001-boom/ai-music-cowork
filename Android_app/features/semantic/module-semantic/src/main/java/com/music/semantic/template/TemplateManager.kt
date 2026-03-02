@@ -25,7 +25,14 @@ data class TemplateData(
 data class TemplateIntent(
     val mood: TemplateMood,
     val energy_level: Double,
-    val atmosphere: String? = null
+    val atmosphere: String? = null,
+    val constraints: TemplateConstraints? = null
+)
+
+@Serializable
+data class TemplateConstraints(
+    val max_volume_db: Int? = null,
+    val avoid_explicit: Boolean? = null
 )
 
 @Serializable
@@ -108,7 +115,12 @@ class TemplateManager(private val context: Context) {
                     arousal = template.intent.mood.arousal
                 ),
                 energy_level = template.intent.energy_level,
-                atmosphere = template.intent.atmosphere
+                atmosphere = template.intent.atmosphere,
+                constraints = template.intent.constraints?.let {
+                    Constraints(
+                        max_volume_db = it.max_volume_db
+                    )
+                }
             ),
             hints = Hints(
                 music = template.hints.music?.let {

@@ -42,7 +42,8 @@ class MusicPlayer(context: Context) {
     private var currentTrack: Track? = null
     private var wasPlayingBeforeFocusLoss: Boolean = false
     private var isDucking: Boolean = false
-    private var savedVolume: Float = 1.0f
+    private var savedVolume: Float = 1.5f
+    private val defaultVolumeGain: Float = 1.5f
     
     private val playerListener = object : Player.Listener {
         override fun onPlaybackStateChanged(playbackState: Int) {
@@ -146,6 +147,7 @@ class MusicPlayer(context: Context) {
     
     private fun initializePlayer() {
         exoPlayer.addListener(playerListener)
+        exoPlayer.volume = defaultVolumeGain
     }
     
     private fun initializeAudioFocus() {
@@ -328,7 +330,7 @@ class MusicPlayer(context: Context) {
     }
     
     fun setVolume(volume: Float) {
-        savedVolume = volume.coerceIn(0f, 1f)
+        savedVolume = volume.coerceIn(0f, 3.0f)
         if (!isDucking) {
             exoPlayer.volume = savedVolume
         }

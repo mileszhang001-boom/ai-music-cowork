@@ -5,7 +5,7 @@ import com.music.core.api.models.EffectCommands
 import kotlinx.coroutines.flow.Flow
 
 interface IGenerationEngine {
-    val effectCommandsFlow: Flow<EffectCommands>
+    val effectCommandsFlow: Flow<EffectCommands?>
     
     suspend fun generateScene(sceneId: String): Result<SceneDescriptor>
     

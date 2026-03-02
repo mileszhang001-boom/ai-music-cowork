@@ -129,9 +129,14 @@ class RulesEngine {
     }
     
     private fun buildRuleContext(signals: StandardizedSignals): RuleContext {
-        val calendar = Calendar.getInstance()
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
+        val timeOfDay = signals.signals.environment?.time_of_day
+        val hour = if (timeOfDay != null) {
+            timeOfDay.toInt()
+        } else {
+            Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        }
+        
+        val dayOfWeek = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
         
         return RuleContext(
             hour = hour,

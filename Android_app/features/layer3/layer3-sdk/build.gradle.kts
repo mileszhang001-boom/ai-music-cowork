@@ -36,12 +36,12 @@ dependencies {
     implementation(project(":core:core-api"))
     implementation(project(":features:layer3:layer3-api"))
     implementation(project(":features:localmusic:module-localmusic"))
-
+    
     implementation(libs.androidx.core.ktx)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.gson)
-
+    
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
 }

@@ -6,6 +6,8 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.Dispatchers
 import com.example.layer3.api.Layer3Config
 import com.music.core.api.models.EffectCommands
 import com.example.layer3.sdk.Layer3SDK
@@ -38,7 +40,7 @@ class MainViewModel(
     private val llmApiKey: String = "",
     private val llmBaseUrl: String = "https://dashscope.aliyuncs.com/compatible-mode/v1",
     private val llmModel: String = "qwen-plus"
-) : AndroidViewModel(application), TtsCallback {
+) : AndroidViewModel(application), TtsCallback, VoiceInputCallback {
 
     companion object {
         private const val TAG = "MainViewModel"
@@ -51,6 +53,7 @@ class MainViewModel(
 
     private val ttsService: TtsService = TtsService(context)
     private val audioDuckManager: AudioDuckManager = AudioDuckManager(context)
+    private val voiceInputService: VoiceInputService = VoiceInputService(context)
     
     private var musicPlayer: MusicPlayer? = null
     private var localMusicIndex: LocalMusicIndex? = null
@@ -72,6 +75,15 @@ class MainViewModel(
 
     private val _isInitialized = MutableStateFlow(false)
     val isInitializedFlow: StateFlow<Boolean> = _isInitialized.asStateFlow()
+    
+    private val _voiceInputState = MutableStateFlow<VoiceInputState>(VoiceInputState.Idle)
+    val voiceInputStateFlow: StateFlow<VoiceInputState> = _voiceInputState.asStateFlow()
+    
+    private val _voiceRecognizedText = MutableStateFlow("")
+    val voiceRecognizedTextFlow: StateFlow<String> = _voiceRecognizedText.asStateFlow()
+    
+    private val _voiceAmplitude = MutableStateFlow(0f)
+    val voiceAmplitudeFlow: StateFlow<Float> = _voiceAmplitude.asStateFlow()
     
     private val _playerState = MutableStateFlow<PlayerState>(PlayerState.Idle)
     val playerStateFlow: StateFlow<PlayerState> = _playerState.asStateFlow()
@@ -110,11 +122,31 @@ class MainViewModel(
     init {
         initializeEngines()
         initializeTts()
+        initializeVoiceInput()
         initializeMusicPlayer()
+    }
+    
+    private fun initializeVoiceInput() {
+        voiceInputService.setCallback(this)
+        voiceInputService.createSpeechRecognizer()
+        Log.i(TAG, "语音输入服务初始化完成")
     }
     
     private fun initializeMusicPlayer() {
         musicPlayer = MusicPlayer(context)
+        
+        audioDuckManager.setVolumeCallback(object : AudioDuckManager.VolumeCallback {
+            override fun onDuckVolume(ratio: Float) {
+                viewModelScope.launch(Dispatchers.Main) {
+                    musicPlayer?.setVolume(1.5f * ratio)
+                }
+            }
+            override fun onRestoreVolume() {
+                viewModelScope.launch(Dispatchers.Main) {
+                    musicPlayer?.setVolume(1.5f)
+                }
+            }
+        })
         
         musicPlayer?.setListener(object : MusicPlayer.Listener {
             override fun onStateChanged(state: PlayerState) {
@@ -190,6 +222,172 @@ class MainViewModel(
         Log.e(TAG, "TTS 错误: $message")
         audioDuckManager.unduck()
     }
+
+    override fun onReadyForSpeech() {
+        Log.i(TAG, "语音输入: 准备就绪")
+        _voiceInputState.value = VoiceInputState.Listening
+    }
+
+    override fun onBeginningOfSpeech() {
+        Log.i(TAG, "语音输入: 开始说话")
+    }
+
+    override fun onRmsChanged(rmsdB: Float) {
+        val normalizedAmplitude = ((rmsdB + 2f) / 12f).coerceIn(0f, 1f)
+        _voiceAmplitude.value = normalizedAmplitude
+        _voiceInputState.value = VoiceInputState.Processing((normalizedAmplitude * 100).toInt())
+    }
+
+    override fun onEndOfSpeech() {
+        Log.i(TAG, "语音输入: 说话结束")
+        _voiceInputState.value = VoiceInputState.Processing()
+    }
+
+    override fun onResult(text: String) {
+        Log.i(TAG, "语音输入识别结果: $text")
+        _voiceRecognizedText.value = text
+        _voiceInputState.value = VoiceInputState.Result(text)
+        
+        if (text.isNotBlank()) {
+            processVoiceQuery(text)
+        }
+    }
+
+    override fun onVoiceError(message: String) {
+        Log.e(TAG, "语音输入错误: $message")
+        _voiceInputState.value = VoiceInputState.Error(message)
+    }
+
+    fun startVoiceInput() {
+        if (_isRunning.value) {
+            stop()
+        }
+        
+        audioDuckManager.duck()
+        voiceInputService.startListening()
+        _voiceInputState.value = VoiceInputState.Listening
+        _voiceRecognizedText.value = ""
+        Log.i(TAG, "开始语音输入")
+    }
+
+    fun stopVoiceInput() {
+        voiceInputService.stopListening()
+        audioDuckManager.unduck()
+        Log.i(TAG, "停止语音输入")
+    }
+
+    fun cancelVoiceInput() {
+        voiceInputService.cancel()
+        audioDuckManager.unduck()
+        _voiceInputState.value = VoiceInputState.Idle
+        _voiceRecognizedText.value = ""
+        Log.i(TAG, "取消语音输入")
+    }
+
+    private fun processVoiceQuery(query: String) {
+        Log.i(TAG, "处理语音查询: $query")
+        
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val signals = createSignalsFromVoiceQuery(query)
+                _standardizedSignalsFlow.value = signals
+                
+                val externalCamera = signals.signals.external_camera
+                if (externalCamera != null) {
+                    val primaryColor = externalCamera.primary_color
+                    val secondaryColor = externalCamera.secondary_color
+                    if (!primaryColor.isNullOrBlank()) {
+                        CoverGenerator.setSceneColors(primaryColor, secondaryColor ?: primaryColor)
+                    }
+                }
+                
+                semanticEngine?.processSignals(signals)
+            } catch (e: Exception) {
+                Log.e(TAG, "处理语音查询失败: ${e.message}")
+            }
+        }
+    }
+
+    private fun createSignalsFromVoiceQuery(query: String): StandardizedSignals {
+        val lowerQuery = query.lowercase()
+        
+        val (mood, sceneDescription, primaryColor, secondaryColor) = when {
+            lowerQuery.contains("伤心") || lowerQuery.contains("难过") || lowerQuery.contains("emo") -> {
+                Tuple4("sad", "rainy_night_city", "#1A237E", "#4A148C")
+            }
+            lowerQuery.contains("开心") || lowerQuery.contains("高兴") || lowerQuery.contains("快乐") -> {
+                Tuple4("happy", "sunny_day", "#FFCA28", "#FF6F00")
+            }
+            lowerQuery.contains("浪漫") || lowerQuery.contains("约会") || lowerQuery.contains("情侣") -> {
+                Tuple4("romantic", "city_night_lights", "#AD1457", "#880E4F")
+            }
+            lowerQuery.contains("累") || lowerQuery.contains("疲劳") || lowerQuery.contains("困") -> {
+                Tuple4("tired", "highway_monotonous", "#FF6D00", "#FFAB00")
+            }
+            lowerQuery.contains("放松") || lowerQuery.contains("轻松") || lowerQuery.contains("休闲") -> {
+                Tuple4("relaxed", "coastal_highway", "#00B8D4", "#80DEEA")
+            }
+            lowerQuery.contains("兴奋") || lowerQuery.contains("激动") || lowerQuery.contains("嗨") -> {
+                Tuple4("excited", "city_evening", "#D500F9", "#EA80FC")
+            }
+            lowerQuery.contains("儿童") || lowerQuery.contains("小孩") || lowerQuery.contains("孩子") -> {
+                Tuple4("happy", "suburban_street", "#FF6F00", "#FFCA28")
+            }
+            lowerQuery.contains("流行") || lowerQuery.contains("pop") -> {
+                Tuple4("neutral", "highway_drive", "#00E5FF", "#18FFFF")
+            }
+            else -> {
+                Tuple4("neutral", "city_drive", "#607D8B", "#455A64")
+            }
+        }
+        
+        val passengerCount = when {
+            lowerQuery.contains("我们") || lowerQuery.contains("一起") -> 2
+            lowerQuery.contains("全家") || lowerQuery.contains("家人") -> 4
+            else -> 1
+        }
+        
+        return StandardizedSignals(
+            timestamp = java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", java.util.Locale.US).format(java.util.Date()),
+            signals = com.music.core.api.models.Signals(
+                vehicle = com.music.core.api.models.Vehicle(
+                    speed_kmh = 45.0,
+                    passenger_count = passengerCount,
+                    gear = "D"
+                ),
+                environment = com.music.core.api.models.Environment(
+                    time_of_day = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY).toDouble(),
+                    weather = "clear",
+                    temperature = 22.0,
+                    date_type = "weekday"
+                ),
+                external_camera = com.music.core.api.models.ExternalCamera(
+                    scene_description = sceneDescription,
+                    primary_color = primaryColor,
+                    secondary_color = secondaryColor,
+                    brightness = 0.7
+                ),
+                internal_camera = com.music.core.api.models.InternalCamera(
+                    mood = mood,
+                    confidence = 0.85,
+                    passengers = com.music.core.api.models.Passengers(
+                        children = if (lowerQuery.contains("儿童") || lowerQuery.contains("小孩")) 1 else 0,
+                        adults = passengerCount,
+                        seniors = 0
+                    )
+                ),
+                internal_mic = com.music.core.api.models.InternalMic(
+                    volume_level = 0.3,
+                    has_voice = true,
+                    voice_count = passengerCount,
+                    noise_level = 0.2
+                )
+            ),
+            confidence = com.music.core.api.models.Confidence(overall = 0.85)
+        )
+    }
+
+    private data class Tuple4<A, B, C, D>(val first: A, val second: B, val third: C, val fourth: D)
 
     private fun initializeEngines() {
         Log.d(TAG, "开始初始化引擎...")
@@ -272,8 +470,17 @@ class MainViewModel(
                         Log.i(TAG, "设置封面颜色: primary=$primaryColor, secondary=$secondaryColor")
                     }
                     
+                    it.commands?.audio?.let { audioCommand ->
+                        val volumeDb = audioCommand.settings?.volume_db ?: 0
+                        val volumeGain = Math.pow(10.0, volumeDb / 20.0).toFloat()
+                        val finalVolume = (1.5f * volumeGain).coerceIn(0.5f, 3.0f)
+                        musicPlayer?.setVolume(finalVolume)
+                        Log.i(TAG, "场景音量调节: volume_db=$volumeDb, gain=$volumeGain, finalVolume=$finalVolume")
+                    }
+                    
                     it.commands?.content?.playlist?.let { playlist ->
                         Log.i(TAG, "Layer3 播放列表: ${playlist.size} 首曲目")
+                        delay(100)
                         playLayer3Playlist(playlist)
                     }
                 }
@@ -416,19 +623,38 @@ class MainViewModel(
     }
     
     fun playLayer3Playlist(tracks: List<com.music.core.api.models.Track>) {
+        Log.i(TAG, "playLayer3Playlist called with ${tracks.size} tracks")
         if (tracks.isEmpty()) {
             Log.w(TAG, "Layer3 播放列表为空")
             return
         }
         
-        val allLocalTracks = localMusicIndex?.getAllTracks() ?: return
+        val allLocalTracks = localMusicIndex?.getAllTracks()
+        Log.i(TAG, "localMusicIndex tracks: ${allLocalTracks?.size ?: 0}")
+        
+        if (allLocalTracks.isNullOrEmpty()) {
+            Log.e(TAG, "localMusicIndex 为空或未初始化")
+            return
+        }
+        
         val storagePath = LocalMusicIndex.getConfig().storagePath
+        Log.i(TAG, "storagePath: $storagePath")
+        
+        tracks.forEach { t ->
+            Log.i(TAG, "Layer3 track: ${t.title} - ${t.artist}")
+        }
         
         val tracksToPlay = tracks.mapNotNull { layer3Track ->
-            allLocalTracks.find { 
+            val matched = allLocalTracks.find { 
                 it.title.equals(layer3Track.title, ignoreCase = true) && 
                 it.artist.equals(layer3Track.artist, ignoreCase = true) 
             }
+            if (matched != null) {
+                Log.i(TAG, "匹配成功: ${layer3Track.title} -> ${matched.title}")
+            } else {
+                Log.w(TAG, "匹配失败: ${layer3Track.title} - ${layer3Track.artist}")
+            }
+            matched
         }
         
         if (tracksToPlay.isEmpty()) {
@@ -838,6 +1064,7 @@ class MainViewModel(
 
         ttsService.shutdown()
         audioDuckManager.release()
+        voiceInputService.destroy()
         
         musicPlayer?.release()
         musicPlayer = null

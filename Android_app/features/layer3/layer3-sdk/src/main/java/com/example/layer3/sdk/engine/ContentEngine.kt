@@ -28,7 +28,15 @@ class ContentEngine(
 
     override suspend fun generatePlaylist(scene: SceneDescriptor): Result<List<Track>> {
         return try {
-            val localTracks = LocalMusicIndex.getInstance(context).getAllTracks()
+            val config = LocalMusicIndex.getConfig()
+            Log.i(TAG, "Using config: indexJsonPath=${config.indexJsonPath}, storagePath=${config.storagePath}")
+            
+            val localMusicIndex = LocalMusicIndex.forceReinitialize(context, config)
+            if (!localMusicIndex.initialize()) {
+                Log.e(TAG, "Failed to initialize LocalMusicIndex")
+            }
+            
+            val localTracks = localMusicIndex.getAllTracks()
             Log.i(TAG, "LocalMusicIndex tracks count: ${localTracks.size}")
             
             if (localTracks.isEmpty()) {
@@ -69,39 +77,49 @@ class ContentEngine(
             
             hints?.music?.genres?.let { genres ->
                 if (track.genre != null && genres.any { it.equals(track.genre, ignoreCase = true) }) {
-                    score += 30.0
+                    score += 15.0
                 }
             }
             
             hints?.music?.tempo?.let { tempo ->
                 val targetBpm = when (tempo.lowercase()) {
-                    "slow" -> 70..90
+                    "slow" -> 60..90
                     "moderate", "medium" -> 90..120
-                    "fast" -> 120..150
+                    "fast" -> 120..160
                     else -> 90..120
                 }
-                track.bpm?.let { if (it in targetBpm) score += 20.0 }
+                track.bpm?.let { 
+                    if (it in targetBpm) {
+                        score += 15.0
+                    } else {
+                        val diff = minOf(
+                            kotlin.math.abs(it - targetBpm.first),
+                            kotlin.math.abs(it - targetBpm.last)
+                        )
+                        if (diff < 20) score += 10.0
+                    }
+                }
             }
             
             val valenceDiff = kotlin.math.abs((track.valence ?: 0.5) - intent.mood.valence)
             val arousalDiff = kotlin.math.abs((track.energy ?: 0.5) - intent.mood.arousal)
-            score += (1.0 - valenceDiff) * 25.0
-            score += (1.0 - arousalDiff) * 25.0
+            score += (1.0 - valenceDiff) * 35.0
+            score += (1.0 - arousalDiff) * 35.0
             
             val energyDiff = kotlin.math.abs((track.energy ?: 0.5) - intent.energy_level)
-            score += (1.0 - energyDiff) * 20.0
+            score += (1.0 - energyDiff) * 30.0
             
             track.moodTags?.let { tags ->
                 intent.atmosphere?.let { atm ->
                     if (tags.any { it.contains(atm, ignoreCase = true) }) {
-                        score += 15.0
+                        score += 20.0
                     }
                 }
             }
             
             track.sceneTags?.let { tags ->
                 if (tags.any { it.equals(scene.scene_type, ignoreCase = true) }) {
-                    score += 15.0
+                    score += 20.0
                 }
             }
             

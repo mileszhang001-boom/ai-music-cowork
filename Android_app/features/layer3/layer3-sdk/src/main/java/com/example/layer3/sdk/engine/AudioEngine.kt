@@ -19,11 +19,13 @@ class AudioEngine(
 
     override suspend fun generateAudioConfig(scene: SceneDescriptor): Result<AudioCommand> {
         return try {
+            val volumeDb = scene.intent.constraints?.max_volume_db ?: 0
             val command = AudioCommand(
                 action = "set",
                 preset = scene.hints.audio?.preset ?: "flat",
-                settings = AudioSettings(volume_db = (scene.intent.energy_level * 100).toInt())
+                settings = AudioSettings(volume_db = volumeDb)
             )
+            Logger.i("AudioEngine: Generated audio config with volume_db=$volumeDb for scene=${scene.scene_name}")
             Result.success(command)
         } catch (e: Exception) {
             Logger.e("AudioEngine: Failed to generate audio", e)
