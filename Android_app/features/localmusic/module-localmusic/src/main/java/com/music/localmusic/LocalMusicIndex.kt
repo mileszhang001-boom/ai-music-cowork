@@ -70,6 +70,20 @@ class LocalMusicIndex private constructor(
             return getInstance(context, config)
         }
         
+        fun resetInstance() {
+            synchronized(this) {
+                instance = null
+            }
+        }
+        
+        fun forceReinitialize(context: Context, config: LocalMusicConfig): LocalMusicIndex {
+            customConfig = config
+            synchronized(this) {
+                instance = LocalMusicIndex(context, config, false)
+                return instance!!
+            }
+        }
+        
         fun hasStoragePermission(context: Context): Boolean {
             val readPermission = ContextCompat.checkSelfPermission(
                 context, Manifest.permission.READ_EXTERNAL_STORAGE
@@ -195,17 +209,27 @@ class LocalMusicIndex private constructor(
             
             for (i in 0 until jsonArray.length()) {
                 val json = jsonArray.getJSONObject(i)
+                
+                val bpmValue = json.optInt("bpm", -1)
+                val bpm = if (bpmValue > 0) bpmValue else null
+                
+                val energyValue = json.optDouble("energy", -1.0)
+                val energy = if (energyValue >= 0) energyValue else null
+                
+                val valenceValue = json.optDouble("valence", -1.0)
+                val valence = if (valenceValue >= 0) valenceValue else null
+                
                 val track = Track(
-                    id = json.optLong("id", 0L).toString(),
+                    id = json.optString("id", json.optLong("id", 0L).toString()),
                     title = json.optString("title", ""),
                     titlePinyin = json.optString("title_pinyin", null),
                     artist = json.optString("artist", "未知艺术家"),
                     artistPinyin = json.optString("artist_pinyin", null),
                     album = json.optString("album", null),
                     genre = json.optString("genre", null),
-                    bpm = json.optInt("bpm", 0),
-                    energy = json.optDouble("energy", 0.5),
-                    valence = json.optDouble("valence", 0.5),
+                    bpm = bpm,
+                    energy = energy,
+                    valence = valence,
                     moodTags = parseJsonArray(json.optString("mood_tags", "[]")),
                     sceneTags = parseJsonArray(json.optString("scene_tags", "[]")),
                     durationMs = json.optInt("duration_ms", 0),

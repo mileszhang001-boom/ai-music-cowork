@@ -19,13 +19,11 @@ class GenerationEngine(
     private val audioEngine: AudioEngine
 ) : IGenerationEngine {
     
-    private val _effectCommandsFlow = MutableStateFlow(
-        EffectCommands(scene_id = UUID.randomUUID().toString(), commands = Commands())
-    )
+    private val _effectCommandsFlow = MutableStateFlow<EffectCommands?>(null)
     
     private var isRunning = false
 
-    override val effectCommandsFlow: Flow<EffectCommands> = _effectCommandsFlow.asStateFlow()
+    override val effectCommandsFlow: Flow<EffectCommands?> = _effectCommandsFlow.asStateFlow()
 
     override suspend fun generateScene(sceneId: String): Result<SceneDescriptor> {
         return Result.failure(Exception("Not implemented"))
@@ -71,7 +69,7 @@ class GenerationEngine(
 
     override fun destroy() {
         stop()
-        _effectCommandsFlow.value = EffectCommands(scene_id = UUID.randomUUID().toString(), commands = Commands())
+        _effectCommandsFlow.value = null
         Logger.i("GenerationEngine: Destroyed")
     }
 
