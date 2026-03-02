@@ -223,7 +223,6 @@ private fun MainScreen(
             playbackInfo = playbackInfo,
             playlistSize = viewModel.playlistSizeFlow.collectAsState().value,
             currentIndex = playlistIndex,
-            repeatMode = repeatMode,
             currentAlbumArt = currentAlbumArt,
             playlist = playlist,
             onPause = { viewModel.pause() },
@@ -231,7 +230,6 @@ private fun MainScreen(
             onNext = { viewModel.next() },
             onPrevious = { viewModel.previous() },
             onSeek = { viewModel.seekTo(it) },
-            onToggleRepeatMode = { viewModel.toggleRepeatMode() },
             onPlayTrack = { index -> viewModel.playTrackAtIndex(index) },
             modifier = Modifier
                 .weight(1f)

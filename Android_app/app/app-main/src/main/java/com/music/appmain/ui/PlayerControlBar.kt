@@ -23,7 +23,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.music.localmusic.player.PlayerState
 import com.music.localmusic.player.PlaybackInfo
-import com.music.localmusic.player.RepeatMode
 import com.music.localmusic.models.Track
 
 @Composable
@@ -32,7 +31,6 @@ fun PlayerControlBar(
     playbackInfo: PlaybackInfo,
     playlistSize: Int,
     currentIndex: Int,
-    repeatMode: RepeatMode,
     currentAlbumArt: Bitmap?,
     playlist: List<Track>,
     onPause: () -> Unit,
@@ -40,7 +38,6 @@ fun PlayerControlBar(
     onNext: () -> Unit,
     onPrevious: () -> Unit,
     onSeek: (Long) -> Unit,
-    onToggleRepeatMode: () -> Unit,
     onPlayTrack: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -156,12 +153,10 @@ fun PlayerControlBar(
             
             PlaybackControls(
                 playerState = playerState,
-                repeatMode = repeatMode,
                 onPause = onPause,
                 onResume = onResume,
                 onNext = onNext,
-                onPrevious = onPrevious,
-                onToggleRepeatMode = onToggleRepeatMode
+                onPrevious = onPrevious
             )
             
             // 只有在播放器状态不是 Idle 时才显示播放列表（等待 Layer3 结果）
@@ -207,7 +202,7 @@ private fun CurrentTrackInfo(
     onSeek: (Long) -> Unit
 ) {
     Row(
-        verticalAlignment = Alignment.CenterVertically,
+        verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         albumArt?.let { bitmap ->
@@ -215,12 +210,12 @@ private fun CurrentTrackInfo(
                 bitmap = bitmap.asImageBitmap(),
                 contentDescription = "专辑封面",
                 modifier = Modifier
-                    .size(48.dp)
+                    .size(72.dp)
                     .clip(RoundedCornerShape(8.dp))
             )
         } ?: run {
             Surface(
-                modifier = Modifier.size(48.dp),
+                modifier = Modifier.size(72.dp),
                 shape = RoundedCornerShape(8.dp),
                 color = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
             ) {
@@ -228,55 +223,64 @@ private fun CurrentTrackInfo(
                     imageVector = Icons.Default.MusicNote,
                     contentDescription = "默认封面",
                     modifier = Modifier
-                        .padding(8.dp)
-                        .size(32.dp),
+                        .padding(16.dp)
+                        .size(40.dp),
                     tint = MaterialTheme.colorScheme.primary
                 )
             }
         }
         
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Medium,
-                color = MaterialTheme.colorScheme.onSecondaryContainer,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-            
-            Text(
-                text = artist,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-            
-            if (duration > 0) {
-                Spacer(modifier = Modifier.height(4.dp))
-                
-                Slider(
-                    value = position.toFloat(),
-                    onValueChange = { onSeek(it.toLong()) },
-                    valueRange = 0f..duration.toFloat(),
-                    modifier = Modifier.fillMaxWidth()
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .height(72.dp),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Medium,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
                 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = formatTime(position),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f)
+                Text(
+                    text = artist,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            
+            if (duration > 0) {
+                Column {
+                    Slider(
+                        value = position.toFloat(),
+                        onValueChange = { onSeek(it.toLong()) },
+                        valueRange = 0f..duration.toFloat(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(20.dp)
                     )
-                    Text(
-                        text = formatTime(duration),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f)
-                    )
+                    
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = formatTime(position),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f)
+                        )
+                        Text(
+                            text = formatTime(duration),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.6f)
+                        )
+                    }
                 }
             }
         }
@@ -286,12 +290,10 @@ private fun CurrentTrackInfo(
 @Composable
 private fun PlaybackControls(
     playerState: PlayerState,
-    repeatMode: RepeatMode,
     onPause: () -> Unit,
     onResume: () -> Unit,
     onNext: () -> Unit,
-    onPrevious: () -> Unit,
-    onToggleRepeatMode: () -> Unit
+    onPrevious: () -> Unit
 ) {
     val isPlaying = playerState is PlayerState.Playing
     val isPaused = playerState is PlayerState.Paused
@@ -304,19 +306,6 @@ private fun PlaybackControls(
     ) {
         if (hasTrack) {
             IconButton(
-                onClick = onToggleRepeatMode,
-                modifier = Modifier.size(36.dp)
-            ) {
-                Icon(
-                    imageVector = if (repeatMode == RepeatMode.ONE) Icons.Default.RepeatOne else Icons.Default.Repeat,
-                    contentDescription = "循环模式",
-                    tint = if (repeatMode == RepeatMode.OFF) Color.Gray else MaterialTheme.colorScheme.primary
-                )
-            }
-            
-            Spacer(modifier = Modifier.width(8.dp))
-            
-            IconButton(
                 onClick = onPrevious,
                 modifier = Modifier.size(44.dp)
             ) {
@@ -327,7 +316,7 @@ private fun PlaybackControls(
                 )
             }
             
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(16.dp))
             
             FilledIconButton(
                 onClick = if (isPlaying) onPause else onResume,
@@ -343,7 +332,7 @@ private fun PlaybackControls(
                 )
             }
             
-            Spacer(modifier = Modifier.width(8.dp))
+            Spacer(modifier = Modifier.width(16.dp))
             
             IconButton(
                 onClick = onNext,
