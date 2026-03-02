@@ -81,44 +81,58 @@ private fun PlaylistDisplay(effectCommands: EffectCommands?) {
     val playlist = extractPlaylist(effectCommands)
     val currentIndex = 0
 
+    val prevTrack = playlist.getOrNull(currentIndex - 1) ?: playlist.lastOrNull()
+    val currentTrack = playlist.getOrNull(currentIndex)
+    val nextTrack = playlist.getOrNull(currentIndex + 1) ?: playlist.firstOrNull()
+
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.End,
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         // 上一首
-        if (playlist.size > 1) {
-            val prevTrack = playlist.getOrNull(currentIndex - 1) ?: playlist.last()
+        if (playlist.size > 1 && prevTrack != null) {
             PlaylistItem(
                 label = "上一首",
-                title = prevTrack?.title ?: "未知标题",
-                artist = prevTrack?.artist ?: "未知艺术家",
+                title = prevTrack.title,
+                artist = prevTrack.artist,
                 isCurrent = false,
                 modifier = Modifier.padding(end = 40.dp)
             )
         }
 
         // 当前首
-        if (playlist.isNotEmpty()) {
-            val currentTrack = playlist.getOrNull(currentIndex)
+        if (currentTrack != null) {
             PlaylistItem(
                 label = "正在播放",
-                title = currentTrack?.title ?: "未知标题",
-                artist = currentTrack?.artist ?: "未知艺术家",
+                title = currentTrack.title,
+                artist = currentTrack.artist,
                 isCurrent = true,
                 modifier = Modifier.padding(end = 20.dp)
             )
         }
 
         // 下一首
-        val nextTrack = playlist.getOrNull(currentIndex + 1) ?: playlist.firstOrNull()
-        PlaylistItem(
-            label = "下一首",
-            title = nextTrack?.title ?: "等待生成...",
-            artist = nextTrack?.artist ?: "智能推荐",
-            isCurrent = false,
-            modifier = Modifier.padding(end = 10.dp)
-        )
+        if (nextTrack != null) {
+            PlaylistItem(
+                label = "下一首",
+                title = nextTrack.title,
+                artist = nextTrack.artist,
+                isCurrent = false,
+                modifier = Modifier.padding(end = 10.dp)
+            )
+        }
+        
+        // 如果没有歌单，显示提示
+        if (playlist.isEmpty()) {
+            Text(
+                text = "等待生成歌单...",
+                style = MaterialTheme.typography.bodyMedium,
+                color = CarTheme.TextMuted,
+                textAlign = TextAlign.End,
+                modifier = Modifier.padding(end = 20.dp)
+            )
+        }
     }
 }
 
@@ -393,18 +407,20 @@ private fun extractLightingTheme(effectCommands: EffectCommands?): String {
 }
 
 private fun mapLightingTheme(theme: String?): String {
-    return when (theme) {
-        "rainy_night" -> "雨夜氛围"
-        "sunny_vibe" -> "晴朗氛围"
-        "coastal_sunset" -> "海岸日落"
-        "city_neon" -> "城市霓虹"
-        "romantic_dinner" -> "浪漫晚餐"
-        "energy_boost" -> "能量提升"
-        "chill_relax" -> "轻松 chill"
-        "melancholy_blue" -> "忧郁蓝调"
-        "excited_party" -> "兴奋派对"
-        "peaceful_journey" -> "平静旅途"
-        "default", "默认" -> "默认氛围"
+    return when (theme?.lowercase()) {
+        "rainy_night", "rainy-night" -> "雨夜氛围"
+        "sunny_vibe", "sunny-vibe", "sunny_day", "sunny-day" -> "晴朗氛围"
+        "coastal_sunset", "coastal-sunset", "beach", "coastal" -> "海岸日落"
+        "city_neon", "city-neon", "city_night", "city-night" -> "城市霓虹"
+        "romantic_dinner", "romantic-dinner", "romantic", "date" -> "浪漫晚餐"
+        "energy_boost", "energy-boost", "energetic" -> "能量提升"
+        "chill_relax", "chill-relax", "relaxed", "relaxing" -> "轻松 chill"
+        "melancholy_blue", "melancholy-blue", "sad", "melancholy" -> "忧郁蓝调"
+        "excited_party", "excited-party", "excited", "party" -> "兴奋派对"
+        "peaceful_journey", "peaceful-journey", "peaceful", "calm" -> "平静旅途"
+        "highway", "road" -> "公路氛围"
+        "suburban", "suburbs" -> "郊区氛围"
+        "default", "none", "" -> "默认氛围"
         else -> theme ?: "默认氛围"
     }
 }
@@ -419,18 +435,22 @@ private fun extractAudioPreset(effectCommands: EffectCommands?): String {
 }
 
 private fun mapAudioPreset(preset: String?): String {
-    return when (preset) {
-        "pop_boost" -> "流行增强"
-        "rock_bass" -> "摇滚低音"
-        "jazz_smooth" -> "爵士流畅"
-        "classical_refined" -> "古典优雅"
-        "electronic_pulse" -> "电子脉冲"
-        "ambient_chill" -> "氛围放松"
-        "lofi_relax" -> "低保真"
-        "bass_boost" -> "低音增强"
-        "vocal_clarity" -> "人声清晰"
-        "balanced" -> "均衡音效"
-        "default", "标准" -> "标准音效"
+    return when (preset?.lowercase()) {
+        "pop_boost", "pop-boost", "pop" -> "流行增强"
+        "rock_bass", "rock-bass", "rock" -> "摇滚低音"
+        "jazz_smooth", "jazz-smooth", "jazz" -> "爵士流畅"
+        "classical_refined", "classical-refined", "classical" -> "古典优雅"
+        "electronic_pulse", "electronic-pulse", "electronic", "edm" -> "电子脉冲"
+        "ambient_chill", "ambient-chill", "ambient" -> "氛围放松"
+        "lofi_relax", "lofi-relax", "lo-fi", "lofi" -> "低保真"
+        "bass_boost", "bass-boost", "bass" -> "低音增强"
+        "vocal_clarity", "vocal-clarity", "vocal" -> "人声清晰"
+        "balanced", "normal" -> "均衡音效"
+        "rnb", "r&b" -> "节奏布鲁斯"
+        "hiphop", "hip-hop" -> "嘻哈"
+        "country" -> "乡村"
+        "indie" -> "独立音乐"
+        "default", "none", "" -> "标准音效"
         else -> preset ?: "标准音效"
     }
 }
