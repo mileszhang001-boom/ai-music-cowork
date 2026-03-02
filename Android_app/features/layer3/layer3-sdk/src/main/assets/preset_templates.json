@@ -258,6 +258,47 @@
       }
     },
     {
+      "template_id": "TPL_013",
+      "scene_type": "kids_mode",
+      "name": "儿童模式",
+      "description": "有儿童乘客，播放儿歌和童趣音乐",
+      "category": "social",
+      "priority": 0,
+      "intent": {
+        "mood": {
+          "valence": 0.82,
+          "arousal": 0.58
+        },
+        "energy_level": 0.48,
+        "atmosphere": "kids_friendly"
+      },
+      "hints": {
+        "music": {
+          "genres": [
+            "children",
+            "chinese_pop",
+            "pop",
+            "soundtrack"
+          ],
+          "tempo": "moderate"
+        },
+        "lighting": {
+          "color_theme": "warm",
+          "pattern": "wave",
+          "intensity": 0.5
+        },
+        "audio": {
+          "preset": "standard"
+        }
+      },
+      "announcement_templates": [
+        "小朋友好，为您准备了欢乐的儿歌"
+      ],
+      "triggers": {
+        "has_children": true
+      }
+    },
+    {
       "template_id": "TPL_007",
       "scene_type": "morning_commute",
       "name": "周一早晨",
@@ -511,7 +552,7 @@
       }
     },
     {
-      "template_id": "TPL_013",
+      "template_id": "TPL_048",
       "scene_type": "evening_commute",
       "name": "傍晚通勤",
       "description": "傍晚下班回家",

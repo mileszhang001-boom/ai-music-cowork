@@ -18,7 +18,8 @@ const SceneTypes = {
   TRAFFIC_JAM: 'traffic_jam',
   FATIGUE_ALERT: 'fatigue_alert',
   RAINY_NIGHT: 'rainy_night',
-  PARTY: 'party'
+  PARTY: 'party',
+  KIDS_MODE: 'kids_mode'
 };
 
 const IntentTypes = {

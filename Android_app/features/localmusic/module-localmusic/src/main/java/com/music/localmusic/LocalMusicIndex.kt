@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import com.music.localmusic.models.Track
 import org.json.JSONArray
+import org.json.JSONObject
 import java.io.File
 
 data class LocalMusicConfig(
@@ -235,8 +236,8 @@ class LocalMusicIndex private constructor(
                     bpm = bpm,
                     energy = energy,
                     valence = valence,
-                    moodTags = parseJsonArray(json.optString("mood_tags", "[]")),
-                    sceneTags = parseJsonArray(json.optString("scene_tags", "[]")),
+                    moodTags = parseTagsField(json, "mood_tags"),
+                    sceneTags = parseTagsField(json, "scene_tags"),
                     durationMs = json.optInt("duration_ms", 0),
                     filePath = json.optString("file_path", ""),
                     format = json.optString("format", null)
@@ -250,15 +251,29 @@ class LocalMusicIndex private constructor(
         return tracks
     }
     
-    private fun parseJsonArray(jsonString: String): List<String>? {
+    private fun parseTagsField(json: JSONObject, key: String): List<String>? {
         return try {
-            if (jsonString.isBlank() || jsonString == "[]") return null
-            val jsonArray = JSONArray(jsonString)
-            val list = mutableListOf<String>()
-            for (i in 0 until jsonArray.length()) {
-                list.add(jsonArray.getString(i))
+            val value = json.opt(key) ?: return null
+            when (value) {
+                is JSONArray -> {
+                    if (value.length() == 0) return null
+                    val list = mutableListOf<String>()
+                    for (i in 0 until value.length()) {
+                        list.add(value.getString(i))
+                    }
+                    list
+                }
+                is String -> {
+                    if (value.isBlank() || value == "[]") return null
+                    val jsonArray = JSONArray(value)
+                    val list = mutableListOf<String>()
+                    for (i in 0 until jsonArray.length()) {
+                        list.add(jsonArray.getString(i))
+                    }
+                    list
+                }
+                else -> null
             }
-            list
         } catch (e: Exception) {
             null
         }

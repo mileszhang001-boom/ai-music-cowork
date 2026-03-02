@@ -10,8 +10,13 @@ coverage/
 android-player/app/build/
 android-player/build/
 android-player/.gradle/
+Android_app/**/build/
+Android_app/.gradle/
 *.apk
 *.aab
+
+# Music files
+new-music/
 
 # IDE
 .idea/
