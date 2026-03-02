@@ -91,6 +91,17 @@ class MusicPlayer(context: Context) {
             }
         }
         
+        override fun onMediaItemTransition(mediaItem: MediaItem?, reason: Int) {
+            val index = exoPlayer.currentMediaItemIndex
+            playlistManager.setCurrentIndex(index)
+            val track = playlistManager.currentTrack
+            if (track != null) {
+                currentTrack = track
+                listener?.onTrackChanged(track)
+                updateMediaSessionMetadata(track)
+            }
+        }
+
         override fun onIsPlayingChanged(isPlaying: Boolean) {
             val track = playlistManager.currentTrack
             if (track != null) {
@@ -276,13 +287,12 @@ class MusicPlayer(context: Context) {
     }
     
     fun next() {
-        val nextTrack = playlistManager.moveToNext()
-        if (nextTrack != null) {
-            currentTrack = nextTrack
-            exoPlayer.seekToNext()
+        if (exoPlayer.hasNextMediaItem()) {
+            exoPlayer.seekToNextMediaItem()
             exoPlayer.playWhenReady = true
-            listener?.onTrackChanged(nextTrack)
-            updateMediaSessionMetadata(nextTrack)
+        } else if (playlistManager.repeatMode.value == RepeatMode.ALL && exoPlayer.mediaItemCount > 0) {
+            exoPlayer.seekTo(0, 0)
+            exoPlayer.playWhenReady = true
         } else {
             stop()
             listener?.onPlaybackCompleted()
@@ -294,14 +304,13 @@ class MusicPlayer(context: Context) {
             exoPlayer.seekTo(0)
             return
         }
-        
-        val prevTrack = playlistManager.moveToPrevious()
-        if (prevTrack != null) {
-            currentTrack = prevTrack
-            exoPlayer.seekToPrevious()
+
+        if (exoPlayer.hasPreviousMediaItem()) {
+            exoPlayer.seekToPreviousMediaItem()
             exoPlayer.playWhenReady = true
-            listener?.onTrackChanged(prevTrack)
-            updateMediaSessionMetadata(prevTrack)
+        } else if (playlistManager.repeatMode.value == RepeatMode.ALL && exoPlayer.mediaItemCount > 0) {
+            exoPlayer.seekTo(exoPlayer.mediaItemCount - 1, 0)
+            exoPlayer.playWhenReady = true
         }
     }
     
@@ -389,21 +398,25 @@ class MusicPlayer(context: Context) {
     
     private fun onPlaybackEnded() {
         listener?.onPlaybackCompleted()
-        
+
         when (playlistManager.repeatMode.value) {
             RepeatMode.ONE -> {
                 exoPlayer.seekTo(0)
                 exoPlayer.playWhenReady = true
             }
             RepeatMode.ALL -> {
-                next()
+                playlistManager.setCurrentIndex(0)
+                exoPlayer.seekTo(0, 0)
+                exoPlayer.playWhenReady = true
+                val track = playlistManager.currentTrack
+                if (track != null) {
+                    currentTrack = track
+                    listener?.onTrackChanged(track)
+                    updateMediaSessionMetadata(track)
+                }
             }
             RepeatMode.OFF -> {
-                if (playlistManager.hasNext) {
-                    next()
-                } else {
-                    stop()
-                }
+                stop()
             }
         }
     }

@@ -41,7 +41,7 @@ class RulesEngine {
         }
         
         if (hasChildren(context, signals)) {
-            candidates.add("TPL_013" to 2.0)
+            candidates.add("TPL_013" to 2.8)
         }
         
         if (isNoisyCar(context, signals)) {
@@ -195,8 +195,10 @@ class RulesEngine {
     
     private fun isRomanticDate(context: RuleContext, signals: StandardizedSignals): Boolean {
         val isRomantic = signals.signals.internal_camera?.mood?.lowercase() == "romantic"
+        val childrenCount = signals.signals.internal_camera?.passengers?.children ?: 0
+        if (childrenCount > 0) return false
         val total = (signals.signals.internal_camera?.passengers?.adults ?: 0) +
-                    (signals.signals.internal_camera?.passengers?.children ?: 0) +
+                    childrenCount +
                     (signals.signals.internal_camera?.passengers?.seniors ?: 0)
         val isCouple = total == 2
         return isRomantic || (isCouple && context.hour >= 18)

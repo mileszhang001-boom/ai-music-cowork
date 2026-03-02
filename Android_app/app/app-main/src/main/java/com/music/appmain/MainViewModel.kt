@@ -698,11 +698,9 @@ class MainViewModel(
     fun playTrackAtIndex(index: Int) {
         val playlist = _playlist.value
         if (index < 0 || index >= playlist.size) return
-        
-        val storagePath = LocalMusicIndex.getConfig().storagePath
-        val track = playlist[index]
-        
-        musicPlayer?.play(track, "$storagePath/music/${track.filePath}")
+
+        musicPlayer?.seekTo(index, 0)
+        musicPlayer?.resume()
         _playlistIndex.value = index
     }
     
