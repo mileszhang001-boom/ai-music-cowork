@@ -127,15 +127,15 @@ private fun colorizeJson(jsonString: String): AnnotatedString {
                     withStyle(SpanStyle(color = Color(0xFF79C0FF))) { append(jsonString.substring(i, j)) }
                     i = j
                 }
-                jsonString.substring(i, i + 4) == "true" -> {
+                i + 4 <= jsonString.length && jsonString.substring(i, i + 4) == "true" -> {
                     withStyle(SpanStyle(color = Color(0xFFFF7B72))) { append("true") }
                     i += 4
                 }
-                jsonString.substring(i, i + 5) == "false" -> {
+                i + 5 <= jsonString.length && jsonString.substring(i, i + 5) == "false" -> {
                     withStyle(SpanStyle(color = Color(0xFFFF7B72))) { append("false") }
                     i += 5
                 }
-                jsonString.substring(i, i + 4) == "null" -> {
+                i + 4 <= jsonString.length && jsonString.substring(i, i + 4) == "null" -> {
                     withStyle(SpanStyle(color = Color(0xFF8B949E))) { append("null") }
                     i += 4
                 }
