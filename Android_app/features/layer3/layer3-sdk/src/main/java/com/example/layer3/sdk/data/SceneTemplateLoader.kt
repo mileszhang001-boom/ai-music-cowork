@@ -1,7 +1,7 @@
 package com.example.layer3.sdk.data
 
 import android.content.Context
-import com.example.layer3.api.model.*
+import com.music.core.api.models.*
 import com.example.layer3.sdk.util.JsonLoader
 import com.example.layer3.sdk.util.Logger
 import com.google.gson.Gson
@@ -60,7 +60,6 @@ data class SceneTemplatesFile(
 class SceneTemplateLoader(private val context: Context) {
     private val gson = Gson()
     private var templates: List<SceneTemplate> = emptyList()
-    private val templateCache = CacheManager<SceneDescriptor>(maxSize = 20)
 
     suspend fun loadTemplates(fileName: String = "scene_templates.json"): Result<List<SceneTemplate>> {
         return try {
@@ -100,25 +99,24 @@ class SceneTemplateLoader(private val context: Context) {
     fun toSceneDescriptor(template: SceneTemplate): SceneDescriptor {
         val mood = template.intentData?.mood?.let {
             Mood(valence = it.valence, arousal = it.arousal)
-        } ?: Mood()
+        } ?: Mood(0.5, 0.5)
 
         val intent = Intent(
             mood = mood,
-            energyLevel = template.intentData?.energyLevel ?: 0.5,
+            energy_level = template.intentData?.energyLevel ?: 0.5,
             atmosphere = template.intentData?.atmosphere ?: ""
         )
 
         val musicHints = template.hintsData?.music?.let {
             MusicHints(
                 genres = it.genres,
-                artists = it.artists,
                 tempo = it.tempo
             )
         }
 
         val lightingHints = template.hintsData?.lighting?.let {
             LightingHints(
-                colorTheme = it.colorTheme,
+                color_theme = it.colorTheme,
                 pattern = it.pattern,
                 intensity = it.intensity
             )
@@ -126,30 +124,22 @@ class SceneTemplateLoader(private val context: Context) {
 
         val audioHints = template.hintsData?.audio?.let {
             AudioHints(
-                preset = it.preset,
-                spatialMode = it.spatialMode
+                preset = it.preset
             )
         }
 
         return SceneDescriptor(
             version = "2.0",
-            sceneId = template.templateId,
-            sceneName = template.templateName,
-            sceneNarrative = template.description,
+            scene_id = template.templateId,
+            scene_type = "template",
+            scene_name = template.templateName,
+            scene_narrative = template.description,
             intent = intent,
             hints = Hints(music = musicHints, lighting = lightingHints, audio = audioHints),
-            meta = SceneDescriptorMeta(
+            meta = Meta(
                 source = "template",
-                templateId = template.templateId
+                template_id = template.templateId
             )
         )
-    }
-
-    fun getCachedSceneDescriptor(templateId: String): SceneDescriptor? {
-        return templateCache.get(templateId)
-    }
-
-    fun cacheSceneDescriptor(templateId: String, descriptor: SceneDescriptor) {
-        templateCache.put(templateId, descriptor)
     }
 }

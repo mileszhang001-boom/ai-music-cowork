@@ -1,7 +1,5 @@
 package com.example.layer3.sdk.algorithm
 
-import com.example.layer3.api.model.ColorConfig
-import com.example.layer3.api.model.LightingMoodHints
 import com.example.layer3.sdk.util.Logger
 import kotlin.math.max
 import kotlin.math.min
@@ -13,27 +11,23 @@ class ColorAdjuster {
         baseColor: String,
         intensity: Double,
         mood: String? = null
-    ): ColorConfig {
+    ): String {
         val rgb = hexToRgb(baseColor)
         val adjustedRgb = adjustIntensity(rgb, intensity)
         val moodAdjustedRgb = mood?.let { applyMoodAdjustment(adjustedRgb, it) } ?: adjustedRgb
         
-        return ColorConfig(
-            hex = rgbToHex(moodAdjustedRgb),
-            rgb = moodAdjustedRgb,
-            name = getColorName(moodAdjustedRgb)
-        )
+        return rgbToHex(moodAdjustedRgb)
     }
 
     fun generateColorPalette(
         baseColors: List<String>,
         count: Int
-    ): List<ColorConfig> {
+    ): List<String> {
         if (baseColors.isEmpty()) {
             return generateDefaultPalette(count)
         }
 
-        val palette = mutableListOf<ColorConfig>()
+        val palette = mutableListOf<String>()
         val step = 1.0 / (count + 1)
         
         for (i in 0 until count) {
@@ -124,7 +118,7 @@ class ColorAdjuster {
         return if (hue < 0) hue + 360 else hue
     }
 
-    private fun generateDefaultPalette(count: Int): List<ColorConfig> {
+    private fun generateDefaultPalette(count: Int): List<String> {
         val defaultColors = listOf("#FFFFFF", "#F0F8FF", "#E6E6FA")
         return generateColorPalette(defaultColors, count)
     }

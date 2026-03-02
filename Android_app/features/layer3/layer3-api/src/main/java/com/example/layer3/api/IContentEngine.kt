@@ -20,4 +20,6 @@ interface IContentEngine {
     fun next()
     
     fun previous()
+    
+    fun reset()
 }

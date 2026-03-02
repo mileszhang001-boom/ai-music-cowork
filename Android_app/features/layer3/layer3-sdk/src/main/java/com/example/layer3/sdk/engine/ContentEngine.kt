@@ -1,216 +1,153 @@
 package com.example.layer3.sdk.engine
 
 import android.content.Context
-import com.example.layer3.api.*
-import com.example.layer3.api.model.*
-import com.example.layer3.sdk.algorithm.ArtistDiversityFilter
-import com.example.layer3.sdk.algorithm.MusicScorer
-import com.example.layer3.sdk.data.CacheManager
-import com.example.layer3.sdk.data.MusicLibraryLoader
-import com.example.layer3.sdk.data.TrackData
+import android.util.Log
+import com.example.layer3.api.IContentEngine
+import com.music.core.api.models.SceneDescriptor
+import com.music.core.api.models.ContentCommand
+import com.music.core.api.models.Track
 import com.example.layer3.sdk.util.Logger
+import com.music.localmusic.LocalMusicIndex
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import java.util.UUID
 
 class ContentEngine(
-    private val context: Context,
-    private val config: ContentProviderConfig
+    private val context: Context
 ) : IContentEngine {
-    private val musicLoader = MusicLibraryLoader(context)
-    private val scorer = MusicScorer()
-    private val diversityFilter = ArtistDiversityFilter(maxTracksPerArtist = 2)
-    private val playlistCache = CacheManager<Playlist>(maxSize = 20)
     
-    private val _currentPlaylistFlow = MutableStateFlow<Playlist?>(null)
-    private val _currentTrackFlow = MutableStateFlow<Track?>(null)
-    private val _playbackStateFlow = MutableStateFlow(PlaybackState())
-    
-    private var currentPlaylist: Playlist? = null
-    private var currentTrackIndex = 0
-    private var playbackState = PlaybackState()
-
-    override val currentPlaylistFlow: Flow<Playlist?> = _currentPlaylistFlow.asStateFlow()
-    override val currentTrackFlow: Flow<Track?> = _currentTrackFlow.asStateFlow()
-    override val playbackStateFlow: Flow<PlaybackState> = _playbackStateFlow.asStateFlow()
-
-    suspend fun initialize() {
-        musicLoader.loadLibrary()
-        Logger.i("ContentEngine: Initialized")
+    companion object {
+        private const val TAG = "ContentEngine"
     }
+    
+    private val _contentStateFlow = MutableStateFlow(ContentCommand(action = "play"))
+    val contentStateFlow: Flow<ContentCommand> = _contentStateFlow.asStateFlow()
 
-    override suspend fun generatePlaylist(scene: SceneDescriptor): Result<Playlist> {
+    private val _playlistFlow = MutableStateFlow<List<Track>>(emptyList())
+    override val playlistFlow: Flow<List<Track>> = _playlistFlow.asStateFlow()
+
+    override suspend fun generatePlaylist(scene: SceneDescriptor): Result<List<Track>> {
         return try {
-            val cacheKey = "playlist_${scene.sceneId}"
-            playlistCache.get(cacheKey)?.let {
-                Logger.d("ContentEngine: Returning cached playlist for scene ${scene.sceneId}")
-                return Result.success(it)
-            }
-
-            val allTracks = musicLoader.getAllTracks()
-            if (allTracks.isEmpty()) {
-                return Result.failure(Layer3Error.ContentError("No tracks available in library"))
-            }
-
-            val scoredTracks = scorer.scoreTracks(allTracks, scene)
-            val diverseTracks = diversityFilter.applyDiversityWithScore(scoredTracks)
+            val localTracks = LocalMusicIndex.getInstance(context).getAllTracks()
+            Log.i(TAG, "LocalMusicIndex tracks count: ${localTracks.size}")
             
-            val playlistSize = calculatePlaylistSize(scene)
-            val selectedTracks = diverseTracks
-                .take(playlistSize)
-                .map { musicLoader.toTrack(it.first) }
-
-            val playlist = Playlist(
-                id = UUID.randomUUID().toString(),
-                name = generatePlaylistName(scene),
-                description = "Generated for scene: ${scene.sceneName ?: scene.sceneId}",
-                tracks = selectedTracks,
-                trackCount = selectedTracks.size,
-                totalDurationMs = selectedTracks.sumOf { it.duration_ms },
-                sceneId = scene.sceneId,
-                tags = extractTags(scene)
-            )
-
-            playlistCache.put(cacheKey, playlist)
-            currentPlaylist = playlist
-            currentTrackIndex = 0
-            _currentPlaylistFlow.value = playlist
+            if (localTracks.isEmpty()) {
+                Log.w(TAG, "No tracks available in LocalMusicIndex")
+                return Result.success(emptyList())
+            }
             
-            Logger.i("ContentEngine: Generated playlist with ${playlist.tracks.size} tracks")
+            val matchedTracks = matchTracksByScene(localTracks, scene)
+            Log.i(TAG, "Matched ${matchedTracks.size} tracks for scene: ${scene.scene_name}")
+            
+            val playlist = matchedTracks.take(10).map { localTrack ->
+                Track(
+                    track_id = localTrack.id.toString(),
+                    title = localTrack.title,
+                    artist = localTrack.artist,
+                    duration_sec = localTrack.durationMs / 1000,
+                    energy = localTrack.energy
+                )
+            }
+            
+            _playlistFlow.value = playlist
             Result.success(playlist)
         } catch (e: Exception) {
-            Logger.e("ContentEngine: Failed to generate playlist", e)
-            Result.failure(Layer3Error.ContentError("Failed to generate playlist: ${e.message}"))
+            Logger.e("ContentEngine: Failed to generate content", e)
+            Result.failure(e)
         }
     }
-
-    override suspend fun getRecommendations(basedOn: String, limit: Int): Result<PlaylistRecommendation> {
-        return try {
-            val tracks = musicLoader.searchTracks(basedOn)
-            val selectedTracks = tracks.take(limit).map { musicLoader.toTrack(it) }
+    
+    private fun matchTracksByScene(
+        localTracks: List<com.music.localmusic.models.Track>,
+        scene: SceneDescriptor
+    ): List<com.music.localmusic.models.Track> {
+        val hints = scene.hints
+        val intent = scene.intent
+        
+        val scoredTracks = localTracks.map { track ->
+            var score = 0.0
             
-            val playlist = Playlist(
-                id = UUID.randomUUID().toString(),
-                name = "Recommendations for: $basedOn",
-                tracks = selectedTracks,
-                trackCount = selectedTracks.size
-            )
+            hints?.music?.genres?.let { genres ->
+                if (track.genre != null && genres.any { it.equals(track.genre, ignoreCase = true) }) {
+                    score += 30.0
+                }
+            }
             
-            Result.success(PlaylistRecommendation(
-                playlists = listOf(playlist),
-                basedOn = basedOn,
-                confidence = if (tracks.isNotEmpty()) 0.8 else 0.0
-            ))
-        } catch (e: Exception) {
-            Result.failure(Layer3Error.ContentError("Failed to get recommendations: ${e.message}"))
-        }
+            hints?.music?.tempo?.let { tempo ->
+                val targetBpm = when (tempo.lowercase()) {
+                    "slow" -> 70..90
+                    "moderate", "medium" -> 90..120
+                    "fast" -> 120..150
+                    else -> 90..120
+                }
+                track.bpm?.let { if (it in targetBpm) score += 20.0 }
+            }
+            
+            val valenceDiff = kotlin.math.abs((track.valence ?: 0.5) - intent.mood.valence)
+            val arousalDiff = kotlin.math.abs((track.energy ?: 0.5) - intent.mood.arousal)
+            score += (1.0 - valenceDiff) * 25.0
+            score += (1.0 - arousalDiff) * 25.0
+            
+            val energyDiff = kotlin.math.abs((track.energy ?: 0.5) - intent.energy_level)
+            score += (1.0 - energyDiff) * 20.0
+            
+            track.moodTags?.let { tags ->
+                intent.atmosphere?.let { atm ->
+                    if (tags.any { it.contains(atm, ignoreCase = true) }) {
+                        score += 15.0
+                    }
+                }
+            }
+            
+            track.sceneTags?.let { tags ->
+                if (tags.any { it.equals(scene.scene_type, ignoreCase = true) }) {
+                    score += 15.0
+                }
+            }
+            
+            track to score
+        }.sortedByDescending { it.second }
+        
+        return scoredTracks.map { it.first }
     }
 
-    override suspend fun playPlaylist(playlist: Playlist): Result<Unit> {
-        return try {
-            currentPlaylist = playlist
-            currentTrackIndex = 0
-            playbackState = playbackState.copy(is_playing = true)
-            updateFlows()
-            Logger.i("ContentEngine: Started playing playlist ${playlist.id}")
-            Result.success(Unit)
-        } catch (e: Exception) {
-            Result.failure(Layer3Error.ContentError("Failed to play playlist: ${e.message}"))
-        }
+    override fun resume() {
+        val current = _contentStateFlow.value
+        _contentStateFlow.value = current.copy(action = "play")
     }
 
-    override suspend fun playTrack(track: Track): Result<Unit> {
-        return try {
-            _currentTrackFlow.value = track
-            playbackState = playbackState.copy(is_playing = true)
-            _playbackStateFlow.value = playbackState
-            Logger.i("ContentEngine: Playing track ${track.id}")
-            Result.success(Unit)
-        } catch (e: Exception) {
-            Result.failure(Layer3Error.ContentError("Failed to play track: ${e.message}"))
-        }
+    override fun play(playlist: List<Track>) {
+        val current = _contentStateFlow.value
+        _contentStateFlow.value = current.copy(action = "play", playlist = playlist)
     }
 
-    override suspend fun pause(): Result<Unit> {
-        playbackState = playbackState.copy(is_playing = false)
-        _playbackStateFlow.value = playbackState
-        return Result.success(Unit)
+    override fun pause() {
+        val current = _contentStateFlow.value
+        _contentStateFlow.value = current.copy(action = "pause")
     }
 
-    override suspend fun resume(): Result<Unit> {
-        playbackState = playbackState.copy(is_playing = true)
-        _playbackStateFlow.value = playbackState
-        return Result.success(Unit)
+    override fun stop() {
+        val current = _contentStateFlow.value
+        _contentStateFlow.value = current.copy(action = "stop")
     }
 
-    override suspend fun next(): Result<Unit> {
-        val playlist = currentPlaylist ?: return Result.failure(Layer3Error.ContentError("No playlist loaded"))
-        if (currentTrackIndex < playlist.tracks.size - 1) {
-            currentTrackIndex++
-            updateFlows()
-            return Result.success(Unit)
-        }
-        return Result.failure(Layer3Error.ContentError("Already at last track"))
+    override fun next() {
+        val current = _contentStateFlow.value
+        _contentStateFlow.value = current.copy(action = "next")
     }
 
-    override suspend fun previous(): Result<Unit> {
-        if (currentTrackIndex > 0) {
-            currentTrackIndex--
-            updateFlows()
-            return Result.success(Unit)
-        }
-        return Result.failure(Layer3Error.ContentError("Already at first track"))
+    override fun previous() {
+        val current = _contentStateFlow.value
+        _contentStateFlow.value = current.copy(action = "previous")
     }
 
-    override suspend fun seek(positionMs: Long): Result<Unit> {
-        playbackState = playbackState.copy(position_ms = positionMs)
-        _playbackStateFlow.value = playbackState
-        return Result.success(Unit)
-    }
-
-    override suspend fun setVolume(level: Double): Result<Unit> {
-        return Result.success(Unit)
-    }
-
-    override fun getCurrentTrack(): Track? {
-        return currentPlaylist?.tracks?.getOrNull(currentTrackIndex)
-    }
-
-    override fun getCurrentPlaylist(): Playlist? = currentPlaylist
-
-    override fun getPlaybackState(): PlaybackState = playbackState
-
-    private fun updateFlows() {
-        val track = currentPlaylist?.tracks?.getOrNull(currentTrackIndex)
-        _currentTrackFlow.value = track
-        _playbackStateFlow.value = playbackState
-    }
-
-    private fun calculatePlaylistSize(scene: SceneDescriptor): Int {
-        val energy = scene.intent.energyLevel
-        return when {
-            energy > 0.7 -> 20
-            energy > 0.4 -> 15
-            else -> 10
-        }
-    }
-
-    private fun generatePlaylistName(scene: SceneDescriptor): String {
-        return scene.sceneName ?: "Scene ${scene.sceneId}"
-    }
-
-    private fun extractTags(scene: SceneDescriptor): List<String> {
-        val tags = mutableListOf<String>()
-        scene.hints?.music?.genres?.let { tags.addAll(it) }
-        scene.intent.atmosphere.takeIf { it.isNotEmpty() }?.let { tags.add(it) }
-        return tags.distinct()
+    override fun reset() {
+        _contentStateFlow.value = ContentCommand(action = "stop")
+        _playlistFlow.value = emptyList()
+        Logger.i("ContentEngine: Reset")
     }
 
     fun destroy() {
-        playlistCache.clear()
-        _currentPlaylistFlow.value = null
-        _currentTrackFlow.value = null
         Logger.i("ContentEngine: Destroyed")
     }
 }

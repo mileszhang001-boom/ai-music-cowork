@@ -1,6 +1,9 @@
 package com.example.layer3.sdk.algorithm
 
-import com.example.layer3.api.model.SceneDescriptor
+import com.music.core.api.models.SceneDescriptor
+import com.music.core.api.models.Intent
+import com.music.core.api.models.MusicHints
+import com.music.core.api.models.Mood
 import com.example.layer3.sdk.data.TrackData
 import com.example.layer3.sdk.util.Logger
 import kotlin.math.abs
@@ -11,7 +14,7 @@ class MusicScorer {
         scene: SceneDescriptor
     ): List<Pair<TrackData, Double>> {
         val intent = scene.intent
-        val hints = scene.hints?.music
+        val hints = scene.hints.music
         
         return tracks.map { track ->
             val score = calculateScore(track, intent, hints)
@@ -21,8 +24,8 @@ class MusicScorer {
 
     private fun calculateScore(
         track: TrackData,
-        intent: com.example.layer3.api.model.Intent,
-        hints: com.example.layer3.api.model.MusicHints?
+        intent: Intent,
+        hints: MusicHints?
     ): Double {
         var score = 0.0
         var totalWeight = 0.0
@@ -31,18 +34,14 @@ class MusicScorer {
         score += moodScore * MOOD_WEIGHT
         totalWeight += MOOD_WEIGHT
 
-        val energyScore = calculateEnergyScore(track, intent.energyLevel)
+        val energyScore = calculateEnergyScore(track, intent.energy_level)
         score += energyScore * ENERGY_WEIGHT
         totalWeight += ENERGY_WEIGHT
 
         if (hints != null) {
-            val genreScore = calculateGenreScore(track, hints.genres)
+            val genreScore = calculateGenreScore(track, hints.genres ?: emptyList())
             score += genreScore * GENRE_WEIGHT
             totalWeight += GENRE_WEIGHT
-
-            val artistScore = calculateArtistScore(track, hints.artists)
-            score += artistScore * ARTIST_WEIGHT
-            totalWeight += ARTIST_WEIGHT
 
             val tempoScore = calculateTempoScore(track, hints.tempo)
             score += tempoScore * TEMPO_WEIGHT
@@ -58,7 +57,7 @@ class MusicScorer {
 
     private fun calculateMoodScore(
         track: TrackData,
-        mood: com.example.layer3.api.model.Mood
+        mood: Mood
     ): Double {
         val trackValence = track.valence ?: 0.5
         val trackEnergy = track.energy ?: 0.5
@@ -79,11 +78,6 @@ class MusicScorer {
         if (preferredGenres.isEmpty()) return 0.5
         val trackGenre = track.genre ?: return 0.0
         return if (preferredGenres.any { it.equals(trackGenre, ignoreCase = true) }) 1.0 else 0.0
-    }
-
-    private fun calculateArtistScore(track: TrackData, preferredArtists: List<String>): Double {
-        if (preferredArtists.isEmpty()) return 0.5
-        return if (preferredArtists.any { track.artist.contains(it, ignoreCase = true) }) 1.0 else 0.0
     }
 
     private fun calculateTempoScore(track: TrackData, tempoHint: String?): Double {
@@ -115,7 +109,6 @@ class MusicScorer {
         private const val MOOD_WEIGHT = 0.25
         private const val ENERGY_WEIGHT = 0.20
         private const val GENRE_WEIGHT = 0.20
-        private const val ARTIST_WEIGHT = 0.10
         private const val TEMPO_WEIGHT = 0.10
         private const val POPULARITY_WEIGHT = 0.15
     }

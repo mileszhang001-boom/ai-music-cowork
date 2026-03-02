@@ -75,11 +75,7 @@ class LocalMusicIndex private constructor(
                 context, Manifest.permission.READ_EXTERNAL_STORAGE
             ) == PackageManager.PERMISSION_GRANTED
             
-            val writePermission = ContextCompat.checkSelfPermission(
-                context, Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED
-            
-            return readPermission && writePermission
+            return readPermission
         }
         
         fun isExternalStorageWritable(): Boolean {
@@ -200,7 +196,7 @@ class LocalMusicIndex private constructor(
             for (i in 0 until jsonArray.length()) {
                 val json = jsonArray.getJSONObject(i)
                 val track = Track(
-                    id = json.optLong("id", 0L),
+                    id = json.optLong("id", 0L).toString(),
                     title = json.optString("title", ""),
                     titlePinyin = json.optString("title_pinyin", null),
                     artist = json.optString("artist", "未知艺术家"),
@@ -258,7 +254,8 @@ class LocalMusicIndex private constructor(
     fun close() {
         tracks = emptyList()
         isInitialized = false
-        Log.i(TAG, "LocalMusicIndex closed")
+        instance = null
+        Log.i(TAG, "LocalMusicIndex closed and instance cleared")
     }
     
     fun isReady(): Boolean = isInitialized && tracks.isNotEmpty()

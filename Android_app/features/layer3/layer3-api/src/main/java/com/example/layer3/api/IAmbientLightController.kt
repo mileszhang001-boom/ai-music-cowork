@@ -1,7 +1,6 @@
 package com.example.layer3.api
 
 import com.example.layer3.api.model.LightingConfig
-import com.example.layer3.api.model.ZoneConfig
 import kotlinx.coroutines.flow.Flow
 
 interface IAmbientLightController {

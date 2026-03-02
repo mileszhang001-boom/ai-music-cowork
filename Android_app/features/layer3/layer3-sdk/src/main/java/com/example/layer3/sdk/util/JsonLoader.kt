@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken
 import java.io.BufferedReader
 
 object JsonLoader {
-    private val gson = Gson()
+    val gson = Gson()
 
     fun loadJsonFromAssets(context: Context, fileName: String): String? {
         return try {

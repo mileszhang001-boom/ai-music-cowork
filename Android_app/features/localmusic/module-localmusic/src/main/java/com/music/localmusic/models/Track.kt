@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Track(
-    val id: Long,
+    val id: String,
     val title: String,
     val titlePinyin: String? = null,
     val artist: String,
@@ -21,11 +21,11 @@ data class Track(
     val format: String? = null
 ) {
     fun hasMoodTag(tag: String): Boolean {
-        return moodTags?.contains(tag, ignoreCase = true) == true
+        return moodTags?.any { it.equals(tag, ignoreCase = true) } == true
     }
     
     fun hasSceneTag(tag: String): Boolean {
-        return sceneTags?.contains(tag, ignoreCase = true) == true
+        return sceneTags?.any { it.equals(tag, ignoreCase = true) } == true
     }
     
     fun matchesGenre(targetGenre: String): Boolean {

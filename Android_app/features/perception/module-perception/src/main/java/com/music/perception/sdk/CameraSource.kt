@@ -4,12 +4,17 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.ImageFormat
+import android.graphics.Rect
+import android.graphics.YuvImage
 import android.util.Log
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import java.io.ByteArrayOutputStream
+import java.nio.ByteBuffer
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -50,11 +55,12 @@ class CameraSource(private val context: Context, private val lifecycleOwner: Lif
     private fun bindCameraUseCases() {
         val cameraProvider = cameraProvider ?: return
         
-        var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+        val cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
         imageAnalysis = ImageAnalysis.Builder()
             .setTargetResolution(android.util.Size(640, 480))
             .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+            .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
             .build()
 
         imageAnalysis?.setAnalyzer(cameraExecutor) { imageProxy ->
@@ -75,7 +81,6 @@ class CameraSource(private val context: Context, private val lifecycleOwner: Lif
         }
     }
 
-    @androidx.annotation.OptIn(androidx.camera.core.ExperimentalGetImage::class)
     private fun processImageProxy(imageProxy: ImageProxy) {
         try {
             val bitmap = imageProxyToBitmap(imageProxy)
@@ -90,10 +95,34 @@ class CameraSource(private val context: Context, private val lifecycleOwner: Lif
     }
 
     private fun imageProxyToBitmap(image: ImageProxy): Bitmap? {
-        val buffer = image.planes[0].buffer
-        val bytes = ByteArray(buffer.remaining())
-        buffer.get(bytes)
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+        return try {
+            val buffer = image.planes[0].buffer
+            val width = image.width
+            val height = image.height
+            
+            if (width <= 10 || height <= 10) {
+                Log.w("CameraSource", "Image too small: ${width}x${height}")
+                return null
+            }
+            
+            if (buffer.remaining() < width * height * 4) {
+                Log.w("CameraSource", "Buffer too small: ${buffer.remaining()} bytes for ${width}x${height}")
+                return null
+            }
+            
+            val pixels = IntArray(buffer.remaining() / 4)
+            buffer.asIntBuffer().get(pixels)
+            
+            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+            bitmap.setPixels(pixels, 0, width, 0, 0, width, height)
+            
+            val targetWidth = 640
+            val targetHeight = 480
+            Bitmap.createScaledBitmap(bitmap, targetWidth, targetHeight, true)
+        } catch (e: Exception) {
+            Log.e("CameraSource", "Failed to convert image to bitmap: ${e.message}")
+            null
+        }
     }
 
     fun stop() {

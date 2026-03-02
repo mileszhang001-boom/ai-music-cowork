@@ -1,6 +1,6 @@
 package com.music.localmusic.player
 
-import com.music.core.api.models.Track
+import com.music.localmusic.models.Track
 
 sealed class PlayerState {
     object Idle : PlayerState()

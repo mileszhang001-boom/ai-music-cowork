@@ -1,10 +1,7 @@
 package com.music.appmain.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -50,9 +47,7 @@ fun Layer2DataPanel(
             
             if (sceneDescriptor != null) {
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .verticalScroll(rememberScrollState())
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     KeyValueRow("scene_type", sceneDescriptor.scene_type)
                     KeyValueRow("scene_id", sceneDescriptor.scene_id)

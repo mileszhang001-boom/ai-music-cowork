@@ -2,7 +2,7 @@ package com.music.perception.api
 
 sealed class PerceptionError(
     val code: Int,
-    val message: String
+    open val message: String
 ) {
     data class CameraError(override val message: String) : PerceptionError(1001, message)
     data class LocationError(override val message: String) : PerceptionError(1002, message)

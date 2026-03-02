@@ -7,9 +7,6 @@ import com.example.layer3.sdk.engine.ContentEngine
 import com.example.layer3.sdk.engine.GenerationEngine
 import com.example.layer3.sdk.engine.LightingEngine
 import com.example.layer3.sdk.util.Logger
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 object Layer3SDK {
     private var contentEngine: ContentEngine? = null
@@ -29,21 +26,15 @@ object Layer3SDK {
         this.config = config
         val appContext = context.applicationContext
 
-        contentEngine = ContentEngine(appContext, config.contentProvider)
-        lightingEngine = LightingEngine(appContext, config.lightingController)
-        audioEngine = AudioEngine(appContext, config.audioEngine)
+        contentEngine = ContentEngine(appContext)
+        lightingEngine = LightingEngine(appContext)
+        audioEngine = AudioEngine(appContext)
         generationEngine = GenerationEngine(
             appContext,
-            config.generationEngine,
             contentEngine!!,
             lightingEngine!!,
             audioEngine!!
         )
-
-        CoroutineScope(Dispatchers.Main).launch {
-            contentEngine?.initialize()
-            generationEngine?.initialize()
-        }
 
         isInitialized = true
         Logger.i("Layer3SDK: Initialized successfully")

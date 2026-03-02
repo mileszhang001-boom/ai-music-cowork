@@ -1,7 +1,10 @@
 package com.music.appmain.controller
 
 import android.util.Log
-import com.example.layer3.api.*
+import com.example.layer3.api.IAmbientLightController
+import com.example.layer3.api.ConnectionState
+import com.example.layer3.api.ControllerState
+import com.example.layer3.api.ControllerInfo
 import com.example.layer3.api.model.LightingConfig
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -35,7 +38,7 @@ class DisabledAmbientLightController : IAmbientLightController {
     }
 
     override suspend fun applyLightingConfig(config: LightingConfig): Result<Unit> {
-        Log.w(tag, "applyLightingConfig() called but ambient light control is disabled. configId=${config.config_id}")
+        Log.w(tag, "applyLightingConfig() called but ambient light control is disabled. configId=${config.configId}")
         return Result.failure(Exception(disabledMessage))
     }
 

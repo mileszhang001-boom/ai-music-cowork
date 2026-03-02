@@ -1,6 +1,6 @@
 package com.music.localmusic.player
 
-import com.music.core.api.models.Track
+import com.music.localmusic.models.Track
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,7 +18,9 @@ class PlaylistManager {
     private val _shuffleMode = MutableStateFlow(ShuffleMode.OFF)
     val shuffleMode: StateFlow<ShuffleMode> = _shuffleMode.asStateFlow()
     
-    private var shuffledIndices: List<Int> = emptyList()
+    private var originalPlaylist: List<Track> = emptyList()
+    private var shuffledPlaylist: List<Track> = emptyList()
+    private var currentTrackId: String? = null
     
     val currentTrack: Track?
         get() {
@@ -34,7 +36,7 @@ class PlaylistManager {
             return when {
                 list.isEmpty() -> false
                 repeat == RepeatMode.ALL -> true
-                _shuffleMode.value == ShuffleMode.ON -> shuffledIndices.isNotEmpty()
+                _shuffleMode.value == ShuffleMode.ON -> shuffledPlaylist.isNotEmpty()
                 else -> _currentIndex.value < list.size - 1
             }
         }
@@ -46,48 +48,79 @@ class PlaylistManager {
             return when {
                 list.isEmpty() -> false
                 repeat == RepeatMode.ALL -> true
-                _shuffleMode.value == ShuffleMode.ON -> shuffledIndices.isNotEmpty()
+                _shuffleMode.value == ShuffleMode.ON -> shuffledPlaylist.isNotEmpty()
                 else -> _currentIndex.value > 0
             }
         }
     
     fun setPlaylist(tracks: List<Track>, startIndex: Int = 0) {
-        _playlist.value = tracks
-        _currentIndex.value = if (startIndex in tracks.indices) startIndex else 0
-        regenerateShuffleIndices()
+        originalPlaylist = tracks.toList()
+        shuffledPlaylist = tracks.shuffled()
+        
+        val actualStartIndex = if (startIndex in tracks.indices) startIndex else 0
+        currentTrackId = if (tracks.isNotEmpty()) tracks[actualStartIndex].id else null
+        
+        if (_shuffleMode.value == ShuffleMode.ON) {
+            _playlist.value = shuffledPlaylist
+            val track = tracks.getOrNull(actualStartIndex)
+            _currentIndex.value = if (track != null) shuffledPlaylist.indexOfFirst { it.id == track.id } else 0
+        } else {
+            _playlist.value = originalPlaylist
+            _currentIndex.value = actualStartIndex
+        }
     }
     
     fun addToPlaylist(tracks: List<Track>) {
-        val currentList = _playlist.value.toMutableList()
+        val currentList = originalPlaylist.toMutableList()
         currentList.addAll(tracks)
-        _playlist.value = currentList
-        regenerateShuffleIndices()
+        originalPlaylist = currentList
+        shuffledPlaylist = currentList.shuffled()
+        
+        if (_shuffleMode.value == ShuffleMode.ON) {
+            val currentTrack = currentTrack
+            _playlist.value = shuffledPlaylist
+            _currentIndex.value = if (currentTrack != null) shuffledPlaylist.indexOfFirst { it.id == currentTrack.id } else 0
+        } else {
+            _playlist.value = originalPlaylist
+        }
     }
     
     fun removeFromPlaylist(index: Int) {
-        val currentList = _playlist.value.toMutableList()
+        val currentList = originalPlaylist.toMutableList()
         if (index in currentList.indices) {
-            currentList.removeAt(index)
-            _playlist.value = currentList
+            val removedTrack = currentList.removeAt(index)
+            originalPlaylist = currentList
+            shuffledPlaylist = currentList.shuffled()
             
-            when {
-                _currentIndex.value > index -> _currentIndex.value -= 1
-                _currentIndex.value == index -> {
-                    if (currentList.isEmpty()) {
-                        _currentIndex.value = -1
-                    } else if (_currentIndex.value >= currentList.size) {
-                        _currentIndex.value = 0
+            if (_shuffleMode.value == ShuffleMode.ON) {
+                val currentTrack = currentTrack
+                _playlist.value = shuffledPlaylist
+                _currentIndex.value = if (currentTrack != null) shuffledPlaylist.indexOfFirst { it.id == currentTrack.id } else 0
+            } else {
+                _playlist.value = originalPlaylist
+                
+                when {
+                    _currentIndex.value > index -> _currentIndex.value -= 1
+                    _currentIndex.value == index -> {
+                        if (currentList.isEmpty()) {
+                            _currentIndex.value = -1
+                        } else if (_currentIndex.value >= currentList.size) {
+                            _currentIndex.value = 0
+                        }
                     }
                 }
             }
-            regenerateShuffleIndices()
+            
+            currentTrackId = currentTrack?.id
         }
     }
     
     fun clearPlaylist() {
+        originalPlaylist = emptyList()
+        shuffledPlaylist = emptyList()
         _playlist.value = emptyList()
         _currentIndex.value = -1
-        shuffledIndices = emptyList()
+        currentTrackId = null
     }
     
     fun moveToNext(): Track? {
@@ -96,11 +129,10 @@ class PlaylistManager {
         
         when {
             _shuffleMode.value == ShuffleMode.ON -> {
-                val currentShuffleIndex = shuffledIndices.indexOf(_currentIndex.value)
-                if (currentShuffleIndex < shuffledIndices.size - 1) {
-                    _currentIndex.value = shuffledIndices[currentShuffleIndex + 1]
+                if (_currentIndex.value < list.size - 1) {
+                    _currentIndex.value += 1
                 } else if (_repeatMode.value == RepeatMode.ALL) {
-                    _currentIndex.value = shuffledIndices.first()
+                    _currentIndex.value = 0
                 } else {
                     return null
                 }
@@ -114,6 +146,7 @@ class PlaylistManager {
             else -> return null
         }
         
+        currentTrackId = currentTrack?.id
         return currentTrack
     }
     
@@ -123,11 +156,10 @@ class PlaylistManager {
         
         when {
             _shuffleMode.value == ShuffleMode.ON -> {
-                val currentShuffleIndex = shuffledIndices.indexOf(_currentIndex.value)
-                if (currentShuffleIndex > 0) {
-                    _currentIndex.value = shuffledIndices[currentShuffleIndex - 1]
+                if (_currentIndex.value > 0) {
+                    _currentIndex.value -= 1
                 } else if (_repeatMode.value == RepeatMode.ALL) {
-                    _currentIndex.value = shuffledIndices.last()
+                    _currentIndex.value = list.size - 1
                 } else {
                     return null
                 }
@@ -141,54 +173,83 @@ class PlaylistManager {
             else -> return null
         }
         
+        currentTrackId = currentTrack?.id
         return currentTrack
     }
     
     fun setCurrentIndex(index: Int) {
         if (index in _playlist.value.indices) {
             _currentIndex.value = index
+            currentTrackId = currentTrack?.id
         }
     }
     
-    fun toggleRepeatMode() {
+    fun toggleRepeatMode(): RepeatMode {
         _repeatMode.value = when (_repeatMode.value) {
             RepeatMode.OFF -> RepeatMode.ALL
             RepeatMode.ALL -> RepeatMode.ONE
             RepeatMode.ONE -> RepeatMode.OFF
         }
+        return _repeatMode.value
     }
     
     fun setRepeatMode(mode: RepeatMode) {
         _repeatMode.value = mode
     }
     
-    fun toggleShuffleMode() {
-        _shuffleMode.value = if (_shuffleMode.value == ShuffleMode.OFF) {
-            ShuffleMode.ON
-        } else {
+    fun toggleShuffle(): Boolean {
+        val wasShuffleOn = _shuffleMode.value == ShuffleMode.ON
+        val currentTrack = this.currentTrack
+        
+        _shuffleMode.value = if (wasShuffleOn) {
             ShuffleMode.OFF
+        } else {
+            ShuffleMode.ON
         }
-        regenerateShuffleIndices()
+        
+        if (_shuffleMode.value == ShuffleMode.ON) {
+            shuffledPlaylist = originalPlaylist.shuffled()
+            _playlist.value = shuffledPlaylist
+            _currentIndex.value = if (currentTrack != null) {
+                shuffledPlaylist.indexOfFirst { it.id == currentTrack.id }.takeIf { it >= 0 } ?: 0
+            } else 0
+        } else {
+            _playlist.value = originalPlaylist
+            _currentIndex.value = if (currentTrack != null) {
+                originalPlaylist.indexOfFirst { it.id == currentTrack.id }.takeIf { it >= 0 } ?: 0
+            } else 0
+        }
+        
+        return _shuffleMode.value == ShuffleMode.ON
+    }
+    
+    fun toggleShuffleMode() {
+        toggleShuffle()
     }
     
     fun setShuffleMode(mode: ShuffleMode) {
-        _shuffleMode.value = mode
-        regenerateShuffleIndices()
+        if (_shuffleMode.value != mode) {
+            toggleShuffle()
+        }
     }
     
-    private fun regenerateShuffleIndices() {
-        val list = _playlist.value
-        if (list.isEmpty()) {
-            shuffledIndices = emptyList()
-            return
-        }
+    fun shufflePlaylist() {
+        if (originalPlaylist.isEmpty()) return
         
-        shuffledIndices = list.indices.shuffled()
+        val currentTrack = this.currentTrack
+        shuffledPlaylist = originalPlaylist.shuffled()
+        
+        if (_shuffleMode.value == ShuffleMode.ON) {
+            _playlist.value = shuffledPlaylist
+            _currentIndex.value = if (currentTrack != null) {
+                shuffledPlaylist.indexOfFirst { it.id == currentTrack.id }.takeIf { it >= 0 } ?: 0
+            } else 0
+        }
     }
     
     fun findTrackById(trackId: String): Pair<Int, Track>? {
         val list = _playlist.value
-        val index = list.indexOfFirst { it.track_id == trackId }
+        val index = list.indexOfFirst { it.id == trackId }
         return if (index >= 0) index to list[index] else null
     }
     

@@ -2,6 +2,10 @@ package com.music.appmain
 
 import android.app.Application
 import com.example.layer3.api.Layer3Config
+import com.example.layer3.api.ContentProviderConfig
+import com.example.layer3.api.LightingControllerConfig
+import com.example.layer3.api.AudioEngineConfig
+import com.example.layer3.api.GenerationEngineConfig
 import com.example.layer3.sdk.Layer3SDK
 import com.music.appmain.controller.DisabledAmbientLightController
 import com.music.perception.api.PerceptionConfig
@@ -13,21 +17,28 @@ class MainApplication : Application() {
 
         val layer3Config = Layer3Config.Builder()
             .setContentProvider(
-                Layer3Config.ContentProviderConfig(
+                ContentProviderConfig(
                     providerType = "local",
                     enableOfflineMode = true
                 )
             )
             .setLightingController(
-                Layer3Config.LightingControllerConfig(
+                LightingControllerConfig(
                     controllerType = "disabled",
                     autoReconnect = false
                 )
             )
             .setAudioEngine(
-                Layer3Config.AudioEngineConfig(
+                AudioEngineConfig(
                     defaultPreset = "flat",
                     enableSpatialAudio = false
+                )
+            )
+            .setGenerationEngine(
+                GenerationEngineConfig(
+                    llmApiKey = "sk-fb1a1b32bf914059a043ee4ebd1c845a",
+                    llmBaseUrl = "https://dashscope.aliyuncs.com/compatible-mode/v1",
+                    llmModel = "qwen-plus"
                 )
             )
             .setEnableAutoTransition(true)
@@ -52,7 +63,7 @@ class MainApplication : Application() {
             ipCameraUrl: String = "",
             ipCameraUsername: String = "",
             ipCameraPassword: String = "",
-            dashScopeApiKey: String = "",
+            dashScopeApiKey: String = "sk-fb1a1b32bf914059a043ee4ebd1c845a",
             refreshIntervalMs: Long = 3000L
         ): PerceptionConfig {
             return PerceptionConfig.Builder()
@@ -64,25 +75,25 @@ class MainApplication : Application() {
         }
 
         fun getLayer3Config(
-            llmApiKey: String = "",
+            llmApiKey: String = "sk-fb1a1b32bf914059a043ee4ebd1c845a",
             llmBaseUrl: String = "https://dashscope.aliyuncs.com/compatible-mode/v1",
             llmModel: String = "qwen-plus"
         ): Layer3Config {
             return Layer3Config.Builder()
                 .setContentProvider(
-                    Layer3Config.ContentProviderConfig(
+                    ContentProviderConfig(
                         providerType = "local",
                         enableOfflineMode = true
                     )
                 )
                 .setLightingController(
-                    Layer3Config.LightingControllerConfig(
+                    LightingControllerConfig(
                         controllerType = "disabled",
                         autoReconnect = false
                     )
                 )
                 .setGenerationEngine(
-                    Layer3Config.GenerationEngineConfig(
+                    GenerationEngineConfig(
                         llmApiKey = llmApiKey,
                         llmBaseUrl = llmBaseUrl,
                         llmModel = llmModel

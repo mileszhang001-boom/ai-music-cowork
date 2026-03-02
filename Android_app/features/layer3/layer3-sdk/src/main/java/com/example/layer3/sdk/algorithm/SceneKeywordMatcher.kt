@@ -1,6 +1,6 @@
 package com.example.layer3.sdk.algorithm
 
-import com.example.layer3.api.model.SceneDescriptor
+import com.music.core.api.models.SceneDescriptor
 import com.example.layer3.sdk.data.SceneTemplate
 import com.example.layer3.sdk.util.Logger
 
@@ -34,13 +34,12 @@ class SceneKeywordMatcher {
     private fun extractSceneKeywords(scene: SceneDescriptor): List<String> {
         val keywords = mutableListOf<String>()
         
-        scene.sceneName?.let { keywords.addAll(extractKeywords(it)) }
-        scene.sceneNarrative?.let { keywords.addAll(extractKeywords(it)) }
-        scene.intent.atmosphere.let { keywords.addAll(extractKeywords(it)) }
+        scene.scene_name?.let { keywords.addAll(extractKeywords(it)) }
+        scene.scene_narrative?.let { keywords.addAll(extractKeywords(it)) }
+        scene.intent.atmosphere?.let { keywords.addAll(extractKeywords(it)) }
         
-        scene.hints?.music?.genres?.let { keywords.addAll(it) }
-        scene.hints?.music?.artists?.let { keywords.addAll(it) }
-        scene.hints?.lighting?.colorTheme?.let { keywords.addAll(extractKeywords(it)) }
+        scene.hints.music?.genres?.let { keywords.addAll(it) }
+        scene.hints.lighting?.color_theme?.let { keywords.addAll(extractKeywords(it)) }
         
         return keywords.distinct()
     }
@@ -59,7 +58,7 @@ class SceneKeywordMatcher {
     ): Double {
         if (sceneKeywords.isEmpty()) return 0.0
         
-        var matchCount = 0
+        var matchCount = 0.0
         var totalWeight = 0.0
         
         for (keyword in sceneKeywords) {
@@ -67,11 +66,11 @@ class SceneKeywordMatcher {
             totalWeight += weight
             
             if (template.keywords.any { it.equals(keyword, ignoreCase = true) }) {
-                matchCount++
+                matchCount += 1.0
             } else if (template.templateName.lowercase().contains(keyword)) {
-                matchCount++
+                matchCount += 1.0
             } else if (template.description?.lowercase()?.contains(keyword) == true) {
-                matchCount += 0.5.toInt()
+                matchCount += 0.5
             }
         }
         
@@ -84,16 +83,16 @@ class SceneKeywordMatcher {
     ): Double {
         if (keywords.isEmpty()) return 0.0
         
-        var matchCount = 0
+        var matchCount = 0.0
         for (keyword in keywords) {
             if (template.keywords.any { it.equals(keyword, ignoreCase = true) }) {
-                matchCount++
+                matchCount += 1.0
             } else if (template.templateName.lowercase().contains(keyword)) {
                 matchCount += 0.8
             }
         }
         
-        return matchCount / keywords.size
+        return matchCount / keywords.size.toDouble()
     }
 
     fun setKeywordWeight(keyword: String, weight: Double) {

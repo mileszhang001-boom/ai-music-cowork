@@ -11,12 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.layer3.api.model.EffectCommands
-import com.example.layer3.api.model.EffectCommand
-import com.example.layer3.api.model.EngineTypes
-import com.example.layer3.api.model.Playlist
-import com.example.layer3.api.model.LightingConfig
-import com.example.layer3.api.model.AudioConfig
+import com.music.core.api.models.EffectCommands
+import com.music.core.api.models.ContentCommand
+import com.music.core.api.models.LightingCommand
+import com.music.core.api.models.AudioCommand
 
 @Composable
 fun Layer3DataPanel(
@@ -46,44 +44,44 @@ fun Layer3DataPanel(
                     color = MaterialTheme.colorScheme.tertiary
                 )
                 StatusBadge(
-                    isActive = effectCommands != null && effectCommands.commands.isNotEmpty(),
-                    label = if (effectCommands != null && effectCommands.commands.isNotEmpty()) "活跃" else "待机"
+                    isActive = effectCommands != null && effectCommands.commands != null,
+                    label = if (effectCommands != null && effectCommands.commands != null) "活跃" else "待机"
                 )
             }
             
             Spacer(modifier = Modifier.height(12.dp))
             
-            if (effectCommands != null && effectCommands.commands.isNotEmpty()) {
+            if (effectCommands != null && effectCommands.commands != null) {
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    effectCommands.sceneId?.let {
+                    effectCommands.scene_id?.let {
                         KeyValueRow("scene_id", it)
                         Spacer(modifier = Modifier.height(8.dp))
                     }
                     
-                    val contentCommands = effectCommands.commands.filter { it.engineType == EngineTypes.CONTENT }
-                    val lightingCommands = effectCommands.commands.filter { it.engineType == EngineTypes.LIGHTING }
-                    val audioCommands = effectCommands.commands.filter { it.engineType == EngineTypes.AUDIO }
+                    val contentCommand = effectCommands.commands?.content
+                    val lightingCommand = effectCommands.commands?.lighting
+                    val audioCommand = effectCommands.commands?.audio
                     
-                    if (contentCommands.isNotEmpty()) {
-                        CommandSection(
+                    if (contentCommand != null) {
+                        ContentCommandSection(
                             title = "内容命令",
-                            commands = contentCommands
+                            command = contentCommand
                         )
                         Spacer(modifier = Modifier.height(12.dp))
                     }
                     
-                    if (lightingCommands.isNotEmpty()) {
-                        CommandSection(
+                    if (lightingCommand != null) {
+                        LightingCommandSection(
                             title = "灯光命令",
-                            commands = lightingCommands
+                            command = lightingCommand
                         )
                         Spacer(modifier = Modifier.height(12.dp))
                     }
                     
-                    if (audioCommands.isNotEmpty()) {
-                        CommandSection(
+                    if (audioCommand != null) {
+                        AudioCommandSection(
                             title = "音频命令",
-                            commands = audioCommands
+                            command = audioCommand
                         )
                     }
                 }
@@ -106,9 +104,9 @@ fun Layer3DataPanel(
 }
 
 @Composable
-private fun CommandSection(
+private fun ContentCommandSection(
     title: String,
-    commands: List<EffectCommand>
+    command: ContentCommand
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
@@ -119,26 +117,84 @@ private fun CommandSection(
         )
         Spacer(modifier = Modifier.height(8.dp))
         
-        commands.forEach { command ->
-            Surface(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(8.dp),
-                color = MaterialTheme.colorScheme.surface
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(8.dp),
+            color = MaterialTheme.colorScheme.surface
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
             ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                ) {
-                    KeyValueRow("action", command.action)
-                    if (command.params.isNotEmpty()) {
-                        command.params.forEach { (key, value) ->
-                            KeyValueRow(key, value.toString())
-                        }
-                    }
-                }
+                KeyValueRow("action", command.action)
+                command.playlist?.let { KeyValueRow("playlist_size", it.size.toString()) }
+                command.play_mode?.let { KeyValueRow("play_mode", it) }
             }
-            Spacer(modifier = Modifier.height(4.dp))
+        }
+    }
+}
+
+@Composable
+private fun LightingCommandSection(
+    title: String,
+    command: LightingCommand
+) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.labelMedium,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(8.dp),
+            color = MaterialTheme.colorScheme.surface
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            ) {
+                command.action?.let { KeyValueRow("action", it) }
+                command.theme?.let { KeyValueRow("theme", it) }
+                command.intensity?.let { KeyValueRow("intensity", it.toString()) }
+            }
+        }
+    }
+}
+
+@Composable
+private fun AudioCommandSection(
+    title: String,
+    command: AudioCommand
+) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Text(
+            text = title,
+            style = MaterialTheme.typography.labelMedium,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(8.dp),
+            color = MaterialTheme.colorScheme.surface
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            ) {
+                command.action?.let { KeyValueRow("action", it) }
+                command.preset?.let { KeyValueRow("preset", it) }
+                command.settings?.volume_db?.let { KeyValueRow("volume_db", it.toString()) }
+            }
         }
     }
 }

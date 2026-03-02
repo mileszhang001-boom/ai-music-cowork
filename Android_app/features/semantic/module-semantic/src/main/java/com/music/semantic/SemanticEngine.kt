@@ -1,6 +1,7 @@
 package com.music.semantic
 
 import android.content.Context
+import android.util.Log
 import com.music.core.api.models.SceneDescriptor
 import com.music.core.api.models.StandardizedSignals
 import com.music.semantic.llm.LlmClient
@@ -49,23 +50,29 @@ class SemanticEngine(
     fun initialize(): Boolean {
         val loaded = templateManager.loadTemplates()
         isInitialized = loaded
+        Log.i("SemanticEngine", "初始化${if (loaded) "成功" else "失败"}，模板数量: ${templateManager.getAllTemplates().size}")
         return loaded
     }
     
     suspend fun processSignals(signals: StandardizedSignals): Result<SceneDescriptor> = withContext(Dispatchers.Default) {
+        Log.d("SemanticEngine", "开始处理信号: ${signals.signals.vehicle?.speed_kmh}km/h, 天气: ${signals.signals.environment?.weather}")
         _engineStateFlow.value = EngineState.Processing
         
         try {
             val ruleResult = rulesEngine.matchTemplate(signals)
+            Log.d("SemanticEngine", "规则匹配结果: matched=${ruleResult.matched}, templateId=${ruleResult.templateId}, score=${ruleResult.score}")
             
             val newDescriptor = if (ruleResult.matched && ruleResult.templateId != null) {
                 val template = templateManager.getTemplateById(ruleResult.templateId)
                 if (template != null) {
+                    Log.i("SemanticEngine", "使用模板: ${template.name}")
                     templateManager.toSceneDescriptor(template)
                 } else {
+                    Log.w("SemanticEngine", "模板未找到: ${ruleResult.templateId}，使用LLM生成")
                     generateDescriptor(signals)
                 }
             } else {
+                Log.d("SemanticEngine", "无匹配模板，使用LLM生成")
                 generateDescriptor(signals)
             }
             
@@ -73,13 +80,16 @@ class SemanticEngine(
                 currentDescriptor = newDescriptor
                 _sceneDescriptorFlow.value = newDescriptor
                 _engineStateFlow.value = EngineState.Ready(newDescriptor)
+                Log.i("SemanticEngine", "场景已更新: ${newDescriptor.scene_name}")
                 Result.success(newDescriptor)
             } else {
                 val existing = currentDescriptor ?: newDescriptor
                 _engineStateFlow.value = EngineState.Ready(existing)
+                Log.d("SemanticEngine", "场景变化不大，保持当前场景")
                 Result.success(existing)
             }
         } catch (e: Exception) {
+            Log.e("SemanticEngine", "处理信号失败", e)
             _engineStateFlow.value = EngineState.Error(e.message ?: "Unknown error")
             Result.failure(e)
         }

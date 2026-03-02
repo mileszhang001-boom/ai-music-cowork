@@ -89,13 +89,18 @@ class PerceptionEngine(
         val location = sensorManager.currentLocation
         val micData = sensorManager.getAudioMetrics()
         
-        // External Camera
-        val bitmapToProcess = currentBitmap ?: Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888).apply {
-            eraseColor(android.graphics.Color.rgb((0..255).random(), (0..255).random(), (0..255).random()))
+        val bitmapToProcess = currentBitmap?.let { bmp ->
+            if (bmp.width >= 10 && bmp.height >= 10) {
+                Bitmap.createScaledBitmap(bmp, 640, 480, true)
+            } else {
+                null
+            }
+        } ?: Bitmap.createBitmap(640, 480, Bitmap.Config.ARGB_8888).apply {
+            eraseColor(android.graphics.Color.rgb(100, 100, 100))
         }
         
         val outputStream = ByteArrayOutputStream()
-        bitmapToProcess.compress(Bitmap.CompressFormat.JPEG, 50, outputStream)
+        bitmapToProcess.compress(Bitmap.CompressFormat.JPEG, 70, outputStream)
         val imageBytes = outputStream.toByteArray()
         val imageBase64 = Base64.encodeToString(imageBytes, Base64.NO_WRAP)
 
@@ -109,11 +114,17 @@ class PerceptionEngine(
             scene_description = aiResult.scene_description
         )
 
-        // Internal Camera
-        val internalBitmap = currentInternalBitmap
+        val internalBitmap = currentInternalBitmap?.let { bmp ->
+            if (bmp.width >= 10 && bmp.height >= 10) {
+                Bitmap.createScaledBitmap(bmp, 640, 480, true)
+            } else {
+                null
+            }
+        }
+        
         val internalSignal = if (internalBitmap != null) {
             val outputStreamInternal = ByteArrayOutputStream()
-            internalBitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStreamInternal)
+            internalBitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStreamInternal)
             val internalBytes = outputStreamInternal.toByteArray()
             val internalBase64 = Base64.encodeToString(internalBytes, Base64.NO_WRAP)
             
@@ -133,7 +144,6 @@ class PerceptionEngine(
             )
         }
 
-        // Weather
         val weatherResult = weatherService.getCurrentWeather()
 
         val signals = Signals(

@@ -1,6 +1,7 @@
 package com.music.semantic.template
 
 import android.content.Context
+import android.util.Log
 import com.music.core.api.models.*
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
@@ -60,16 +61,24 @@ data class TemplateAudioHints(
 
 class TemplateManager(private val context: Context) {
     
+    companion object {
+        private const val TAG = "TemplateManager"
+    }
+    
     private val json = Json { ignoreUnknownKeys = true }
     private var templates: List<TemplateData> = emptyList()
     
     fun loadTemplates(): Boolean {
         return try {
+            Log.d(TAG, "开始加载模板文件...")
             val templatesJson = context.assets.open("templates/preset_templates.json").bufferedReader().use { it.readText() }
+            Log.d(TAG, "模板文件大小: ${templatesJson.length} 字符")
             val templatesContainer = json.decodeFromString<TemplatesContainer>(templatesJson)
             templates = templatesContainer.templates
+            Log.i(TAG, "成功加载 ${templates.size} 个模板")
             true
         } catch (e: Exception) {
+            Log.e(TAG, "加载模板失败: ${e.message}", e)
             false
         }
     }

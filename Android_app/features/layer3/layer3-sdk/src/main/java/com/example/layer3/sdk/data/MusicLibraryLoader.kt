@@ -2,7 +2,6 @@ package com.example.layer3.sdk.data
 
 import android.content.Context
 import com.example.layer3.api.model.Track
-import com.example.layer3.api.model.TrackList
 import com.example.layer3.sdk.util.JsonLoader
 import com.example.layer3.sdk.util.Logger
 import com.google.gson.Gson
@@ -34,7 +33,6 @@ data class TrackData(
 class MusicLibraryLoader(private val context: Context) {
     private val gson = Gson()
     private var library: MusicLibrary? = null
-    private val cache = CacheManager<TrackList>(maxSize = 10)
 
     suspend fun loadLibrary(fileName: String = "music_library.json"): Result<MusicLibrary> {
         return try {
@@ -93,20 +91,9 @@ class MusicLibraryLoader(private val context: Context) {
             title = trackData.title,
             artist = trackData.artist,
             album = trackData.album,
-            duration_ms = trackData.durationMs,
+            durationMs = trackData.durationMs,
             genre = trackData.genre,
-            year = trackData.year,
-            bpm = trackData.bpm,
-            energy = trackData.energy,
-            valence = trackData.valence,
-            popularity = trackData.popularity
-        )
-    }
-
-    fun toTrackList(tracks: List<TrackData>): TrackList {
-        return TrackList(
-            tracks = tracks.map { toTrack(it) },
-            total = tracks.size
+            energy = trackData.energy
         )
     }
 }
