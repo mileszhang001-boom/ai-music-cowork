@@ -22466,40 +22466,6 @@
     "time_tags": "[]"
   },
   {
-    "id": "a803a02c-2b56-4ab1-a11c-1c64b3827a6d",
-    "title": "安静",
-    "title_pinyin": "安静",
-    "artist": "周杰伦",
-    "artist_pinyin": "周杰伦",
-    "album": null,
-    "genre": "chinese_pop",
-    "year": null,
-    "bpm": 127,
-    "energy": 0.3,
-    "valence": 0.465,
-    "mood_tags": "[\"pleasant\", \"motivated\", \"warm\"]",
-    "scene_tags": [
-      "meditation",
-      "road_trip",
-      "relaxing",
-      "party",
-      "fatigue_alert"
-    ],
-    "duration_ms": 241303,
-    "file_path": "周杰伦 - 安静.mp3",
-    "file_size": 9105812,
-    "format": "MP3",
-    "bitrate": 293303,
-    "sample_rate": 48000,
-    "llm_analyzed": 0,
-    "danceability": 0.46,
-    "acousticness": 0.2,
-    "instrumentalness": 0.12,
-    "activity_tags": "[]",
-    "weather_tags": "[]",
-    "time_tags": "[]"
-  },
-  {
     "id": "253395c2-f673-452c-a75a-ce786178f0ff",
     "title": "真的汉子",
     "title_pinyin": "真的汉子",
@@ -29189,293 +29155,36 @@
     "time_tags": "[]"
   },
   {
-    "title": "小星星",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.65,
-    "valence": 0.8,
-    "bpm": 100,
-    "id": "90e4fcd9-e0fc-47bf-beca-ee7311cbb9d2",
-    "title_pinyin": "小星星",
-    "file_path": "/data/local/tmp/aimusic/music/小星星 - 儿童合唱团.mp3",
-    "duration_ms": 224810,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "两只老虎",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.85,
-    "bpm": 110,
-    "id": "af900649-5a09-4707-883f-b6e851df5275",
-    "title_pinyin": "两只老虎",
-    "file_path": "/data/local/tmp/aimusic/music/两只老虎 - 儿童合唱团.mp3",
-    "duration_ms": 131147,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "小兔子乖乖",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.6,
-    "valence": 0.75,
-    "bpm": 95,
-    "id": "cd209087-a3be-4088-94d1-c348d7ca4e5c",
-    "title_pinyin": "小兔子乖乖",
-    "file_path": "/data/local/tmp/aimusic/music/小兔子乖乖 - 儿童合唱团.mp3",
-    "duration_ms": 161410,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "拔萝卜",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.8,
-    "bpm": 105,
-    "id": "30fc33c2-45dd-4625-8540-ba7c2d13983c",
-    "title_pinyin": "拔萝卜",
-    "file_path": "/data/local/tmp/aimusic/music/拔萝卜 - 儿童合唱团.mp3",
-    "duration_ms": 137661,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "数鸭子",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.65,
-    "valence": 0.8,
-    "bpm": 100,
-    "id": "efba2856-1886-470d-953d-64b1b0d6fb52",
-    "title_pinyin": "数鸭子",
-    "file_path": "/data/local/tmp/aimusic/music/数鸭子 - 儿童合唱团.mp3",
-    "duration_ms": 157288,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "小毛驴",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.85,
-    "bpm": 110,
-    "id": "9a0e41af-0b77-41e8-85d7-f050b6f6b01b",
-    "title_pinyin": "小毛驴",
-    "file_path": "/data/local/tmp/aimusic/music/小毛驴 - 儿童合唱团.mp3",
-    "duration_ms": 238916,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "一分钱",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.6,
-    "valence": 0.75,
-    "bpm": 95,
-    "id": "7f6bfa2e-5259-4d82-9a81-9f3c765413fa",
-    "title_pinyin": "一分钱",
-    "file_path": "/data/local/tmp/aimusic/music/一分钱 - 儿童合唱团.mp3",
-    "duration_ms": 203814,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "卖报歌",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.65,
-    "valence": 0.7,
-    "bpm": 100,
-    "id": "7f98a0e5-3b8d-4ab9-b377-6a3345fde6ab",
-    "title_pinyin": "卖报歌",
-    "file_path": "/data/local/tmp/aimusic/music/卖报歌 - 儿童合唱团.mp3",
-    "duration_ms": 160036,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "世上只有妈妈好",
-    "artist": "儿童合唱团",
-    "genre": "children",
+    "id": "a8294dc1-6695-4a98-93ba-9500de1ac921",
+    "title": "別在傷口上撒鹽『相愛的情歌你聽不厭 相仇的局面你又躲不遠』【動態歌詞】",
+    "artist": "張惠妹",
+    "title_pinyin": "別在傷口上撒鹽『相愛的情歌你聽不厭 相仇的局面你又躲不遠』【動態歌詞】",
+    "file_path": "/data/local/tmp/aimusic/music/張惠妹 - 別在傷口上撒鹽『相愛的情歌你聽不厭 相仇的局面你又躲不遠』【動態歌詞】.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
     "energy": 0.55,
-    "valence": 0.8,
-    "bpm": 85,
-    "id": "439bf1d8-c7c7-4846-bbcb-2a8af85bd71a",
-    "title_pinyin": "世上只有妈妈好",
-    "file_path": "/data/local/tmp/aimusic/music/世上只有妈妈好 - 儿童合唱团.mp3",
-    "duration_ms": 197969,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "让我们荡起双桨",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.6,
-    "valence": 0.75,
-    "bpm": 90,
-    "id": "20a55bb3-ebf3-4eef-86a3-d265069b7def",
-    "title_pinyin": "让我们荡起双桨",
-    "file_path": "/data/local/tmp/aimusic/music/让我们荡起双桨 - 儿童合唱团.mp3",
-    "duration_ms": 143682,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "采蘑菇的小姑娘",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.65,
-    "valence": 0.8,
-    "bpm": 100,
-    "id": "788329bb-6448-4d65-8e7e-d08fe22294ab",
-    "title_pinyin": "采蘑菇的小姑娘",
-    "file_path": "/data/local/tmp/aimusic/music/采蘑菇的小姑娘 - 儿童合唱团.mp3",
-    "duration_ms": 134783,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "春天在哪里",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.85,
+    "valence": 0.6,
     "bpm": 110,
-    "id": "c21b8e73-1f68-4106-8cbc-4f75aa73abdf",
-    "title_pinyin": "春天在哪里",
-    "file_path": "/data/local/tmp/aimusic/music/春天在哪里 - 儿童合唱团.mp3",
-    "duration_ms": 181475,
     "mood_tags": [
-      "children",
-      "happy",
-      "playful"
+      "pop",
+      "chinese"
     ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
+    "scene_tags": []
   },
   {
-    "title": "小燕子",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.6,
-    "valence": 0.75,
-    "bpm": 90,
-    "id": "9ea52f7c-4dee-4e62-8c83-0d25c9ebcebb",
-    "title_pinyin": "小燕子",
-    "file_path": "/data/local/tmp/aimusic/music/小燕子 - 儿童合唱团.mp3",
-    "duration_ms": 125590,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "丢手绢",
-    "artist": "儿童合唱团",
+    "id": "e26a51ea-785b-449d-b2f5-ec15d3be0816",
+    "title": "王老先生有快地",
+    "artist": "Unknown",
+    "title_pinyin": "王老先生有快地",
+    "file_path": "/data/local/tmp/aimusic/music/王老先生有快地.mp3",
+    "duration_ms": 180000,
     "genre": "children",
     "energy": 0.65,
     "valence": 0.8,
     "bpm": 100,
-    "id": "0bad4c9f-7d79-4380-b973-228a7249055c",
-    "title_pinyin": "丢手绢",
-    "file_path": "/data/local/tmp/aimusic/music/丢手绢 - 儿童合唱团.mp3",
-    "duration_ms": 126728,
     "mood_tags": [
       "children",
-      "happy",
-      "playful"
+      "happy"
     ],
     "scene_tags": [
       "kids_mode",
@@ -29483,314 +29192,36 @@
     ]
   },
   {
-    "title": "找朋友",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.85,
-    "bpm": 105,
-    "id": "32c48d17-e5cd-4143-abbd-a9d957483548",
-    "title_pinyin": "找朋友",
-    "file_path": "/data/local/tmp/aimusic/music/找朋友 - 儿童合唱团.mp3",
-    "duration_ms": 159317,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "娃哈哈",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.85,
-    "bpm": 110,
-    "id": "1878d9e2-b6f5-4869-a05c-ff02d0865e4e",
-    "title_pinyin": "娃哈哈",
-    "file_path": "/data/local/tmp/aimusic/music/娃哈哈 - 儿童合唱团.mp3",
-    "duration_ms": 137357,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "新年好",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.75,
-    "valence": 0.9,
-    "bpm": 115,
-    "id": "e3ee0ff2-0652-4402-ac07-13405b0cad99",
-    "title_pinyin": "新年好",
-    "file_path": "/data/local/tmp/aimusic/music/新年好 - 儿童合唱团.mp3",
-    "duration_ms": 218750,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "生日快乐",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.65,
-    "valence": 0.85,
-    "bpm": 100,
-    "id": "ec268b87-12a4-455e-8096-4e55ee2ff2a5",
-    "title_pinyin": "生日快乐",
-    "file_path": "/data/local/tmp/aimusic/music/生日快乐 - 儿童合唱团.mp3",
-    "duration_ms": 128690,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "小星星",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.65,
-    "valence": 0.8,
-    "bpm": 100,
-    "id": "8e942d36-9d2c-4bee-9510-256f1817650e",
-    "title_pinyin": "小星星",
-    "file_path": "/data/local/tmp/aimusic/music/小星星 - 儿童合唱团.mp3",
-    "duration_ms": 226539,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "两只老虎",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.85,
-    "bpm": 110,
-    "id": "2c1ac293-d750-4b5a-a216-ef765f2bcecb",
-    "title_pinyin": "两只老虎",
-    "file_path": "/data/local/tmp/aimusic/music/两只老虎 - 儿童合唱团.mp3",
-    "duration_ms": 131263,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "小兔子乖乖",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.6,
-    "valence": 0.75,
-    "bpm": 95,
-    "id": "afb8c9a3-e2ea-420b-9290-98b18ed0808f",
-    "title_pinyin": "小兔子乖乖",
-    "file_path": "/data/local/tmp/aimusic/music/小兔子乖乖 - 儿童合唱团.mp3",
-    "duration_ms": 129835,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "拔萝卜",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.8,
-    "bpm": 105,
-    "id": "ec27b473-2d1b-4f71-a582-4e14dce41840",
-    "title_pinyin": "拔萝卜",
-    "file_path": "/data/local/tmp/aimusic/music/拔萝卜 - 儿童合唱团.mp3",
-    "duration_ms": 239038,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "数鸭子",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.65,
-    "valence": 0.8,
-    "bpm": 100,
-    "id": "c12385c5-353f-4b50-b9a6-4483041d5271",
-    "title_pinyin": "数鸭子",
-    "file_path": "/data/local/tmp/aimusic/music/数鸭子 - 儿童合唱团.mp3",
-    "duration_ms": 167871,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "小毛驴",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.85,
-    "bpm": 110,
-    "id": "c8286f14-0abd-40f3-ae96-ddfd7acb8bc9",
-    "title_pinyin": "小毛驴",
-    "file_path": "/data/local/tmp/aimusic/music/小毛驴 - 儿童合唱团.mp3",
-    "duration_ms": 130944,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "一分钱",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.6,
-    "valence": 0.75,
-    "bpm": 95,
-    "id": "707d3d23-99a1-4fb8-ac62-7352888744d2",
-    "title_pinyin": "一分钱",
-    "file_path": "/data/local/tmp/aimusic/music/一分钱 - 儿童合唱团.mp3",
-    "duration_ms": 182240,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "卖报歌",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.65,
-    "valence": 0.7,
-    "bpm": 100,
-    "id": "97376c0d-eab1-4dbd-bfe3-9dbe767b0998",
-    "title_pinyin": "卖报歌",
-    "file_path": "/data/local/tmp/aimusic/music/卖报歌 - 儿童合唱团.mp3",
-    "duration_ms": 190791,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "世上只有妈妈好",
-    "artist": "儿童合唱团",
-    "genre": "children",
+    "id": "3b7c706e-616b-4443-8d6f-7ff024afa752",
+    "title": "三天三夜",
+    "artist": "Unknown",
+    "title_pinyin": "三天三夜",
+    "file_path": "/data/local/tmp/aimusic/music/三天三夜.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
     "energy": 0.55,
-    "valence": 0.8,
-    "bpm": 85,
-    "id": "e0bbaddc-ad2c-4761-9bfe-99b8affd3906",
-    "title_pinyin": "世上只有妈妈好",
-    "file_path": "/data/local/tmp/aimusic/music/世上只有妈妈好 - 儿童合唱团.mp3",
-    "duration_ms": 159306,
+    "valence": 0.6,
+    "bpm": 110,
     "mood_tags": [
-      "children",
-      "happy",
-      "playful"
+      "pop",
+      "chinese"
     ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
+    "scene_tags": []
   },
   {
-    "title": "让我们荡起双桨",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.6,
-    "valence": 0.75,
-    "bpm": 90,
-    "id": "8e019e3a-a9a1-43c1-be34-9d7333512727",
-    "title_pinyin": "让我们荡起双桨",
-    "file_path": "/data/local/tmp/aimusic/music/让我们荡起双桨 - 儿童合唱团.mp3",
-    "duration_ms": 208561,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "采蘑菇的小姑娘",
-    "artist": "儿童合唱团",
+    "id": "adb68f44-ca5a-4407-8686-fa62600baf4a",
+    "title": "小白兔白又白",
+    "artist": "Unknown",
+    "title_pinyin": "小白兔白又白",
+    "file_path": "/data/local/tmp/aimusic/music/小白兔白又白.mp3",
+    "duration_ms": 180000,
     "genre": "children",
     "energy": 0.65,
     "valence": 0.8,
     "bpm": 100,
-    "id": "7fe350d0-e090-42ac-9b98-0ab72ff6ba20",
-    "title_pinyin": "采蘑菇的小姑娘",
-    "file_path": "/data/local/tmp/aimusic/music/采蘑菇的小姑娘 - 儿童合唱团.mp3",
-    "duration_ms": 123917,
     "mood_tags": [
       "children",
-      "happy",
-      "playful"
+      "happy"
     ],
     "scene_tags": [
       "kids_mode",
@@ -29798,20 +29229,36 @@
     ]
   },
   {
-    "title": "春天在哪里",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.85,
+    "id": "76ed28ed-9899-449c-a4b4-5f24e590eecb",
+    "title": "斷了的弦 Broken Strings",
+    "artist": "周杰倫 Jay Chou",
+    "title_pinyin": "斷了的弦 Broken Strings",
+    "file_path": "/data/local/tmp/aimusic/music/周杰倫 Jay Chou【斷了的弦 Broken Strings】Official MV.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
     "bpm": 110,
-    "id": "9e7df42c-c3c2-4ab1-ba94-4823b322839e",
-    "title_pinyin": "春天在哪里",
-    "file_path": "/data/local/tmp/aimusic/music/春天在哪里 - 儿童合唱团.mp3",
-    "duration_ms": 134013,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "08b601ec-ae9c-43df-8e0d-bf33da62b725",
+    "title": "我上幼儿园",
+    "artist": "Unknown",
+    "title_pinyin": "我上幼儿园",
+    "file_path": "/data/local/tmp/aimusic/music/我上幼儿园.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
     "mood_tags": [
       "children",
-      "happy",
-      "playful"
+      "happy"
     ],
     "scene_tags": [
       "kids_mode",
@@ -29819,41 +29266,19 @@
     ]
   },
   {
+    "id": "4ce87267-ef3d-4758-9ff2-e9802f1ca105",
     "title": "小燕子",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.6,
-    "valence": 0.75,
-    "bpm": 90,
-    "id": "86559dc6-886b-4cb2-a14e-acaea4a518a7",
+    "artist": "Unknown",
     "title_pinyin": "小燕子",
-    "file_path": "/data/local/tmp/aimusic/music/小燕子 - 儿童合唱团.mp3",
-    "duration_ms": 167733,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "丢手绢",
-    "artist": "儿童合唱团",
+    "file_path": "/data/local/tmp/aimusic/music/小燕子.mp3",
+    "duration_ms": 180000,
     "genre": "children",
     "energy": 0.65,
     "valence": 0.8,
     "bpm": 100,
-    "id": "f858a22f-3dd2-404e-afe5-e55ef0361568",
-    "title_pinyin": "丢手绢",
-    "file_path": "/data/local/tmp/aimusic/music/丢手绢 - 儿童合唱团.mp3",
-    "duration_ms": 237766,
     "mood_tags": [
       "children",
-      "happy",
-      "playful"
+      "happy"
     ],
     "scene_tags": [
       "kids_mode",
@@ -29861,317 +29286,1278 @@
     ]
   },
   {
-    "title": "找朋友",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.85,
-    "bpm": 105,
-    "id": "603ecff3-56d3-42be-8653-2c997bf6824b",
-    "title_pinyin": "找朋友",
-    "file_path": "/data/local/tmp/aimusic/music/找朋友 - 儿童合唱团.mp3",
-    "duration_ms": 206822,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "娃哈哈",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.7,
-    "valence": 0.85,
+    "id": "13e90a2b-2aab-46b3-9bae-3ff530a2d7e6",
+    "title": "愛我還是他 Who Do You Love？",
+    "artist": "陶喆 David Tao",
+    "title_pinyin": "愛我還是他 Who Do You Love？",
+    "file_path": "/data/local/tmp/aimusic/music/陶喆 David Tao - 愛我還是他 Who Do You Love？ (官方完整版MV).mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
     "bpm": 110,
-    "id": "d5be2ae3-d0d0-4b89-a3f9-0395a40fa568",
-    "title_pinyin": "娃哈哈",
-    "file_path": "/data/local/tmp/aimusic/music/娃哈哈 - 儿童合唱团.mp3",
-    "duration_ms": 222285,
     "mood_tags": [
-      "children",
-      "happy",
-      "playful"
+      "pop",
+      "chinese"
     ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
+    "scene_tags": []
   },
   {
-    "title": "新年好",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.75,
-    "valence": 0.9,
-    "bpm": 115,
-    "id": "97e5ccbe-3c07-4c8f-b43d-a5a2a62b8edf",
-    "title_pinyin": "新年好",
-    "file_path": "/data/local/tmp/aimusic/music/新年好 - 儿童合唱团.mp3",
-    "duration_ms": 139026,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "生日快乐",
-    "artist": "儿童合唱团",
-    "genre": "children",
-    "energy": 0.65,
-    "valence": 0.85,
-    "bpm": 100,
-    "id": "521ddc7e-a6a9-42fe-957a-1c8ab25a6e86",
-    "title_pinyin": "生日快乐",
-    "file_path": "/data/local/tmp/aimusic/music/生日快乐 - 儿童合唱团.mp3",
-    "duration_ms": 129251,
-    "mood_tags": [
-      "children",
-      "happy",
-      "playful"
-    ],
-    "scene_tags": [
-      "kids_mode",
-      "family_outing"
-    ]
-  },
-  {
-    "title": "月光曲",
-    "artist": "德彪西",
+    "id": "a4a9c671-e54c-4ddd-9733-491c5b4ca645",
+    "title": "我恨我愛你 Hate That I Love You (",
+    "artist": "張惠妹 A-Mei",
+    "title_pinyin": "我恨我愛你 Hate That I Love You (",
+    "file_path": "/data/local/tmp/aimusic/music/張惠妹 A-Mei - 我恨我愛你 Hate That I Love You (official 官方完整版MV).mp3",
+    "duration_ms": 180000,
     "genre": "chinese_pop",
-    "energy": 0.25,
-    "valence": 0.5,
-    "bpm": 70,
-    "id": "3ff797e4-abb6-4f17-bb26-d0479985b5d7",
-    "title_pinyin": "月光曲",
-    "file_path": "/data/local/tmp/aimusic/music/月光曲 - 德彪西.mp3",
-    "duration_ms": 294183,
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
     "mood_tags": [
-      "relaxing",
-      "peaceful",
-      "meditation"
+      "pop",
+      "chinese"
     ],
-    "scene_tags": [
-      "fatigue_alert",
-      "meditation",
-      "relaxing",
-      "night_drive"
-    ]
+    "scene_tags": []
   },
   {
-    "title": "夜的钢琴曲",
-    "artist": "石进",
+    "id": "8ab1cdaa-ded7-46af-9681-5a2a4e981e73",
+    "title": "不能說的祕密 Secret",
+    "artist": "周杰倫 Jay Chou",
+    "title_pinyin": "不能說的祕密 Secret",
+    "file_path": "/data/local/tmp/aimusic/music/周杰倫 Jay Chou【不能說的祕密 Secret】-Official Music Video.mp3",
+    "duration_ms": 180000,
     "genre": "chinese_pop",
-    "energy": 0.22,
-    "valence": 0.5,
-    "bpm": 65,
-    "id": "4dd16d4d-cee3-4755-8d24-e62b70ad5fae",
-    "title_pinyin": "夜的钢琴曲",
-    "file_path": "/data/local/tmp/aimusic/music/夜的钢琴曲 - 石进.mp3",
-    "duration_ms": 264841,
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
     "mood_tags": [
-      "relaxing",
-      "peaceful",
-      "meditation"
+      "pop",
+      "chinese"
     ],
-    "scene_tags": [
-      "fatigue_alert",
-      "meditation",
-      "relaxing",
-      "night_drive"
-    ]
+    "scene_tags": []
   },
   {
-    "title": "安静",
-    "artist": "周杰伦",
+    "id": "ccbeef99-46b2-44e9-895a-3f8e08b3afd9",
+    "title": "七里香 Orange Jasmine",
+    "artist": "周杰倫 Jay Chou",
+    "title_pinyin": "七里香 Orange Jasmine",
+    "file_path": "/data/local/tmp/aimusic/music/周杰倫 Jay Chou【七里香 Orange Jasmine】-Official Music Video.mp3",
+    "duration_ms": 180000,
     "genre": "chinese_pop",
-    "energy": 0.3,
-    "valence": 0.45,
-    "bpm": 75,
-    "id": "b37db0fa-a367-4a7e-97c5-3ec4dc708a8c",
-    "title_pinyin": "安静",
-    "file_path": "/data/local/tmp/aimusic/music/安静 - 周杰伦.mp3",
-    "duration_ms": 242043,
-    "mood_tags": [
-      "relaxing",
-      "peaceful",
-      "meditation"
-    ],
-    "scene_tags": [
-      "fatigue_alert",
-      "meditation",
-      "relaxing",
-      "night_drive"
-    ]
-  },
-  {
-    "title": "宁静",
-    "artist": "班得瑞",
-    "genre": "chinese_pop",
-    "energy": 0.2,
+    "energy": 0.35,
     "valence": 0.55,
-    "bpm": 60,
-    "id": "c97e1e15-3b4a-448d-ac35-a5426f453365",
-    "title_pinyin": "宁静",
-    "file_path": "/data/local/tmp/aimusic/music/宁静 - 班得瑞.mp3",
-    "duration_ms": 249729,
+    "bpm": 90,
     "mood_tags": [
-      "relaxing",
-      "peaceful",
-      "meditation"
+      "pop",
+      "chinese"
     ],
     "scene_tags": [
       "fatigue_alert",
       "meditation",
-      "relaxing",
-      "night_drive"
+      "relaxing"
     ]
   },
   {
-    "title": "禅意",
-    "artist": "林海",
+    "id": "2545c9f7-0012-4af3-8c78-f6dd59b22234",
+    "title": "憨人 Fool",
+    "artist": "五月天 Mayday",
+    "title_pinyin": "憨人 Fool",
+    "file_path": "/data/local/tmp/aimusic/music/五月天 Mayday【憨人 Fool】Official Music Video.mp3",
+    "duration_ms": 180000,
     "genre": "chinese_pop",
-    "energy": 0.18,
-    "valence": 0.5,
-    "bpm": 55,
-    "id": "42bf24ce-69a0-4b7f-b53c-4b65eeed6642",
-    "title_pinyin": "禅意",
-    "file_path": "/data/local/tmp/aimusic/music/禅意 - 林海.mp3",
-    "duration_ms": 238526,
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
     "mood_tags": [
-      "relaxing",
-      "peaceful",
-      "meditation"
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "26c8aaef-5f5b-4bce-a570-2a3165f7de4a",
+    "title": "Amphibian",
+    "artist": "Unknown",
+    "title_pinyin": "Amphibian",
+    "file_path": "/data/local/tmp/aimusic/music/Amphibian.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "0476f6ce-e785-40d2-bdc6-62b7ee1f781f",
+    "title": "字母歌",
+    "artist": "Unknown",
+    "title_pinyin": "字母歌",
+    "file_path": "/data/local/tmp/aimusic/music/字母歌.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
     ],
     "scene_tags": [
-      "fatigue_alert",
-      "meditation",
-      "relaxing",
-      "night_drive"
+      "kids_mode",
+      "family_outing"
     ]
   },
   {
-    "title": "山水之间",
-    "artist": "许嵩",
+    "id": "df2e3ccf-4892-42f5-9988-a280f8812b3d",
+    "title": "無條件為你 Unconditionally for you",
+    "artist": "梁靜茹 Fish Leong",
+    "title_pinyin": "無條件為你 Unconditionally for you",
+    "file_path": "/data/local/tmp/aimusic/music/梁靜茹 Fish Leong【無條件為你 Unconditionally for you】中視「貞女烈女豪放女」主題曲 Official Music Video.mp3",
+    "duration_ms": 180000,
     "genre": "chinese_pop",
-    "energy": 0.28,
-    "valence": 0.52,
-    "bpm": 72,
-    "id": "eb90e56d-c15f-4f80-bd6e-e85b66aa628e",
-    "title_pinyin": "山水之间",
-    "file_path": "/data/local/tmp/aimusic/music/山水之间 - 许嵩.mp3",
-    "duration_ms": 271179,
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
     "mood_tags": [
-      "relaxing",
-      "peaceful",
-      "meditation"
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "0e755ec0-a3eb-4304-b8ca-85fcfd2ce477",
+    "title": "江南 River South",
+    "artist": "林俊傑 JJ Lin",
+    "title_pinyin": "江南 River South",
+    "file_path": "/data/local/tmp/aimusic/music/林俊傑 JJ Lin【江南 River South】官方完整版 MV.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.35,
+    "valence": 0.55,
+    "bpm": 90,
+    "mood_tags": [
+      "pop",
+      "chinese"
     ],
     "scene_tags": [
       "fatigue_alert",
       "meditation",
-      "relaxing",
-      "night_drive"
+      "relaxing"
     ]
   },
   {
-    "title": "清明雨上",
-    "artist": "许嵩",
+    "id": "1fb09d22-cbaa-42c4-9ca6-107afb82e005",
+    "title": "沿海地帶",
+    "artist": "Unknown",
+    "title_pinyin": "沿海地帶",
+    "file_path": "/data/local/tmp/aimusic/music/沿海地帶.mp3",
+    "duration_ms": 180000,
     "genre": "chinese_pop",
-    "energy": 0.25,
-    "valence": 0.48,
-    "bpm": 68,
-    "id": "587bba73-93bd-40e6-aa0d-7f677392bdad",
-    "title_pinyin": "清明雨上",
-    "file_path": "/data/local/tmp/aimusic/music/清明雨上 - 许嵩.mp3",
-    "duration_ms": 183742,
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
     "mood_tags": [
-      "relaxing",
-      "peaceful",
-      "meditation"
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "41405958-7df1-4128-834d-826674208fa1",
+    "title": "一只哈巴狗",
+    "artist": "Unknown",
+    "title_pinyin": "一只哈巴狗",
+    "file_path": "/data/local/tmp/aimusic/music/一只哈巴狗.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
     ],
     "scene_tags": [
-      "fatigue_alert",
-      "meditation",
-      "relaxing",
-      "night_drive"
+      "kids_mode",
+      "family_outing"
     ]
   },
   {
-    "title": "半壶纱",
-    "artist": "刘珂矣",
+    "id": "b3dc16cd-8858-4c6e-b9b0-fc2a95f4cc30",
+    "title": "挪威的森林 Norwegian forest",
+    "artist": "伍佰 Wu Bai&China Blue",
+    "title_pinyin": "挪威的森林 Norwegian forest",
+    "file_path": "/data/local/tmp/aimusic/music/伍佰 Wu Bai&China Blue【挪威的森林 Norwegian forest】Official Music Video.mp3",
+    "duration_ms": 180000,
     "genre": "chinese_pop",
-    "energy": 0.22,
-    "valence": 0.5,
-    "bpm": 65,
-    "id": "eff075dc-1e81-47dc-9a83-81e152b104a5",
-    "title_pinyin": "半壶纱",
-    "file_path": "/data/local/tmp/aimusic/music/半壶纱 - 刘珂矣.mp3",
-    "duration_ms": 216593,
+    "energy": 0.35,
+    "valence": 0.55,
+    "bpm": 90,
     "mood_tags": [
-      "relaxing",
-      "peaceful",
-      "meditation"
+      "pop",
+      "chinese"
     ],
     "scene_tags": [
       "fatigue_alert",
       "meditation",
-      "relaxing",
-      "night_drive"
+      "relaxing"
     ]
   },
   {
-    "title": "风筝误",
-    "artist": "刘珂矣",
-    "genre": "chinese_pop",
-    "energy": 0.24,
-    "valence": 0.5,
-    "bpm": 68,
-    "id": "7cd9a526-d411-4d59-affc-6b51c74a6e45",
-    "title_pinyin": "风筝误",
-    "file_path": "/data/local/tmp/aimusic/music/风筝误 - 刘珂矣.mp3",
-    "duration_ms": 286436,
+    "id": "9586eae2-814d-4485-bbfc-577a34ca7bf6",
+    "title": "铃儿响叮当",
+    "artist": "Unknown",
+    "title_pinyin": "铃儿响叮当",
+    "file_path": "/data/local/tmp/aimusic/music/铃儿响叮当.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
     "mood_tags": [
-      "relaxing",
-      "peaceful",
-      "meditation"
+      "children",
+      "happy"
     ],
     "scene_tags": [
-      "fatigue_alert",
-      "meditation",
-      "relaxing",
-      "night_drive"
+      "kids_mode",
+      "family_outing"
     ]
   },
   {
-    "title": "声声慢",
-    "artist": "崔开潮",
-    "genre": "chinese_pop",
-    "energy": 0.26,
-    "valence": 0.45,
-    "bpm": 70,
-    "id": "86c806bb-d730-4878-9200-6e29fa6c3ddb",
-    "title_pinyin": "声声慢",
-    "file_path": "/data/local/tmp/aimusic/music/声声慢 - 崔开潮.mp3",
-    "duration_ms": 188934,
+    "id": "a5a688e8-d8fd-4dfb-b973-144e8458f9e0",
+    "title": "幸福拍手歌",
+    "artist": "Unknown",
+    "title_pinyin": "幸福拍手歌",
+    "file_path": "/data/local/tmp/aimusic/music/幸福拍手歌.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
     "mood_tags": [
-      "relaxing",
-      "peaceful",
-      "meditation"
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "a1c13aec-f1ed-4449-b467-3760ff0a6682",
+    "title": "世界唯一的妳",
+    "artist": "曹格 Gary Chaw",
+    "title_pinyin": "世界唯一的妳",
+    "file_path": "/data/local/tmp/aimusic/music/曹格 Gary Chaw【世界唯一的妳】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "9aa9b21b-7520-4964-987e-4d12ecf905e9",
+    "title": "可愛女人 Cute Girl",
+    "artist": "周杰倫 Jay Chou",
+    "title_pinyin": "可愛女人 Cute Girl",
+    "file_path": "/data/local/tmp/aimusic/music/周杰倫 Jay Chou【可愛女人 Cute Girl (feat.徐若瑄Vivian)】 -Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "f888d49b-09f1-4c16-b733-c856edd808b1",
+    "title": "至少還有你 At Least I've Got You",
+    "artist": "林憶蓮 Sandy Lam",
+    "title_pinyin": "至少還有你 At Least I've Got You",
+    "file_path": "/data/local/tmp/aimusic/music/林憶蓮 Sandy Lam - 至少還有你 At Least I've Got You (官方完整版MV).mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "791f3df6-71cb-4cd5-85b0-13118740a3e5",
+    "title": "世上只有妈妈好",
+    "artist": "Unknown",
+    "title_pinyin": "世上只有妈妈好",
+    "file_path": "/data/local/tmp/aimusic/music/世上只有妈妈好.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "02f7b4a6-57bb-4677-b66a-216600c9eef7",
+    "title": "新年好",
+    "artist": "Unknown",
+    "title_pinyin": "新年好",
+    "file_path": "/data/local/tmp/aimusic/music/新年好.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "ebaeafd1-2f87-4caf-8d3d-5898c0f4a374",
+    "title": "拔萝卜",
+    "artist": "Unknown",
+    "title_pinyin": "拔萝卜",
+    "file_path": "/data/local/tmp/aimusic/music/拔萝卜.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "bec6e42a-13de-4616-ab63-be5d56d44638",
+    "title": "上学歌",
+    "artist": "Unknown",
+    "title_pinyin": "上学歌",
+    "file_path": "/data/local/tmp/aimusic/music/上学歌.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "d448479e-8483-4bc7-9abe-00b1eb0dc1be",
+    "title": "眼底星空",
+    "artist": "李聖傑 Sam Lee",
+    "title_pinyin": "眼底星空",
+    "file_path": "/data/local/tmp/aimusic/music/李聖傑 Sam Lee【眼底星空】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.35,
+    "valence": 0.55,
+    "bpm": 90,
+    "mood_tags": [
+      "pop",
+      "chinese"
     ],
     "scene_tags": [
       "fatigue_alert",
       "meditation",
-      "relaxing",
-      "night_drive"
+      "relaxing"
     ]
+  },
+  {
+    "id": "786e74a9-0aa3-4d6a-ae4c-22545fb04579",
+    "title": "手放開",
+    "artist": "李聖傑 Sam Lee",
+    "title_pinyin": "手放開",
+    "file_path": "/data/local/tmp/aimusic/music/李聖傑 Sam Lee【手放開】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "1dce7a7b-d488-4590-a143-74d1bf6a9c78",
+    "title": "Lydia",
+    "artist": "Unknown",
+    "title_pinyin": "Lydia",
+    "file_path": "/data/local/tmp/aimusic/music/Lydia.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "0190ee09-e56f-469c-8bcd-0a83bffcce7b",
+    "title": "陳奕迅 Eason Chan《K歌之王(國)》[",
+    "artist": "Unknown",
+    "title_pinyin": "陳奕迅 Eason Chan《K歌之王(國)》[",
+    "file_path": "/data/local/tmp/aimusic/music/陳奕迅 Eason Chan《K歌之王(國)》[Official MV].mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "85d774f1-c793-4dac-b3db-9f822169882c",
+    "title": "遺失的美好",
+    "artist": "張韶涵 Angela Zhang",
+    "title_pinyin": "遺失的美好",
+    "file_path": "/data/local/tmp/aimusic/music/張韶涵 Angela Zhang - 遺失的美好 (官方版MV).mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "98bcba0b-8032-4c44-a212-5517df5b5e70",
+    "title": "張惠妹-我可以抱你嗎",
+    "artist": "Unknown",
+    "title_pinyin": "張惠妹-我可以抱你嗎",
+    "file_path": "/data/local/tmp/aimusic/music/張惠妹-我可以抱你嗎  官方MV.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "ce1730d0-87ee-4f11-9d86-af6e35bb8e27",
+    "title": "遇見 Encounter (",
+    "artist": "孫燕姿 Sun Yan-Zi",
+    "title_pinyin": "遇見 Encounter (",
+    "file_path": "/data/local/tmp/aimusic/music/孫燕姿 Sun Yan-Zi - 遇見 Encounter (official 官方完整版MV).mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "cc58b9cd-89a5-4880-aa59-323882bd48f0",
+    "title": "分手快樂",
+    "artist": "梁靜茹 Fish Leong",
+    "title_pinyin": "分手快樂",
+    "file_path": "/data/local/tmp/aimusic/music/梁靜茹 Fish Leong【分手快樂(獨唱版) Break Up Happily (Solo Version)】台視「吐司男之吻2─愛情本事」片尾曲 Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "0e003f0d-0367-4c9e-881d-46bc7bfc007b",
+    "title": "好想好好愛你",
+    "artist": "周蕙 Where Chou",
+    "title_pinyin": "好想好好愛你",
+    "file_path": "/data/local/tmp/aimusic/music/周蕙 Where Chou - 好想好好愛你 (官方版MV).mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "8ae7f8d7-df8d-41a5-94fc-42ca3efac50d",
+    "title": "下一個天亮",
+    "artist": "郭靜 Claire Kuo",
+    "title_pinyin": "下一個天亮",
+    "file_path": "/data/local/tmp/aimusic/music/郭靜 Claire Kuo - 下一個天亮 (官方版MV).mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "115ccbbc-699a-48ad-b576-e3745fd7269c",
+    "title": "小老鼠上灯台",
+    "artist": "Unknown",
+    "title_pinyin": "小老鼠上灯台",
+    "file_path": "/data/local/tmp/aimusic/music/小老鼠上灯台.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "82a1979e-0446-449b-8fca-6932cfe7b9fc",
+    "title": "陶喆 David Tao – 普通朋友 Regular Friends",
+    "artist": "Unknown",
+    "title_pinyin": "陶喆 David Tao – 普通朋友 Regular Friends",
+    "file_path": "/data/local/tmp/aimusic/music/陶喆 David Tao – 普通朋友 Regular Friends (官方完整版MV).mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "ae8034ec-a691-4be0-a1bd-ee5fe1aa6a3e",
+    "title": "小星星",
+    "artist": "Unknown",
+    "title_pinyin": "小星星",
+    "file_path": "/data/local/tmp/aimusic/music/小星星.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "71a84035-cafa-4548-aa54-0607963b2cba",
+    "title": "開不了口 I Find It Hard To Say",
+    "artist": "周杰倫 Jay Chou",
+    "title_pinyin": "開不了口 I Find It Hard To Say",
+    "file_path": "/data/local/tmp/aimusic/music/周杰倫 Jay Chou【開不了口 I Find It Hard To Say】Official MV.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "5f61358f-c2e1-43eb-a28d-366316afad48",
+    "title": "小酒窩 Dimples",
+    "artist": "林俊傑 JJ Lin",
+    "title_pinyin": "小酒窩 Dimples",
+    "file_path": "/data/local/tmp/aimusic/music/林俊傑 JJ Lin【小酒窩 Dimples】（合唱：蔡卓妍 A-Sa）官方完整版 MV.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "e04e665d-17ac-4c8b-9d47-c24d100024d3",
+    "title": "可惜不是你 Unfortunately Not You",
+    "artist": "梁靜茹 Fish Leong",
+    "title_pinyin": "可惜不是你 Unfortunately Not You",
+    "file_path": "/data/local/tmp/aimusic/music/梁靜茹 Fish Leong【可惜不是你 Unfortunately Not You】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.35,
+    "valence": 0.55,
+    "bpm": 90,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": [
+      "fatigue_alert",
+      "meditation",
+      "relaxing"
+    ]
+  },
+  {
+    "id": "48126420-c032-4e7d-a515-bae36278331f",
+    "title": "星晴 Starry Mood",
+    "artist": "周杰倫 Jay Chou",
+    "title_pinyin": "星晴 Starry Mood",
+    "file_path": "/data/local/tmp/aimusic/music/周杰倫 Jay Chou【星晴 Starry Mood】-Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.35,
+    "valence": 0.55,
+    "bpm": 90,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": [
+      "fatigue_alert",
+      "meditation",
+      "relaxing"
+    ]
+  },
+  {
+    "id": "95ea054d-c6e4-4cb0-bc29-7c2bc07b4dbe",
+    "title": "溫柔 Tenderness",
+    "artist": "五月天 Mayday",
+    "title_pinyin": "溫柔 Tenderness",
+    "file_path": "/data/local/tmp/aimusic/music/五月天 Mayday【溫柔 Tenderness】台視 2000年「俠女闖天關」片尾主題曲 Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "8a4a837e-a0c6-4444-929a-880d70928e3f",
+    "title": "曖昧",
+    "artist": "楊丞琳 Rainie Yang",
+    "title_pinyin": "曖昧",
+    "file_path": "/data/local/tmp/aimusic/music/楊丞琳 Rainie Yang - 曖昧.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "e8a5f8de-6705-4222-afb4-9c2498a5bb8f",
+    "title": "粉刷匠",
+    "artist": "Unknown",
+    "title_pinyin": "粉刷匠",
+    "file_path": "/data/local/tmp/aimusic/music/粉刷匠.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "6c822b54-4d9b-4eed-81ce-a5f7cfb2c18d",
+    "title": "Superwoman",
+    "artist": "曹格 Gary Chaw",
+    "title_pinyin": "Superwoman",
+    "file_path": "/data/local/tmp/aimusic/music/曹格 Gary Chaw【Superwoman】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "3ef22997-10bd-486d-8433-249f336bca79",
+    "title": "晴天 Sunny Day",
+    "artist": "周杰倫 Jay Chou",
+    "title_pinyin": "晴天 Sunny Day",
+    "file_path": "/data/local/tmp/aimusic/music/周杰倫 Jay Chou【晴天 Sunny Day】-Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.35,
+    "valence": 0.55,
+    "bpm": 90,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": [
+      "fatigue_alert",
+      "meditation",
+      "relaxing"
+    ]
+  },
+  {
+    "id": "a5e8749e-08dd-46c1-8605-8a950747f995",
+    "title": "祝你生日快乐",
+    "artist": "Unknown",
+    "title_pinyin": "祝你生日快乐",
+    "file_path": "/data/local/tmp/aimusic/music/祝你生日快乐.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "1c50fde6-da14-459b-8ec2-d98efd48f112",
+    "title": "聽不到 Can't Hear",
+    "artist": "梁靜茹 Fish Leong",
+    "title_pinyin": "聽不到 Can't Hear",
+    "file_path": "/data/local/tmp/aimusic/music/梁靜茹 Fish Leong【聽不到 Can't Hear】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "364a2c24-77e4-4778-8135-849b905c1c08",
+    "title": "開始懂了 Realize (",
+    "artist": "孫燕姿 Sun Yan-Zi",
+    "title_pinyin": "開始懂了 Realize (",
+    "file_path": "/data/local/tmp/aimusic/music/孫燕姿 Sun Yan-Zi - 開始懂了 Realize (official 官方完整版MV).mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "c095f038-cc61-44db-aed3-217981c7955e",
+    "title": "世界末日",
+    "artist": "咻比嘟華 S.B.D.W.",
+    "title_pinyin": "世界末日",
+    "file_path": "/data/local/tmp/aimusic/music/咻比嘟華 S.B.D.W. - 世界末日.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.35,
+    "valence": 0.55,
+    "bpm": 90,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": [
+      "fatigue_alert",
+      "meditation",
+      "relaxing"
+    ]
+  },
+  {
+    "id": "ef3817cf-ab1b-42af-b155-7645f4b62284",
+    "title": "痴心絕對 Devotion Love",
+    "artist": "李聖傑 Sam Lee",
+    "title_pinyin": "痴心絕對 Devotion Love",
+    "file_path": "/data/local/tmp/aimusic/music/李聖傑 Sam Lee【痴心絕對 Devotion Love】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "a45a540b-cd25-4efe-b52c-f610248c8aad",
+    "title": "私奔到月球",
+    "artist": "Unknown",
+    "title_pinyin": "私奔到月球",
+    "file_path": "/data/local/tmp/aimusic/music/私奔到月球.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "8257bc31-c8dc-4a8e-89ca-7fb76780c8b7",
+    "title": "差不多先生",
+    "artist": "MC HotDog 熱狗",
+    "title_pinyin": "差不多先生",
+    "file_path": "/data/local/tmp/aimusic/music/MC HotDog 熱狗【差不多先生】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.35,
+    "valence": 0.55,
+    "bpm": 90,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": [
+      "fatigue_alert",
+      "meditation",
+      "relaxing"
+    ]
+  },
+  {
+    "id": "41a63fc2-dbcb-4943-9564-2627b95e4a64",
+    "title": "如果有一天 If One Day",
+    "artist": "梁靜茹 Fish Leong",
+    "title_pinyin": "如果有一天 If One Day",
+    "file_path": "/data/local/tmp/aimusic/music/梁靜茹 Fish Leong【如果有一天 If One Day】GTV28台「懷玉公主」片頭曲 Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "9fb9aca5-4d22-4b50-bc0f-37c8c6cf4a28",
+    "title": "勇氣 Courage",
+    "artist": "梁靜茹 Fish Leong",
+    "title_pinyin": "勇氣 Courage",
+    "file_path": "/data/local/tmp/aimusic/music/梁靜茹 Fish Leong【勇氣 Courage】台視「俠女闖天關」主題曲 Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "c17ca862-fceb-45c0-bb25-47f3043e0e09",
+    "title": "背叛",
+    "artist": "曹格 Gary Chaw",
+    "title_pinyin": "背叛",
+    "file_path": "/data/local/tmp/aimusic/music/曹格 Gary Chaw【背叛】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.35,
+    "valence": 0.55,
+    "bpm": 90,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": [
+      "fatigue_alert",
+      "meditation",
+      "relaxing"
+    ]
+  },
+  {
+    "id": "663640c2-2005-4d36-86db-a6b79f06adf0",
+    "title": "動力火車 Power Station [ 忠孝東路走九遍 ]",
+    "artist": "Unknown",
+    "title_pinyin": "動力火車 Power Station [ 忠孝東路走九遍 ]",
+    "file_path": "/data/local/tmp/aimusic/music/動力火車 Power Station [ 忠孝東路走九遍 ] Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "a80286b7-b1a9-43c9-abd0-9c859353850d",
+    "title": "後來 Later",
+    "artist": "劉若英 René Liu",
+    "title_pinyin": "後來 Later",
+    "file_path": "/data/local/tmp/aimusic/music/劉若英 René Liu【後來 Later】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "7bb0a652-7c80-4c45-9070-e1dec46338f2",
+    "title": "小兔子乖乖",
+    "artist": "Unknown",
+    "title_pinyin": "小兔子乖乖",
+    "file_path": "/data/local/tmp/aimusic/music/小兔子乖乖.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "31d4726c-0001-41fc-98fb-499a2d3f30e4",
+    "title": "童話",
+    "artist": "光良 Michael Wong",
+    "title_pinyin": "童話",
+    "file_path": "/data/local/tmp/aimusic/music/光良 Michael Wong【童話】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "27754c81-d278-4903-9857-bc717d67bd52",
+    "title": "Qing Fei De Yi",
+    "artist": "Unknown",
+    "title_pinyin": "Qing Fei De Yi",
+    "file_path": "/data/local/tmp/aimusic/music/Qing Fei De Yi.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "0c6059db-092a-4742-8e91-71d9612b93b6",
+    "title": "Our Love",
+    "artist": "Unknown",
+    "title_pinyin": "Our Love",
+    "file_path": "/data/local/tmp/aimusic/music/Our Love.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "2591fdc9-3fc8-42b2-be9b-cc8b906638d4",
+    "title": "不得不愛 ft. 弦子 (",
+    "artist": "Will Pan",
+    "title_pinyin": "不得不愛 ft. 弦子 (",
+    "file_path": "/data/local/tmp/aimusic/music/Will Pan - 潘瑋柏 - 不得不愛 ft. 弦子 (Official Video).mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "2e3d1498-ade5-46a7-af27-8018181621bc",
+    "title": "小手拍拍",
+    "artist": "Unknown",
+    "title_pinyin": "小手拍拍",
+    "file_path": "/data/local/tmp/aimusic/music/小手拍拍.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "d2ee57d5-3a1b-44cc-b1fe-7500269ca68b",
+    "title": "小毛驴",
+    "artist": "Unknown",
+    "title_pinyin": "小毛驴",
+    "file_path": "/data/local/tmp/aimusic/music/小毛驴.mp3",
+    "duration_ms": 180000,
+    "genre": "children",
+    "energy": 0.65,
+    "valence": 0.8,
+    "bpm": 100,
+    "mood_tags": [
+      "children",
+      "happy"
+    ],
+    "scene_tags": [
+      "kids_mode",
+      "family_outing"
+    ]
+  },
+  {
+    "id": "d699971c-b119-4148-9d5f-2f6b371f030c",
+    "title": "思念是一種病 Yearning like a sickness",
+    "artist": "張震嶽 A-Yue",
+    "title_pinyin": "思念是一種病 Yearning like a sickness",
+    "file_path": "/data/local/tmp/aimusic/music/張震嶽 A-Yue【思念是一種病 Yearning like a sickness】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "5d53fcf1-4400-442c-82df-25d71c131cb4",
+    "title": "蝸牛 Snail",
+    "artist": "周杰倫 Jay Chou",
+    "title_pinyin": "蝸牛 Snail",
+    "file_path": "/data/local/tmp/aimusic/music/周杰倫 Jay Chou【蝸牛 Snail】Official MV.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "9e56b279-bb43-4ebe-a127-67a15204c757",
+    "title": "數到五答應我",
+    "artist": "曹格 Gary Chaw",
+    "title_pinyin": "數到五答應我",
+    "file_path": "/data/local/tmp/aimusic/music/曹格 Gary Chaw【數到五答應我】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "f4fa8ff2-9f9f-495a-b0bb-b89d92f5bebd",
+    "title": "因為愛所以愛",
+    "artist": "Unknown",
+    "title_pinyin": "因為愛所以愛",
+    "file_path": "/data/local/tmp/aimusic/music/因為愛所以愛.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "bce804a2-a3e8-457f-9039-cadc560e0355",
+    "title": "心中無別人 Nobody else in my heart",
+    "artist": "五月天 Mayday",
+    "title_pinyin": "心中無別人 Nobody else in my heart",
+    "file_path": "/data/local/tmp/aimusic/music/五月天 Mayday【心中無別人 Nobody else in my heart】Official Music Video.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "40403638-33e7-4f40-9af4-030041a78401",
+    "title": "說愛你",
+    "artist": "蔡依林 Jolin Tsai",
+    "title_pinyin": "說愛你",
+    "file_path": "/data/local/tmp/aimusic/music/蔡依林 Jolin Tsai - 說愛你.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "553c2208-d7cc-4c22-8862-ef9da6bada09",
+    "title": "小情歌",
+    "artist": "Unknown",
+    "title_pinyin": "小情歌",
+    "file_path": "/data/local/tmp/aimusic/music/小情歌.mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
+  },
+  {
+    "id": "6ebef436-ca01-4582-916c-ec36cb9ce7cf",
+    "title": "郭富城 Aaron Kwok -《等我回來》",
+    "artist": "Unknown",
+    "title_pinyin": "郭富城 Aaron Kwok -《等我回來》",
+    "file_path": "/data/local/tmp/aimusic/music/郭富城 Aaron Kwok -《等我回來》Official MV (國).mp3",
+    "duration_ms": 180000,
+    "genre": "chinese_pop",
+    "energy": 0.55,
+    "valence": 0.6,
+    "bpm": 110,
+    "mood_tags": [
+      "pop",
+      "chinese"
+    ],
+    "scene_tags": []
   }
 ]
