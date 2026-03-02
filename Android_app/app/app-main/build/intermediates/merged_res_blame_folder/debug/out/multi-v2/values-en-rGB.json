@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.music.appmain.app-main-mergeDebugResources-56:/values-en-rGB/values-en-rGB.xml",
+            "outputFile": "com.music.appmain.app-main-mergeDebugResources-57:/values-en-rGB/values-en-rGB.xml",
             "map": [
                 {
                     "source": "/Users/mi/.gradle/caches/8.9/transforms/6eecb78a42da1aec35d02254613ff93a/transformed/foundation-release/res/values-en-rGB/values-en-rGB.xml",

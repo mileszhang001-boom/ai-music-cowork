@@ -1,9 +1,0 @@
-/Users/mi/Documents/ai-music-cowork/Android_app/features/perception/module-perception/src/main/java/com/music/perception/sdk/IpCameraSource.kt
-/Users/mi/Documents/ai-music-cowork/Android_app/features/perception/module-perception/src/main/java/com/music/perception/sdk/SensorManager.kt
-/Users/mi/Documents/ai-music-cowork/Android_app/features/perception/module-perception/src/main/java/com/music/perception/sdk/LocalImageAnalyzer.kt
-/Users/mi/Documents/ai-music-cowork/Android_app/features/perception/module-perception/src/main/java/com/music/perception/config/PerceptionConfigProvider.kt
-/Users/mi/Documents/ai-music-cowork/Android_app/features/perception/module-perception/src/main/java/com/music/perception/sdk/PerceptionEngine.kt
-/Users/mi/Documents/ai-music-cowork/Android_app/features/perception/module-perception/src/main/java/com/music/perception/sdk/WeatherService.kt
-/Users/mi/Documents/ai-music-cowork/Android_app/features/perception/module-perception/src/main/java/com/music/perception/sdk/ConfidenceValidator.kt
-/Users/mi/Documents/ai-music-cowork/Android_app/features/perception/module-perception/src/main/java/com/music/perception/sdk/AIClient.kt
-/Users/mi/Documents/ai-music-cowork/Android_app/features/perception/module-perception/src/main/java/com/music/perception/sdk/CameraSource.kt

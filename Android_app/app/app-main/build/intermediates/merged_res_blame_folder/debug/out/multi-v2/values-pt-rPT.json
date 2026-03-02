@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.music.appmain.app-main-mergeDebugResources-56:/values-pt-rPT/values-pt-rPT.xml",
+            "outputFile": "com.music.appmain.app-main-mergeDebugResources-57:/values-pt-rPT/values-pt-rPT.xml",
             "map": [
                 {
                     "source": "/Users/mi/.gradle/caches/8.9/transforms/82e6fd847e4986a5f1e486b199995c33/transformed/appcompat-1.1.0/res/values-pt-rPT/values-pt-rPT.xml",

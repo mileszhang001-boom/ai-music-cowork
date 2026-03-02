@@ -44,8 +44,10 @@ android {
 
 dependencies {
     implementation(project(":features:perception:module-perception"))
+    implementation(project(":features:perception:module-perception-api"))
     implementation(project(":features:semantic:module-semantic"))
     implementation(project(":features:layer3:layer3-sdk"))
+    implementation(project(":features:layer3:layer3-api"))
     implementation(project(":features:localmusic:module-localmusic"))
     implementation(project(":core:core-api"))
 
@@ -59,6 +61,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation("androidx.compose.material:material-icons-extended:1.5.4")
 
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)

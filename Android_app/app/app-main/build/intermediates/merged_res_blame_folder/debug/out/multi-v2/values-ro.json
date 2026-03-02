@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.music.appmain.app-main-mergeDebugResources-56:/values-ro/values-ro.xml",
+            "outputFile": "com.music.appmain.app-main-mergeDebugResources-57:/values-ro/values-ro.xml",
             "map": [
                 {
                     "source": "/Users/mi/.gradle/caches/8.9/transforms/0d886c783ecc3e8bc0386f8ca598a05c/transformed/ui-release/res/values-ro/values-ro.xml",

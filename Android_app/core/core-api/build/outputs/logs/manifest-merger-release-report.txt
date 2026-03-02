@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest10585990220406864270.xml:2:13-83
-INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest10585990220406864270.xml:2:13-83
+ADDED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13193015640247647535.xml:2:13-83
+INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13193015640247647535.xml:2:13-83
 	package
-		INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest10585990220406864270.xml
+		INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13193015640247647535.xml
 	xmlns:android
-		ADDED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest10585990220406864270.xml:2:23-81
+		ADDED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13193015640247647535.xml:2:23-81
 uses-sdk
-INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest10585990220406864270.xml reason: use-sdk injection requested
-INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest10585990220406864270.xml
-INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest10585990220406864270.xml
+INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13193015640247647535.xml reason: use-sdk injection requested
+INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13193015640247647535.xml
+INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13193015640247647535.xml
 	android:targetSdkVersion
-		INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest10585990220406864270.xml
+		INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13193015640247647535.xml
 	android:minSdkVersion
-		INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest10585990220406864270.xml
+		INJECTED from /Users/mi/Documents/ai-music-cowork/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/release/tempAndroidManifest13193015640247647535.xml

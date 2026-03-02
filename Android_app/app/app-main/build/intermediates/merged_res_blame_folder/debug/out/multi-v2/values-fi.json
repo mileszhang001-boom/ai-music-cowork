@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.music.appmain.app-main-mergeDebugResources-56:/values-fi/values-fi.xml",
+            "outputFile": "com.music.appmain.app-main-mergeDebugResources-57:/values-fi/values-fi.xml",
             "map": [
                 {
                     "source": "/Users/mi/.gradle/caches/8.9/transforms/e3d004b6cd6d2c47b6492d6f033f1617/transformed/media3-ui-1.2.1/res/values-fi/values-fi.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.music.appmain.app-main-mergeDebugResources-56:/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "com.music.appmain.app-main-mergeDebugResources-57:/values-en-rAU/values-en-rAU.xml",
             "map": [
                 {
                     "source": "/Users/mi/.gradle/caches/8.9/transforms/189adc3db2805e451968af1653973558/transformed/material3-release/res/values-en-rAU/values-en-rAU.xml",
