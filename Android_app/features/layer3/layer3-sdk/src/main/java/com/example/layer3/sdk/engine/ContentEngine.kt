@@ -18,6 +18,7 @@ class ContentEngine(
     
     companion object {
         private const val TAG = "ContentEngine"
+        private const val PLAYLIST_SIZE = 10
     }
     
     private val _contentStateFlow = MutableStateFlow(ContentCommand(action = "play"))
@@ -28,7 +29,6 @@ class ContentEngine(
 
     override suspend fun generatePlaylist(scene: SceneDescriptor): Result<List<Track>> {
         return try {
-            // 使用 assets 模式加载 index.json
             val localMusicIndex = LocalMusicIndex.getInstance(context)
             if (!localMusicIndex.initialize()) {
                 Log.e(TAG, "Failed to initialize LocalMusicIndex")
@@ -45,7 +45,10 @@ class ContentEngine(
             val matchedTracks = matchTracksByScene(localTracks, scene)
             Log.i(TAG, "Matched ${matchedTracks.size} tracks for scene: ${scene.scene_name}")
             
-            val playlist = matchedTracks.take(10).map { localTrack ->
+            // 优化编排：考虑 BPM 渐进、中英文混合、风格连贯
+            val arrangedTracks = arrangePlaylist(matchedTracks, scene)
+            
+            val playlist = arrangedTracks.take(PLAYLIST_SIZE).map { localTrack ->
                 Track(
                     track_id = localTrack.id.toString(),
                     title = localTrack.title,
@@ -73,24 +76,20 @@ class ContentEngine(
         val scoredTracks = localTracks.map { track ->
             var score = 0.0
             
-            // 判断是否为中文歌曲
             val isChinese = track.genre?.contains("chinese", ignoreCase = true) == true
             
             hints?.music?.genres?.let { genres ->
                 if (track.genre != null && genres.any { it.equals(track.genre, ignoreCase = true) }) {
-                    score += 20.0
+                    score += 25.0
                 }
-                // 中英文歌曲匹配：如果场景需要中文歌曲
                 val needsChinese = genres.any { it.contains("chinese", ignoreCase = true) }
                 if (needsChinese && isChinese) {
-                    score += 15.0
+                    score += 20.0
                 }
             }
             
-            // 中文歌曲基础权重加成（针对中国用户场景）
-            // 由于中文歌曲只占 9%，需要增加权重使其更容易被推荐
             if (isChinese) {
-                score += 8.0
+                score += 10.0
             }
             
             hints?.music?.tempo?.let { tempo ->
@@ -102,36 +101,36 @@ class ContentEngine(
                 }
                 track.bpm?.let { 
                     if (it in targetBpm) {
-                        score += 15.0
+                        score += 20.0
                     } else {
                         val diff = minOf(
                             kotlin.math.abs(it - targetBpm.first),
                             kotlin.math.abs(it - targetBpm.last)
                         )
-                        if (diff < 20) score += 10.0
+                        if (diff < 20) score += 15.0
                     }
                 }
             }
             
             val valenceDiff = kotlin.math.abs((track.valence ?: 0.5) - intent.mood.valence)
             val arousalDiff = kotlin.math.abs((track.energy ?: 0.5) - intent.mood.arousal)
-            score += (1.0 - valenceDiff) * 35.0
-            score += (1.0 - arousalDiff) * 35.0
+            score += (1.0 - valenceDiff) * 40.0
+            score += (1.0 - arousalDiff) * 40.0
             
             val energyDiff = kotlin.math.abs((track.energy ?: 0.5) - intent.energy_level)
-            score += (1.0 - energyDiff) * 30.0
+            score += (1.0 - energyDiff) * 35.0
             
             track.moodTags?.let { tags ->
                 intent.atmosphere?.let { atm ->
                     if (tags.any { it.contains(atm, ignoreCase = true) }) {
-                        score += 20.0
+                        score += 25.0
                     }
                 }
             }
             
             track.sceneTags?.let { tags ->
                 if (tags.any { it.equals(scene.scene_type, ignoreCase = true) }) {
-                    score += 20.0
+                    score += 25.0
                 }
             }
             
@@ -139,6 +138,79 @@ class ContentEngine(
         }.sortedByDescending { it.second }
         
         return scoredTracks.map { it.first }
+    }
+    
+    /**
+     * 智能编排播放列表
+     * - BPM 渐进：从低到高或保持相近
+     * - 中英文混合：避免连续切换
+     * - 风格连贯：同一风格的歌曲放在一起
+     */
+    private fun arrangePlaylist(
+        tracks: List<com.music.localmusic.models.Track>,
+        scene: SceneDescriptor
+    ): List<com.music.localmusic.models.Track> {
+        if (tracks.size <= PLAYLIST_SIZE) return tracks
+        
+        // 获取场景的 BPM 趋势
+        val tempo = scene.hints?.music?.tempo?.lowercase() ?: "medium"
+        val ascendingBpm = tempo == "fast" || scene.intent.energy_level > 0.6
+        
+        // 分组：中文歌曲、英文歌曲
+        val chineseTracks = tracks.filter { 
+            it.genre?.contains("chinese", ignoreCase = true) == true 
+        }.sortedBy { it.bpm ?: 120 }
+        
+        val englishTracks = tracks.filter { 
+            it.genre?.contains("chinese", ignoreCase = true) != true 
+        }.sortedBy { it.bpm ?: 120 }
+        
+        // 根据 BPM 趋势排序
+        val sortedChinese = if (ascendingBpm) chineseTracks else chineseTracks.sortedByDescending { it.bpm ?: 120 }
+        val sortedEnglish = if (ascendingBpm) englishTracks else englishTracks.sortedByDescending { it.bpm ?: 120 }
+        
+        // 混合编排策略：70% 中文 + 30% 英文
+        val chineseRatio = 0.7
+        val chineseCount = (PLAYLIST_SIZE * chineseRatio).toInt().coerceIn(3, 7)
+        val englishCount = PLAYLIST_SIZE - chineseCount
+        
+        // 交替插入，保持 BPM 渐进
+        val result = mutableListOf<com.music.localmusic.models.Track>()
+        val chineseIterator = sortedChinese.iterator()
+        val englishIterator = sortedEnglish.iterator()
+        
+        var chineseAdded = 0
+        var englishAdded = 0
+        var lastWasChinese = true
+        
+        while (result.size < PLAYLIST_SIZE) {
+            // 优先添加中文歌曲，每 2-3 首中文后插入 1 首英文
+            val shouldAddChinese = lastWasChinese || englishAdded >= englishCount || 
+                (chineseAdded < chineseCount && (result.size % 3 != 2 || englishAdded >= englishCount))
+            
+            if (shouldAddChinese && chineseIterator.hasNext() && chineseAdded < chineseCount + 2) {
+                chineseIterator.next()?.let {
+                    result.add(it)
+                    chineseAdded++
+                    lastWasChinese = true
+                }
+            } else if (englishIterator.hasNext() && englishAdded < englishCount + 1) {
+                englishIterator.next()?.let {
+                    result.add(it)
+                    englishAdded++
+                    lastWasChinese = false
+                }
+            } else if (chineseIterator.hasNext()) {
+                chineseIterator.next()?.let { result.add(it) }
+            } else if (englishIterator.hasNext()) {
+                englishIterator.next()?.let { result.add(it) }
+            } else {
+                break
+            }
+        }
+        
+        Log.i(TAG, "Arranged playlist: ${result.size} tracks (Chinese: $chineseAdded, English: $englishAdded)")
+        return result
     }
 
     override fun resume() {
