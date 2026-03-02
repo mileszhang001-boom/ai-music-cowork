@@ -28,10 +28,8 @@ class ContentEngine(
 
     override suspend fun generatePlaylist(scene: SceneDescriptor): Result<List<Track>> {
         return try {
-            val config = LocalMusicIndex.getConfig()
-            Log.i(TAG, "Using config: indexJsonPath=${config.indexJsonPath}, storagePath=${config.storagePath}")
-            
-            val localMusicIndex = LocalMusicIndex.forceReinitialize(context, config)
+            // 使用 assets 模式加载 index.json
+            val localMusicIndex = LocalMusicIndex.getInstance(context)
             if (!localMusicIndex.initialize()) {
                 Log.e(TAG, "Failed to initialize LocalMusicIndex")
             }
@@ -75,10 +73,24 @@ class ContentEngine(
         val scoredTracks = localTracks.map { track ->
             var score = 0.0
             
+            // 判断是否为中文歌曲
+            val isChinese = track.genre?.contains("chinese", ignoreCase = true) == true
+            
             hints?.music?.genres?.let { genres ->
                 if (track.genre != null && genres.any { it.equals(track.genre, ignoreCase = true) }) {
+                    score += 20.0
+                }
+                // 中英文歌曲匹配：如果场景需要中文歌曲
+                val needsChinese = genres.any { it.contains("chinese", ignoreCase = true) }
+                if (needsChinese && isChinese) {
                     score += 15.0
                 }
+            }
+            
+            // 中文歌曲基础权重加成（针对中国用户场景）
+            // 由于中文歌曲只占 9%，需要增加权重使其更容易被推荐
+            if (isChinese) {
+                score += 8.0
             }
             
             hints?.music?.tempo?.let { tempo ->

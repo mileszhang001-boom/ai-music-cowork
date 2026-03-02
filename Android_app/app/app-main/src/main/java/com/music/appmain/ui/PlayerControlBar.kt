@@ -87,12 +87,18 @@ fun PlayerControlBar(
             
             when (val state = playerState) {
                 is PlayerState.Idle -> {
-                    Box(
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(60.dp),
-                        contentAlignment = Alignment.Center
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
                     ) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(16.dp),
+                            strokeWidth = 2.dp
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = "等待 Layer3 播放列表...",
                             style = MaterialTheme.typography.bodyMedium,
@@ -158,7 +164,8 @@ fun PlayerControlBar(
                 onToggleRepeatMode = onToggleRepeatMode
             )
             
-            if (playlist.isNotEmpty()) {
+            // 只有在播放器状态不是 Idle 时才显示播放列表（等待 Layer3 结果）
+            if (playlist.isNotEmpty() && playerState !is PlayerState.Idle) {
                 Spacer(modifier = Modifier.height(8.dp))
                 
                 Divider(

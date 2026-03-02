@@ -141,7 +141,7 @@
     },
     "hints": {
       "music": {
-        "genres": ["pop", "folk"],
+        "genres": ["chinese_pop", "pop", "folk"],
         "tempo": "medium",
         "vocal_style": "any"
       },
@@ -402,7 +402,7 @@
     },
     "hints": {
       "music": {
-        "genres": ["children", "pop", "soundtrack"],
+        "genres": ["chinese_pop", "children", "pop", "soundtrack"],
         "tempo": "medium",
         "vocal_style": "any"
       },
@@ -497,7 +497,7 @@
     },
     "hints": {
       "music": {
-        "genres": ["pop", "indie", "folk"],
+        "genres": ["chinese_pop", "pop", "indie", "folk"],
         "tempo": "medium",
         "vocal_style": "any"
       },

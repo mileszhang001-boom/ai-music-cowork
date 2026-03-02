@@ -28,6 +28,9 @@ import com.example.layer3.api.Layer3Config
 import com.music.appmain.permission.PermissionManager
 import com.music.appmain.permission.PermissionsState
 import com.music.appmain.ui.SceneScenario
+import com.music.appmain.voice.VoiceInputState
+import com.music.appmain.voice.VoiceInputService
+import com.music.appmain.voice.VoiceInputCallback
 import com.music.appmain.ui.PlayerControlBar
 import com.music.appmain.ui.CarAIPanel
 import com.music.appmain.ui.CarTheme
@@ -78,9 +81,9 @@ private fun MainScreen(
     
     val perceptionConfig = remember {
         PerceptionConfig(
-            ipCameraUrl = "",
-            ipCameraUsername = "",
-            ipCameraPassword = "",
+            ipCameraUrl = "http://172.31.2.252:8081/video",
+            ipCameraUsername = "admin",
+            ipCameraPassword = "123456",
             dashScopeApiKey = "sk-fb1a1b32bf914059a043ee4ebd1c845a"
         )
     }
@@ -203,12 +206,10 @@ private fun ControlPanel(
     val scenarios = listOf(
         SceneScenario("rainy_emo", "雨天emo", "雨天+低落", Color(0xFF5C6BC0)),
         SceneScenario("children_board", "小朋友上车", "检测到儿童", Color(0xFFFF9800)),
-        SceneScenario("rain_stops", "雨过天晴", "天气转晴", Color(0xFF4CAF50)),
-        SceneScenario("noisy_car", "车内吵闹", "多人+高音量", Color(0xFFE91E63)),
         SceneScenario("user_pop", "我喜欢流行乐", "用户偏好", Color(0xFF9C27B0)),
-        SceneScenario("beach_vacation", "海边度假", "海边+放松", Color(0xFF00BCD4)),
-        SceneScenario("romantic_date", "浪漫约会", "夜晚+浪漫", Color(0xFFE91E63)),
-        SceneScenario("fatigue_alert", "疲劳提醒", "检测到疲劳", Color(0xFFF44336))
+        SceneScenario("beach_vacation", "海边度假", "海边+放松", Color(0xFF00838F)),
+        SceneScenario("romantic_date", "浪漫约会", "夜晚+浪漫", Color(0xFFAD1457)),
+        SceneScenario("fatigue_alert", "疲劳提醒", "检测到疲劳", Color(0xFFD32F2F))
     )
     
     // val isListening = voiceInputState is VoiceInputState.Listening || voiceInputState is VoiceInputState.Processing

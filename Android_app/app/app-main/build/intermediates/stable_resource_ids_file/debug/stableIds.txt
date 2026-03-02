@@ -1,3 +1,4 @@
+com.music.appmain:xml/network_security_config = 0x7f110000
 com.music.appmain:styleable/ViewStubCompat = 0x7f100031
 com.music.appmain:styleable/Toolbar = 0x7f10002e
 com.music.appmain:styleable/TextAppearance = 0x7f10002d
