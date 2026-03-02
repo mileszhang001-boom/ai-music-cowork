@@ -439,6 +439,9 @@ class MainViewModel(
         Log.i(TAG, "引擎初始化完成，整体状态: ${_isInitialized.value}")
 
         setupFlowObservers()
+        
+        perceptionEngine?.warmup()
+        Log.i(TAG, "感知引擎预热已启动")
     }
 
     private fun setupFlowObservers() {

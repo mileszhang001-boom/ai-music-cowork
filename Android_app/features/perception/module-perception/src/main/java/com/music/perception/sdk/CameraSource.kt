@@ -55,7 +55,8 @@ class CameraSource(private val context: Context, private val lifecycleOwner: Lif
     private fun bindCameraUseCases() {
         val cameraProvider = cameraProvider ?: return
         
-        val cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+        val cameraSelector = selectBestCamera(cameraProvider)
+        Log.d("CameraSource", "Selected camera: ${cameraSelector}")
 
         imageAnalysis = ImageAnalysis.Builder()
             .setTargetResolution(android.util.Size(640, 480))
@@ -79,6 +80,39 @@ class CameraSource(private val context: Context, private val lifecycleOwner: Lif
         } catch (exc: Exception) {
             Log.e("CameraSource", "Use case binding failed", exc)
         }
+    }
+    
+    private fun selectBestCamera(cameraProvider: ProcessCameraProvider): CameraSelector {
+        val cameras = cameraProvider.availableCameraInfos
+        Log.d("CameraSource", "Available cameras count: ${cameras.size}")
+        
+        for (cameraInfo in cameras) {
+            try {
+                val lensFacing = cameraInfo.lensFacing
+                if (lensFacing == CameraSelector.LENS_FACING_BACK) {
+                    Log.d("CameraSource", "Found BACK camera")
+                    return CameraSelector.DEFAULT_BACK_CAMERA
+                }
+            } catch (e: Exception) {
+                Log.w("CameraSource", "Camera has no lens facing info: ${e.message}")
+            }
+        }
+        
+        if (cameras.isNotEmpty()) {
+            Log.d("CameraSource", "Using first available camera via selector")
+            return CameraSelector.Builder()
+                .addCameraFilter { camerasList ->
+                    if (camerasList.isNotEmpty()) {
+                        listOf(camerasList.first())
+                    } else {
+                        emptyList()
+                    }
+                }
+                .build()
+        }
+        
+        Log.w("CameraSource", "No cameras found, falling back to DEFAULT_BACK_CAMERA")
+        return CameraSelector.DEFAULT_BACK_CAMERA
     }
 
     private fun processImageProxy(imageProxy: ImageProxy) {
