@@ -159,7 +159,14 @@ class ContentEngine(
         return when (sceneType) {
             "fatigue_alert" -> listOf("children", "disney", "lullaby")
             "romantic_date" -> listOf("children", "disney")
-            "road_trip" -> listOf("lullaby")
+            "rainy_emo", "rainy_night" -> listOf("children", "disney")
+            "road_trip", "party" -> listOf("children", "disney", "lullaby")
+            "night_drive", "late_night_solo" -> listOf("children", "disney")
+            "morning_commute", "highway_cruise" -> listOf("children", "disney")
+            "beach_vacation", "sunset_drive" -> listOf("children", "disney")
+            "traffic_jam", "focus_work" -> listOf("children", "disney")
+            "workout" -> listOf("children", "disney", "lullaby")
+            "meditation" -> listOf("children", "disney")
             else -> emptyList()
         }
     }
