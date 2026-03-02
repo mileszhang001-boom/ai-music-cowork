@@ -72,8 +72,18 @@ class ContentEngine(
     ): List<com.music.localmusic.models.Track> {
         val hints = scene.hints
         val intent = scene.intent
+        val sceneType = scene.scene_type
         
-        val scoredTracks = localTracks.map { track ->
+        // 场景类型过滤：排除不合适的内容
+        val excludedGenres = getExcludedGenres(sceneType)
+        
+        val scoredTracks = localTracks.mapNotNull { track ->
+            // 检查是否在排除列表
+            val trackGenre = track.genre?.lowercase() ?: ""
+            if (excludedGenres.any { ex -> trackGenre.contains(ex.lowercase()) }) {
+                return@mapNotNull null
+            }
+            
             var score = 0.0
             
             val isChinese = track.genre?.contains("chinese", ignoreCase = true) == true
@@ -88,8 +98,10 @@ class ContentEngine(
                 }
             }
             
+            // 根据场景类型动态调整中文歌曲权重
+            val chineseWeight = getChineseWeight(sceneType)
             if (isChinese) {
-                score += 10.0
+                score += chineseWeight
             }
             
             hints?.music?.tempo?.let { tempo ->
@@ -141,10 +153,50 @@ class ContentEngine(
     }
     
     /**
+     * 获取场景类型对应的排除 Genre 列表
+     */
+    private fun getExcludedGenres(sceneType: String): List<String> {
+        return when (sceneType) {
+            "fatigue_alert" -> listOf("children", "disney", "lullaby")
+            "romantic_date" -> listOf("children", "disney")
+            "road_trip" -> listOf("lullaby")
+            else -> emptyList()
+        }
+    }
+    
+    /**
+     * 获取场景类型对应的中文歌曲权重
+     */
+    private fun getChineseWeight(sceneType: String): Double {
+        return when (sceneType) {
+            "fatigue_alert" -> 5.0   // 疲劳提醒：降低中文权重，更多英文高能量歌曲
+            "kids_mode" -> 15.0      // 儿童模式：提高中文权重
+            "family_outing" -> 12.0  // 家庭出行：提高中文权重
+            "romantic_date" -> 8.0   // 浪漫约会：适中
+            else -> 10.0             // 默认
+        }
+    }
+    
+    /**
+     * 获取场景类型对应的中英文比例
+     */
+    private fun getChineseRatio(sceneType: String): Double {
+        return when (sceneType) {
+            "fatigue_alert" -> 0.4   // 疲劳提醒：40% 中文
+            "kids_mode" -> 0.9       // 儿童模式：90% 中文
+            "family_outing" -> 0.8   // 家庭出行：80% 中文
+            "romantic_date" -> 0.6   // 浪漫约会：60% 中文
+            "rainy_night" -> 0.6     // 雨夜行车：60% 中文
+            "road_trip" -> 0.5       // 朋友出游：50% 中文
+            else -> 0.6              // 默认：60% 中文
+        }
+    }
+    
+    /**
      * 智能编排播放列表
-     * - BPM 渐进：从低到高或保持相近
-     * - 中英文混合：避免连续切换
-     * - 风格连贯：同一风格的歌曲放在一起
+     * - 优先选择高分歌曲
+     * - 中英文混合：根据场景类型动态调整比例
+     * - BPM 渐进：在满足比例的前提下按 BPM 排序
      */
     private fun arrangePlaylist(
         tracks: List<com.music.localmusic.models.Track>,
@@ -152,65 +204,49 @@ class ContentEngine(
     ): List<com.music.localmusic.models.Track> {
         if (tracks.size <= PLAYLIST_SIZE) return tracks
         
-        // 获取场景的 BPM 趋势
-        val tempo = scene.hints?.music?.tempo?.lowercase() ?: "medium"
-        val ascendingBpm = tempo == "fast" || scene.intent.energy_level > 0.6
+        val sceneType = scene.scene_type
         
-        // 分组：中文歌曲、英文歌曲
+        // 分组：中文歌曲、英文歌曲（已按分数排序）
         val chineseTracks = tracks.filter { 
             it.genre?.contains("chinese", ignoreCase = true) == true 
-        }.sortedBy { it.bpm ?: 120 }
+        }
         
         val englishTracks = tracks.filter { 
             it.genre?.contains("chinese", ignoreCase = true) != true 
-        }.sortedBy { it.bpm ?: 120 }
-        
-        // 根据 BPM 趋势排序
-        val sortedChinese = if (ascendingBpm) chineseTracks else chineseTracks.sortedByDescending { it.bpm ?: 120 }
-        val sortedEnglish = if (ascendingBpm) englishTracks else englishTracks.sortedByDescending { it.bpm ?: 120 }
-        
-        // 混合编排策略：70% 中文 + 30% 英文
-        val chineseRatio = 0.7
-        val chineseCount = (PLAYLIST_SIZE * chineseRatio).toInt().coerceIn(3, 7)
-        val englishCount = PLAYLIST_SIZE - chineseCount
-        
-        // 交替插入，保持 BPM 渐进
-        val result = mutableListOf<com.music.localmusic.models.Track>()
-        val chineseIterator = sortedChinese.iterator()
-        val englishIterator = sortedEnglish.iterator()
-        
-        var chineseAdded = 0
-        var englishAdded = 0
-        var lastWasChinese = true
-        
-        while (result.size < PLAYLIST_SIZE) {
-            // 优先添加中文歌曲，每 2-3 首中文后插入 1 首英文
-            val shouldAddChinese = lastWasChinese || englishAdded >= englishCount || 
-                (chineseAdded < chineseCount && (result.size % 3 != 2 || englishAdded >= englishCount))
-            
-            if (shouldAddChinese && chineseIterator.hasNext() && chineseAdded < chineseCount + 2) {
-                chineseIterator.next()?.let {
-                    result.add(it)
-                    chineseAdded++
-                    lastWasChinese = true
-                }
-            } else if (englishIterator.hasNext() && englishAdded < englishCount + 1) {
-                englishIterator.next()?.let {
-                    result.add(it)
-                    englishAdded++
-                    lastWasChinese = false
-                }
-            } else if (chineseIterator.hasNext()) {
-                chineseIterator.next()?.let { result.add(it) }
-            } else if (englishIterator.hasNext()) {
-                englishIterator.next()?.let { result.add(it) }
-            } else {
-                break
-            }
         }
         
-        Log.i(TAG, "Arranged playlist: ${result.size} tracks (Chinese: $chineseAdded, English: $englishAdded)")
-        return result
+        // 动态编排策略：根据场景类型调整中英文比例
+        val chineseRatio = getChineseRatio(sceneType)
+        val targetChineseCount = (PLAYLIST_SIZE * chineseRatio).toInt().coerceIn(2, 8)
+        val targetEnglishCount = PLAYLIST_SIZE - targetChineseCount
+        
+        // 从各自列表中选择最高分的歌曲
+        val selectedChinese = chineseTracks.take(targetChineseCount)
+        val selectedEnglish = englishTracks.take(targetEnglishCount)
+        
+        // 合并并按 BPM 排序（保持能量渐进）
+        val tempo = scene.hints?.music?.tempo?.lowercase() ?: "medium"
+        val ascendingBpm = tempo == "fast" || scene.intent.energy_level > 0.6
+        
+        val combined = (selectedChinese + selectedEnglish).sortedBy { track ->
+            val bpm = track.bpm ?: 120
+            if (ascendingBpm) bpm else -bpm
+        }
+        
+        // 如果歌曲不足，用剩余歌曲补充
+        val result = combined.toMutableList()
+        val remaining = (chineseTracks.drop(targetChineseCount) + englishTracks.drop(targetEnglishCount))
+            .sortedBy { it.bpm ?: 120 }
+        
+        while (result.size < PLAYLIST_SIZE && remaining.isNotEmpty()) {
+            result.add(remaining.first())
+        }
+        
+        val chineseAdded = result.count { it.genre?.contains("chinese", ignoreCase = true) == true }
+        val englishAdded = result.size - chineseAdded
+        
+        Log.i(TAG, "Arranged playlist for '$sceneType': ${result.size} tracks (Chinese: $chineseAdded, English: $englishAdded, target ratio: ${chineseRatio * 100}%)")
+        return result.take(PLAYLIST_SIZE)
     }
 
     override fun resume() {
