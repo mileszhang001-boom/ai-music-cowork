@@ -171,27 +171,7 @@ private fun PerceptionChip(
 private fun extractPerceptionChips(signals: StandardizedSignals): List<PerceptionChipData> {
     val chips = mutableListOf<PerceptionChipData>()
     
-    // 视觉感知 - 外部摄像头
-    signals.signals.external_camera?.let { camera ->
-        val desc = buildString {
-            append(mapColorToName(camera.primary_color))
-            if (isNotEmpty()) append(" | ")
-            append(mapSceneDescription(camera.scene_description))
-        }
-        if (desc.isNotEmpty()) {
-            chips.add(PerceptionChipData("🎥", "视觉", desc))
-        }
-    }
-    
-    // 情绪感知 - 内部摄像头
-    signals.signals.internal_camera?.let { camera ->
-        camera.mood?.let { mood ->
-            val confidence = camera.confidence?.let { " ${(it * 100).toInt()}%" } ?: ""
-            chips.add(PerceptionChipData("😔", "情绪", "${mapMood(mood)}$confidence"))
-        }
-    }
-    
-    // 环境感知
+    // 环境感知 - 仅保留环境信息
     signals.signals.environment?.let { env ->
         val desc = buildString {
             append(mapWeather(env.weather))
@@ -200,17 +180,6 @@ private fun extractPerceptionChips(signals: StandardizedSignals): List<Perceptio
         }
         if (desc.isNotEmpty()) {
             chips.add(PerceptionChipData("🌧", "环境", desc))
-        }
-    }
-    
-    // 车辆状态
-    signals.signals.vehicle?.let { vehicle ->
-        val desc = buildString {
-            vehicle.gear?.let { append(it) }
-            vehicle.speed_kmh?.let { if (isNotEmpty()) append(" "); append("${it.toInt()}km/h") }
-        }
-        if (desc.isNotEmpty()) {
-            chips.add(PerceptionChipData("🚗", "车辆", desc))
         }
     }
     

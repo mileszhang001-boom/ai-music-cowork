@@ -113,15 +113,20 @@ fun CarAIPanel(
             // 右侧生成层 - 68%
             RightGenerationPanel(
                 effectCommands = effectCommands,
-                isRunning = isRunning,
-                onStart = onStart,
-                onStop = onStop,
-                onScenarioClick = onScenarioClick,
                 modifier = Modifier
                     .weight(0.68f)
                     .fillMaxHeight()
             )
         }
+
+        // 浮动控制面板
+        FloatingControlPanel(
+            isRunning = isRunning,
+            onStart = onStart,
+            onStop = onStop,
+            onScenarioClick = onScenarioClick,
+            modifier = Modifier.fillMaxSize()
+        )
     }
 }
 
@@ -164,33 +169,16 @@ private fun LeftInfoPanel(
 @Composable
 private fun RightGenerationPanel(
     effectCommands: EffectCommands?,
-    isRunning: Boolean = false,
-    onStart: () -> Unit = {},
-    onStop: () -> Unit = {},
-    onScenarioClick: (SceneScenario) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier
     ) {
-        // 控制区域 - 20%
-        ControlArea(
-            isRunning = isRunning,
-            onStart = onStart,
-            onStop = onStop,
-            onScenarioClick = onScenarioClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(0.2f)
-        )
-        
-        Spacer(modifier = Modifier.height(16.dp))
-        
-        // Layer3 展示区域 - 80%
+        // Layer3 展示区域 - 100%
         GlassCard(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(0.8f)
+                .fillMaxHeight()
         ) {
             Layer3DataPanel(effectCommands = effectCommands)
         }
