@@ -1,5 +1,6 @@
 package com.music.appmain.ui
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -383,11 +385,72 @@ private fun PlaylistTrackItem(
             }
 
             if (isPlaying) {
-                Text(
-                    text = "▶",
-                    fontSize = 14.sp,
-                    color = CarTheme.AccentCyan
+                val themeColors = LocalThemeColors.current
+                val barColor = themeColors.getOrElse(0) { CarTheme.AccentCyan }
+                
+                val infiniteTransition = rememberInfiniteTransition(label = "audioBars")
+                
+                val bar1Height by infiniteTransition.animateFloat(
+                    initialValue = 0.3f,
+                    targetValue = 1f,
+                    animationSpec = infiniteRepeatable(
+                        animation = tween(300, easing = FastOutSlowInEasing),
+                        repeatMode = RepeatMode.Reverse
+                    ),
+                    label = "bar1"
                 )
+                val bar2Height by infiniteTransition.animateFloat(
+                    initialValue = 0.5f,
+                    targetValue = 1f,
+                    animationSpec = infiniteRepeatable(
+                        animation = tween(400, easing = FastOutSlowInEasing),
+                        repeatMode = RepeatMode.Reverse
+                    ),
+                    label = "bar2"
+                )
+                val bar3Height by infiniteTransition.animateFloat(
+                    initialValue = 0.7f,
+                    targetValue = 1f,
+                    animationSpec = infiniteRepeatable(
+                        animation = tween(350, easing = FastOutSlowInEasing),
+                        repeatMode = RepeatMode.Reverse
+                    ),
+                    label = "bar3"
+                )
+                val bar4Height by infiniteTransition.animateFloat(
+                    initialValue = 0.4f,
+                    targetValue = 1f,
+                    animationSpec = infiniteRepeatable(
+                        animation = tween(450, easing = FastOutSlowInEasing),
+                        repeatMode = RepeatMode.Reverse
+                    ),
+                    label = "bar4"
+                )
+                val bar5Height by infiniteTransition.animateFloat(
+                    initialValue = 0.6f,
+                    targetValue = 1f,
+                    animationSpec = infiniteRepeatable(
+                        animation = tween(380, easing = FastOutSlowInEasing),
+                        repeatMode = RepeatMode.Reverse
+                    ),
+                    label = "bar5"
+                )
+                
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(2.dp),
+                    verticalAlignment = Alignment.Bottom,
+                    modifier = Modifier.height(16.dp)
+                ) {
+                    val heights = listOf(bar1Height, bar2Height, bar3Height, bar4Height, bar5Height)
+                    heights.forEach { height ->
+                        Box(
+                            modifier = Modifier
+                                .width(2.dp)
+                                .height((16.dp * height).coerceAtLeast(4.dp))
+                                .background(barColor, RoundedCornerShape(1.dp))
+                        )
+                    }
+                }
             }
         }
     }

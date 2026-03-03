@@ -187,19 +187,19 @@ fun CarAIPanel(
             .fillMaxSize()
             .background(CarTheme.PrimaryBg)
     ) {
-        // 弥散光背景 - 使用动画偏移 (增大移动范围)
+        // 弥散光背景 - 使用动画偏移 (全屏随机流动)
         Canvas(modifier = Modifier.fillMaxSize()) {
-            val offsetX1 = (light1Offset - 0.5f) * size.width * 0.5f
-            val offsetY1 = (light1Offset - 0.5f) * size.height * 0.4f
+            val offsetX1 = (light1Offset - 0.5f) * size.width * 1.2f
+            val offsetY1 = (light1Offset - 0.5f) * size.height * 1.0f
             
-            val offsetX2 = (light2Offset - 0.5f) * size.width * 0.45f
-            val offsetY2 = (light2Offset - 0.5f) * size.height * 0.35f
+            val offsetX2 = (light2Offset - 0.5f) * size.width * 1.1f
+            val offsetY2 = (light2Offset - 0.5f) * size.height * 0.9f
             
-            val offsetX3 = (light3Offset - 0.5f) * size.width * 0.4f
-            val offsetY3 = (light3Offset - 0.5f) * size.height * 0.38f
+            val offsetX3 = (light3Offset - 0.5f) * size.width * 1.0f
+            val offsetY3 = (light3Offset - 0.5f) * size.height * 1.1f
             
-            val offsetX4 = (light4Offset - 0.5f) * size.width * 0.48f
-            val offsetY4 = (light4Offset - 0.5f) * size.height * 0.32f
+            val offsetX4 = (light4Offset - 0.5f) * size.width * 1.15f
+            val offsetY4 = (light4Offset - 0.5f) * size.height * 0.95f
             
             val color1 = themeColors.getOrElse(0) { CarTheme.AccentCyan }
             val color2 = themeColors.getOrElse(1) { CarTheme.AccentPurple }
