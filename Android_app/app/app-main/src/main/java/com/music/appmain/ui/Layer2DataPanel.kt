@@ -31,69 +31,81 @@ fun Layer2DataPanel(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .verticalScroll(scrollState),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        // 标题栏
+        // 标题栏 - 固定在顶部
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                // 图标
-                Box(
-                    modifier = Modifier
-                        .size(40.dp)
-                        .background(
-                            brush = Brush.linearGradient(
-                                colors = listOf(CarTheme.AccentCyan, CarTheme.AccentPurple)
-                            ),
-                            shape = RoundedCornerShape(12.dp)
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "🧠",
-                        fontSize = 20.sp
-                    )
-                }
-                
-                // 渐变标题
-                Text(
-                    text = "推理层 Layer 2",
-                    style = CarTheme.GradientTitle.copy(
+            Box(
+                modifier = Modifier
+                    .size(32.dp)
+                    .background(
                         brush = Brush.linearGradient(
                             colors = listOf(CarTheme.AccentCyan, CarTheme.AccentPurple)
-                        )
-                    )
+                        ),
+                        shape = RoundedCornerShape(8.dp)
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "🧠",
+                    fontSize = 16.sp
                 )
             }
+            
+            Spacer(modifier = Modifier.width(8.dp))
+            
+            val themeColors = LocalThemeColors.current
+            val primaryColor = themeColors.getOrElse(0) { CarTheme.AccentCyan }
+            val secondaryColor = themeColors.getOrElse(1) { CarTheme.AccentPurple }
+            
+            Text(
+                text = "推理层",
+                style = CarTheme.GradientTitle.copy(
+                    brush = Brush.linearGradient(
+                        colors = listOf(primaryColor, secondaryColor)
+                    ),
+                    fontSize = 16.sp
+                )
+            )
         }
         
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(12.dp))
         
-        // 推理流展示
+        // 推理流展示 - 可滚动
         if (sceneDescriptor != null) {
             Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(scrollState),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                // 主要推理
-                MainInference(sceneDescriptor)
-                
                 // 辅助推理
-                SubInference(sceneDescriptor)
+                val hints = extractHints(sceneDescriptor)
+                hints.forEach { hint ->
+                    val parts = hint.split(" → ", "->")
+                    if (parts.size >= 2) {
+                        InferenceItem(
+                            cause = parts[0].trim(),
+                            result = parts.drop(1).joinToString(" → ").trim(),
+                            isHighlighted = false
+                        )
+                    } else {
+                        InferenceItem(
+                            cause = "推理",
+                            result = hint,
+                            isHighlighted = false
+                        )
+                    }
+                }
             }
         } else {
-            // 空状态
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(100.dp),
+                    .weight(1f),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -107,88 +119,67 @@ fun Layer2DataPanel(
 }
 
 /**
- * 主要推理展示
+ * 推理项组件
  */
 @Composable
-private fun MainInference(sceneDescriptor: SceneDescriptor) {
+private fun InferenceItem(
+    cause: String,
+    result: String,
+    isHighlighted: Boolean
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                brush = Brush.linearGradient(
-                    colors = listOf(
-                        CarTheme.AccentCyan.copy(alpha = 0.12f),
-                        CarTheme.AccentPurple.copy(alpha = 0.12f)
+                brush = if (isHighlighted) {
+                    Brush.linearGradient(
+                        colors = listOf(
+                            CarTheme.AccentCyan.copy(alpha = 0.15f),
+                            CarTheme.AccentPurple.copy(alpha = 0.15f)
+                        )
                     )
-                ),
-                shape = RoundedCornerShape(16.dp)
+                } else {
+                    Brush.linearGradient(
+                        colors = listOf(
+                            CarTheme.GlassBg,
+                            CarTheme.GlassBg
+                        )
+                    )
+                },
+                shape = RoundedCornerShape(12.dp)
             )
-            .padding(20.dp)
+            .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // 原因
             Text(
-                text = extractCause(sceneDescriptor),
-                style = MaterialTheme.typography.bodyLarge.copy(
-                    color = CarTheme.AccentCyan,
-                    fontWeight = FontWeight.Medium
+                text = cause,
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    color = if (isHighlighted) CarTheme.AccentCyan else CarTheme.TextSecondary,
+                    fontWeight = if (isHighlighted) FontWeight.Medium else FontWeight.Normal
                 )
             )
             
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(8.dp))
             
-            // 箭头
             Text(
                 text = "→",
-                style = MaterialTheme.typography.titleLarge.copy(
+                style = MaterialTheme.typography.bodyMedium.copy(
                     color = CarTheme.TextMuted
                 )
             )
             
-            Spacer(modifier = Modifier.width(12.dp))
+            Spacer(modifier = Modifier.width(8.dp))
             
-            // 结果
             Text(
-                text = extractResult(sceneDescriptor),
-                style = MaterialTheme.typography.titleMedium.copy(
-                    color = CarTheme.AccentPurple,
-                    fontWeight = FontWeight.Bold
-                )
-            )
-        }
-    }
-}
-
-/**
- * 辅助推理展示
- */
-@Composable
-private fun SubInference(sceneDescriptor: SceneDescriptor) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 20.dp)
-    ) {
-        // 标签
-        Text(
-            text = "辅助推理".uppercase(),
-            style = CarTheme.ChipLabel,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-        
-        // 辅助推理内容
-        val hints = extractHints(sceneDescriptor)
-        hints.forEach { hint ->
-            Text(
-                text = hint,
-                style = MaterialTheme.typography.bodySmall.copy(
-                    color = CarTheme.TextSecondary,
-                    lineHeight = 24.sp
-                )
+                text = result,
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    color = if (isHighlighted) CarTheme.AccentPurple else CarTheme.TextPrimary,
+                    fontWeight = if (isHighlighted) FontWeight.Bold else FontWeight.Medium
+                ),
+                modifier = Modifier.weight(1f)
             )
         }
     }

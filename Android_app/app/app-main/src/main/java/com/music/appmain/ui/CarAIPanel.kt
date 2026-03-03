@@ -1,5 +1,7 @@
 package com.music.appmain.ui
 
+import androidx.compose.animation.core.*
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -16,12 +18,53 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.music.core.api.models.StandardizedSignals
-import com.music.core.api.models.SceneDescriptor
 import com.music.core.api.models.EffectCommands
+import com.music.core.api.models.SceneDescriptor
+import com.music.core.api.models.StandardizedSignals
 import com.music.localmusic.models.Track
 import com.music.localmusic.player.PlaybackInfo
 import com.music.localmusic.player.PlayerState
+import kotlin.random.Random
+
+val LocalThemeColors = compositionLocalOf { listOf(Color.Unspecified, Color.Unspecified, Color.Unspecified, Color.Unspecified) }
+
+data class Particle(
+    val x: Float,
+    val y: Float,
+    val vx: Float,
+    val vy: Float,
+    val alpha: Float,
+    val size: Float,
+    val char: Char
+)
+
+private fun generateParticles(count: Int): List<Particle> {
+    val chars = listOf('·', '○', '●', '◦', '◇', '□', '■', '△', '▽')
+    return List(count) {
+        Particle(
+            x = Random.nextFloat(),
+            y = Random.nextFloat(),
+            vx = (Random.nextFloat() - 0.5f) * 0.01f,
+            vy = (Random.nextFloat() - 0.5f) * 0.01f,
+            alpha = Random.nextFloat() * 0.3f + 0.1f,
+            size = Random.nextFloat() * 4f + 2f,
+            char = chars.random()
+        )
+    }
+}
+
+private fun parseColor(colorString: String): Color {
+    return try {
+        val hex = colorString.removePrefix("#")
+        when (hex.length) {
+            6 -> Color(android.graphics.Color.parseColor("#$hex"))
+            8 -> Color(android.graphics.Color.parseColor("#$hex"))
+            else -> CarTheme.AccentCyan
+        }
+    } catch (e: Exception) {
+        CarTheme.AccentCyan
+    }
+}
 
 /**
  * 车载座舱 AI 娱乐系统主面板
@@ -47,66 +90,183 @@ fun CarAIPanel(
     onPlayTrack: (Int) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
+    // 从 EffectCommands 提取主题色
+    val themeColors = remember(effectCommands) {
+        effectCommands?.commands?.lighting?.colors?.take(4)?.map { colorString ->
+            parseColor(colorString)
+        } ?: listOf(
+            CarTheme.AccentCyan,
+            CarTheme.AccentPurple,
+            CarTheme.AccentPink,
+            CarTheme.AccentOrange
+        )
+    }
+    
+    // 动画状态
+    val infiniteTransition = rememberInfiniteTransition(label = "background")
+    
+    // 弥散光动画 - 模拟 organic-float
+    val light1Offset by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(12000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "light1"
+    )
+    
+    val light2Offset by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(15000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "light2"
+    )
+    
+    val light3Offset by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(18000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "light3"
+    )
+    
+    val light4Offset by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(14000, easing = LinearEasing),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "light4"
+    )
+    
+    // 粒子系统状态
+    var particles by remember { mutableStateOf(generateParticles(50)) }
+    
+    // 更新粒子位置
+    LaunchedEffect(Unit) {
+        while (true) {
+            kotlinx.coroutines.delay(50)
+            particles = particles.map { particle ->
+                particle.copy(
+                    x = particle.x + particle.vx,
+                    y = particle.y + particle.vy
+                ).let { p ->
+                    if (p.x < 0 || p.x > 1f) p.copy(vx = -p.vx)
+                    if (p.y < 0 || p.y > 1f) p.copy(vy = -p.vy)
+                    p
+                }
+            }
+        }
+    }
+    
     Box(
         modifier = modifier
             .fillMaxSize()
             .background(CarTheme.PrimaryBg)
-            .drawBehind {
-                // 绘制弥散光背景
-                drawCircle(
-                    brush = Brush.radialGradient(
-                        colors = listOf(
-                            CarTheme.AccentCyan.copy(alpha = 0.3f),
-                            Color.Transparent
-                        ),
-                        center = Offset(size.width * 0.15f, size.height * 0.15f),
-                        radius = size.width * 0.4f
+    ) {
+        // 弥散光背景 - 使用动画偏移
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            val offsetX1 = (light1Offset - 0.5f) * size.width * 0.2f
+            val offsetY1 = (light1Offset - 0.5f) * size.height * 0.15f
+            
+            val offsetX2 = (light2Offset - 0.5f) * size.width * 0.15f
+            val offsetY2 = (light2Offset - 0.5f) * size.height * 0.1f
+            
+            val offsetX3 = (light3Offset - 0.5f) * size.width * 0.1f
+            val offsetY3 = (light3Offset - 0.5f) * size.height * 0.12f
+            
+            val offsetX4 = (light4Offset - 0.5f) * size.width * 0.18f
+            val offsetY4 = (light4Offset - 0.5f) * size.height * 0.08f
+            
+            val color1 = themeColors.getOrElse(0) { CarTheme.AccentCyan }
+            val color2 = themeColors.getOrElse(1) { CarTheme.AccentPurple }
+            val color3 = themeColors.getOrElse(2) { CarTheme.AccentPink }
+            val color4 = themeColors.getOrElse(3) { CarTheme.AccentOrange }
+            
+            // 弥散光1
+            drawCircle(
+                brush = Brush.radialGradient(
+                    colors = listOf(
+                        color1.copy(alpha = 0.4f),
+                        color1.copy(alpha = 0.1f),
+                        Color.Transparent
                     ),
-                    center = Offset(size.width * 0.15f, size.height * 0.15f),
+                    center = Offset(size.width * 0.15f + offsetX1, size.height * 0.08f + offsetY1),
+                    radius = size.width * 0.5f
+                ),
+                center = Offset(size.width * 0.15f + offsetX1, size.height * 0.08f + offsetY1),
+                radius = size.width * 0.5f
+            )
+            
+            // 弥散光2
+            drawCircle(
+                brush = Brush.radialGradient(
+                    colors = listOf(
+                        color2.copy(alpha = 0.35f),
+                        color2.copy(alpha = 0.1f),
+                        Color.Transparent
+                    ),
+                    center = Offset(size.width * 0.15f + offsetX2, size.height * 0.78f + offsetY2),
+                    radius = size.width * 0.45f
+                ),
+                center = Offset(size.width * 0.15f + offsetX2, size.height * 0.78f + offsetY2),
+                radius = size.width * 0.45f
+            )
+            
+            // 弥散光3
+            drawCircle(
+                brush = Brush.radialGradient(
+                    colors = listOf(
+                        color3.copy(alpha = 0.3f),
+                        color3.copy(alpha = 0.08f),
+                        Color.Transparent
+                    ),
+                    center = Offset(size.width * 0.35f + offsetX3, size.height * 0.43f + offsetY3),
                     radius = size.width * 0.4f
-                )
-                
-                drawCircle(
-                    brush = Brush.radialGradient(
-                        colors = listOf(
-                            CarTheme.AccentPurple.copy(alpha = 0.25f),
-                            Color.Transparent
-                        ),
-                        center = Offset(size.width * 0.15f, size.height * 0.85f),
-                        radius = size.width * 0.35f
+                ),
+                center = Offset(size.width * 0.35f + offsetX3, size.height * 0.43f + offsetY3),
+                radius = size.width * 0.4f
+            )
+            
+            // 弥散光4
+            drawCircle(
+                brush = Brush.radialGradient(
+                    colors = listOf(
+                        color4.copy(alpha = 0.35f),
+                        color4.copy(alpha = 0.1f),
+                        Color.Transparent
                     ),
-                    center = Offset(size.width * 0.15f, size.height * 0.85f),
-                    radius = size.width * 0.35f
-                )
-                
+                    center = Offset(size.width * 0.85f + offsetX4, size.height * 0.78f + offsetY4),
+                    radius = size.width * 0.45f
+                ),
+                center = Offset(size.width * 0.85f + offsetX4, size.height * 0.78f + offsetY4),
+                radius = size.width * 0.45f
+            )
+        }
+        
+        // 粒子层
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            particles.forEach { particle ->
+                val x = particle.x * size.width
+                val y = particle.y * size.height
                 drawCircle(
-                    brush = Brush.radialGradient(
-                        colors = listOf(
-                            CarTheme.AccentPink.copy(alpha = 0.2f),
-                            Color.Transparent
-                        ),
-                        center = Offset(size.width * 0.35f, size.height * 0.5f),
-                        radius = size.width * 0.3f
-                    ),
-                    center = Offset(size.width * 0.35f, size.height * 0.5f),
-                    radius = size.width * 0.3f
-                )
-                
-                drawCircle(
-                    brush = Brush.radialGradient(
-                        colors = listOf(
-                            CarTheme.AccentOrange.copy(alpha = 0.25f),
-                            Color.Transparent
-                        ),
-                        center = Offset(size.width * 0.85f, size.height * 0.85f),
-                        radius = size.width * 0.35f
-                    ),
-                    center = Offset(size.width * 0.85f, size.height * 0.85f),
-                    radius = size.width * 0.35f
+                    color = Color.White.copy(alpha = particle.alpha),
+                    radius = particle.size,
+                    center = Offset(x, y)
                 )
             }
-    ) {
-        Row(
+        }
+        
+        // 内容层 - 使用动态主题色
+        CompositionLocalProvider(LocalThemeColors provides themeColors) {
+            Row(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(24.dp)
@@ -138,6 +298,7 @@ fun CarAIPanel(
                     .weight(0.68f)
                     .fillMaxHeight()
             )
+        }
         }
 
         // 浮动控制面板

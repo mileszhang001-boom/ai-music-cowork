@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:2:1-30:12
-INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:2:1-30:12
-INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:2:1-30:12
-INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:2:1-30:12
+ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:2:1-32:12
 MERGED from [:features:perception:module-perception] /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/features/perception/module-perception/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:features:perception:module-perception-api] /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/features/perception/module-perception-api/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:features:semantic:module-semantic] /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/features/semantic/module-semantic/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-7:12
@@ -122,8 +122,8 @@ ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-
 	android:name
 		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:9:22-64
 application
-ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:11:5-28:19
-INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:11:5-28:19
+ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:11:5-30:19
+INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:11:5-30:19
 MERGED from [androidx.camera:camera-camera2:1.3.1] /Users/hanyalou/.gradle/caches/8.9/transforms/f5f8ce40c2103bbb6bcf5d6a4ecd6f76/transformed/camera-camera2-1.3.1/AndroidManifest.xml:23:5-34:19
 MERGED from [androidx.camera:camera-camera2:1.3.1] /Users/hanyalou/.gradle/caches/8.9/transforms/f5f8ce40c2103bbb6bcf5d6a4ecd6f76/transformed/camera-camera2-1.3.1/AndroidManifest.xml:23:5-34:19
 MERGED from [androidx.camera:camera-core:1.3.1] /Users/hanyalou/.gradle/caches/8.9/transforms/1768d81a23308ab77c79c6bca30664bd/transformed/camera-core-1.3.1/AndroidManifest.xml:23:5-34:19
@@ -153,31 +153,35 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/hanyalou/.gradle/cac
 	android:label
 		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:13:9-41
 	tools:targetApi
-		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:16:9-29
+		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:18:9-29
 	android:allowBackup
 		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:12:9-35
 	android:theme
 		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:15:9-72
+	android:networkSecurityConfig
+		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:16:9-69
+	android:usesCleartextTraffic
+		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:17:9-44
 activity#com.music.appmain.MainActivity
-ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:18:9-27:20
+ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:20:9-29:20
 	android:label
-		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:21:13-45
+		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:23:13-45
 	android:exported
-		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:20:13-36
+		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:22:13-36
 	android:theme
-		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:22:13-76
+		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:24:13-76
 	android:name
-		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:19:13-41
+		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:21:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:23:13-26:29
+ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:25:13-28:29
 action#android.intent.action.MAIN
-ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:24:17-69
+ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:26:17-69
 	android:name
-		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:24:25-66
+		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:26:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:25:17-77
+ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:27:17-77
 	android:name
-		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:25:27-74
+		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml:27:27-74
 uses-sdk
 INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/app/app-main/src/main/AndroidManifest.xml

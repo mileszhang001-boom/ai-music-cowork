@@ -91,6 +91,10 @@ private fun SceneInfoSection(effectCommands: EffectCommands?) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
+        val themeColors = LocalThemeColors.current
+        val primaryColor = themeColors.getOrElse(0) { CarTheme.AccentCyan }
+        val secondaryColor = themeColors.getOrElse(1) { CarTheme.AccentPurple }
+        
         Column {
             Text(
                 text = "场景",
@@ -101,7 +105,7 @@ private fun SceneInfoSection(effectCommands: EffectCommands?) {
                 text = extractLightingTheme(effectCommands),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
-                color = CarTheme.AccentCyan
+                color = primaryColor
             )
         }
 
@@ -117,7 +121,7 @@ private fun SceneInfoSection(effectCommands: EffectCommands?) {
                 text = extractAudioPreset(effectCommands),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
-                color = CarTheme.AccentPurple
+                color = secondaryColor
             )
         }
     }

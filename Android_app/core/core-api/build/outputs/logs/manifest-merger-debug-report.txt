@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest749447951677986095.xml:2:13-83
-INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest749447951677986095.xml:2:13-83
+ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4953702492192715508.xml:2:13-83
+INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4953702492192715508.xml:2:13-83
 	package
-		INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest749447951677986095.xml
+		INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4953702492192715508.xml
 	xmlns:android
-		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest749447951677986095.xml:2:23-81
+		ADDED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4953702492192715508.xml:2:23-81
 uses-sdk
-INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest749447951677986095.xml reason: use-sdk injection requested
-INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest749447951677986095.xml
-INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest749447951677986095.xml
+INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4953702492192715508.xml reason: use-sdk injection requested
+INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4953702492192715508.xml
+INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4953702492192715508.xml
 	android:targetSdkVersion
-		INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest749447951677986095.xml
+		INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4953702492192715508.xml
 	android:minSdkVersion
-		INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest749447951677986095.xml
+		INJECTED from /Users/hanyalou/Desktop/AI_cockpit_demo/zod-demo/Android_app/core/core-api/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest4953702492192715508.xml

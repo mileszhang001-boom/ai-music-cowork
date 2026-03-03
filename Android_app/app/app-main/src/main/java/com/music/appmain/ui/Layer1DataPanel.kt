@@ -31,59 +31,58 @@ fun Layer1DataPanel(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .verticalScroll(scrollState),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        // 标题栏
+        // 标题栏 - 固定在顶部
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                // 图标
-                Box(
-                    modifier = Modifier
-                        .size(40.dp)
-                        .background(
-                            brush = Brush.linearGradient(
-                                colors = listOf(CarTheme.AccentCyan, CarTheme.AccentPurple)
-                            ),
-                            shape = RoundedCornerShape(12.dp)
-                        ),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = "👁",
-                        fontSize = 20.sp
-                    )
-                }
-                
-                // 渐变标题
-                Text(
-                    text = "感知层 Layer 1",
-                    style = CarTheme.GradientTitle.copy(
+            Box(
+                modifier = Modifier
+                    .size(32.dp)
+                    .background(
                         brush = Brush.linearGradient(
                             colors = listOf(CarTheme.AccentCyan, CarTheme.AccentPurple)
-                        )
-                    )
+                        ),
+                        shape = RoundedCornerShape(8.dp)
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "👁",
+                    fontSize = 16.sp
                 )
             }
+            
+            Spacer(modifier = Modifier.width(8.dp))
+            
+            val themeColors = LocalThemeColors.current
+            val primaryColor = themeColors.getOrElse(0) { CarTheme.AccentCyan }
+            val secondaryColor = themeColors.getOrElse(1) { CarTheme.AccentPurple }
+            
+            Text(
+                text = "感知层",
+                style = CarTheme.GradientTitle.copy(
+                    brush = Brush.linearGradient(
+                        colors = listOf(primaryColor, secondaryColor)
+                    ),
+                    fontSize = 16.sp
+                )
+            )
         }
         
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(12.dp))
         
-        // 感知芯片网格
+        // 感知芯片网格 - 可滚动
         if (signals != null) {
             val chips = extractPerceptionChips(signals)
             
-            FlowRow(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(scrollState),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 chips.forEach { chip ->
                     PerceptionChip(
@@ -94,11 +93,10 @@ fun Layer1DataPanel(
                 }
             }
         } else {
-            // 空状态
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(100.dp),
+                    .weight(1f),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -122,13 +120,14 @@ private fun PerceptionChip(
 ) {
     Row(
         modifier = Modifier
+            .fillMaxWidth()
             .background(
                 color = CarTheme.GlassBg,
                 shape = RoundedCornerShape(14.dp)
             )
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         // 图标
         Box(
@@ -171,41 +170,72 @@ private fun PerceptionChip(
 private fun extractPerceptionChips(signals: StandardizedSignals): List<PerceptionChipData> {
     val chips = mutableListOf<PerceptionChipData>()
     
-    // 环境感知 - 仅保留环境信息
+    // 环境感知 - 北京 + 天气 + 温度
     signals.signals.environment?.let { env ->
-        val desc = buildString {
-            append(mapWeather(env.weather))
-            if (isNotEmpty()) append(" | ")
-            append(mapDateType(env.date_type))
+        val weatherDesc = buildString {
+            append("北京")
+            val weather = env.weather
+            val temp = env.temperature
+            if (!weather.isNullOrEmpty()) {
+                append(" | ")
+                append(mapWeather(weather))
+            }
+            if (temp != null) {
+                append(" | ${temp.toInt()}°C")
+            }
         }
-        if (desc.isNotEmpty()) {
-            chips.add(PerceptionChipData("🌧", "环境", desc))
+        chips.add(PerceptionChipData("🌍", "环境", weatherDesc))
+        
+        // 时间感知 - 工作日/周末 + 时间段
+        val timeDesc = buildString {
+            val dateType = env.date_type
+            val timeOfDay = env.time_of_day
+            append(mapDateType(dateType))
+            if (!isEmpty()) append(" | ")
+            append(mapTimeOfDay(timeOfDay))
         }
+        chips.add(PerceptionChipData("🕐", "时间", timeDesc))
     }
     
-    // 音频感知 - 内部麦克风
-    signals.signals.internal_mic?.let { mic ->
-        val noiseLevel = mic.noise_level
-        val desc = when {
-            mic.has_voice == true -> "语音检测"
-            noiseLevel != null -> "噪音 ${noiseLevel.toInt()}dB"
-            else -> "环境音"
-        }
-        chips.add(PerceptionChipData("🎵", "音频", desc))
-    }
-    
-    // 乘客信息
+    // 乘客信息 - 人数 + 成人/儿童
     signals.signals.internal_camera?.passengers?.let { passengers ->
-        val count = (passengers.children ?: 0) + (passengers.adults ?: 0) + (passengers.seniors ?: 0)
-        val position = when {
-            (passengers.children ?: 0) > 0 -> "有儿童"
-            (passengers.seniors ?: 0) > 0 -> "有老人"
-            else -> "成人"
+        val totalCount = (passengers.children ?: 0) + (passengers.adults ?: 0) + (passengers.seniors ?: 0)
+        val passengerDesc = buildString {
+            append("${totalCount}人")
+            val parts = mutableListOf<String>()
+            if ((passengers.adults ?: 0) > 0) parts.add("${passengers.adults}成人")
+            if ((passengers.children ?: 0) > 0) parts.add("${passengers.children}儿童")
+            if ((passengers.seniors ?: 0) > 0) parts.add("${passengers.seniors}老人")
+            if (parts.isNotEmpty()) {
+                append(" | ")
+                append(parts.joinToString(" "))
+            }
         }
-        chips.add(PerceptionChipData("👤", "乘客", "${count}人 $position"))
+        chips.add(PerceptionChipData("👤", "乘客", passengerDesc))
+    }
+    
+    // 表情感知 - 放在最后
+    signals.signals.internal_camera?.mood?.let { mood ->
+        chips.add(PerceptionChipData("😊", "表情", mapMood(mood)))
     }
     
     return chips
+}
+
+/**
+ * 从时间值映射到时间段
+ */
+private fun mapTimeOfDay(timeOfDay: Double?): String {
+    if (timeOfDay == null) return "未知"
+    return when {
+        timeOfDay >= 5.0 && timeOfDay < 7.0 -> "凌晨"
+        timeOfDay >= 7.0 && timeOfDay < 9.0 -> "早晨"
+        timeOfDay >= 9.0 && timeOfDay < 12.0 -> "上午"
+        timeOfDay >= 12.0 && timeOfDay < 14.0 -> "中午"
+        timeOfDay >= 14.0 && timeOfDay < 18.0 -> "下午"
+        timeOfDay >= 18.0 && timeOfDay < 22.0 -> "傍晚"
+        else -> "晚上"
+    }
 }
 
 private data class PerceptionChipData(

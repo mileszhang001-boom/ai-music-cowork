@@ -51,8 +51,8 @@ fun FloatingControlPanel(
     modifier: Modifier = Modifier
 ) {
     var showPopup by remember { mutableStateOf(false) }
-    var offsetX by remember { mutableStateOf(0f) }
-    var offsetY by remember { mutableStateOf(0f) }
+    var offsetX by remember { mutableStateOf(200f) }
+    var offsetY by remember { mutableStateOf(50f) }
 
     Box(
         modifier = modifier.fillMaxSize()
@@ -259,7 +259,7 @@ private fun ControlPopup(
                         },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(100.dp)
+                            .height(140.dp)
                     )
 
                     Spacer(modifier = Modifier.height(12.dp))
@@ -290,39 +290,75 @@ private fun ControlSection(
     onScenarioClick: (SceneScenario) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalAlignment = Alignment.Top
+    ) {
+        // 左侧：实时生成标题 + 主控制按钮
+        Column(
+            horizontalAlignment = Alignment.Start,
+            modifier = Modifier.width(100.dp)
         ) {
-            Button(
-                onClick = if (isRunning) onStop else onStart,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = if (isRunning) Color(0xFFEF4444) else CarTheme.AccentCyan
-                ),
-                shape = RoundedCornerShape(12.dp)
+            Text(
+                text = "实时生成",
+                style = MaterialTheme.typography.labelMedium,
+                color = CarTheme.TextSecondary,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(
-                    text = if (isRunning) "停止生成" else "开始生成",
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                Button(
+                    onClick = if (isRunning) onStop else onStart,
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (isRunning) Color(0xFFEF4444) else CarTheme.AccentCyan
+                    ),
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = if (isRunning) "停止" else "开始",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
         }
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        // 右侧：场景验证标题 + 6个场景按钮
+        Column(
+            modifier = Modifier.weight(1f)
         ) {
-            ScenarioButton("🌧", "雨夜氛围", SceneScenario("rainy_emo", "雨夜氛围", "雨天+低落", CarTheme.AccentPurple), onScenarioClick)
-            ScenarioButton("👶", "带娃出行", SceneScenario("children_board", "带娃出行", "检测到儿童", CarTheme.AccentOrange), onScenarioClick)
-            ScenarioButton("🎵", "流行音乐", SceneScenario("user_pop", "流行音乐", "用户偏好", CarTheme.AccentCyan), onScenarioClick)
-            ScenarioButton("🏖️", "海滩度假", SceneScenario("beach_vacation", "海滩度假", "海边+放松", CarTheme.AccentPurple), onScenarioClick)
-            ScenarioButton("💕", "浪漫约会", SceneScenario("romantic_date", "浪漫约会", "夜晚+浪漫", CarTheme.AccentPink), onScenarioClick)
-            ScenarioButton("😴", "疲劳驾驶", SceneScenario("fatigue_alert", "疲劳驾驶", "检测到疲劳", Color(0xFFF44336)), onScenarioClick)
+            Text(
+                text = "场景验证",
+                style = MaterialTheme.typography.labelMedium,
+                color = CarTheme.TextSecondary,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    ScenarioButton("🌧", "雨夜", SceneScenario("rainy_emo", "雨夜氛围", "雨天+低落", CarTheme.AccentPurple), onScenarioClick, modifier = Modifier.weight(1f))
+                    ScenarioButton("👶", "带娃", SceneScenario("children_board", "带娃出行", "检测到儿童", CarTheme.AccentOrange), onScenarioClick, modifier = Modifier.weight(1f))
+                    ScenarioButton("☀️", "晴天", SceneScenario("sunny_day", "晴天出行", "晴天+出行", CarTheme.AccentCyan), onScenarioClick, modifier = Modifier.weight(1f))
+                }
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    ScenarioButton("🏖️", "海滩", SceneScenario("beach_vacation", "海滩度假", "海边+放松", CarTheme.AccentPurple), onScenarioClick, modifier = Modifier.weight(1f))
+                    ScenarioButton("💕", "浪漫", SceneScenario("romantic_date", "浪漫约会", "夜晚+浪漫", CarTheme.AccentPink), onScenarioClick, modifier = Modifier.weight(1f))
+                    ScenarioButton("😴", "疲劳", SceneScenario("fatigue_alert", "疲劳驾驶", "检测到疲劳", Color(0xFFF44336)), onScenarioClick, modifier = Modifier.weight(1f))
+                }
+            }
         }
     }
 }
@@ -332,7 +368,8 @@ private fun ScenarioButton(
     emoji: String,
     label: String,
     scenario: SceneScenario,
-    onClick: (SceneScenario) -> Unit
+    onClick: (SceneScenario) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Button(
         onClick = { onClick(scenario) },
@@ -340,7 +377,8 @@ private fun ScenarioButton(
             containerColor = CarTheme.AccentPurple.copy(alpha = 0.8f)
         ),
         shape = RoundedCornerShape(8.dp),
-        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)
+        contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp),
+        modifier = modifier
     ) {
         Text(
             text = "$emoji $label",
