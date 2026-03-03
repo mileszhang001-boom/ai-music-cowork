@@ -52,7 +52,8 @@ data class AudioCommand(
 @Serializable
 data class AudioSettings(
     val eq: EqSettings? = null,
-    val volume_db: Int? = null
+    val volume_db: Int? = null,
+    val speed: Float? = null
 )
 
 @Serializable

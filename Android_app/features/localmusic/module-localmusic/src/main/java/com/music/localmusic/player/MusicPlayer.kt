@@ -2,8 +2,10 @@ package com.music.localmusic.player
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.media.audiofx.Equalizer
 import android.net.Uri
 import android.support.v4.media.session.PlaybackStateCompat
+import android.util.Log
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
@@ -44,6 +46,11 @@ class MusicPlayer(context: Context) {
     private var isDucking: Boolean = false
     private var savedVolume: Float = 1.5f
     private val defaultVolumeGain: Float = 1.5f
+    private var equalizer: Equalizer? = null
+    private var eqEnabled: Boolean = false
+    private var pendingBass: Int = 0
+    private var pendingMid: Int = 0
+    private var pendingTreble: Int = 0
     
     private val playerListener = object : Player.Listener {
         override fun onPlaybackStateChanged(playbackState: Int) {
@@ -344,7 +351,74 @@ class MusicPlayer(context: Context) {
             exoPlayer.volume = savedVolume
         }
     }
-    
+
+    fun setEq(bass: Int, mid: Int, treble: Int) {
+        pendingBass = bass
+        pendingMid = mid
+        pendingTreble = treble
+        try {
+            equalizer?.release()
+            equalizer = null
+            val sessionId = exoPlayer.audioSessionId
+            if (sessionId == 0) {
+                Log.w("MusicPlayer", "audioSessionId=0, EQ deferred")
+                return
+            }
+            equalizer = Equalizer(0, sessionId).apply {
+                enabled = eqEnabled
+            }
+            val eq = equalizer ?: return
+            val numBands = eq.numberOfBands.toInt()
+            if (numBands < 3) return
+
+            val minLevel = eq.bandLevelRange[0]
+            val maxLevel = eq.bandLevelRange[1]
+            val range = (maxLevel - minLevel).toFloat()
+
+            val bassLevel = (minLevel + range * ((bass + 6).coerceIn(0, 12) / 12f)).toInt().toShort()
+            val midLevel = (minLevel + range * ((mid + 6).coerceIn(0, 12) / 12f)).toInt().toShort()
+            val trebleLevel = (minLevel + range * ((treble + 6).coerceIn(0, 12) / 12f)).toInt().toShort()
+
+            eq.setBandLevel(0.toShort(), bassLevel)
+            if (numBands >= 5) {
+                eq.setBandLevel(1.toShort(), bassLevel)
+                eq.setBandLevel(2.toShort(), midLevel)
+                eq.setBandLevel(3.toShort(), trebleLevel)
+                eq.setBandLevel(4.toShort(), trebleLevel)
+            } else {
+                eq.setBandLevel(1.toShort(), midLevel)
+                eq.setBandLevel((numBands - 1).toShort(), trebleLevel)
+            }
+            Log.d("MusicPlayer", "EQ set: bass=$bass mid=$mid treble=$treble (bands=$numBands, range=$minLevel~$maxLevel, session=$sessionId, enabled=$eqEnabled)")
+        } catch (e: Exception) {
+            Log.e("MusicPlayer", "Failed to set EQ", e)
+        }
+    }
+
+    fun reapplyEq() {
+        if (eqEnabled && (pendingBass != 0 || pendingMid != 0 || pendingTreble != 0)) {
+            Log.d("MusicPlayer", "Reapplying EQ after session change")
+            setEq(pendingBass, pendingMid, pendingTreble)
+        }
+    }
+
+    fun setEqEnabled(enabled: Boolean) {
+        eqEnabled = enabled
+        try {
+            equalizer?.enabled = enabled
+            Log.d("MusicPlayer", "EQ enabled=$enabled")
+        } catch (e: Exception) {
+            Log.e("MusicPlayer", "Failed to toggle EQ", e)
+        }
+    }
+
+    fun resetAudioEffects() {
+        setPlaybackSpeed(1.0f)
+        setVolume(defaultVolumeGain)
+        setEq(0, 0, 0)
+        setEqEnabled(false)
+    }
+
     fun stop() {
         exoPlayer.stop()
         _playerState.value = PlayerState.Idle
@@ -356,6 +430,8 @@ class MusicPlayer(context: Context) {
     
     fun release() {
         stopProgressUpdate()
+        equalizer?.release()
+        equalizer = null
         exoPlayer.removeListener(playerListener)
         exoPlayer.release()
         audioFocusManager.abandonAudioFocus()

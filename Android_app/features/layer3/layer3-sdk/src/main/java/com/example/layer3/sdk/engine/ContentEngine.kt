@@ -155,6 +155,8 @@ class ContentEngine(
             }
             
             track to score
+        }.map { (track, score) ->
+            track to score + kotlin.random.Random.nextDouble(0.0, 8.0)
         }.sortedByDescending { it.second }
         
         return scoredTracks.map { it.first }
@@ -241,43 +243,36 @@ class ContentEngine(
         val sceneType = scene.scene_type
         
         if (sceneType == "kids_mode") {
-            return tracks.take(PLAYLIST_SIZE)
+            return tracks.take(PLAYLIST_SIZE).shuffled()
         }
         
         val chineseTracks = tracks.filter { isChinesesTrack(it) }
         
         val englishTracks = tracks.filter { !isChinesesTrack(it) }
         
-        // 动态编排策略：根据场景类型调整中英文比例
         val chineseRatio = getChineseRatio(sceneType)
         val targetChineseCount = (PLAYLIST_SIZE * chineseRatio).toInt().coerceIn(2, 8)
         val targetEnglishCount = PLAYLIST_SIZE - targetChineseCount
         
-        // 从各自列表中选择最高分的歌曲
-        val selectedChinese = chineseTracks.take(targetChineseCount)
-        val selectedEnglish = englishTracks.take(targetEnglishCount)
+        val selectedChinese = chineseTracks.take(targetChineseCount).shuffled()
+        val selectedEnglish = englishTracks.take(targetEnglishCount).shuffled()
         
-        // 合并并按 BPM 排序（保持能量渐进）
-        val tempo = scene.hints?.music?.tempo?.lowercase() ?: "medium"
-        val ascendingBpm = tempo == "fast" || scene.intent.energy_level > 0.6
-        
-        val combined = (selectedChinese + selectedEnglish).sortedBy { track ->
-            val bpm = track.bpm ?: 120
-            if (ascendingBpm) bpm else -bpm
+        val result = mutableListOf<com.music.localmusic.models.Track>()
+        var ci = 0
+        var ei = 0
+        while (result.size < (selectedChinese.size + selectedEnglish.size)) {
+            if (ci < selectedChinese.size) { result.add(selectedChinese[ci]); ci++ }
+            if (ei < selectedEnglish.size) { result.add(selectedEnglish[ei]); ei++ }
         }
         
-        // 如果歌曲不足，用剩余歌曲补充
-        val result = combined.toMutableList()
-        val remaining = (chineseTracks.drop(targetChineseCount) + englishTracks.drop(targetEnglishCount))
-            .sortedBy { it.bpm ?: 120 }
-        
+        val remaining = (chineseTracks.drop(targetChineseCount) + englishTracks.drop(targetEnglishCount)).shuffled()
         var idx = 0
         while (result.size < PLAYLIST_SIZE && idx < remaining.size) {
             result.add(remaining[idx])
             idx++
         }
         
-        val chineseAdded = result.count { it.genre?.contains("chinese", ignoreCase = true) == true }
+        val chineseAdded = result.count { isChinesesTrack(it) }
         val englishAdded = result.size - chineseAdded
         
         Log.i(TAG, "Arranged playlist for '$sceneType': ${result.size} tracks (Chinese: $chineseAdded, English: $englishAdded, target ratio: ${chineseRatio * 100}%)")

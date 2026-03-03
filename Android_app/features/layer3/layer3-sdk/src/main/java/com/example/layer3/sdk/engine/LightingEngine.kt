@@ -178,7 +178,8 @@ class LightingEngine(
             "autumn" to Pair("#D2691E", "#FF8C00"),
             "winter" to Pair("#B0E0E6", "#FFFFFF"),
             "meditation" to Pair("#9370DB", "#E6E6FA"),
-            "gloomy" to Pair("#4A5568", "#696969")
+            "gloomy" to Pair("#4A5568", "#696969"),
+            "playful" to Pair("#42A5F5", "#FFCA28")
         )
 
         private val SCENE_THEME_MAP = mapOf(
@@ -195,7 +196,7 @@ class LightingEngine(
             "party" to "party",
             "meditation" to "meditation",
             "cloudy_day" to "gloomy",
-            "kids_mode" to "vibrant",
+            "kids_mode" to "playful",
             "focus_work" to "focus",
             "late_night" to "night",
             "fatigue_alert" to "alert",

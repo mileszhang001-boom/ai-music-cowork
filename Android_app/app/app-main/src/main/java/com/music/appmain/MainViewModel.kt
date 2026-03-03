@@ -118,7 +118,12 @@ class MainViewModel(
     
     private val _playlist = MutableStateFlow<List<Track>>(emptyList())
     val playlistFlow: StateFlow<List<Track>> = _playlist.asStateFlow()
-    
+
+    private val _audioEnhanceEnabled = MutableStateFlow(true)
+    val audioEnhanceEnabledFlow: StateFlow<Boolean> = _audioEnhanceEnabled.asStateFlow()
+
+    private var lastAudioCommand: com.music.core.api.models.AudioCommand? = null
+
     private var perceptionJob: Job? = null
     private var semanticJob: Job? = null
     private var effectJob: Job? = null
@@ -142,12 +147,13 @@ class MainViewModel(
         audioDuckManager.setVolumeCallback(object : AudioDuckManager.VolumeCallback {
             override fun onDuckVolume(ratio: Float) {
                 viewModelScope.launch(Dispatchers.Main) {
-                    musicPlayer?.setVolume(1.5f * ratio)
+                    val baseVol = getCurrentVolume()
+                    musicPlayer?.setVolume(baseVol * ratio)
                 }
             }
             override fun onRestoreVolume() {
                 viewModelScope.launch(Dispatchers.Main) {
-                    musicPlayer?.setVolume(1.5f)
+                    musicPlayer?.setVolume(getCurrentVolume())
                 }
             }
         })
@@ -494,17 +500,15 @@ class MainViewModel(
                     }
                     
                     it.commands?.audio?.let { audioCommand ->
-                        val volumeDb = audioCommand.settings?.volume_db ?: 0
-                        val volumeGain = Math.pow(10.0, volumeDb / 20.0).toFloat()
-                        val finalVolume = (1.5f * volumeGain).coerceIn(0.5f, 3.0f)
-                        musicPlayer?.setVolume(finalVolume)
-                        Log.i(TAG, "场景音量调节: volume_db=$volumeDb, gain=$volumeGain, finalVolume=$finalVolume")
+                        lastAudioCommand = audioCommand
                     }
                     
                     it.commands?.content?.playlist?.let { playlist ->
                         Log.i(TAG, "Layer3 播放列表: ${playlist.size} 首曲目")
                         delay(100)
                         playLayer3Playlist(playlist)
+                        delay(300)
+                        lastAudioCommand?.let { cmd -> applyAudioCommand(cmd) }
                     }
                 }
             }
@@ -628,6 +632,52 @@ class MainViewModel(
     
     fun stopPlayback() {
         musicPlayer?.stop()
+    }
+
+    fun toggleAudioEnhance() {
+        val newState = !_audioEnhanceEnabled.value
+        _audioEnhanceEnabled.value = newState
+        Log.i(TAG, "音效增强: ${if (newState) "开启" else "关闭"}")
+
+        if (newState) {
+            lastAudioCommand?.let { applyAudioCommand(it) }
+                ?: Log.w(TAG, "音效增强开启但无音频命令")
+        } else {
+            musicPlayer?.resetAudioEffects()
+        }
+    }
+
+    private fun getCurrentVolume(): Float {
+        val cmd = lastAudioCommand
+        return if (cmd != null && _audioEnhanceEnabled.value) {
+            val volumeDb = cmd.settings?.volume_db ?: 0
+            (1.0f * Math.pow(10.0, volumeDb / 10.0).toFloat()).coerceIn(0.3f, 3.0f)
+        } else {
+            1.0f
+        }
+    }
+
+    private fun applyAudioCommand(audioCommand: com.music.core.api.models.AudioCommand) {
+        if (_audioEnhanceEnabled.value) {
+            val volumeDb = audioCommand.settings?.volume_db ?: 0
+            val volumeGain = Math.pow(10.0, volumeDb / 10.0).toFloat()
+            val finalVolume = (1.0f * volumeGain).coerceIn(0.3f, 3.0f)
+            musicPlayer?.setVolume(finalVolume)
+
+            val eq = audioCommand.settings?.eq
+            if (eq != null) {
+                musicPlayer?.setEqEnabled(true)
+                musicPlayer?.setEq(eq.bass ?: 0, eq.mid ?: 0, eq.treble ?: 0)
+            }
+            val speed = audioCommand.settings?.speed ?: 1.0f
+            musicPlayer?.setPlaybackSpeed(speed)
+            Log.i(TAG, "音效增强已应用: preset=${audioCommand.preset}, eq=(${eq?.bass}/${eq?.mid}/${eq?.treble}), vol=$finalVolume(${volumeDb}dB), speed=$speed")
+        } else {
+            musicPlayer?.setVolume(1.0f)
+            musicPlayer?.setEqEnabled(false)
+            musicPlayer?.setPlaybackSpeed(1.0f)
+            Log.i(TAG, "音效增强关闭: 默认音量=1.0")
+        }
     }
     
     fun toggleRepeatMode() {
