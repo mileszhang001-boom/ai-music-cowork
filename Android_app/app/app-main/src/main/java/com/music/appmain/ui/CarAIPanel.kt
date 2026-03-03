@@ -66,6 +66,14 @@ private fun parseColor(colorString: String): Color {
     }
 }
 
+private fun interpolateColor(color1: Color, color2: Color, fraction: Float): Color {
+    val r = (color1.red + (color2.red - color1.red) * fraction)
+    val g = (color1.green + (color2.green - color1.green) * fraction)
+    val b = (color1.blue + (color2.blue - color1.blue) * fraction)
+    val a = (color1.alpha + (color2.alpha - color1.alpha) * fraction)
+    return Color(red = r, green = g, blue = b, alpha = a)
+}
+
 /**
  * 车载座舱 AI 娱乐系统主面板
  * 完全复刻 Web UI 的三层布局
@@ -92,25 +100,33 @@ fun CarAIPanel(
 ) {
     // 从 EffectCommands 提取主题色
     val themeColors = remember(effectCommands) {
-        effectCommands?.commands?.lighting?.colors?.take(4)?.map { colorString ->
-            parseColor(colorString)
-        } ?: listOf(
-            CarTheme.AccentCyan,
-            CarTheme.AccentPurple,
-            CarTheme.AccentPink,
-            CarTheme.AccentOrange
-        )
+        val colors = effectCommands?.commands?.lighting?.colors?.take(2)
+        if (colors != null && colors.size >= 2) {
+            val color1 = parseColor(colors[0])
+            val color2 = parseColor(colors[1])
+            // 四个光源：两个直接用这两个色值，另外两个用渐变色
+            val gradient1 = interpolateColor(color1, color2, 0.33f)
+            val gradient2 = interpolateColor(color1, color2, 0.66f)
+            listOf(color1, color2, gradient1, gradient2)
+        } else {
+            listOf(
+                CarTheme.AccentCyan,
+                CarTheme.AccentPurple,
+                CarTheme.AccentPink,
+                CarTheme.AccentOrange
+            )
+        }
     }
     
     // 动画状态
     val infiniteTransition = rememberInfiniteTransition(label = "background")
     
-    // 弥散光动画 - 模拟 organic-float
+    // 弥散光动画 - 模拟 organic-float (加速版)
     val light1Offset by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
-            animation = tween(12000, easing = LinearEasing),
+            animation = tween(6000, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
         ),
         label = "light1"
@@ -120,7 +136,7 @@ fun CarAIPanel(
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
-            animation = tween(15000, easing = LinearEasing),
+            animation = tween(7500, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
         ),
         label = "light2"
@@ -130,7 +146,7 @@ fun CarAIPanel(
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
-            animation = tween(18000, easing = LinearEasing),
+            animation = tween(9000, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
         ),
         label = "light3"
@@ -140,7 +156,7 @@ fun CarAIPanel(
         initialValue = 0f,
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
-            animation = tween(14000, easing = LinearEasing),
+            animation = tween(7000, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
         ),
         label = "light4"
@@ -152,7 +168,7 @@ fun CarAIPanel(
     // 更新粒子位置
     LaunchedEffect(Unit) {
         while (true) {
-            kotlinx.coroutines.delay(50)
+            kotlinx.coroutines.delay(30)
             particles = particles.map { particle ->
                 particle.copy(
                     x = particle.x + particle.vx,
@@ -171,19 +187,19 @@ fun CarAIPanel(
             .fillMaxSize()
             .background(CarTheme.PrimaryBg)
     ) {
-        // 弥散光背景 - 使用动画偏移
+        // 弥散光背景 - 使用动画偏移 (增大移动范围)
         Canvas(modifier = Modifier.fillMaxSize()) {
-            val offsetX1 = (light1Offset - 0.5f) * size.width * 0.2f
-            val offsetY1 = (light1Offset - 0.5f) * size.height * 0.15f
+            val offsetX1 = (light1Offset - 0.5f) * size.width * 0.5f
+            val offsetY1 = (light1Offset - 0.5f) * size.height * 0.4f
             
-            val offsetX2 = (light2Offset - 0.5f) * size.width * 0.15f
-            val offsetY2 = (light2Offset - 0.5f) * size.height * 0.1f
+            val offsetX2 = (light2Offset - 0.5f) * size.width * 0.45f
+            val offsetY2 = (light2Offset - 0.5f) * size.height * 0.35f
             
-            val offsetX3 = (light3Offset - 0.5f) * size.width * 0.1f
-            val offsetY3 = (light3Offset - 0.5f) * size.height * 0.12f
+            val offsetX3 = (light3Offset - 0.5f) * size.width * 0.4f
+            val offsetY3 = (light3Offset - 0.5f) * size.height * 0.38f
             
-            val offsetX4 = (light4Offset - 0.5f) * size.width * 0.18f
-            val offsetY4 = (light4Offset - 0.5f) * size.height * 0.08f
+            val offsetX4 = (light4Offset - 0.5f) * size.width * 0.48f
+            val offsetY4 = (light4Offset - 0.5f) * size.height * 0.32f
             
             val color1 = themeColors.getOrElse(0) { CarTheme.AccentCyan }
             val color2 = themeColors.getOrElse(1) { CarTheme.AccentPurple }
