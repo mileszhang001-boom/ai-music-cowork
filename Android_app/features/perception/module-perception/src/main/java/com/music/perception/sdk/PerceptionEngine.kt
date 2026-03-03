@@ -48,6 +48,7 @@ class PerceptionEngine(
     private var currentBitmap: Bitmap? = null
     private var currentInternalBitmap: Bitmap? = null
     private var isRunning = false
+    private var isWarmedUp = false
     private var loopJob: Job? = null
 
     init {
@@ -71,14 +72,44 @@ class PerceptionEngine(
         })
     }
 
+    /**
+     * 预热引擎 - 预启动摄像头和其他耗时组件
+     * 在应用启动时调用，减少点击开始按钮后的等待时间
+     */
+    override fun warmup() {
+        if (isWarmedUp) return
+        Log.d("PerceptionEngine", "开始预热...")
+        
+        scope.launch {
+            try {
+                cameraSource.start()
+                Log.d("PerceptionEngine", "摄像头预热完成")
+                
+                ipCameraSource.start()
+                Log.d("PerceptionEngine", "IP摄像头预热完成")
+                
+                sensorManager.startLocationUpdates()
+                sensorManager.startAudio()
+                Log.d("PerceptionEngine", "传感器预热完成")
+                
+                isWarmedUp = true
+                Log.i("PerceptionEngine", "引擎预热完成")
+            } catch (e: Exception) {
+                Log.e("PerceptionEngine", "预热失败: ${e.message}", e)
+            }
+        }
+    }
+
     override fun start() {
         if (isRunning) return
         isRunning = true
         
-        sensorManager.startLocationUpdates()
-        sensorManager.startAudio()
-        cameraSource.start()
-        ipCameraSource.start()
+        if (!isWarmedUp) {
+            sensorManager.startLocationUpdates()
+            sensorManager.startAudio()
+            cameraSource.start()
+            ipCameraSource.start()
+        }
         
         loopJob = scope.launch {
             while (isActive && isRunning) {

@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IPerceptionEngine {
     val standardizedSignalsFlow: Flow<StandardizedSignals>
+    fun warmup()
     fun start()
     fun stop()
     fun destroy()

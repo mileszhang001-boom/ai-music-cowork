@@ -43,11 +43,19 @@ class SensorManager(private val context: Context) {
         val noiseLevel: Double = 0.0
     )
 
-    private var baselineNoiseLevel: Double = 0.02
+    private var baselineNoiseLevel: Double = 0.0
     private var audioRecord: AudioRecord? = null
     private var bufferSize: Int = 0
-    private var cumulativeVoiceCount: Int = 0
     private var isRecording: Boolean = false
+    private var noiseCalibrationSamples: Int = 0
+    private val noiseCalibrationWindow: DoubleArray = DoubleArray(10)
+    private var calibrationIndex: Int = 0
+    private var isCalibrated: Boolean = false
+    
+    private var voiceSegments: Int = 0
+    private var lastVoiceState: Boolean = false
+    private var voiceSegmentStartTime: Long = 0
+    private val voiceSegmentDurations: MutableList<Long> = mutableListOf()
 
     @SuppressLint("MissingPermission")
     fun startAudio() {
@@ -136,60 +144,93 @@ class SensorManager(private val context: Context) {
         }
 
         val buffer = ShortArray(bufferSize)
-        Log.d("SensorManager", "Reading audio buffer, bufferSize=$bufferSize, recordingState=${audioRecord?.recordingState}")
         val read = audioRecord?.read(buffer, 0, bufferSize) ?: -1
-        Log.d("SensorManager", "Audio read result: $read samples")
 
         if (read > 0) {
             var sumSquare = 0.0
             var maxSample = 0.0
+            var zeroCrossings = 0
+            
             for (i in 0 until read) {
                 val sample = buffer[i].toDouble() / 32767.0
                 sumSquare += sample * sample
                 if (Math.abs(sample) > maxSample) maxSample = Math.abs(sample)
+                if (i > 0 && ((buffer[i-1] > 0 && buffer[i] < 0) || (buffer[i-1] < 0 && buffer[i] > 0))) {
+                    zeroCrossings++
+                }
             }
+            
             val rms = Math.sqrt(sumSquare / read)
-            Log.d("SensorManager", "Raw audio: rms=$rms, maxSample=$maxSample, sumSquare=$sumSquare")
-
-            // 自适应噪音基线更新（更缓慢）
-            if (rms < baselineNoiseLevel) {
-                baselineNoiseLevel = rms
+            val zeroCrossingRate = zeroCrossings.toDouble() / read
+            
+            val dbLevel = if (rms > 0) 20 * Math.log10(rms) else -100.0
+            val normalizedVolume = ((dbLevel + 60) / 60.0).coerceIn(0.0, 1.0)
+            
+            val calibratedNoise = if (!isCalibrated && noiseCalibrationSamples < 10) {
+                noiseCalibrationWindow[calibrationIndex] = rms
+                calibrationIndex = (calibrationIndex + 1) % 10
+                noiseCalibrationSamples++
+                if (noiseCalibrationSamples >= 10) {
+                    isCalibrated = true
+                    baselineNoiseLevel = noiseCalibrationWindow.sorted().take(5).average()
+                    Log.d("SensorManager", "Noise calibration complete: baseline=$baselineNoiseLevel")
+                }
+                baselineNoiseLevel
             } else {
-                baselineNoiseLevel += (rms - baselineNoiseLevel) * 0.02
+                if (rms < baselineNoiseLevel * 0.8) {
+                    baselineNoiseLevel = baselineNoiseLevel * 0.99 + rms * 0.01
+                }
+                baselineNoiseLevel
             }
             
-            // 限制噪音基线最大值
-            if (baselineNoiseLevel > 0.3) baselineNoiseLevel = 0.3
-
-            // 大幅提高信号增益（从3倍改为20倍）
-            val gain = 20.0
-            val amplifiedRms = (rms * gain).coerceAtMost(1.0)
-            val amplifiedNoise = (baselineNoiseLevel * gain).coerceAtMost(1.0)
-
-            // 降低语音阈值：从1.2倍改为1.5倍噪音，最小0.02
-            val voiceThreshold = (amplifiedNoise * 1.5).coerceAtLeast(0.02)
+            val normalizedNoise = (calibratedNoise * 50).coerceIn(0.0, 1.0)
             
-            // VAD判定：使用放大后的RMS与阈值比较
-            val hasVoice = amplifiedRms > voiceThreshold
-
-            // 累积语音计数
-            if (hasVoice) {
-                cumulativeVoiceCount++
+            val voiceThreshold = (calibratedNoise * 2.5).coerceAtLeast(0.005)
+            val highFreqIndicator = zeroCrossingRate > 0.1 && zeroCrossingRate < 0.5
+            val energyIndicator = rms > voiceThreshold
+            val dynamicIndicator = maxSample > calibratedNoise * 3
+            
+            val hasVoice = (energyIndicator && (highFreqIndicator || dynamicIndicator)) || 
+                           (rms > calibratedNoise * 4)
+            
+            val currentTime = System.currentTimeMillis()
+            if (hasVoice && !lastVoiceState) {
+                voiceSegmentStartTime = currentTime
+                voiceSegments++
             }
-
-            // 添加调试日志
-            Log.d("SensorManager", "Audio: rms=${String.format("%.6f", rms)}, ampRms=${String.format("%.3f", amplifiedRms)}, noise=${String.format("%.3f", amplifiedNoise)}, threshold=${String.format("%.3f", voiceThreshold)}, hasVoice=$hasVoice, voiceCount=$cumulativeVoiceCount")
+            lastVoiceState = hasVoice
+            
+            val estimatedSpeakerCount = estimateSpeakerCount(rms, zeroCrossingRate, calibratedNoise)
+            
+            Log.d("SensorManager", "Audio: rms=${String.format("%.4f", rms)}, db=${String.format("%.1f", dbLevel)}, " +
+                    "vol=${String.format("%.3f", normalizedVolume)}, noise=${String.format("%.4f", calibratedNoise)}, " +
+                    "zcr=${String.format("%.3f", zeroCrossingRate)}, hasVoice=$hasVoice, speakers=$estimatedSpeakerCount")
 
             return MicData(
-                volume = amplifiedRms,
+                volume = normalizedVolume,
                 hasVoice = hasVoice,
-                voiceCount = cumulativeVoiceCount,
-                noiseLevel = amplifiedNoise
+                voiceCount = estimatedSpeakerCount,
+                noiseLevel = normalizedNoise
             )
         } else {
             Log.e("SensorManager", "Audio read failed or no data: read=$read")
         }
         return MicData()
+    }
+    
+    private fun estimateSpeakerCount(rms: Double, zcr: Double, noiseLevel: Double): Int {
+        if (rms < noiseLevel * 1.5) return 0
+        
+        val energyRatio = rms / noiseLevel
+        
+        val speakerEstimate = when {
+            energyRatio < 2.0 -> 1
+            energyRatio < 4.0 -> if (zcr > 0.15) 2 else 1
+            energyRatio < 8.0 -> if (zcr > 0.2) 3 else 2
+            else -> if (zcr > 0.25) 4 else 3
+        }
+        
+        return speakerEstimate.coerceIn(0, 4)
     }
 
     fun getAudioAmplitude(): Double {
