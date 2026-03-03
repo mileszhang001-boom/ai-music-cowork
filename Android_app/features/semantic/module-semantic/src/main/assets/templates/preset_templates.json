@@ -196,7 +196,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "night",
+          "color_theme": "rainy",
           "pattern": "breathing",
           "intensity": 0.2
         },
@@ -283,7 +283,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "vibrant",
           "pattern": "wave",
           "intensity": 0.5
         },
@@ -322,7 +322,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "cool",
           "intensity": 0.45
         },
         "audio": {
@@ -364,7 +364,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "energetic",
           "intensity": 0.5
         },
         "audio": {
@@ -405,7 +405,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "rainy",
           "intensity": 0.3
         },
         "audio": {
@@ -449,7 +449,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "spring",
           "intensity": 0.55
         },
         "audio": {
@@ -493,7 +493,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "meditation",
           "intensity": 0.3
         },
         "audio": {
@@ -534,7 +534,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "summer",
           "intensity": 0.45
         },
         "audio": {
@@ -575,7 +575,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "sunset",
           "intensity": 0.4
         },
         "audio": {
@@ -698,7 +698,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "citynight",
           "intensity": 0.35
         },
         "audio": {
@@ -822,7 +822,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "winter",
           "intensity": 0.15
         },
         "audio": {
@@ -866,7 +866,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "spring",
           "intensity": 0.35
         },
         "audio": {
@@ -907,7 +907,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "summer",
           "intensity": 0.55
         },
         "audio": {
@@ -988,7 +988,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "gloomy",
           "intensity": 0.15
         },
         "audio": {
@@ -1028,7 +1028,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "winter",
           "intensity": 0.2
         },
         "audio": {
@@ -1068,7 +1068,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "gloomy",
           "intensity": 0.2
         },
         "audio": {
@@ -1149,7 +1149,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "rainy",
           "intensity": 0.25
         },
         "audio": {
@@ -1189,7 +1189,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "gloomy",
           "intensity": 0.1
         },
         "audio": {
@@ -1229,7 +1229,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "cool",
           "intensity": 0.35
         },
         "audio": {
@@ -1265,7 +1265,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "spring",
           "intensity": 0.5
         },
         "audio": {
@@ -1344,7 +1344,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "romantic",
           "intensity": 0.45
         },
         "audio": {
@@ -1420,7 +1420,7 @@
           "tempo": "fast"
         },
         "lighting": {
-          "color_theme": "vibrant",
+          "color_theme": "party",
           "intensity": 0.6
         },
         "audio": {
@@ -1614,7 +1614,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "romantic",
           "intensity": 0.4
         },
         "audio": {
@@ -1766,7 +1766,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "cool",
           "intensity": 0.45
         },
         "audio": {
@@ -1804,7 +1804,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "forest",
           "intensity": 0.5
         },
         "audio": {
@@ -1845,7 +1845,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "vibrant",
           "intensity": 0.5
         },
         "audio": {
@@ -1957,7 +1957,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "sunset",
           "intensity": 0.2
         },
         "audio": {
@@ -1995,7 +1995,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "cool",
           "intensity": 0.35
         },
         "audio": {
@@ -2196,7 +2196,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "focus",
           "intensity": 0.25
         },
         "audio": {
@@ -2232,7 +2232,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "meditation",
           "pattern": "breathing",
           "intensity": 0.25
         },
@@ -2269,7 +2269,7 @@
           "tempo": "fast"
         },
         "lighting": {
-          "color_theme": "vibrant",
+          "color_theme": "energetic",
           "intensity": 0.65
         },
         "audio": {
@@ -2307,7 +2307,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "cool",
           "intensity": 0.5
         },
         "audio": {
@@ -2345,7 +2345,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "energetic",
           "intensity": 0.55
         },
         "audio": {
@@ -2494,7 +2494,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "romantic",
           "intensity": 0.35
         },
         "audio": {
@@ -2530,7 +2530,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "autumn",
           "intensity": 0.3
         },
         "audio": {
@@ -2566,7 +2566,7 @@
           "tempo": "fast"
         },
         "lighting": {
-          "color_theme": "vibrant",
+          "color_theme": "forest",
           "intensity": 0.6
         },
         "audio": {
@@ -2676,7 +2676,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "vibrant",
           "intensity": 0.55
         },
         "audio": {
@@ -2714,7 +2714,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "autumn",
           "intensity": 0.45
         },
         "audio": {
@@ -2752,7 +2752,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "winter",
           "intensity": 0.5
         },
         "audio": {
@@ -2790,7 +2790,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "summer",
           "intensity": 0.5
         },
         "audio": {
@@ -2828,7 +2828,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "spring",
           "intensity": 0.55
         },
         "audio": {
@@ -2866,7 +2866,7 @@
           "tempo": "fast"
         },
         "lighting": {
-          "color_theme": "vibrant",
+          "color_theme": "ocean",
           "intensity": 0.65
         },
         "audio": {
@@ -2902,7 +2902,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "autumn",
           "intensity": 0.45
         },
         "audio": {
@@ -2974,7 +2974,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "forest",
           "intensity": 0.45
         },
         "audio": {
@@ -3010,7 +3010,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "cool",
           "intensity": 0.4
         },
         "audio": {
@@ -3046,7 +3046,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "cool",
           "intensity": 0.4
         },
         "audio": {
@@ -3082,7 +3082,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "romantic",
           "intensity": 0.55
         },
         "audio": {
@@ -3118,7 +3118,7 @@
           "tempo": "fast"
         },
         "lighting": {
-          "color_theme": "vibrant",
+          "color_theme": "party",
           "intensity": 0.6
         },
         "audio": {
@@ -3154,7 +3154,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "focus",
           "intensity": 0.3
         },
         "audio": {
@@ -3190,7 +3190,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "citynight",
           "intensity": 0.4
         },
         "audio": {
@@ -3228,7 +3228,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "cool",
           "intensity": 0.4
         },
         "audio": {
@@ -3266,7 +3266,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "forest",
           "intensity": 0.4
         },
         "audio": {
@@ -3304,7 +3304,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "spring",
           "intensity": 0.4
         },
         "audio": {
@@ -3342,7 +3342,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "night",
           "intensity": 0.25
         },
         "audio": {
@@ -3380,7 +3380,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "ocean",
           "intensity": 0.35
         },
         "audio": {
@@ -3493,7 +3493,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "sunset",
           "intensity": 0.45
         },
         "audio": {
@@ -3529,7 +3529,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "gloomy",
           "intensity": 0.25
         },
         "audio": {
@@ -3565,7 +3565,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "cool",
           "intensity": 0.3
         },
         "audio": {
@@ -3606,7 +3606,7 @@
           "tempo": "slow"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "sunset",
           "intensity": 0.3
         },
         "audio": {
@@ -3647,7 +3647,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "forest",
           "intensity": 0.5
         },
         "audio": {
@@ -3800,7 +3800,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "citynight",
           "intensity": 0.35
         },
         "audio": {
@@ -3841,7 +3841,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "energetic",
           "intensity": 0.5
         },
         "audio": {
@@ -3882,7 +3882,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "warm",
+          "color_theme": "romantic",
           "intensity": 0.45
         },
         "audio": {
@@ -3918,7 +3918,7 @@
           "tempo": "moderate"
         },
         "lighting": {
-          "color_theme": "calm",
+          "color_theme": "ocean",
           "intensity": 0.45
         },
         "audio": {
