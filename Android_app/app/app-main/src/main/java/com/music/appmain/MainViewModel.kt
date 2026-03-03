@@ -766,6 +766,7 @@ class MainViewModel(
             "rainy_emo" -> createRainyEmoSignals()
             "children_board" -> createChildrenBoardSignals()
             "user_pop" -> createUserPopSignals()
+            "sunny_day" -> createSunnyDaySignals()
             "beach_vacation" -> createBeachVacationSignals()
             "romantic_date" -> createRomanticDateSignals()
             "fatigue_alert" -> createFatigueAlertSignals()
@@ -905,6 +906,47 @@ class MainViewModel(
                     volume_level = 0.4,
                     has_voice = true,
                     voice_count = 1,
+                    noise_level = 0.2
+                )
+            ),
+            confidence = com.music.core.api.models.Confidence(overall = 0.9)
+        )
+    }
+
+    private fun createSunnyDaySignals(): StandardizedSignals {
+        return StandardizedSignals(
+            timestamp = java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", java.util.Locale.US).format(java.util.Date()),
+            signals = com.music.core.api.models.Signals(
+                vehicle = com.music.core.api.models.Vehicle(
+                    speed_kmh = 60.0,
+                    passenger_count = 1,
+                    gear = "D"
+                ),
+                environment = com.music.core.api.models.Environment(
+                    time_of_day = 14.0,
+                    weather = "sunny",
+                    temperature = 26.0,
+                    date_type = "weekend"
+                ),
+                external_camera = com.music.core.api.models.ExternalCamera(
+                    scene_description = "sunny_highway",
+                    primary_color = "#FFC107",
+                    secondary_color = "#FF9800",
+                    brightness = 0.9
+                ),
+                internal_camera = com.music.core.api.models.InternalCamera(
+                    mood = "happy",
+                    confidence = 0.9,
+                    passengers = com.music.core.api.models.Passengers(
+                        children = 0,
+                        adults = 1,
+                        seniors = 0
+                    )
+                ),
+                internal_mic = com.music.core.api.models.InternalMic(
+                    volume_level = 0.4,
+                    has_voice = false,
+                    voice_count = 0,
                     noise_level = 0.2
                 )
             ),
