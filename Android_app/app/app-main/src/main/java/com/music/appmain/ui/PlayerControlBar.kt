@@ -140,16 +140,7 @@ fun PlayerControlBar(
                         onSeek = onSeek
                     )
                 }
-                is PlayerState.Crossfading -> {
-                    CurrentTrackInfo(
-                        title = state.currentTrack.title,
-                        artist = state.currentTrack.artist,
-                        position = state.currentPosition,
-                        duration = playbackInfo.duration,
-                        albumArt = currentAlbumArt,
-                        onSeek = onSeek
-                    )
-                }
+
                 is PlayerState.Error -> {
                     Text(
                         text = "错误: ${state.message}",

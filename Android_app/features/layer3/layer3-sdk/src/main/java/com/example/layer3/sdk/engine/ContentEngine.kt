@@ -73,20 +73,20 @@ class ContentEngine(
         val hints = scene.hints
         val intent = scene.intent
         val sceneType = scene.scene_type
-        
+
         val excludedGenres = getExcludedGenres(sceneType)
-        
+
         val scoredTracks = localTracks.mapNotNull { track ->
             val trackGenre = track.genre?.lowercase() ?: ""
             if (excludedGenres.any { ex -> trackGenre.contains(ex.lowercase()) }) {
                 return@mapNotNull null
             }
-            
+
             var score = 0.0
-            
+
             val isChinese = track.genre?.contains("chinese", ignoreCase = true) == true
             val baseGenre = trackGenre.removePrefix("chinese_")
-            
+
             hints?.music?.genres?.let { genres ->
                 if (track.genre != null && genres.any { it.equals(track.genre, ignoreCase = true) }) {
                     score += 25.0
@@ -98,16 +98,16 @@ class ContentEngine(
                     score += 20.0
                 }
             }
-            
+
             if (sceneType == "kids_mode" && trackGenre.contains("children")) {
                 score += 50.0
             }
-            
+
             val chineseWeight = getChineseWeight(sceneType)
             if (isChinese) {
                 score += chineseWeight
             }
-            
+
             hints?.music?.tempo?.let { tempo ->
                 val targetBpm = when (tempo.lowercase()) {
                     "slow" -> 60..90
@@ -115,7 +115,7 @@ class ContentEngine(
                     "fast" -> 120..160
                     else -> 90..120
                 }
-                track.bpm?.let { 
+                track.bpm?.let {
                     if (it in targetBpm) {
                         score += 20.0
                     } else {
@@ -127,15 +127,15 @@ class ContentEngine(
                     }
                 }
             }
-            
+
             val valenceDiff = kotlin.math.abs((track.valence ?: 0.5) - intent.mood.valence)
             val arousalDiff = kotlin.math.abs((track.energy ?: 0.5) - intent.mood.arousal)
             score += (1.0 - valenceDiff) * 40.0
             score += (1.0 - arousalDiff) * 40.0
-            
+
             val energyDiff = kotlin.math.abs((track.energy ?: 0.5) - intent.energy_level)
             score += (1.0 - energyDiff) * 35.0
-            
+
             track.moodTags?.let { tags ->
                 intent.atmosphere?.let { atm ->
                     val atmParts = atm.split("_")
@@ -147,19 +147,27 @@ class ContentEngine(
                     }
                 }
             }
-            
+
             track.sceneTags?.let { tags ->
                 if (tags.any { it.equals(sceneType, ignoreCase = true) }) {
                     score += 25.0
                 }
             }
-            
+
             track to score
-        }.map { (track, score) ->
-            track to score + kotlin.random.Random.nextDouble(0.0, 8.0)
+        }
+
+        val candidatePoolSize = (PLAYLIST_SIZE * 2.5).toInt().coerceAtMost(scoredTracks.size)
+        val topCandidates = scoredTracks.sortedByDescending { it.second }.take(candidatePoolSize)
+
+        val sessionSeed = System.currentTimeMillis() / 1000 + sceneType.hashCode().toLong()
+        val rng = kotlin.random.Random(sessionSeed)
+
+        val shuffled = topCandidates.map { (track, score) ->
+            track to score + rng.nextDouble(0.0, 30.0)
         }.sortedByDescending { it.second }
-        
-        return scoredTracks.map { it.first }
+
+        return shuffled.map { it.first }
     }
     
     private fun getExcludedGenres(sceneType: String): List<String> {
