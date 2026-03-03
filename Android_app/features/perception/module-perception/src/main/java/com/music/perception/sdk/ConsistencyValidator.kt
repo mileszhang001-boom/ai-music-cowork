@@ -48,8 +48,8 @@ data class CachedSample(
  */
 class ConsistencyValidator(
     private val confidenceTolerance: Double = 0.05,
-    private val maxWaitSamples: Int = 5,
-    private val timeoutMs: Long = 30000L
+    private val maxWaitSamples: Int = 2,
+    private val timeoutMs: Long = 10000L
 ) {
     private val lock = ReentrantLock()
     private val cachedSample = AtomicReference<CachedSample?>(null)

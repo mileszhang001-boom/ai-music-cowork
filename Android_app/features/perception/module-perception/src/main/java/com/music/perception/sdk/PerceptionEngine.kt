@@ -131,6 +131,7 @@ class PerceptionEngine(
      * 采集所有传感器数据，进行AI分析，并通过一致性校验后输出
      */
     private suspend fun processFrame() {
+        val frameStartTime = System.currentTimeMillis()
         val location = sensorManager.currentLocation
         val micData = sensorManager.getAudioMetrics()
         
@@ -146,21 +147,6 @@ class PerceptionEngine(
             eraseColor(android.graphics.Color.rgb(100, 100, 100))
         }
         
-        val outputStream = ByteArrayOutputStream()
-        bitmapToProcess.compress(Bitmap.CompressFormat.JPEG, 70, outputStream)
-        val imageBytes = outputStream.toByteArray()
-        val imageBase64 = Base64.encodeToString(imageBytes, Base64.NO_WRAP)
-
-        val localAnalysis = localImageAnalyzer.analyze(bitmapToProcess)
-        val aiResult = aiClient.analyzeExternalCamera(imageBase64)
-        
-        val finalExternalSignal = ExternalCamera(
-            primary_color = localAnalysis.primaryColor,
-            secondary_color = localAnalysis.secondaryColor,
-            brightness = localAnalysis.brightness,
-            scene_description = aiResult.scene_description
-        )
-
         val internalBitmap = currentInternalBitmap?.let { bmp ->
             if (bmp.width >= 10 && bmp.height >= 10) {
                 Bitmap.createScaledBitmap(bmp, 640, 480, true)
@@ -169,26 +155,53 @@ class PerceptionEngine(
             }
         }
         
-        val internalSignal = if (internalBitmap != null) {
-            val outputStreamInternal = ByteArrayOutputStream()
-            internalBitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStreamInternal)
-            val internalBytes = outputStreamInternal.toByteArray()
-            val internalBase64 = Base64.encodeToString(internalBytes, Base64.NO_WRAP)
+        val aiStartTime = System.currentTimeMillis()
+        val (finalExternalSignal, internalSignal) = coroutineScope {
+            val externalDeferred = async {
+                val outputStream = ByteArrayOutputStream()
+                bitmapToProcess.compress(Bitmap.CompressFormat.JPEG, 70, outputStream)
+                val imageBytes = outputStream.toByteArray()
+                val imageBase64 = Base64.encodeToString(imageBytes, Base64.NO_WRAP)
+
+                val localAnalysis = localImageAnalyzer.analyze(bitmapToProcess)
+                val aiResult = aiClient.analyzeExternalCamera(imageBase64)
+                
+                ExternalCamera(
+                    primary_color = localAnalysis.primaryColor,
+                    secondary_color = localAnalysis.secondaryColor,
+                    brightness = localAnalysis.brightness,
+                    scene_description = aiResult.scene_description
+                )
+            }
             
-            val rawSignal = aiClient.analyzeInternalCamera(internalBase64)
+            val internalDeferred = async {
+                if (internalBitmap != null) {
+                    val outputStreamInternal = ByteArrayOutputStream()
+                    internalBitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStreamInternal)
+                    val internalBytes = outputStreamInternal.toByteArray()
+                    val internalBase64 = Base64.encodeToString(internalBytes, Base64.NO_WRAP)
+                    
+                    val rawSignal = aiClient.analyzeInternalCamera(internalBase64)
+                    
+                    InternalCamera(
+                        mood = rawSignal.mood ?: "unknown",
+                        confidence = rawSignal.confidence,
+                        passengers = rawSignal.passengers ?: Passengers(children = 0, adults = 0, seniors = 0)
+                    )
+                } else {
+                    InternalCamera(
+                        mood = "unknown",
+                        confidence = 0.0,
+                        passengers = Passengers(children = 0, adults = 0, seniors = 0)
+                    )
+                }
+            }
             
-            InternalCamera(
-                mood = rawSignal.mood ?: "unknown",
-                confidence = rawSignal.confidence,
-                passengers = rawSignal.passengers ?: Passengers(children = 0, adults = 0, seniors = 0)
-            )
-        } else {
-            InternalCamera(
-                mood = "unknown",
-                confidence = 0.0,
-                passengers = Passengers(children = 0, adults = 0, seniors = 0)
-            )
+            Pair(externalDeferred.await(), internalDeferred.await())
         }
+        
+        val aiElapsedTime = System.currentTimeMillis() - aiStartTime
+        Log.d("PerceptionEngine", "AI并行分析完成，总耗时: ${aiElapsedTime}ms")
 
         val weatherResult = weatherService.getCurrentWeather()
 
@@ -222,17 +235,18 @@ class PerceptionEngine(
 
         val consistencyResult = consistencyValidator.validate(output)
         
+        val frameElapsedTime = System.currentTimeMillis() - frameStartTime
         Log.d("PerceptionEngine", "一致性校验: isConsistent=${consistencyResult.isConsistent}, " +
                 "score=${String.format("%.2f", consistencyResult.consistencyScore)}, " +
                 "sampleCount=${consistencyResult.sampleCount}, " +
                 "matchingFields=${consistencyResult.matchingFields.size}, " +
                 "differingFields=${consistencyResult.differingFields}")
         
-        if (consistencyResult.isConsistent || consistencyResult.sampleCount >= 5) {
+        if (consistencyResult.isConsistent || consistencyResult.sampleCount >= 2) {
             _signalsFlow.emit(output)
-            Log.d("PerceptionEngine", "数据已发送: consistent=${consistencyResult.isConsistent}, waitTime=${consistencyResult.waitTimeMs}ms")
+            Log.d("PerceptionEngine", "数据已发送: consistent=${consistencyResult.isConsistent}, waitTime=${consistencyResult.waitTimeMs}ms, 总帧处理时间=${frameElapsedTime}ms")
         } else {
-            Log.d("PerceptionEngine", "数据未发送，等待一致性确认... (样本数: ${consistencyResult.sampleCount})")
+            Log.d("PerceptionEngine", "数据未发送，等待一致性确认... (样本数: ${consistencyResult.sampleCount}, 帧处理时间=${frameElapsedTime}ms)")
         }
     }
 

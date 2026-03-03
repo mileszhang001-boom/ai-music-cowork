@@ -5,14 +5,14 @@ data class PerceptionConfig(
     val ipCameraUsername: String,
     val ipCameraPassword: String,
     val dashScopeApiKey: String,
-    val refreshIntervalMs: Long = 2000L
+    val refreshIntervalMs: Long = 1000L
 ) {
     class Builder {
         private var ipCameraUrl = ""
         private var ipCameraUsername = ""
         private var ipCameraPassword = ""
         private var dashScopeApiKey = ""
-        private var refreshIntervalMs = 2000L
+        private var refreshIntervalMs = 1000L
 
         fun setIpCameraUrl(url: String) = apply { this.ipCameraUrl = url }
         fun setIpCameraAuth(username: String, password: String) = apply {
