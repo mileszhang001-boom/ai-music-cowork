@@ -58,6 +58,9 @@ class MainViewModel(
     private val ttsService: TtsService = TtsService(context)
     private val audioDuckManager: AudioDuckManager = AudioDuckManager(context)
     private val voiceInputService: VoiceInputService = VoiceInputService(context)
+    private val announcementBuilder: AnnouncementBuilder = AnnouncementBuilder()
+    private var lastAnnouncementText: String? = null
+    private var lastAnnouncementTime: Long = 0L
     
     private var musicPlayer: MusicPlayer? = null
     private var localMusicIndex: LocalMusicIndex? = null
@@ -479,7 +482,6 @@ class MainViewModel(
                     _sceneDescriptorFlow.value = it
                     _engineStateFlow.value = EngineState.Ready(it)
                     generateEffects(it)
-                    handleAnnouncement(it)
                 }
             }
         }
@@ -510,6 +512,8 @@ class MainViewModel(
                         delay(300)
                         lastAudioCommand?.let { cmd -> applyAudioCommand(cmd) }
                     }
+
+                    handleSmartAnnouncement(it)
                 }
             }
         }
@@ -525,20 +529,38 @@ class MainViewModel(
         Layer3SDK.getGenerationEngine().generateEffects(scene)
     }
 
-    private fun handleAnnouncement(scene: SceneDescriptor) {
-        val announcement = scene.announcement
-        if (!announcement.isNullOrBlank()) {
-            Log.i(TAG, "准备播报 announcement: $announcement")
-            if (ttsService.isInitialized.value) {
-                audioDuckManager.duck()
-                val success = ttsService.speak(announcement)
-                if (!success) {
-                    Log.e(TAG, "TTS 播报失败")
-                    audioDuckManager.unduck()
-                }
-            } else {
-                Log.w(TAG, "TTS 尚未初始化，无法播报")
+    private fun handleSmartAnnouncement(effects: EffectCommands) {
+        val scene = _sceneDescriptorFlow.value
+
+        val announcement = announcementBuilder.build(_standardizedSignalsFlow.value, scene, effects)
+            ?: scene?.announcement?.takeIf { it.isNotBlank() }
+
+        if (announcement.isNullOrBlank()) return
+
+        val now = System.currentTimeMillis()
+        if (announcement == lastAnnouncementText && now - lastAnnouncementTime < 30_000) {
+            Log.i(TAG, "播报内容相同且间隔<30s，跳过: $announcement")
+            return
+        }
+
+        if (ttsService.isSpeaking()) {
+            Log.i(TAG, "TTS 正在播报中，跳过新播报: $announcement")
+            return
+        }
+
+        lastAnnouncementText = announcement
+        lastAnnouncementTime = now
+        Log.i(TAG, "智能播报: $announcement")
+
+        if (ttsService.isInitialized.value) {
+            audioDuckManager.duck()
+            val success = ttsService.speak(announcement)
+            if (!success) {
+                Log.e(TAG, "TTS 播报失败")
+                audioDuckManager.unduck()
             }
+        } else {
+            Log.w(TAG, "TTS 尚未初始化，无法播报")
         }
     }
 

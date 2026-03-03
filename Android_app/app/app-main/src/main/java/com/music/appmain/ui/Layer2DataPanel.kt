@@ -1,103 +1,104 @@
 package com.music.appmain.ui
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.*
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.music.core.api.models.SceneDescriptor
 
-/**
- * Layer 2 推理层 - Web UI 风格
- * 将 SceneDescriptor 数据转换为推理流展示
- */
 @Composable
 fun Layer2DataPanel(
     sceneDescriptor: SceneDescriptor?,
     modifier: Modifier = Modifier
 ) {
-    val scrollState = rememberScrollState()
-    
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        // 标题栏 - 固定在顶部
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(
-                modifier = Modifier
-                    .size(32.dp)
-                    .background(
-                        brush = Brush.linearGradient(
-                            colors = listOf(CarTheme.AccentCyan, CarTheme.AccentPurple)
-                        ),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "🧠",
-                    fontSize = 16.sp
-                )
-            }
-            
-            Spacer(modifier = Modifier.width(8.dp))
-            
             val themeColors = LocalThemeColors.current
             val primaryColor = themeColors.getOrElse(0) { CarTheme.AccentCyan }
             val secondaryColor = themeColors.getOrElse(1) { CarTheme.AccentPurple }
-            
+
+            val infiniteTransition = rememberInfiniteTransition(label = "think")
+            val thinkAlpha by infiniteTransition.animateFloat(
+                initialValue = 0.5f,
+                targetValue = 1f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(2000, easing = FastOutSlowInEasing),
+                    repeatMode = RepeatMode.Reverse
+                ),
+                label = "thinkAlpha"
+            )
+
+            Box(
+                modifier = Modifier
+                    .size(10.dp)
+                    .alpha(if (sceneDescriptor != null) thinkAlpha else 0.3f)
+                    .background(
+                        color = if (sceneDescriptor != null) CarTheme.AccentPurple else CarTheme.TextMuted,
+                        shape = CircleShape
+                    )
+            )
+
+            Spacer(modifier = Modifier.width(8.dp))
+
             Text(
-                text = "推理层",
+                text = if (sceneDescriptor != null) "AI 在想..." else "等待推理",
                 style = CarTheme.GradientTitle.copy(
                     brush = Brush.linearGradient(
                         colors = listOf(primaryColor, secondaryColor)
                     ),
-                    fontSize = 16.sp
+                    fontSize = 14.sp
                 )
             )
         }
-        
+
         Spacer(modifier = Modifier.height(12.dp))
-        
-        // 推理流展示 - 可滚动
+
         if (sceneDescriptor != null) {
+            val thoughts = buildAIThoughts(sceneDescriptor)
+
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .verticalScroll(scrollState),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                // 辅助推理
-                val hints = extractHints(sceneDescriptor)
-                hints.forEach { hint ->
-                    val parts = hint.split(" → ", "->")
-                    if (parts.size >= 2) {
-                        InferenceItem(
-                            cause = parts[0].trim(),
-                            result = parts.drop(1).joinToString(" → ").trim(),
-                            isHighlighted = false
+                thoughts.forEachIndexed { index, thought ->
+                    var visible by remember { mutableStateOf(false) }
+                    LaunchedEffect(thought) {
+                        kotlinx.coroutines.delay(index * 150L)
+                        visible = true
+                    }
+
+                    AnimatedVisibility(
+                        visible = visible,
+                        enter = fadeIn(tween(500)) + slideInVertically(
+                            initialOffsetY = { it / 4 },
+                            animationSpec = tween(500)
                         )
-                    } else {
-                        InferenceItem(
-                            cause = "推理",
-                            result = hint,
-                            isHighlighted = false
-                        )
+                    ) {
+                        ThoughtBubble(thought = thought)
                     }
                 }
             }
@@ -108,198 +109,205 @@ fun Layer2DataPanel(
                     .weight(1f),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "等待语义分析...",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = CarTheme.TextMuted
-                )
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    val infiniteTransition = rememberInfiniteTransition(label = "waiting")
+                    val dotAlpha by infiniteTransition.animateFloat(
+                        initialValue = 0.3f,
+                        targetValue = 1f,
+                        animationSpec = infiniteRepeatable(
+                            animation = tween(1000),
+                            repeatMode = RepeatMode.Reverse
+                        ),
+                        label = "dots"
+                    )
+                    Text(
+                        text = "🧠",
+                        fontSize = 24.sp,
+                        modifier = Modifier.alpha(dotAlpha)
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "等待场景分析...",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = CarTheme.TextMuted
+                    )
+                }
             }
         }
     }
 }
 
-/**
- * 推理项组件
- */
+private data class AIThought(
+    val text: String,
+    val type: ThoughtType = ThoughtType.NORMAL,
+    val sceneName: String? = null
+)
+
+private enum class ThoughtType {
+    NORMAL,
+    CONCLUSION,
+    HIGHLIGHT
+}
+
 @Composable
-private fun InferenceItem(
-    cause: String,
-    result: String,
-    isHighlighted: Boolean
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(
-                brush = if (isHighlighted) {
-                    Brush.linearGradient(
-                        colors = listOf(
-                            CarTheme.AccentCyan.copy(alpha = 0.15f),
-                            CarTheme.AccentPurple.copy(alpha = 0.15f)
+private fun ThoughtBubble(thought: AIThought) {
+    val themeColors = LocalThemeColors.current
+    val primaryColor = themeColors.getOrElse(0) { CarTheme.AccentCyan }
+    val secondaryColor = themeColors.getOrElse(1) { CarTheme.AccentPurple }
+
+    when (thought.type) {
+        ThoughtType.CONCLUSION -> {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        brush = Brush.linearGradient(
+                            colors = listOf(
+                                primaryColor.copy(alpha = 0.12f),
+                                secondaryColor.copy(alpha = 0.12f)
+                            )
+                        ),
+                        shape = RoundedCornerShape(12.dp)
+                    )
+                    .padding(horizontal = 12.dp, vertical = 10.dp)
+            ) {
+                Column {
+                    Text(
+                        text = "→ 为你切换到",
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            color = CarTheme.TextSecondary
                         )
                     )
-                } else {
-                    Brush.linearGradient(
-                        colors = listOf(
-                            CarTheme.GlassBg,
-                            CarTheme.GlassBg
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Text(
+                        text = "「${thought.sceneName ?: "智能推荐"}」模式",
+                        style = MaterialTheme.typography.bodyLarge.copy(
+                            fontWeight = FontWeight.SemiBold,
+                            brush = Brush.linearGradient(
+                                colors = listOf(primaryColor, secondaryColor)
+                            )
                         )
                     )
-                },
-                shape = RoundedCornerShape(12.dp)
-            )
-            .padding(horizontal = 16.dp, vertical = 12.dp)
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = cause,
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    color = if (isHighlighted) CarTheme.AccentCyan else CarTheme.TextSecondary,
-                    fontWeight = if (isHighlighted) FontWeight.Medium else FontWeight.Normal
+                }
+            }
+        }
+        ThoughtType.HIGHLIGHT -> {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = primaryColor.copy(alpha = 0.06f),
+                        shape = RoundedCornerShape(10.dp)
+                    )
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.Top
+            ) {
+                Text(
+                    text = thought.text,
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        color = CarTheme.TextPrimary,
+                        fontStyle = FontStyle.Italic,
+                        lineHeight = 20.sp
+                    ),
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis
                 )
-            )
-            
-            Spacer(modifier = Modifier.width(8.dp))
-            
+            }
+        }
+        ThoughtType.NORMAL -> {
             Text(
-                text = "→",
+                text = thought.text,
                 style = MaterialTheme.typography.bodyMedium.copy(
-                    color = CarTheme.TextMuted
-                )
-            )
-            
-            Spacer(modifier = Modifier.width(8.dp))
-            
-            Text(
-                text = result,
-                style = MaterialTheme.typography.bodyMedium.copy(
-                    color = if (isHighlighted) CarTheme.AccentPurple else CarTheme.TextPrimary,
-                    fontWeight = if (isHighlighted) FontWeight.Bold else FontWeight.Medium
+                    color = CarTheme.TextSecondary,
+                    lineHeight = 20.sp
                 ),
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.padding(horizontal = 4.dp),
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
 }
 
-/**
- * 提取原因
- */
-private fun extractCause(sceneDescriptor: SceneDescriptor): String {
-    val causes = mutableListOf<String>()
-    
-    sceneDescriptor.intent.mood.let { mood ->
-        when {
-            mood.valence < 0.3f -> causes.add("情绪低落")
-            mood.valence > 0.7f -> causes.add("情绪愉悦")
-            else -> causes.add("情绪平稳")
+private fun buildAIThoughts(descriptor: SceneDescriptor): List<AIThought> {
+    val thoughts = mutableListOf<AIThought>()
+
+    descriptor.scene_narrative?.let { narrative ->
+        thoughts.add(AIThought(
+            text = "\"$narrative\"",
+            type = ThoughtType.HIGHLIGHT
+        ))
+    }
+
+    if (thoughts.isEmpty()) {
+        val coreJudgment = buildCoreJudgment(descriptor)
+        if (coreJudgment != null) {
+            thoughts.add(AIThought(text = coreJudgment))
         }
     }
-    
-    causes.add(mapSceneType(sceneDescriptor.scene_type))
-    
-    return causes.firstOrNull() ?: "场景触发"
+
+    val sceneName = buildSceneDisplayName(descriptor)
+    thoughts.add(AIThought(
+        text = "",
+        type = ThoughtType.CONCLUSION,
+        sceneName = sceneName
+    ))
+
+    return thoughts
 }
 
-/**
- * 提取结果
- */
-private fun extractResult(sceneDescriptor: SceneDescriptor): String {
-    val results = mutableListOf<String>()
-    
-    sceneDescriptor.hints.music?.genres?.firstOrNull()?.let { results.add(mapMusicGenre(it)) }
-    results.add(mapSceneName(sceneDescriptor.scene_name))
-    
-    return results.firstOrNull() ?: "智能推荐"
-}
-
-/**
- * 提取辅助推理
- */
-private fun extractHints(sceneDescriptor: SceneDescriptor): List<String> {
-    val hints = mutableListOf<String>()
-    
-    // 场景叙事
-    sceneDescriptor.scene_narrative?.let {
-        hints.add("场景: $it")
-    }
-    
-    // 能量等级
-    sceneDescriptor.intent.energy_level.let { energy ->
-        val level = when {
-            energy < 0.3f -> "低能量"
-            energy > 0.7f -> "高能量"
-            else -> "中等能量"
+private fun buildCoreJudgment(descriptor: SceneDescriptor): String? {
+    descriptor.intent.social_context?.let { social ->
+        return when (social) {
+            "solo" -> "一个人的时光"
+            "couple" -> "两个人的氛围"
+            "family" -> "一家人出行"
+            "friends" -> "朋友聚会"
+            "group" -> "人多热闹"
+            else -> null
         }
-        hints.add("$level → 调节节奏强度")
     }
-    
-    // 社交场景
-    sceneDescriptor.intent.social_context?.let { social ->
-        hints.add("$social → 调整音乐风格")
+    val valence = descriptor.intent.mood.valence
+    val arousal = descriptor.intent.mood.arousal
+    return when {
+        valence < 0.3 && arousal < 0.3 -> "有些低落和疲惫"
+        valence < 0.3 && arousal > 0.7 -> "情绪有些焦躁"
+        valence > 0.7 && arousal > 0.7 -> "心情很好，精力充沛"
+        valence > 0.7 && arousal < 0.3 -> "心情不错，很放松"
+        valence > 0.7 -> "心情愉悦"
+        valence < 0.3 -> "情绪有些低落"
+        else -> null
     }
-    
-    // 音乐偏好
-    sceneDescriptor.hints.music?.tempo?.let { tempo ->
-        hints.add("偏好 $tempo → 匹配 BPM")
-    }
-    
-    // 灯光提示
-    sceneDescriptor.hints.lighting?.color_theme?.let { theme ->
-        hints.add("灯光主题: $theme")
-    }
-    
-    return hints.ifEmpty { listOf("综合分析中...") }
 }
 
-private fun mapSceneType(sceneType: String?): String {
-    return when (sceneType) {
+private fun buildSceneDisplayName(descriptor: SceneDescriptor): String {
+    descriptor.scene_name?.let { name ->
+        return when (name) {
+            "rainy_emo" -> "雨夜氛围"
+            "children_board" -> "亲子时光"
+            "rain_stops" -> "雨后清新"
+            "noisy_car" -> "欢乐车厢"
+            "user_pop" -> "流行精选"
+            "beach_vacation" -> "海边假日"
+            "romantic_date" -> "浪漫之夜"
+            "fatigue_alert" -> "提神醒脑"
+            "melancholy_night" -> "深夜独处"
+            "cheerful_day" -> "阳光心情"
+            "energetic_group" -> "活力派对"
+            "relaxed_vacation" -> "悠闲假日"
+            else -> name
+        }
+    }
+    return when (descriptor.scene_type) {
         "emotional_ride" -> "情绪旅途"
         "family_trip" -> "家庭出行"
         "commute" -> "日常通勤"
         "road_trip" -> "公路旅行"
         "date_night" -> "约会之夜"
-        "fatigue_driving" -> "疲劳驾驶"
-        "scenic_drive" -> "风景驾驶"
-        else -> sceneType ?: ""
+        "fatigue_driving" -> "安全守护"
+        "scenic_drive" -> "风景之旅"
+        else -> "智能推荐"
     }
 }
 
-private fun mapSceneName(sceneName: String?): String {
-    return when (sceneName) {
-        "rainy_emo" -> "雨天情绪"
-        "children_board" -> "小朋友上车"
-        "rain_stops" -> "雨过天晴"
-        "noisy_car" -> "车内热闹"
-        "user_pop" -> "流行偏好"
-        "beach_vacation" -> "海滩度假"
-        "romantic_date" -> "浪漫约会"
-        "fatigue_alert" -> "疲劳提醒"
-        "melancholy_night" -> "忧郁雨夜"
-        "cheerful_day" -> "晴朗心情"
-        "energetic_group" -> "活力群体"
-        "relaxed_vacation" -> "放松度假"
-        else -> sceneName ?: ""
-    }
-}
 
-private fun mapMusicGenre(genre: String?): String {
-    return when (genre) {
-        "pop" -> "流行"
-        "rock" -> "摇滚"
-        "jazz" -> "爵士"
-        "classical" -> "古典"
-        "electronic" -> "电子"
-        "r&b" -> "节奏布鲁斯"
-        "country" -> "乡村"
-        "indie" -> "独立音乐"
-        "hip-hop" -> "嘻哈"
-        "ambient" -> "氛围"
-        "chillout" -> "放松"
-        "lo-fi" -> "低保真"
-        else -> genre ?: ""
-    }
-}

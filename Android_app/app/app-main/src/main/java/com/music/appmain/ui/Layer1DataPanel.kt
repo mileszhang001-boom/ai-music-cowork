@@ -1,95 +1,114 @@
 package com.music.appmain.ui
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.*
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.music.core.api.models.StandardizedSignals
 
-/**
- * Layer 1 感知层 - Web UI 风格
- * 将 StandardizedSignals 数据转换为感知芯片展示
- */
 @Composable
 fun Layer1DataPanel(
     signals: StandardizedSignals?,
     modifier: Modifier = Modifier
 ) {
     val scrollState = rememberScrollState()
-    
+
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        // 标题栏 - 固定在顶部
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(
-                modifier = Modifier
-                    .size(32.dp)
-                    .background(
-                        brush = Brush.linearGradient(
-                            colors = listOf(CarTheme.AccentCyan, CarTheme.AccentPurple)
-                        ),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "👁",
-                    fontSize = 16.sp
-                )
-            }
-            
-            Spacer(modifier = Modifier.width(8.dp))
-            
             val themeColors = LocalThemeColors.current
             val primaryColor = themeColors.getOrElse(0) { CarTheme.AccentCyan }
             val secondaryColor = themeColors.getOrElse(1) { CarTheme.AccentPurple }
-            
+
+            val infiniteTransition = rememberInfiniteTransition(label = "pulse")
+            val pulseAlpha by infiniteTransition.animateFloat(
+                initialValue = 0.6f,
+                targetValue = 1f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(1500, easing = FastOutSlowInEasing),
+                    repeatMode = RepeatMode.Reverse
+                ),
+                label = "pulseAlpha"
+            )
+
+            Box(
+                modifier = Modifier
+                    .size(10.dp)
+                    .alpha(pulseAlpha)
+                    .background(
+                        color = if (signals != null) Color(0xFF4CAF50) else CarTheme.TextMuted,
+                        shape = CircleShape
+                    )
+            )
+
+            Spacer(modifier = Modifier.width(8.dp))
+
             Text(
-                text = "感知层",
+                text = if (signals != null) "AI 正在感知" else "等待感知",
                 style = CarTheme.GradientTitle.copy(
                     brush = Brush.linearGradient(
                         colors = listOf(primaryColor, secondaryColor)
                     ),
-                    fontSize = 16.sp
+                    fontSize = 14.sp
                 )
             )
         }
-        
+
         Spacer(modifier = Modifier.height(12.dp))
-        
-        // 感知芯片网格 - 可滚动
+
         if (signals != null) {
-            val chips = extractPerceptionChips(signals)
-            
+            val story = buildPerceptionStory(signals)
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .verticalScroll(scrollState),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                chips.forEach { chip ->
-                    PerceptionChip(
-                        icon = chip.icon,
-                        label = chip.label,
-                        value = chip.value
-                    )
+                story.paragraphs.forEachIndexed { index, paragraph ->
+                    var visible by remember { mutableStateOf(false) }
+                    LaunchedEffect(paragraph) {
+                        kotlinx.coroutines.delay(index * 120L)
+                        visible = true
+                    }
+
+                    AnimatedVisibility(
+                        visible = visible,
+                        enter = fadeIn(tween(400)) + slideInVertically(
+                            initialOffsetY = { it / 3 },
+                            animationSpec = tween(400)
+                        )
+                    ) {
+                        StoryParagraph(
+                            icon = paragraph.icon,
+                            text = paragraph.text,
+                            highlight = paragraph.highlight
+                        )
+                    }
                 }
             }
         } else {
@@ -99,214 +118,212 @@ fun Layer1DataPanel(
                     .weight(1f),
                 contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "等待感知数据...",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = CarTheme.TextMuted
-                )
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    val infiniteTransition = rememberInfiniteTransition(label = "waiting")
+                    val dotAlpha by infiniteTransition.animateFloat(
+                        initialValue = 0.3f,
+                        targetValue = 1f,
+                        animationSpec = infiniteRepeatable(
+                            animation = tween(800),
+                            repeatMode = RepeatMode.Reverse
+                        ),
+                        label = "dots"
+                    )
+                    Text(
+                        text = "👁️",
+                        fontSize = 28.sp,
+                        modifier = Modifier.alpha(dotAlpha)
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "传感器待连接...",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = CarTheme.TextMuted
+                    )
+                }
             }
         }
     }
 }
 
-/**
- * 感知芯片组件
- */
 @Composable
-private fun PerceptionChip(
+private fun StoryParagraph(
     icon: String,
-    label: String,
-    value: String
+    text: String,
+    highlight: Boolean = false
 ) {
+    val themeColors = LocalThemeColors.current
+    val primaryColor = themeColors.getOrElse(0) { CarTheme.AccentCyan }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                color = CarTheme.GlassBg,
-                shape = RoundedCornerShape(14.dp)
+                color = if (highlight) primaryColor.copy(alpha = 0.08f) else Color.Transparent,
+                shape = RoundedCornerShape(12.dp)
             )
-            .padding(12.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+            .padding(horizontal = 10.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.Top,
+        horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        // 图标
-        Box(
-            modifier = Modifier
-                .size(36.dp)
-                .background(
-                    brush = Brush.linearGradient(
-                        colors = listOf(
-                            CarTheme.AccentCyan.copy(alpha = 0.2f),
-                            CarTheme.AccentPurple.copy(alpha = 0.2f)
-                        )
-                    ),
-                    shape = RoundedCornerShape(10.dp)
-                ),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(
-                text = icon,
-                fontSize = 18.sp
-            )
-        }
-        
-        // 内容
-        Column {
-            Text(
-                text = label.uppercase(),
-                style = CarTheme.ChipLabel
-            )
-            Text(
-                text = value,
-                style = CarTheme.ChipValue
-            )
-        }
+        Text(
+            text = icon,
+            fontSize = 16.sp,
+            modifier = Modifier.padding(top = 1.dp)
+        )
+
+        Text(
+            text = text,
+            style = MaterialTheme.typography.bodyMedium.copy(
+                color = if (highlight) CarTheme.TextPrimary else CarTheme.TextSecondary,
+                fontWeight = if (highlight) FontWeight.Medium else FontWeight.Normal,
+                lineHeight = 22.sp
+            ),
+            maxLines = 3,
+            overflow = TextOverflow.Ellipsis
+        )
     }
 }
 
-/**
- * 从 StandardizedSignals 提取感知数据
- */
-private fun extractPerceptionChips(signals: StandardizedSignals): List<PerceptionChipData> {
-    val chips = mutableListOf<PerceptionChipData>()
-    
-    // 环境感知 - 北京 + 天气 + 温度
-    signals.signals.environment?.let { env ->
-        val weatherDesc = buildString {
-            append("北京")
-            val weather = env.weather
-            val temp = env.temperature
-            if (!weather.isNullOrEmpty()) {
-                append(" | ")
-                append(mapWeather(weather))
-            }
-            if (temp != null) {
-                append(" | ${temp.toInt()}°C")
-            }
-        }
-        chips.add(PerceptionChipData("🌍", "环境", weatherDesc))
-        
-        // 时间感知 - 工作日/周末 + 时间段
-        val timeDesc = buildString {
-            val dateType = env.date_type
-            val timeOfDay = env.time_of_day
-            append(mapDateType(dateType))
-            if (!isEmpty()) append(" | ")
-            append(mapTimeOfDay(timeOfDay))
-        }
-        chips.add(PerceptionChipData("🕐", "时间", timeDesc))
-    }
-    
-    // 乘客信息 - 人数 + 成人/儿童
-    signals.signals.internal_camera?.passengers?.let { passengers ->
-        val totalCount = (passengers.children ?: 0) + (passengers.adults ?: 0) + (passengers.seniors ?: 0)
-        val passengerDesc = buildString {
-            append("${totalCount}人")
-            val parts = mutableListOf<String>()
-            if ((passengers.adults ?: 0) > 0) parts.add("${passengers.adults}成人")
-            if ((passengers.children ?: 0) > 0) parts.add("${passengers.children}儿童")
-            if ((passengers.seniors ?: 0) > 0) parts.add("${passengers.seniors}老人")
-            if (parts.isNotEmpty()) {
-                append(" | ")
-                append(parts.joinToString(" "))
-            }
-        }
-        chips.add(PerceptionChipData("👤", "乘客", passengerDesc))
-    }
-    
-    // 表情感知 - 放在最后
-    signals.signals.internal_camera?.mood?.let { mood ->
-        chips.add(PerceptionChipData("😊", "表情", mapMood(mood)))
-    }
-    
-    return chips
-}
-
-/**
- * 从时间值映射到时间段
- */
-private fun mapTimeOfDay(timeOfDay: Double?): String {
-    if (timeOfDay == null) return "未知"
-    return when {
-        timeOfDay >= 5.0 && timeOfDay < 7.0 -> "凌晨"
-        timeOfDay >= 7.0 && timeOfDay < 9.0 -> "早晨"
-        timeOfDay >= 9.0 && timeOfDay < 12.0 -> "上午"
-        timeOfDay >= 12.0 && timeOfDay < 14.0 -> "中午"
-        timeOfDay >= 14.0 && timeOfDay < 18.0 -> "下午"
-        timeOfDay >= 18.0 && timeOfDay < 22.0 -> "傍晚"
-        else -> "晚上"
-    }
-}
-
-private data class PerceptionChipData(
+private data class StoryParagraphData(
     val icon: String,
-    val label: String,
-    val value: String
+    val text: String,
+    val highlight: Boolean = false
 )
 
-private fun mapSceneDescription(desc: String?): String {
-    return when (desc) {
-        "rainy_night_city" -> "雨夜城市"
-        "suburban_street" -> "郊区街道"
-        "rainbow_after_rain" -> "雨后彩虹"
-        "city_evening" -> "城市傍晚"
-        "highway_drive" -> "高速行驶"
-        "coastal_highway_beach" -> "沿海公路"
-        "city_night_lights" -> "城市夜景"
-        "highway_monotonous" -> "高速单调"
-        else -> desc ?: ""
-    }
-}
+private data class PerceptionStory(
+    val paragraphs: List<StoryParagraphData>
+)
 
-private fun mapMood(mood: String?): String {
-    return when (mood) {
-        "sad" -> "低落"
-        "happy" -> "开心"
-        "excited" -> "兴奋"
-        "neutral" -> "平静"
-        "relaxed" -> "放松"
-        "romantic" -> "浪漫"
-        "tired" -> "疲劳"
-        else -> mood ?: ""
-    }
-}
+private fun buildPerceptionStory(signals: StandardizedSignals): PerceptionStory {
+    val paragraphs = mutableListOf<StoryParagraphData>()
 
-private fun mapWeather(weather: String?): String {
-    return when (weather) {
-        "rainy" -> "雨天"
-        "sunny" -> "晴天"
-        "cloudy" -> "多云"
-        "clear" -> "晴朗"
-        else -> weather ?: ""
-    }
-}
+    val env = signals.signals.environment
+    val cam = signals.signals.internal_camera
+    val vehicle = signals.signals.vehicle
+    val mic = signals.signals.internal_mic
 
-private fun mapDateType(dateType: String?): String {
-    return when (dateType) {
-        "weekday" -> "工作日"
-        "weekend" -> "周末"
-        else -> dateType ?: ""
-    }
-}
+    if (env != null) {
+        val weatherEmoji = when (env.weather) {
+            "rainy" -> "🌧️"
+            "sunny" -> "☀️"
+            "cloudy" -> "☁️"
+            "clear" -> "🌤️"
+            "snowy" -> "❄️"
+            else -> "🌍"
+        }
+        val weatherText = when (env.weather) {
+            "rainy" -> "外面正下着雨"
+            "sunny" -> "阳光正好"
+            "cloudy" -> "天空有些阴沉"
+            "clear" -> "天气晴朗"
+            "snowy" -> "外面飘着雪"
+            else -> "天气未知"
+        }
+        val tempText = env.temperature?.let { "，气温 ${it.toInt()}°C" } ?: ""
+        paragraphs.add(StoryParagraphData(weatherEmoji, "$weatherText$tempText"))
 
-private fun mapColorToName(hexColor: String?): String {
-    return when (hexColor?.uppercase()) {
-        "#1A237E" -> "深蓝"
-        "#4A148C" -> "深紫"
-        "#FF6F00" -> "橙色"
-        "#FFCA28" -> "金黄"
-        "#00BCD4" -> "青色"
-        "#4DD0E1" -> "浅青"
-        "#D500F9" -> "紫色"
-        "#EA80FC" -> "浅紫"
-        "#00E5FF" -> "亮青"
-        "#18FFFF" -> "亮蓝"
-        "#00B8D4" -> "湖蓝"
-        "#80DEEA" -> "浅蓝"
-        "#AD1457" -> "玫红"
-        "#880E4F" -> "暗红"
-        "#FF6D00" -> "橙黄"
-        "#FFAB00" -> "金橙"
-        else -> hexColor ?: ""
+        val timeEmoji = when {
+            (env.time_of_day ?: 12.0) < 7.0 -> "🌅"
+            (env.time_of_day ?: 12.0) < 12.0 -> "🌞"
+            (env.time_of_day ?: 12.0) < 18.0 -> "🌇"
+            (env.time_of_day ?: 12.0) < 22.0 -> "🌆"
+            else -> "🌙"
+        }
+        val timeText = when {
+            (env.time_of_day ?: 12.0) < 6.0 -> "深夜时分"
+            (env.time_of_day ?: 12.0) < 7.0 -> "天刚蒙蒙亮"
+            (env.time_of_day ?: 12.0) < 9.0 -> "清晨出发"
+            (env.time_of_day ?: 12.0) < 12.0 -> "上午时光"
+            (env.time_of_day ?: 12.0) < 14.0 -> "午后时分"
+            (env.time_of_day ?: 12.0) < 18.0 -> "下午的路上"
+            (env.time_of_day ?: 12.0) < 20.0 -> "傍晚归途"
+            (env.time_of_day ?: 12.0) < 22.0 -> "夜幕降临"
+            else -> "深夜归家"
+        }
+        val dateText = when (env.date_type) {
+            "weekday" -> "工作日"
+            "weekend" -> "周末"
+            else -> null
+        }
+        val fullTimeText = if (dateText != null) "$dateText · $timeText" else timeText
+        paragraphs.add(StoryParagraphData(timeEmoji, fullTimeText))
     }
+
+    if (cam != null) {
+        val passengers = cam.passengers
+        if (passengers != null) {
+            val total = (passengers.adults ?: 0) + (passengers.children ?: 0) + (passengers.seniors ?: 0)
+            val passengerText = when {
+                total <= 1 && (passengers.children ?: 0) == 0 -> "独自驾驶"
+                (passengers.children ?: 0) > 0 && total > 1 -> "车里有小朋友，一家人出行"
+                (passengers.seniors ?: 0) > 0 -> "载着长辈，稳稳地开"
+                total == 2 -> "两个人的旅途"
+                total > 2 -> "车里很热闹，${total}个人一起"
+                else -> "独自驾驶"
+            }
+            val passengerEmoji = when {
+                (passengers.children ?: 0) > 0 -> "👨‍👩‍👧"
+                total == 2 -> "👫"
+                total > 2 -> "👥"
+                else -> "🧑"
+            }
+            paragraphs.add(StoryParagraphData(passengerEmoji, passengerText))
+        }
+
+        val moodText = when (cam.mood) {
+            "sad" -> "看起来有些低落..."
+            "happy" -> "心情不错的样子 ☺"
+            "excited" -> "看起来很兴奋！"
+            "neutral" -> "表情平静"
+            "relaxed" -> "很放松的状态"
+            "romantic" -> "氛围有点浪漫~"
+            "tired" -> "有些疲惫了..."
+            else -> null
+        }
+        if (moodText != null) {
+            val moodEmoji = when (cam.mood) {
+                "sad" -> "😔"
+                "happy" -> "😊"
+                "excited" -> "🤩"
+                "neutral" -> "😐"
+                "relaxed" -> "😌"
+                "romantic" -> "🥰"
+                "tired" -> "😴"
+                else -> "😊"
+            }
+            paragraphs.add(StoryParagraphData(moodEmoji, moodText, highlight = cam.mood == "tired"))
+        }
+    }
+
+    if (vehicle != null) {
+        val speedText = when {
+            (vehicle.speed_kmh ?: 0.0) < 5.0 -> null
+            (vehicle.speed_kmh ?: 0.0) < 30.0 -> "车速较慢，可能在市区"
+            (vehicle.speed_kmh ?: 0.0) < 80.0 -> "正常行驶中"
+            (vehicle.speed_kmh ?: 0.0) < 120.0 -> "在高速上飞驰"
+            else -> "车速很快，注意安全"
+        }
+        if (speedText != null) {
+            paragraphs.add(StoryParagraphData("🚗", speedText))
+        }
+    }
+
+    if (mic != null) {
+        val noiseText = when {
+            (mic.noise_level ?: 0.0) > 0.7 -> "车内有些吵闹"
+            (mic.voice_count ?: 0) > 2 -> "大家在聊天"
+            (mic.has_voice == true) -> "有人在说话"
+            else -> null
+        }
+        if (noiseText != null) {
+            paragraphs.add(StoryParagraphData("🎙️", noiseText))
+        }
+    }
+
+    if (paragraphs.isEmpty()) {
+        paragraphs.add(StoryParagraphData("👁️", "正在感知周围环境..."))
+    }
+
+    return PerceptionStory(paragraphs)
 }

@@ -14,7 +14,7 @@
       "template_id": "TPL_001",
       "scene_type": "morning_commute",
       "name": "早晨通勤",
-      "description": "工作日早晨，独自开车上班",
+      "description": "早晨出发，独自开车上路",
       "category": "time",
       "priority": 1,
       "intent": {
@@ -104,7 +104,7 @@
       "template_id": "TPL_003",
       "scene_type": "road_trip",
       "name": "朋友出游",
-      "description": "周末和朋友一起开车出游",
+      "description": "和朋友一起开车出游",
       "category": "social",
       "priority": 2,
       "intent": {
@@ -368,7 +368,7 @@
       "template_id": "TPL_008",
       "scene_type": "morning_commute",
       "name": "周五早晨",
-      "description": "周五早晨上班，心情愉快",
+      "description": "早晨上班，心情愉快",
       "category": "time",
       "priority": 1,
       "intent": {
@@ -726,7 +726,7 @@
       "template_id": "TPL_016",
       "scene_type": "night_drive",
       "name": "周末夜游",
-      "description": "周末夜晚兜风",
+      "description": "夜晚兜风，享受自由时光",
       "category": "time",
       "priority": 1,
       "intent": {
@@ -1875,7 +1875,7 @@
       "template_id": "TPL_043",
       "scene_type": "family_outing",
       "name": "周末购物",
-      "description": "周末带家人购物",
+      "description": "带家人一起购物出行",
       "category": "social",
       "priority": 1,
       "intent": {
@@ -1916,7 +1916,7 @@
       "template_id": "TPL_044",
       "scene_type": "family_outing",
       "name": "公园野餐",
-      "description": "周末公园野餐",
+      "description": "去公园野餐，轻松惬意",
       "category": "social",
       "priority": 1,
       "intent": {
@@ -3021,7 +3021,7 @@
       "template_id": "TPL_071",
       "scene_type": "road_trip",
       "name": "春季郊游",
-      "description": "春天周末郊游",
+      "description": "春天出门郊游，心情舒畅",
       "category": "special",
       "priority": 1,
       "intent": {

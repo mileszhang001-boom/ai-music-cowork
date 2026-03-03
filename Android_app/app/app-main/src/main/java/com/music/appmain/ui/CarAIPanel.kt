@@ -98,7 +98,8 @@ fun CarAIPanel(
     onPlayTrack: (Int) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
-    // 从 EffectCommands 提取主题色
+    val journeyState = rememberJourneyTimelineState()
+
     val themeColors = remember(effectCommands) {
         val colors = effectCommands?.commands?.lighting?.colors?.take(2)
         if (colors != null && colors.size >= 2) {
@@ -117,7 +118,18 @@ fun CarAIPanel(
             )
         }
     }
-    
+
+    LaunchedEffect(sceneDescriptor?.scene_id) {
+        journeyState.recordMoment(sceneDescriptor)
+    }
+
+    LaunchedEffect(playerState) {
+        if (playerState is PlayerState.Playing) {
+            val track = playerState.track
+            journeyState.recordPlayedTrack(track.title, track.artist)
+        }
+    }
+
     // 动画状态
     val infiniteTransition = rememberInfiniteTransition(label = "background")
     
@@ -291,6 +303,7 @@ fun CarAIPanel(
             LeftInfoPanel(
                 signals = signals,
                 sceneDescriptor = sceneDescriptor,
+                journeyState = journeyState,
                 modifier = Modifier
                     .weight(0.32f)
                     .fillMaxHeight()
@@ -331,35 +344,39 @@ fun CarAIPanel(
     }
 }
 
-/**
- * 左侧信息面板 - 固定高度分区，各自滚动
- */
 @Composable
 private fun LeftInfoPanel(
     signals: StandardizedSignals?,
     sceneDescriptor: SceneDescriptor?,
+    journeyState: JourneyTimelineState,
     modifier: Modifier = Modifier
 ) {
     Column(
         modifier = modifier.fillMaxHeight(),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        // 感知层 - 60% 高度，可滚动
         GlassCard(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(0.6f)
+                .weight(0.35f)
         ) {
             Layer1DataPanel(signals = signals)
         }
-        
-        // 推理层 - 40% 高度，可滚动
+
         GlassCard(
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(0.4f)
+                .weight(0.30f)
         ) {
             Layer2DataPanel(sceneDescriptor = sceneDescriptor)
+        }
+
+        GlassCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(0.35f)
+        ) {
+            JourneyTimelinePanel(state = journeyState)
         }
     }
 }
@@ -527,7 +544,8 @@ private fun GlassCard(
             .background(
                 color = CarTheme.GlassBg,
                 shape = RoundedCornerShape(24.dp)
-            )
+            ),
+        propagateMinConstraints = true
     ) {
         content()
     }
