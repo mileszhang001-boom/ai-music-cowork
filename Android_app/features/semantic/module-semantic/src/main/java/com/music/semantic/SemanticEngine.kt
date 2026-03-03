@@ -43,7 +43,7 @@ class SemanticEngine(
     val engineStateFlow: StateFlow<EngineState> = _engineStateFlow.asStateFlow()
     
     private var currentDescriptor: SceneDescriptor? = null
-    
+
     var isInitialized = false
         private set
     
@@ -104,17 +104,17 @@ class SemanticEngine(
     
     private fun shouldUpdateScene(newDescriptor: SceneDescriptor): Boolean {
         val current = currentDescriptor ?: return true
-        
+
         if (current.scene_type != newDescriptor.scene_type) {
             return true
         }
-        
+
         val valenceDiff = abs(current.intent.mood.valence - newDescriptor.intent.mood.valence)
         val arousalDiff = abs(current.intent.mood.arousal - newDescriptor.intent.mood.arousal)
         val energyDiff = abs(current.intent.energy_level - newDescriptor.intent.energy_level)
-        
+
         val changeMagnitude = (valenceDiff + arousalDiff + energyDiff) / 3.0
-        
+
         return changeMagnitude >= debounceThreshold
     }
     

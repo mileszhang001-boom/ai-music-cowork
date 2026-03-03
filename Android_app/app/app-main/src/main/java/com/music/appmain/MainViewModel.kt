@@ -808,7 +808,10 @@ class MainViewModel(
         }
         
         viewModelScope.launch {
-            semanticEngine?.processSignals(simulatedSignals)
+            val result = semanticEngine?.processSignals(simulatedSignals)
+            result?.getOrNull()?.let { descriptor ->
+                semanticEngine?.forceUpdate(descriptor)
+            }
         }
     }
     

@@ -48,7 +48,7 @@ data class CachedSample(
  */
 class ConsistencyValidator(
     private val confidenceTolerance: Double = 0.05,
-    private val maxWaitSamples: Int = 2,
+    private val maxWaitSamples: Int = 4,
     private val timeoutMs: Long = 10000L
 ) {
     private val lock = ReentrantLock()
