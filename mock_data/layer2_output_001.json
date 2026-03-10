@@ -1,0 +1,14 @@
+{
+  "adjustment_id": "l2_adj_001",
+  "timestamp": "2026-02-28T08:45:00Z",
+  "scene_id": "scene_morning_commute_001",
+  "trigger": "traffic_slowdown",
+  "adjustments": {
+    "energy_curve_modifier": -0.15,
+    "tempo_preference": "medium",
+    "light_brightness_modifier": -0.2
+  },
+  "reason": "Traffic speed decreased below 20km/h, lowering energy to reduce stress.",
+  "latency_ms": 1200,
+  "status": "applied"
+}

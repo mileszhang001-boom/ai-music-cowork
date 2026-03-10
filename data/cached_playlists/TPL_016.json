@@ -1,0 +1,489 @@
+{
+  "template_id": "TPL_016",
+  "template_name": "周末夜游",
+  "scene_type": "night_drive",
+  "category": "time",
+  "generated_at": "2026-03-01T13:30:47.388Z",
+  "playlist": [
+    {
+      "id": "5afaa9d3-3a9d-4e75-83cd-1605e6d99e26",
+      "title": "Electric Feel",
+      "artist": "MGMT",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 110,
+      "energy": 0.72,
+      "valence": 0.68,
+      "duration_ms": 228480,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/MGMT - Electric Feel.mp3",
+      "score": 80,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.68",
+        "tempo:110",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "eb518a73-a0fe-42e7-b790-da5988ada3ea",
+      "title": "Angel",
+      "artist": "Massive Attack",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.32,
+      "duration_ms": 323448,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Massive Attack - Angel.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.45",
+        "tempo:92",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "cb91231b-2d90-41f5-a734-873fc9d8f03c",
+      "title": "Paradise Circus",
+      "artist": "Massive Attack",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.32,
+      "duration_ms": 297816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Massive Attack - Paradise Circus.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.45",
+        "tempo:92",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "a358caa4-0364-4a55-8589-55c39547a33e",
+      "title": "Teardrop",
+      "artist": "Massive Attack",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 284232,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Massive Attack - Teardrop.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.35",
+        "tempo:92",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "eb8342e5-537b-47fe-aff9-ca3e357b6ca2",
+      "title": "Nightcall",
+      "artist": "Kavinsky",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 110,
+      "energy": 0.65,
+      "valence": 0.4,
+      "duration_ms": 256896,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Kavinsky - Nightcall.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:electronic",
+        "tempo:110",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "aa141ecf-b324-4013-925b-bf4ac738c46d",
+      "title": "Get Lucky",
+      "artist": "Daft Punk",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 116,
+      "energy": 0.78,
+      "valence": 0.85,
+      "duration_ms": 248664,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Daft Punk - Get Lucky.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.85",
+        "tempo:116",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "fcf8beda-f30c-462d-9cd3-58bc9322a976",
+      "title": "Walking on a Dream",
+      "artist": "Empire of the Sun",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 120,
+      "energy": 0.78,
+      "valence": 0.85,
+      "duration_ms": 199440,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Empire of the Sun - Walking on a Dream.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.85",
+        "tempo:120",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "8cd6275f-2c49-4506-9541-07b3937e3905",
+      "title": "Midnight City",
+      "artist": "M83",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 243216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/M83 - Midnight City.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.78",
+        "tempo:120",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "c0b1f470-8737-4ba4-b38e-2e266c614de6",
+      "title": "Strobe",
+      "artist": "Deadmau5",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 128,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 636912,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deadmau5 - Strobe.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:electronic",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "3702c834-e110-4ad4-97ac-99207744b311",
+      "title": "Titanium",
+      "artist": "David Guetta ft Sia",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 126,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 245280,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/David Guetta ft Sia - Titanium.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.78",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "b835e951-2a21-4d8f-bb20-878f192c3fee",
+      "title": "Animals",
+      "artist": "Martin Garrix",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 128,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 191616,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Martin Garrix - Animals.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.78",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "ece0392f-ee97-451e-b3ee-3d825765b0f7",
+      "title": "Leaving on a Jet Plane",
+      "artist": "John Denver",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.6,
+      "duration_ms": 220368,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/John Denver - Leaving on a Jet Plane.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.45",
+        "valence:0.60",
+        "tempo:92",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "f27b0666-cc01-475b-ae0e-cc261437a95d",
+      "title": "Fly Me to the Moon",
+      "artist": "Frank Sinatra",
+      "album": null,
+      "genre": "jazz",
+      "bpm": 96,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 147216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Frank Sinatra - Fly Me to the Moon.mp3",
+      "score": 66,
+      "match_reasons": [
+        "energy:0.45",
+        "valence:0.72",
+        "tempo:96",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "9f6128d8-ea3f-4b92-aa05-f3868e0d438c",
+      "title": "Levels",
+      "artist": "Avicii",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 128,
+      "energy": 0.92,
+      "valence": 0.85,
+      "duration_ms": 198408,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Avicii - Levels.mp3",
+      "score": 65,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.85",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "ffef8ee5-3e50-42e6-ba07-2342601f498a",
+      "title": "夜来香",
+      "artist": "邓丽君",
+      "album": null,
+      "genre": "pop",
+      "bpm": 84,
+      "energy": 0.35,
+      "valence": 0.62,
+      "duration_ms": 192912,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/邓丽君 - 夜来香.mp3",
+      "score": 65,
+      "match_reasons": [
+        "energy:0.35",
+        "valence:0.62",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "63ceb831-aaa2-4ee4-b907-4a987dad1d62",
+      "title": "野狼王",
+      "artist": "王绎龙",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 138,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 224592,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/王绎龙 - 野狼王.mp3",
+      "score": 62,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.78",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "e4bf49f4-70a4-4716-9e45-8d5ccc50ab19",
+      "title": "Heat Waves",
+      "artist": "Glass Animals",
+      "album": null,
+      "genre": "indie",
+      "bpm": 104,
+      "energy": 0.62,
+      "valence": 0.58,
+      "duration_ms": 235080,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Glass Animals - Heat Waves.mp3",
+      "score": 61,
+      "match_reasons": [
+        "valence:0.58",
+        "tempo:104",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "8eb851b0-3be0-4c7d-8422-adcebf9cb70d",
+      "title": "兄弟",
+      "artist": "任贤齐",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.72,
+      "duration_ms": 292848,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/任贤齐 - 兄弟.mp3",
+      "score": 60,
+      "match_reasons": [
+        "valence:0.72",
+        "tempo:92",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "f7d317db-c2ae-4ec0-abe9-df074917d907",
+      "title": "Free Fallin",
+      "artist": "Tom Petty",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.72,
+      "duration_ms": 254712,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Tom Petty - Free Fallin.mp3",
+      "score": 60,
+      "match_reasons": [
+        "valence:0.72",
+        "tempo:92",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "8c0fef4e-19c1-4f5e-875a-c55e10f71b6b",
+      "title": "Come Down",
+      "artist": "Anderson Paak",
+      "album": null,
+      "genre": "rnb",
+      "bpm": 92,
+      "energy": 0.72,
+      "valence": 0.65,
+      "duration_ms": 174600,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Anderson Paak - Come Down.mp3",
+      "score": 60,
+      "match_reasons": [
+        "valence:0.65",
+        "tempo:92",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "b2118e87-2701-4ecf-bdd1-2acea8c0a7e5",
+      "title": "Stand by Me",
+      "artist": "Ben E King",
+      "album": null,
+      "genre": "soul",
+      "bpm": 116,
+      "energy": 0.65,
+      "valence": 0.72,
+      "duration_ms": 177504,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Ben E King - Stand by Me.mp3",
+      "score": 60,
+      "match_reasons": [
+        "valence:0.72",
+        "tempo:116",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "e07169e5-8927-466e-b604-32f6a2dac1d5",
+      "title": "Rhythm of the Rain",
+      "artist": "The Cascades",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 157008,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cascades - Rhythm of the Rain.mp3",
+      "score": 60,
+      "match_reasons": [
+        "energy:0.45",
+        "tempo:92",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "dd7a5c5b-2a74-4855-89f2-fdaa8e6306f4",
+      "title": "光明",
+      "artist": "汪峰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.72,
+      "valence": 0.68,
+      "duration_ms": 324336,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/汪峰 - 光明.mp3",
+      "score": 60,
+      "match_reasons": [
+        "valence:0.68",
+        "tempo:92",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "270e53fb-d772-4df1-957c-4bb9fd9a1b91",
+      "title": "Fool in the Rain",
+      "artist": "Led Zeppelin",
+      "album": null,
+      "genre": "rock",
+      "bpm": 116,
+      "energy": 0.72,
+      "valence": 0.65,
+      "duration_ms": 370944,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Led Zeppelin - Fool in the Rain.mp3",
+      "score": 60,
+      "match_reasons": [
+        "valence:0.65",
+        "tempo:116",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "7a35b40e-87de-4505-bfbf-37d0369e6c00",
+      "title": "Party Rock Anthem",
+      "artist": "LMFAO",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 130,
+      "energy": 0.95,
+      "valence": 0.98,
+      "duration_ms": 375552,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/LMFAO - Party Rock Anthem.mp3",
+      "score": 60,
+      "match_reasons": [
+        "genre:electronic",
+        "scene:night_drive"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 25,
+    "avg_score": 67,
+    "total_duration_ms": 6502080,
+    "total_duration_minutes": 108
+  },
+  "mood_mapping": {
+    "valence": 0.65,
+    "arousal": 0.4,
+    "energy": 0.4
+  },
+  "music_requirements": {
+    "genres": [
+      "electronic",
+      "chill"
+    ],
+    "tempo": "moderate",
+    "mood_characteristics": {
+      "valence_level": "positive",
+      "energy_level": "low_moderate",
+      "description": "周末夜晚氛围，适合轻松的电子音乐"
+    }
+  }
+}

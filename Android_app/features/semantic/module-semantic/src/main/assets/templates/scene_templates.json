@@ -1,0 +1,703 @@
+[
+  {
+    "template_id": "TPL_001",
+    "scene_type": "morning_commute",
+    "name": "早晨通勤",
+    "description": "工作日早晨通勤场景，轻松唤醒状态",
+    "style_tags": ["清新", "活力", "希望", "阳光"],
+    "intent": {
+      "mood": { "valence": 0.65, "arousal": 0.45 },
+      "energy_level": 0.45,
+      "atmosphere": "fresh_morning",
+      "constraints": { "max_volume_db": -5 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "pop", "indie"],
+        "tempo": "medium",
+        "vocal_style": "any",
+        "preferred_bpm": [100, 120],
+        "mood_keywords": ["清新", "活力", "希望", "阳光", "早晨"]
+      },
+      "lighting": {
+        "color_theme": "cool",
+        "pattern": "breathing",
+        "intensity": 0.4
+      },
+      "audio": {
+        "preset": "vocal_clarity"
+      }
+    },
+    "triggers": {
+      "time_range": ["06:00", "09:00"],
+      "weekdays": [1, 2, 3, 4, 5],
+      "min_speed": 20
+    },
+    "priority": 1
+  },
+  {
+    "template_id": "TPL_002",
+    "scene_type": "night_drive",
+    "name": "深夜驾驶",
+    "description": "夜间安静驾驶，放松心情",
+    "style_tags": ["静谧", "深邃", "思考", "星空"],
+    "intent": {
+      "mood": { "valence": 0.45, "arousal": 0.2 },
+      "energy_level": 0.2,
+      "atmosphere": "peaceful_night",
+      "constraints": { "max_volume_db": -10 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "jazz", "ambient", "rnb"],
+        "tempo": "slow",
+        "vocal_style": "any",
+        "preferred_bpm": [70, 95],
+        "mood_keywords": ["静谧", "深邃", "思考", "星空", "夜晚"]
+      },
+      "lighting": {
+        "color_theme": "night",
+        "pattern": "static",
+        "intensity": 0.2
+      },
+      "audio": {
+        "preset": "night_mode"
+      }
+    },
+    "triggers": {
+      "time_range": ["22:00", "05:00"],
+      "max_passengers": 1
+    },
+    "priority": 1
+  },
+  {
+    "template_id": "TPL_003",
+    "scene_type": "road_trip",
+    "name": "朋友出游",
+    "description": "多人出行，欢乐氛围",
+    "style_tags": ["欢乐", "自由", "青春", "热血"],
+    "intent": {
+      "mood": { "valence": 0.85, "arousal": 0.7 },
+      "energy_level": 0.7,
+      "atmosphere": "fun_road_trip",
+      "constraints": { "max_volume_db": 0 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "pop", "rock", "electronic"],
+        "tempo": "fast",
+        "vocal_style": "any",
+        "preferred_bpm": [120, 145],
+        "mood_keywords": ["欢乐", "自由", "青春", "热血", "旅行"]
+      },
+      "lighting": {
+        "color_theme": "energetic",
+        "pattern": "music_sync",
+        "intensity": 0.7
+      },
+      "audio": {
+        "preset": "party"
+      }
+    },
+    "triggers": {
+      "min_passengers": 2,
+      "min_speed": 60
+    },
+    "priority": 2
+  },
+  {
+    "template_id": "TPL_004",
+    "scene_type": "romantic_date",
+    "name": "浪漫约会",
+    "description": "情侣出行，浪漫氛围",
+    "style_tags": ["浪漫", "温柔", "甜蜜", "心动"],
+    "intent": {
+      "mood": { "valence": 0.72, "arousal": 0.28 },
+      "energy_level": 0.28,
+      "atmosphere": "romantic",
+      "constraints": { "max_volume_db": -8 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "rnb", "ballad", "soul"],
+        "tempo": "slow",
+        "vocal_style": "any",
+        "preferred_bpm": [70, 100],
+        "mood_keywords": ["浪漫", "温柔", "甜蜜", "心动", "爱情"]
+      },
+      "lighting": {
+        "color_theme": "romantic",
+        "pattern": "breathing",
+        "intensity": 0.5
+      },
+      "audio": {
+        "preset": "standard"
+      }
+    },
+    "triggers": {
+      "passenger_count": 1,
+      "time_range": ["18:00", "23:59"]
+    },
+    "priority": 2
+  },
+  {
+    "template_id": "TPL_005",
+    "scene_type": "family_outing",
+    "name": "家庭出行",
+    "description": "带家人出行，温馨氛围",
+    "style_tags": ["温馨", "和谐", "亲情", "幸福"],
+    "intent": {
+      "mood": { "valence": 0.72, "arousal": 0.48 },
+      "energy_level": 0.48,
+      "atmosphere": "family_warm",
+      "constraints": { "avoid_explicit": true, "max_volume_db": -5 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "pop", "folk"],
+        "tempo": "medium",
+        "vocal_style": "any",
+        "preferred_bpm": [95, 120],
+        "mood_keywords": ["温馨", "和谐", "亲情", "幸福", "家庭"]
+      },
+      "lighting": {
+        "color_theme": "warm",
+        "pattern": "breathing",
+        "intensity": 0.5
+      },
+      "audio": {
+        "preset": "standard"
+      }
+    },
+    "triggers": {
+      "min_passengers": 2,
+      "has_children": true
+    },
+    "priority": 2
+  },
+  {
+    "template_id": "TPL_006",
+    "scene_type": "focus_work",
+    "name": "车内办公",
+    "description": "停车休息或车内办公",
+    "style_tags": ["专注", "平静", "清晰", "效率"],
+    "intent": {
+      "mood": { "valence": 0.5, "arousal": 0.25 },
+      "energy_level": 0.25,
+      "atmosphere": "focused",
+      "constraints": { "max_volume_db": -15 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["ambient", "classical", "lo-fi"],
+        "tempo": "slow",
+        "vocal_style": "instrumental",
+        "preferred_bpm": [60, 85],
+        "mood_keywords": ["专注", "平静", "清晰", "效率", "工作"]
+      },
+      "lighting": {
+        "color_theme": "focus",
+        "pattern": "static",
+        "intensity": 0.3
+      },
+      "audio": {
+        "preset": "focus"
+      }
+    },
+    "triggers": {
+      "vehicle_speed": 0,
+      "engine_running": true
+    },
+    "priority": 1
+  },
+  {
+    "template_id": "TPL_007",
+    "scene_type": "traffic_jam",
+    "name": "交通拥堵",
+    "description": "堵车场景，缓解焦躁",
+    "style_tags": ["平静", "耐心", "放松", "舒缓"],
+    "intent": {
+      "mood": { "valence": 0.52, "arousal": 0.22 },
+      "energy_level": 0.22,
+      "atmosphere": "calm_waiting",
+      "constraints": { "max_volume_db": -8 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "pop", "indie", "acoustic"],
+        "tempo": "medium",
+        "vocal_style": "any",
+        "preferred_bpm": [85, 110],
+        "mood_keywords": ["平静", "耐心", "放松", "舒缓", "等待"]
+      },
+      "lighting": {
+        "color_theme": "calm",
+        "pattern": "breathing",
+        "intensity": 0.4
+      },
+      "audio": {
+        "preset": "standard"
+      }
+    },
+    "triggers": {
+      "vehicle_speed": { "max": 20 },
+      "traffic_density": "high"
+    },
+    "priority": 3
+  },
+  {
+    "template_id": "TPL_008",
+    "scene_type": "fatigue_alert",
+    "name": "疲劳提醒",
+    "description": "检测到疲劳，紧急唤醒",
+    "style_tags": ["激昂", "振奋", "力量", "觉醒"],
+    "intent": {
+      "mood": { "valence": 0.65, "arousal": 0.85 },
+      "energy_level": 0.85,
+      "atmosphere": "alert",
+      "constraints": { "max_volume_db": 3 },
+      "transition": { "type": "urgent", "duration_ms": 500 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "rock", "electronic", "pop"],
+        "tempo": "fast",
+        "vocal_style": "any",
+        "preferred_bpm": [130, 160],
+        "mood_keywords": ["激昂", "振奋", "力量", "觉醒", "能量"]
+      },
+      "lighting": {
+        "color_theme": "energetic",
+        "pattern": "pulse",
+        "intensity": 0.9
+      },
+      "audio": {
+        "preset": "bass_boost"
+      }
+    },
+    "triggers": {
+      "fatigue_level": { "min": 0.7 }
+    },
+    "priority": 0,
+    "announcement": {
+      "text": "检测到您可能有些疲劳，建议休息一下。已为您切换到提神音乐。",
+      "voice_style": "warm_female"
+    }
+  },
+  {
+    "template_id": "TPL_009",
+    "scene_type": "rainy_night",
+    "name": "雨夜行车",
+    "description": "雨天夜间，安静氛围",
+    "style_tags": ["忧郁", "诗意", "孤独", "沉思"],
+    "intent": {
+      "mood": { "valence": 0.35, "arousal": 0.18 },
+      "energy_level": 0.18,
+      "atmosphere": "rainy_peaceful",
+      "constraints": { "max_volume_db": -10 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "jazz", "ambient", "ballad"],
+        "tempo": "slow",
+        "vocal_style": "any",
+        "preferred_bpm": [65, 90],
+        "mood_keywords": ["忧郁", "诗意", "孤独", "沉思", "雨天"]
+      },
+      "lighting": {
+        "color_theme": "night",
+        "pattern": "static",
+        "intensity": 0.2
+      },
+      "audio": {
+        "preset": "night_mode"
+      }
+    },
+    "triggers": {
+      "weather": ["rain", "storm"],
+      "time_range": ["19:00", "06:00"]
+    },
+    "priority": 2
+  },
+  {
+    "template_id": "TPL_010",
+    "scene_type": "party",
+    "name": "派对模式",
+    "description": "停车派对，高能氛围",
+    "style_tags": ["狂欢", "热烈", "节奏", "释放"],
+    "intent": {
+      "mood": { "valence": 0.92, "arousal": 0.92 },
+      "energy_level": 0.92,
+      "atmosphere": "party",
+      "constraints": { "max_volume_db": 5 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["electronic", "hip-hop", "pop", "chinese_pop"],
+        "tempo": "fast",
+        "vocal_style": "any",
+        "preferred_bpm": [128, 150],
+        "mood_keywords": ["狂欢", "热烈", "节奏", "释放", "派对"]
+      },
+      "lighting": {
+        "color_theme": "energetic",
+        "pattern": "music_sync",
+        "intensity": 1.0
+      },
+      "audio": {
+        "preset": "party"
+      }
+    },
+    "triggers": {
+      "vehicle_speed": 0,
+      "min_passengers": 3,
+      "manual_activation": true
+    },
+    "priority": 3
+  },
+  {
+    "template_id": "TPL_011",
+    "scene_type": "highway_cruise",
+    "name": "高速巡航",
+    "description": "高速公路稳定行驶",
+    "style_tags": ["自由", "畅快", "远方", "征途"],
+    "intent": {
+      "mood": { "valence": 0.62, "arousal": 0.52 },
+      "energy_level": 0.52,
+      "atmosphere": "steady_cruise",
+      "constraints": { "max_volume_db": 0 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "rock", "pop", "electronic"],
+        "tempo": "medium",
+        "vocal_style": "any",
+        "preferred_bpm": [110, 135],
+        "mood_keywords": ["自由", "畅快", "远方", "征途", "公路"]
+      },
+      "lighting": {
+        "color_theme": "cool",
+        "pattern": "wave",
+        "intensity": 0.5
+      },
+      "audio": {
+        "preset": "concert"
+      }
+    },
+    "triggers": {
+      "min_speed": 80,
+      "max_speed": 120,
+      "highway": true
+    },
+    "priority": 2
+  },
+  {
+    "template_id": "TPL_012",
+    "scene_type": "sunset_drive",
+    "name": "黄昏兜风",
+    "description": "傍晚日落，惬意驾驶",
+    "style_tags": ["惬意", "浪漫", "金色", "回忆"],
+    "intent": {
+      "mood": { "valence": 0.72, "arousal": 0.38 },
+      "energy_level": 0.38,
+      "atmosphere": "sunset_relax",
+      "constraints": { "max_volume_db": -5 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "indie", "folk", "pop"],
+        "tempo": "medium",
+        "vocal_style": "any",
+        "preferred_bpm": [90, 115],
+        "mood_keywords": ["惬意", "浪漫", "金色", "回忆", "黄昏"]
+      },
+      "lighting": {
+        "color_theme": "warm",
+        "pattern": "breathing",
+        "intensity": 0.6
+      },
+      "audio": {
+        "preset": "standard"
+      }
+    },
+    "triggers": {
+      "time_range": ["17:00", "19:30"]
+    },
+    "priority": 2
+  },
+  {
+    "template_id": "TPL_013",
+    "scene_type": "kids_mode",
+    "name": "儿童模式",
+    "description": "有儿童乘客，适合全家",
+    "style_tags": ["童趣", "欢快", "纯真", "可爱"],
+    "intent": {
+      "mood": { "valence": 0.82, "arousal": 0.58 },
+      "energy_level": 0.48,
+      "atmosphere": "kids_friendly",
+      "constraints": { "avoid_explicit": true, "max_volume_db": -5 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "children", "pop", "soundtrack"],
+        "tempo": "medium",
+        "vocal_style": "any",
+        "preferred_bpm": [100, 125],
+        "mood_keywords": ["童趣", "欢快", "纯真", "可爱", "快乐"]
+      },
+      "lighting": {
+        "color_theme": "warm",
+        "pattern": "wave",
+        "intensity": 0.5
+      },
+      "audio": {
+        "preset": "standard"
+      }
+    },
+    "triggers": {
+      "has_children": true
+    },
+    "priority": 2
+  },
+  {
+    "template_id": "TPL_014",
+    "scene_type": "workout",
+    "name": "运动健身",
+    "description": "停车健身，激励氛围",
+    "style_tags": ["热血", "拼搏", "突破", "汗水"],
+    "intent": {
+      "mood": { "valence": 0.82, "arousal": 0.82 },
+      "energy_level": 0.82,
+      "atmosphere": "workout",
+      "constraints": { "max_volume_db": 3 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["electronic", "hip-hop", "rock", "chinese_pop"],
+        "tempo": "fast",
+        "vocal_style": "any",
+        "preferred_bpm": [130, 160],
+        "mood_keywords": ["热血", "拼搏", "突破", "汗水", "运动"]
+      },
+      "lighting": {
+        "color_theme": "energetic",
+        "pattern": "pulse",
+        "intensity": 0.8
+      },
+      "audio": {
+        "preset": "bass_boost"
+      }
+    },
+    "triggers": {
+      "vehicle_speed": 0,
+      "manual_activation": true
+    },
+    "priority": 3
+  },
+  {
+    "template_id": "TPL_015",
+    "scene_type": "meditation",
+    "name": "冥想休息",
+    "description": "停车冥想，深度放松",
+    "style_tags": ["宁静", "空灵", "治愈", "禅意"],
+    "intent": {
+      "mood": { "valence": 0.58, "arousal": 0.08 },
+      "energy_level": 0.08,
+      "atmosphere": "meditation",
+      "constraints": { "max_volume_db": -20 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["ambient", "nature", "meditation"],
+        "tempo": "slow",
+        "vocal_style": "instrumental",
+        "preferred_bpm": [50, 70],
+        "mood_keywords": ["宁静", "空灵", "治愈", "禅意", "冥想"]
+      },
+      "lighting": {
+        "color_theme": "calm",
+        "pattern": "breathing",
+        "intensity": 0.1
+      },
+      "audio": {
+        "preset": "night_mode"
+      }
+    },
+    "triggers": {
+      "vehicle_speed": 0,
+      "manual_activation": true
+    },
+    "priority": 3
+  },
+  {
+    "template_id": "TPL_016",
+    "scene_type": "weekend_leisure",
+    "name": "周末休闲",
+    "description": "周末出行，轻松惬意",
+    "style_tags": ["悠闲", "自在", "慵懒", "舒适"],
+    "intent": {
+      "mood": { "valence": 0.72, "arousal": 0.38 },
+      "energy_level": 0.38,
+      "atmosphere": "weekend_relax",
+      "constraints": { "max_volume_db": -3 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "pop", "indie", "folk"],
+        "tempo": "medium",
+        "vocal_style": "any",
+        "preferred_bpm": [88, 115],
+        "mood_keywords": ["悠闲", "自在", "慵懒", "舒适", "周末"]
+      },
+      "lighting": {
+        "color_theme": "warm",
+        "pattern": "breathing",
+        "intensity": 0.5
+      },
+      "audio": {
+        "preset": "standard"
+      }
+    },
+    "triggers": {
+      "weekdays": [0, 6]
+    },
+    "priority": 2
+  },
+  {
+    "template_id": "TPL_017",
+    "scene_type": "rainy_day",
+    "name": "雨天行车",
+    "description": "白天雨天，舒适驾驶",
+    "style_tags": ["舒缓", "安静", "湿润", "清新"],
+    "intent": {
+      "mood": { "valence": 0.48, "arousal": 0.28 },
+      "energy_level": 0.28,
+      "atmosphere": "rainy_comfortable",
+      "constraints": { "max_volume_db": -5 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "pop", "indie", "jazz"],
+        "tempo": "medium",
+        "vocal_style": "any",
+        "preferred_bpm": [80, 105],
+        "mood_keywords": ["舒缓", "安静", "湿润", "清新", "雨天"]
+      },
+      "lighting": {
+        "color_theme": "calm",
+        "pattern": "breathing",
+        "intensity": 0.4
+      },
+      "audio": {
+        "preset": "standard"
+      }
+    },
+    "triggers": {
+      "weather": ["rain", "drizzle"],
+      "time_range": ["06:00", "19:00"]
+    },
+    "priority": 2
+  },
+  {
+    "template_id": "TPL_018",
+    "scene_type": "late_night_solo",
+    "name": "深夜独行",
+    "description": "深夜独自驾驶，思考时刻",
+    "style_tags": ["孤独", "内省", "深邃", "自由"],
+    "intent": {
+      "mood": { "valence": 0.38, "arousal": 0.18 },
+      "energy_level": 0.18,
+      "atmosphere": "introspective",
+      "constraints": { "max_volume_db": -8 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "ambient", "post-rock", "electronic"],
+        "tempo": "slow",
+        "vocal_style": "instrumental",
+        "preferred_bpm": [60, 85],
+        "mood_keywords": ["孤独", "内省", "深邃", "自由", "夜晚"]
+      },
+      "lighting": {
+        "color_theme": "night",
+        "pattern": "static",
+        "intensity": 0.2
+      },
+      "audio": {
+        "preset": "night_mode"
+      }
+    },
+    "triggers": {
+      "time_range": ["23:00", "05:00"],
+      "max_passengers": 1
+    },
+    "priority": 1
+  },
+  {
+    "template_id": "TPL_019",
+    "scene_type": "morning_energy",
+    "name": "晨间活力",
+    "description": "早晨需要唤醒能量",
+    "style_tags": ["活力", "振奋", "阳光", "希望"],
+    "intent": {
+      "mood": { "valence": 0.72, "arousal": 0.62 },
+      "energy_level": 0.62,
+      "atmosphere": "morning_energy",
+      "constraints": { "max_volume_db": 0 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "pop", "rock", "electronic"],
+        "tempo": "fast",
+        "vocal_style": "any",
+        "preferred_bpm": [115, 140],
+        "mood_keywords": ["活力", "振奋", "阳光", "希望", "早晨"]
+      },
+      "lighting": {
+        "color_theme": "energetic",
+        "pattern": "wave",
+        "intensity": 0.6
+      },
+      "audio": {
+        "preset": "standard"
+      }
+    },
+    "triggers": {
+      "time_range": ["06:00", "08:00"],
+      "user_preference": "high_energy_morning"
+    },
+    "priority": 2
+  },
+  {
+    "template_id": "TPL_020",
+    "scene_type": "default",
+    "name": "默认场景",
+    "description": "默认基础场景",
+    "style_tags": ["舒适", "自然", "轻松"],
+    "intent": {
+      "mood": { "valence": 0.52, "arousal": 0.42 },
+      "energy_level": 0.42,
+      "atmosphere": "neutral",
+      "constraints": { "max_volume_db": -5 }
+    },
+    "hints": {
+      "music": {
+        "genres": ["chinese_pop", "pop"],
+        "tempo": "medium",
+        "vocal_style": "any",
+        "preferred_bpm": [95, 120],
+        "mood_keywords": ["舒适", "自然", "轻松"]
+      },
+      "lighting": {
+        "color_theme": "calm",
+        "pattern": "breathing",
+        "intensity": 0.4
+      },
+      "audio": {
+        "preset": "standard"
+      }
+    },
+    "triggers": {},
+    "priority": 10
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "scene_id": "scene_late_night_drive_001",
+  "timestamp": "2026-03-06T01:15:00Z",
+  "intent": "night_cruising",
+  "confidence": 0.96,
+  "source": "layer3_slow_path",
+  "persona": {
+    "id": "persona_night_owl",
+    "description": "夜车司机",
+    "preferences": {
+      "liked_genres": ["synthwave", "retrowave", "electronic"],
+      "disliked_genres": ["country", "folk"],
+      "vibe": "cool"
+    }
+  },
+  "context": {
+    "time": "01:15",
+    "weather": "clear",
+    "oms": {
+      "occupants": 1,
+      "type": "adult"
+    },
+    "mic": "silent"
+  },
+  "announcement": {
+    "tts_text": "夜深了，让合成器浪潮陪你穿梭在这座城市。",
+    "voice_type": "cool_ai"
+  },
+  "orchestration": {
+    "transition": {
+      "type": "fade",
+      "duration_ms": 5000
+    },
+    "energy_curve": [
+      {"time_offset_s": 0, "energy_level": 0.5},
+      {"time_offset_s": 300, "energy_level": 0.6},
+      {"time_offset_s": 600, "energy_level": 0.65},
+      {"time_offset_s": 900, "energy_level": 0.6},
+      {"time_offset_s": 1200, "energy_level": 0.55}
+    ],
+    "content_hints": {
+      "genres": ["synthwave", "electronic"],
+      "tempo": "medium",
+      "instrumental_only": true
+    },
+    "light_hints": {
+      "color_palette": ["#8A2BE2", "#00FFFF"],
+      "effect": "neon_glow",
+      "brightness": 0.6
+    },
+    "audio_hints": {
+      "eq_preset": "electronic",
+      "spatial_audio": "immersive_deep"
+    }
+  }
+}

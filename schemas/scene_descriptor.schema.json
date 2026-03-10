@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Scene Descriptor",
+  "type": "object",
+  "properties": {
+    "version": { "type": "string" },
+    "scene_id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "scene_name": { "type": "string" },
+    "scene_narrative": { "type": "string" },
+    "intent": {
+      "type": "object",
+      "properties": {
+        "mood": {
+          "type": "object",
+          "properties": {
+            "valence": { "type": "number" },
+            "arousal": { "type": "number" }
+          }
+        },
+        "energy_level": { "type": "number" },
+        "energy_curve": {
+          "type": "array",
+          "items": { "type": "number" }
+        },
+        "curve_duration_minutes": { "type": "integer" },
+        "atmosphere": { "type": "string" },
+        "social_context": { "type": "string" },
+        "trip_phase": { "type": "string" },
+        "trip_progress": { "type": "number" },
+        "constraints": {
+          "type": "object",
+          "properties": {
+            "content_rating": { "type": "string" },
+            "max_volume_db": { "type": "number" },
+            "avoid_sudden_changes": { "type": "boolean" },
+            "brightness_max": { "type": "number" }
+          }
+        },
+        "user_overrides": {
+          "type": "object",
+          "properties": {
+            "exclude_tags": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "preferred_language": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "transition": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string" },
+            "style": { "type": "string" },
+            "duration_sec": { "type": "integer" }
+          }
+        }
+      }
+    },
+    "hints": {
+      "type": "object",
+      "properties": {
+        "music": {
+          "type": "object",
+          "properties": {
+            "suggested_tags": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "suggested_tempo": {
+              "type": "array",
+              "items": { "type": "integer" }
+            },
+            "suggested_artists": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "suggested_vocal_style": { "type": "string" }
+          }
+        },
+        "lighting": {
+          "type": "object",
+          "properties": {
+            "suggested_palette": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "suggested_rhythm": { "type": "string" }
+          }
+        },
+        "audio": {
+          "type": "object",
+          "properties": {
+            "suggested_spatial": { "type": "string" },
+            "suggested_bass_level": { "type": "string" }
+          }
+        }
+      }
+    },
+    "announcement": {
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "timing": { "type": "string" },
+        "voice_style": { "type": "string" }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "confidence": { "type": "number" },
+        "source": { "type": "string" },
+        "reasoning": { "type": "string" },
+        "fallback_template": { "type": "string" },
+        "expires_at": { "type": "string", "format": "date-time" },
+        "low_confidence_dimensions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  },
+  "required": ["version", "scene_id", "timestamp", "intent"]
+}

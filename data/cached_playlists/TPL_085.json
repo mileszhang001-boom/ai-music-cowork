@@ -1,0 +1,410 @@
+{
+  "template_id": "TPL_085",
+  "template_name": "隧道穿行",
+  "scene_type": "tunnel_drive",
+  "category": "environment",
+  "generated_at": "2026-03-01T13:30:47.439Z",
+  "playlist": [
+    {
+      "id": "a358caa4-0364-4a55-8589-55c39547a33e",
+      "title": "Teardrop",
+      "artist": "Massive Attack",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 284232,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Massive Attack - Teardrop.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "eb518a73-a0fe-42e7-b790-da5988ada3ea",
+      "title": "Angel",
+      "artist": "Massive Attack",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.32,
+      "duration_ms": 323448,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Massive Attack - Angel.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.45",
+        "valence:0.32",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "cb91231b-2d90-41f5-a734-873fc9d8f03c",
+      "title": "Paradise Circus",
+      "artist": "Massive Attack",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.32,
+      "duration_ms": 297816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Massive Attack - Paradise Circus.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.45",
+        "valence:0.32",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "eb8342e5-537b-47fe-aff9-ca3e357b6ca2",
+      "title": "Nightcall",
+      "artist": "Kavinsky",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 110,
+      "energy": 0.65,
+      "valence": 0.4,
+      "duration_ms": 256896,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Kavinsky - Nightcall.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.40",
+        "tempo:110"
+      ]
+    },
+    {
+      "id": "f23d6d23-a82a-4f50-8794-2ef2c172c792",
+      "title": "Reverence",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.45,
+      "duration_ms": 306456,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Reverence.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.45"
+      ]
+    },
+    {
+      "id": "18246e1d-f64b-4a54-82d3-566601a436d7",
+      "title": "The Great Silence",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.4,
+      "duration_ms": 320064,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - The Great Silence.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.40"
+      ]
+    },
+    {
+      "id": "0d24bc18-7901-4516-a765-e3e0e8d41191",
+      "title": "Only Time",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 215808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Only Time.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.42"
+      ]
+    },
+    {
+      "id": "dd12255d-559c-4c33-95c7-bd826e2fd402",
+      "title": "Storms in Africa",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 244560,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Storms in Africa.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.35",
+        "valence:0.42"
+      ]
+    },
+    {
+      "id": "bc0f2cc1-38b1-40f1-8f79-8f7e79721ea3",
+      "title": "Watermark",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 145128,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Watermark.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.42"
+      ]
+    },
+    {
+      "id": "107c7df0-d58d-4b6c-85f7-23a8060339ba",
+      "title": "Solari",
+      "artist": "Hammock",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.4,
+      "duration_ms": 44112,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hammock - Solari.mp3",
+      "score": 66,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.40"
+      ]
+    },
+    {
+      "id": "ed5da1b1-3c02-4606-b409-22e79118e8c8",
+      "title": "On Earth as It Is in Heaven",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 64,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 2741106,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - On Earth as It Is in Heaven.mp3",
+      "score": 65,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.42"
+      ]
+    },
+    {
+      "id": "c0b1f470-8737-4ba4-b38e-2e266c614de6",
+      "title": "Strobe",
+      "artist": "Deadmau5",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 128,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 636912,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deadmau5 - Strobe.mp3",
+      "score": 65,
+      "match_reasons": [
+        "genre:electronic",
+        "valence:0.42"
+      ]
+    },
+    {
+      "id": "5efa44ff-764d-4ee5-a9c1-a57e770b75fa",
+      "title": "Spiral",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.6,
+      "duration_ms": 342144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - Spiral.mp3",
+      "score": 65,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.60"
+      ]
+    },
+    {
+      "id": "d5359d97-6df1-4d89-87d8-617784c114d8",
+      "title": "To Build a Home",
+      "artist": "The Cinematic Orchestra",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 369720,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cinematic Orchestra - To Build a Home.mp3",
+      "score": 64,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.35",
+        "valence:0.28"
+      ]
+    },
+    {
+      "id": "81cb7dc7-fe60-45bb-b4b9-b936550019ad",
+      "title": "Green Music",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.68,
+      "duration_ms": 2754144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - Green Music.mp3",
+      "score": 63,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25"
+      ]
+    },
+    {
+      "id": "460faee4-e8e5-40c7-81cb-c6b69c74d546",
+      "title": "Arrival of the Birds",
+      "artist": "The Cinematic Orchestra",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.68,
+      "duration_ms": 462672,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cinematic Orchestra - Arrival of the Birds.mp3",
+      "score": 63,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.35"
+      ]
+    },
+    {
+      "id": "974be0b2-6525-4491-b14e-4e0d33e52ace",
+      "title": "Zen Garden",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.6,
+      "duration_ms": 11266056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Zen Garden.mp3",
+      "score": 63,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.60"
+      ]
+    },
+    {
+      "id": "c45db85e-713c-49de-b7ae-204789983818",
+      "title": "Prayer for Peace",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.65,
+      "duration_ms": 3829728,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Prayer for Peace.mp3",
+      "score": 62,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.65"
+      ]
+    },
+    {
+      "id": "ea6caca9-68d1-48c2-bf6d-1442ab0334b3",
+      "title": "The Blue Notebooks",
+      "artist": "Max Richter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 64,
+      "energy": 0.25,
+      "valence": 0.32,
+      "duration_ms": 2284944,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Max Richter - The Blue Notebooks.mp3",
+      "score": 62,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.32"
+      ]
+    },
+    {
+      "id": "aa8cb65a-5ab7-4fe8-a505-33bac0942aae",
+      "title": "Ambient 1 Music for Airports",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.45,
+      "duration_ms": 2919120,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - Ambient 1 Music for Airports.mp3",
+      "score": 62,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.45"
+      ]
+    },
+    {
+      "id": "91824b3b-9837-4dc1-ac5a-507cf0111bc1",
+      "title": "Tibetan Bells",
+      "artist": "Henry Wolff  Nancy Hennings",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.45,
+      "duration_ms": 2103432,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Henry Wolff  Nancy Hennings - Tibetan Bells.mp3",
+      "score": 62,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.45"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 21,
+    "avg_score": 66,
+    "total_duration_ms": 32148498,
+    "total_duration_minutes": 536
+  },
+  "mood_mapping": {
+    "valence": 0.45,
+    "arousal": 0.3,
+    "energy": 0.3
+  },
+  "music_requirements": {
+    "genres": [
+      "electronic",
+      "ambient"
+    ],
+    "tempo": "moderate",
+    "mood_characteristics": {
+      "valence_level": "neutral",
+      "energy_level": "low",
+      "description": "隧道驾驶氛围，适合有回响感的音乐"
+    }
+  }
+}

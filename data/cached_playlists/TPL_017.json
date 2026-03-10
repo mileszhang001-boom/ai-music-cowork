@@ -1,0 +1,541 @@
+{
+  "template_id": "TPL_017",
+  "template_name": "加班晚归",
+  "scene_type": "night_drive",
+  "category": "time",
+  "generated_at": "2026-03-01T13:30:47.389Z",
+  "playlist": [
+    {
+      "id": "d5359d97-6df1-4d89-87d8-617784c114d8",
+      "title": "To Build a Home",
+      "artist": "The Cinematic Orchestra",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 369720,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cinematic Orchestra - To Build a Home.mp3",
+      "score": 82,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.35",
+        "valence:0.28",
+        "tempo:72",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "dd12255d-559c-4c33-95c7-bd826e2fd402",
+      "title": "Storms in Africa",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.35,
+      "valence": 0.42,
+      "duration_ms": 244560,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Storms in Africa.mp3",
+      "score": 82,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.35",
+        "valence:0.42",
+        "tempo:68",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "c3157865-2f2d-484f-83bb-554b8f28ba4e",
+      "title": "Ambient 1 The Plateaux of Mirror",
+      "artist": "Brian Eno  Harold Budd",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.35,
+      "duration_ms": 253920,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno  Harold Budd - Ambient 1 The Plateaux of Mirror.mp3",
+      "score": 80,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.15",
+        "valence:0.35",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "b0f1a85d-bcf9-42f6-a293-93568fdd442f",
+      "title": "Ambient 2 The Plateaux of Mirror",
+      "artist": "Harold Budd",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.35,
+      "duration_ms": 253920,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Harold Budd - Ambient 2 The Plateaux of Mirror.mp3",
+      "score": 80,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.15",
+        "valence:0.35",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "aa657c3d-de3b-47d2-9435-699735dc5ab5",
+      "title": "Avril 14th",
+      "artist": "Aphex Twin",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.35,
+      "duration_ms": 125544,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Aphex Twin - Avril 14th.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.35",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "657f9b80-127f-49bb-af37-83c00dc1c253",
+      "title": "Music for Airports",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.4,
+      "duration_ms": 2919120,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - Music for Airports.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.15",
+        "valence:0.40",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "7b76fd84-db91-4319-aec2-c1654c47f12f",
+      "title": "Weightless",
+      "artist": "Marconi Union",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.3,
+      "duration_ms": 488928,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Marconi Union - Weightless.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.15",
+        "valence:0.30",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "430ef069-97a0-4227-8737-4edc8a52e77d",
+      "title": "Sleep",
+      "artist": "Max Richter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.15,
+      "valence": 0.3,
+      "duration_ms": 30262056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Max Richter - Sleep.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.15",
+        "valence:0.30",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "d5790f74-d64b-4d3e-9ddc-b8b4ff478291",
+      "title": "Deep Theta",
+      "artist": "Steven Halpern",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.4,
+      "duration_ms": 4760568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Steven Halpern - Deep Theta.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.40",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "ea6caca9-68d1-48c2-bf6d-1442ab0334b3",
+      "title": "The Blue Notebooks",
+      "artist": "Max Richter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 64,
+      "energy": 0.25,
+      "valence": 0.32,
+      "duration_ms": 2284944,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Max Richter - The Blue Notebooks.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.32",
+        "tempo:64"
+      ]
+    },
+    {
+      "id": "765e9064-fb52-4aa0-949a-d427e5ad9b49",
+      "title": "May It Be",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.35,
+      "valence": 0.62,
+      "duration_ms": 214152,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - May It Be.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.35",
+        "tempo:68",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "107c7df0-d58d-4b6c-85f7-23a8060339ba",
+      "title": "Solari",
+      "artist": "Hammock",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.4,
+      "duration_ms": 44112,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hammock - Solari.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.40",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "aa8cb65a-5ab7-4fe8-a505-33bac0942aae",
+      "title": "Ambient 1 Music for Airports",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.45,
+      "duration_ms": 2919120,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - Ambient 1 Music for Airports.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.45",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "91824b3b-9837-4dc1-ac5a-507cf0111bc1",
+      "title": "Tibetan Bells",
+      "artist": "Henry Wolff  Nancy Hennings",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.45,
+      "duration_ms": 2103432,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Henry Wolff  Nancy Hennings - Tibetan Bells.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "valence:0.45",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "18246e1d-f64b-4a54-82d3-566601a436d7",
+      "title": "The Great Silence",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.4,
+      "duration_ms": 320064,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - The Great Silence.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.40",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "0d24bc18-7901-4516-a765-e3e0e8d41191",
+      "title": "Only Time",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 215808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Only Time.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.42",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "ed5da1b1-3c02-4606-b409-22e79118e8c8",
+      "title": "On Earth as It Is in Heaven",
+      "artist": "Brian Eno",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 64,
+      "energy": 0.25,
+      "valence": 0.42,
+      "duration_ms": 2741106,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Brian Eno - On Earth as It Is in Heaven.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.42",
+        "tempo:64"
+      ]
+    },
+    {
+      "id": "f23d6d23-a82a-4f50-8794-2ef2c172c792",
+      "title": "Reverence",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.45,
+      "duration_ms": 306456,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Reverence.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "valence:0.45",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "481e01db-460b-4798-96df-6bf48764a961",
+      "title": "Chakra Healing",
+      "artist": "Steven Halpern",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.6,
+      "duration_ms": 3713904,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Steven Halpern - Chakra Healing.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "974be0b2-6525-4491-b14e-4e0d33e52ace",
+      "title": "Zen Garden",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.6,
+      "duration_ms": 11266056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Zen Garden.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "a52a30b8-ccd0-47ac-b1ea-e6bde996074a",
+      "title": "Spa Music",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.65,
+      "duration_ms": 3829728,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Spa Music.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.20",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "5efa44ff-764d-4ee5-a9c1-a57e770b75fa",
+      "title": "Spiral",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.6,
+      "duration_ms": 342144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - Spiral.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "81cb7dc7-fe60-45bb-b4b9-b936550019ad",
+      "title": "Green Music",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.68,
+      "duration_ms": 2754144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - Green Music.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.25",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "460faee4-e8e5-40c7-81cb-c6b69c74d546",
+      "title": "Arrival of the Birds",
+      "artist": "The Cinematic Orchestra",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.68,
+      "duration_ms": 462672,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cinematic Orchestra - Arrival of the Birds.mp3",
+      "score": 64,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.35",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "ed56484f-f965-475b-9360-d02a44e77d03",
+      "title": "夜雨寄北",
+      "artist": "龚玥",
+      "album": null,
+      "genre": "ballad",
+      "bpm": 68,
+      "energy": 0.32,
+      "valence": 0.41,
+      "duration_ms": 245664,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/龚玥 - 夜雨寄北.mp3",
+      "score": 63,
+      "match_reasons": [
+        "energy:0.32",
+        "valence:0.41",
+        "tempo:68",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "0d000b14-5ffb-48b6-9cf4-09cbe674db95",
+      "title": "White Ferrari",
+      "artist": "Frank Ocean",
+      "album": null,
+      "genre": "rnb",
+      "bpm": 68,
+      "energy": 0.32,
+      "valence": 0.41,
+      "duration_ms": 248832,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Frank Ocean - White Ferrari.mp3",
+      "score": 63,
+      "match_reasons": [
+        "energy:0.32",
+        "valence:0.41",
+        "tempo:68",
+        "scene:night_drive"
+      ]
+    },
+    {
+      "id": "5110d2ce-a7fc-4452-8158-31838eac6a9d",
+      "title": "Ivy",
+      "artist": "Frank Ocean",
+      "album": null,
+      "genre": "rnb",
+      "bpm": 68,
+      "energy": 0.32,
+      "valence": 0.28,
+      "duration_ms": 249240,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Frank Ocean - Ivy.mp3",
+      "score": 63,
+      "match_reasons": [
+        "energy:0.32",
+        "valence:0.28",
+        "tempo:68",
+        "scene:night_drive"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 27,
+    "avg_score": 74,
+    "total_duration_ms": 73939914,
+    "total_duration_minutes": 1232
+  },
+  "mood_mapping": {
+    "valence": 0.35,
+    "arousal": 0.15,
+    "energy": 0.15
+  },
+  "music_requirements": {
+    "genres": [
+      "lo-fi",
+      "ambient"
+    ],
+    "tempo": "slow",
+    "mood_characteristics": {
+      "valence_level": "slightly_negative",
+      "energy_level": "very_low",
+      "description": "疲惫归家氛围，适合抚慰心灵的音乐"
+    }
+  }
+}

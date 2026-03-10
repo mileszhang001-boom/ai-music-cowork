@@ -1,0 +1,583 @@
+{
+  "template_id": "TPL_040",
+  "template_name": "音乐节之旅",
+  "scene_type": "friends_gathering",
+  "category": "social",
+  "generated_at": "2026-03-01T13:30:47.407Z",
+  "playlist": [
+    {
+      "id": "73b2bf23-a411-4d3b-be4b-2206b8caa8d8",
+      "title": "Sexy and I Know It",
+      "artist": "LMFAO",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 130,
+      "energy": 0.92,
+      "valence": 0.95,
+      "duration_ms": 203712,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/LMFAO - Sexy and I Know It.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.92",
+        "valence:0.95",
+        "tempo:130"
+      ]
+    },
+    {
+      "id": "e142db76-ffae-4187-9d0c-c2a1f00112e2",
+      "title": "Life is a Highway",
+      "artist": "Tom Cochrane",
+      "album": null,
+      "genre": "rock",
+      "bpm": 128,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 267600,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Tom Cochrane - Life is a Highway.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "819cee43-3bc9-4b6a-8f3f-debc5522c4d7",
+      "title": "Beautiful Day",
+      "artist": "U2",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 243840,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/U2 - Beautiful Day.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "9967098a-75df-47d2-94c7-3caaf396e34b",
+      "title": "Dont Stop Me Now",
+      "artist": "Queen",
+      "album": null,
+      "genre": "rock",
+      "bpm": 156,
+      "energy": 0.94,
+      "valence": 0.97,
+      "duration_ms": 211968,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Queen - Dont Stop Me Now.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.94",
+        "valence:0.97",
+        "tempo:156"
+      ]
+    },
+    {
+      "id": "a940f154-040e-4e4b-a9cf-900bfe639e03",
+      "title": "Life is a Highway",
+      "artist": "Cars",
+      "album": null,
+      "genre": "rock",
+      "bpm": 132,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 298512,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Cars - Life is a Highway.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:132"
+      ]
+    },
+    {
+      "id": "7a35b40e-87de-4505-bfbf-37d0369e6c00",
+      "title": "Party Rock Anthem",
+      "artist": "LMFAO",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 130,
+      "energy": 0.95,
+      "valence": 0.98,
+      "duration_ms": 375552,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/LMFAO - Party Rock Anthem.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.95",
+        "valence:0.98",
+        "tempo:130"
+      ]
+    },
+    {
+      "id": "76e75bb2-b421-4187-a6bd-afa305af3409",
+      "title": "我相信",
+      "artist": "杨培安",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 244488,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/杨培安 - 我相信.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "52e1ba89-23c9-490d-b7a5-7f5f904cb5fc",
+      "title": "Wake Me Up",
+      "artist": "Avicii",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 124,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 272496,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Avicii - Wake Me Up.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "f649c801-a864-4c8e-bf88-52561ef4b1ff",
+      "title": "We Are the Champions",
+      "artist": "Queen",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.92,
+      "valence": 0.88,
+      "duration_ms": 190200,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Queen - We Are the Champions.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "valence:0.88",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "2882d5c4-b7e3-417d-9f1e-8bc2f5a41617",
+      "title": "Turn Down for What",
+      "artist": "DJ Snake",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 150,
+      "energy": 0.98,
+      "valence": 0.92,
+      "duration_ms": 216096,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/DJ Snake - Turn Down for What.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.98",
+        "valence:0.92",
+        "tempo:150"
+      ]
+    },
+    {
+      "id": "9f6128d8-ea3f-4b92-aa05-f3868e0d438c",
+      "title": "Levels",
+      "artist": "Avicii",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 128,
+      "energy": 0.92,
+      "valence": 0.85,
+      "duration_ms": 198408,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Avicii - Levels.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.92",
+        "valence:0.85",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "1f37d889-d706-4ca6-9232-1bee0ad2a970",
+      "title": "You Shook Me All Night Long",
+      "artist": "ACDC",
+      "album": null,
+      "genre": "rock",
+      "bpm": 152,
+      "energy": 0.92,
+      "valence": 0.85,
+      "duration_ms": 208080,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/ACDC - You Shook Me All Night Long.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "valence:0.85",
+        "tempo:152"
+      ]
+    },
+    {
+      "id": "bb03d88c-b6f1-4c1d-b0c8-faf775b023bb",
+      "title": "离开地球表面",
+      "artist": "五月天",
+      "album": null,
+      "genre": "rock",
+      "bpm": 160,
+      "energy": 0.92,
+      "valence": 0.85,
+      "duration_ms": 275256,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/五月天 - 离开地球表面.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "valence:0.85",
+        "tempo:160"
+      ]
+    },
+    {
+      "id": "d04ca1ad-9f7f-47be-9c9d-69c238f897c7",
+      "title": "逆战",
+      "artist": "张杰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 140,
+      "energy": 0.92,
+      "valence": 0.85,
+      "duration_ms": 231168,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/张杰 - 逆战.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "valence:0.85",
+        "tempo:140"
+      ]
+    },
+    {
+      "id": "d4d9ba23-1b13-4ddb-be67-ce7920653303",
+      "title": "Born to Be Wild",
+      "artist": "Steppenwolf",
+      "album": null,
+      "genre": "rock",
+      "bpm": 148,
+      "energy": 0.92,
+      "valence": 0.85,
+      "duration_ms": 212928,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Steppenwolf - Born to Be Wild.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "valence:0.85",
+        "tempo:148"
+      ]
+    },
+    {
+      "id": "8933e26e-0262-4dd2-b87e-a8654fbf6bed",
+      "title": "We Will Rock You",
+      "artist": "Queen",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.95,
+      "valence": 0.82,
+      "duration_ms": 134520,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Queen - We Will Rock You.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.95",
+        "valence:0.82",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "15a814e1-c48f-4af9-9381-266ffba19c06",
+      "title": "追梦赤子心",
+      "artist": "GALA",
+      "album": null,
+      "genre": "rock",
+      "bpm": 132,
+      "energy": 0.88,
+      "valence": 0.79,
+      "duration_ms": 320304,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/GALA - 追梦赤子心.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.88",
+        "valence:0.79",
+        "tempo:132"
+      ]
+    },
+    {
+      "id": "27e6dff5-599e-4b06-9b7f-d9b0a37a11eb",
+      "title": "Here Comes the Sun",
+      "artist": "The Beatles",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.75,
+      "valence": 0.92,
+      "duration_ms": 191808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Beatles - Here Comes the Sun.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.75",
+        "valence:0.92",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "f18ba1f2-f104-45fe-a07c-5a9e514b867f",
+      "title": "Highway to Hell",
+      "artist": "ACDC",
+      "album": null,
+      "genre": "rock",
+      "bpm": 152,
+      "energy": 0.94,
+      "valence": 0.78,
+      "duration_ms": 207072,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/ACDC - Highway to Hell.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.94",
+        "valence:0.78",
+        "tempo:152"
+      ]
+    },
+    {
+      "id": "533265df-c0ff-4130-8dbd-7bb2c66bc6ad",
+      "title": "Paradise City",
+      "artist": "Guns N Roses",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 408216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Guns N Roses - Paradise City.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "valence:0.78",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "4266a9a4-9de2-4cd0-92c2-7f88195198a5",
+      "title": "Song 2",
+      "artist": "Blur",
+      "album": null,
+      "genre": "rock",
+      "bpm": 152,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 122568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Blur - Song 2.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "valence:0.78",
+        "tempo:152"
+      ]
+    },
+    {
+      "id": "cbef498d-2055-45be-a9f2-024001f88bb3",
+      "title": "Thunderstruck",
+      "artist": "ACDC",
+      "album": null,
+      "genre": "rock",
+      "bpm": 132,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 292968,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/ACDC - Thunderstruck.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.92",
+        "valence:0.78",
+        "tempo:132"
+      ]
+    },
+    {
+      "id": "2b2b1c65-ed0e-4d2d-b9dc-e746d5ad20bb",
+      "title": "Born to Run",
+      "artist": "Bruce Springsteen",
+      "album": null,
+      "genre": "rock",
+      "bpm": 128,
+      "energy": 0.89,
+      "valence": 0.76,
+      "duration_ms": 333048,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bruce Springsteen - Born to Run.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.89",
+        "valence:0.76",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "f8d53440-cdee-4053-8e76-266ef8d66e0a",
+      "title": "Warriors",
+      "artist": "Imagine Dragons",
+      "album": null,
+      "genre": "rock",
+      "bpm": 124,
+      "energy": 0.89,
+      "valence": 0.76,
+      "duration_ms": 170112,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Imagine Dragons - Warriors.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.89",
+        "valence:0.76",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "63ceb831-aaa2-4ee4-b907-4a987dad1d62",
+      "title": "野狼王",
+      "artist": "王绎龙",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 138,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 224592,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/王绎龙 - 野狼王.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.92",
+        "valence:0.78",
+        "tempo:138"
+      ]
+    },
+    {
+      "id": "a09faace-06fe-4036-ae33-0edc3ce77663",
+      "title": "Thunder",
+      "artist": "Imagine Dragons",
+      "album": null,
+      "genre": "rock",
+      "bpm": 124,
+      "energy": 0.89,
+      "valence": 0.76,
+      "duration_ms": 204000,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Imagine Dragons - Thunder.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.89",
+        "valence:0.76",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "b835e951-2a21-4d8f-bb20-878f192c3fee",
+      "title": "Animals",
+      "artist": "Martin Garrix",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 128,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 191616,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Martin Garrix - Animals.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.92",
+        "valence:0.78",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "6945bdc7-eda4-4d4d-ac09-564ab6348dba",
+      "title": "Bangarang",
+      "artist": "Skrillex",
+      "album": null,
+      "genre": "electronic",
+      "bpm": 150,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 218976,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Skrillex - Bangarang.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:electronic",
+        "energy:0.92",
+        "valence:0.78",
+        "tempo:150"
+      ]
+    },
+    {
+      "id": "bb1c0534-07f2-4eb6-9345-aabbbbf18575",
+      "title": "飞得更高",
+      "artist": "汪峰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 330216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/汪峰 - 飞得更高.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:120"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 29,
+    "avg_score": 76,
+    "total_duration_ms": 7000320,
+    "total_duration_minutes": 117
+  },
+  "mood_mapping": {
+    "valence": 0.95,
+    "arousal": 0.9,
+    "energy": 0.9
+  },
+  "music_requirements": {
+    "genres": [
+      "electronic",
+      "rock"
+    ],
+    "tempo": "fast",
+    "mood_characteristics": {
+      "valence_level": "extremely_positive",
+      "energy_level": "very_high",
+      "description": "音乐节狂欢氛围，适合高能量音乐"
+    }
+  }
+}

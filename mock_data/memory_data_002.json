@@ -1,0 +1,35 @@
+{
+  "user_id": "user_67890",
+  "memory_type": "long_term",
+  "historical_stats": {
+    "total_listening_hours": 150.5,
+    "top_genres": [
+      {"genre": "pop", "play_count": 450},
+      {"genre": "children", "play_count": 320},
+      {"genre": "acoustic", "play_count": 210}
+    ],
+    "top_artists": [
+      {"artist": "Taylor Swift", "play_count": 120},
+      {"artist": "Disney Chorus", "play_count": 95}
+    ],
+    "frequent_scenes": [
+      {"scene_type": "kids_in_car", "occurrence_count": 45},
+      {"scene_type": "traffic_jam", "occurrence_count": 30}
+    ]
+  },
+  "learned_rules": [
+    {
+      "rule_id": "rule_001",
+      "condition": "occupants > 2 AND time > 15:00",
+      "action": "prefer_children_genre",
+      "confidence": 0.92
+    },
+    {
+      "rule_id": "rule_002",
+      "condition": "weather == rain AND time > 20:00",
+      "action": "prefer_jazz_genre",
+      "confidence": 0.85
+    }
+  ],
+  "last_updated": "2026-02-27T23:59:59Z"
+}

@@ -1,0 +1,598 @@
+{
+  "template_id": "TPL_044",
+  "template_name": "公园野餐",
+  "scene_type": "family_outing",
+  "category": "social",
+  "generated_at": "2026-03-01T13:30:47.410Z",
+  "playlist": [
+    {
+      "id": "7b030129-8d39-49c4-b331-7ed415177cf0",
+      "title": "外婆的澎湖湾",
+      "artist": "潘安邦",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.78,
+      "duration_ms": 182760,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/潘安邦 - 外婆的澎湖湾.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "b6b666f8-eb4e-4e34-afc4-a49e05cccd3a",
+      "title": "甜蜜蜜",
+      "artist": "邓丽君",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.82,
+      "duration_ms": 209928,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/邓丽君 - 甜蜜蜜.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.82",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "d9dd18dd-d360-4ecf-8227-d857f65dfb32",
+      "title": "早安晨之美",
+      "artist": "卢广仲",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.78,
+      "duration_ms": 214704,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/卢广仲 - 早安晨之美.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "5e57034b-24a0-417d-863c-43587cbedcab",
+      "title": "稻香",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 84,
+      "energy": 0.52,
+      "valence": 0.78,
+      "duration_ms": 223800,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 稻香.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.52",
+        "valence:0.78"
+      ]
+    },
+    {
+      "id": "459d35fa-0200-42b2-a349-d9277749141f",
+      "title": "Your Song",
+      "artist": "Elton John",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 228360,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Elton John - Your Song.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.72",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "fa3fd368-17f3-46cb-bbe2-af22621f7202",
+      "title": "Perfect",
+      "artist": "Ed Sheeran",
+      "album": null,
+      "genre": "pop",
+      "bpm": 94,
+      "energy": 0.62,
+      "valence": 0.78,
+      "duration_ms": 281880,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Ed Sheeran - Perfect.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.62",
+        "valence:0.78",
+        "tempo:94"
+      ]
+    },
+    {
+      "id": "f2f5f1f4-24d9-4e16-8de7-e01da1ac7907",
+      "title": "春风十里",
+      "artist": "鹿先森乐队",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 396840,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/鹿先森乐队 - 春风十里.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.72",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "fe989a6c-121a-487a-93bd-b95e45b7d5d0",
+      "title": "晴天",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 318288,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 晴天.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.68",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "01092ea7-717b-468f-9fef-8eaa3f9a3638",
+      "title": "少年",
+      "artist": "梦然",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 260952,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/梦然 - 少年.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "b1f103a7-d0fc-4934-aadb-626d395d10d5",
+      "title": "听妈妈的话",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 265056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 听妈妈的话.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "c054008d-5e5d-4aac-8f65-85acc0bed204",
+      "title": "去大理",
+      "artist": "郝云",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 233424,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/郝云 - 去大理.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.68",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "984363f3-eb7d-4135-b88b-0b1f2a1e4aeb",
+      "title": "兰花草",
+      "artist": "银霞",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 182136,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/银霞 - 兰花草.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.68",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "fe9c1d56-e0ca-4e27-a178-d842c44aa3e4",
+      "title": "Brand New Day",
+      "artist": "Sting",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 237144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Sting - Brand New Day.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "cf18e867-2051-4683-8ed7-99fe47138acb",
+      "title": "Raindrops Keep Fallin on My Head",
+      "artist": "BJ Thomas",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 176136,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/BJ Thomas - Raindrops Keep Fallin on My Head.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "b877a70d-a381-45a5-80eb-5429d7f936ad",
+      "title": "Count on Me",
+      "artist": "Bruno Mars",
+      "album": null,
+      "genre": "pop",
+      "bpm": 96,
+      "energy": 0.65,
+      "valence": 0.82,
+      "duration_ms": 192936,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bruno Mars - Count on Me.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.82",
+        "tempo:96"
+      ]
+    },
+    {
+      "id": "15e1ede3-42b1-4800-aad2-a489b5f81848",
+      "title": "Sunday Morning",
+      "artist": "Maroon 5",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 264360,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Maroon 5 - Sunday Morning.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.78",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "b130b68c-adc1-45c7-a731-2d6d0a3af857",
+      "title": "California Dreamin",
+      "artist": "The Mamas  The Papas",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.55,
+      "valence": 0.68,
+      "duration_ms": 157512,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Mamas  The Papas - California Dreamin.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.55",
+        "valence:0.68",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "8d5c317e-2b46-408d-a62d-5d9b707597b6",
+      "title": "黄昏晓",
+      "artist": "王心凌",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.62,
+      "valence": 0.71,
+      "duration_ms": 285696,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/王心凌 - 黄昏晓.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.62",
+        "valence:0.71",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "8eb851b0-3be0-4c7d-8422-adcebf9cb70d",
+      "title": "兄弟",
+      "artist": "任贤齐",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.72,
+      "duration_ms": 292848,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/任贤齐 - 兄弟.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.72",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "5c4af492-f6aa-48af-8171-044099bcf022",
+      "title": "Brave",
+      "artist": "Sara Bareilles",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.75,
+      "duration_ms": 237816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Sara Bareilles - Brave.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.68",
+        "valence:0.75",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "694e2eaf-07d1-4658-b41d-e7f321b33dc2",
+      "title": "Sunflower",
+      "artist": "Post Malone  Swae Lee",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.75,
+      "duration_ms": 161712,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Post Malone  Swae Lee - Sunflower.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.68",
+        "valence:0.75",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "c48c00a5-9271-4e1d-8d06-7755b603187a",
+      "title": "Banana Pancakes",
+      "artist": "Jack Johnson",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.35,
+      "valence": 0.72,
+      "duration_ms": 191952,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Jack Johnson - Banana Pancakes.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.35",
+        "valence:0.72",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "a940f1f7-59dc-4268-80f4-6ef804f00901",
+      "title": "童年",
+      "artist": "罗大佑",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.62,
+      "duration_ms": 232656,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/罗大佑 - 童年.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "valence:0.62",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "21fb92b1-04c4-449a-b65c-f99829b03688",
+      "title": "芒种",
+      "artist": "音阙诗听",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.75,
+      "duration_ms": 219840,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/音阙诗听 - 芒种.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.68",
+        "valence:0.75",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "84a3c150-2dfb-41ae-993c-c655d8bea8c3",
+      "title": "世界",
+      "artist": "张过年",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.72,
+      "duration_ms": 243840,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/张过年 - 世界.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.72",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "ece0392f-ee97-451e-b3ee-3d825765b0f7",
+      "title": "Leaving on a Jet Plane",
+      "artist": "John Denver",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.6,
+      "duration_ms": 220368,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/John Denver - Leaving on a Jet Plane.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:folk",
+        "energy:0.45",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "de967a1e-fc72-4a34-8f0f-387e2a20b2d5",
+      "title": "How Far Ill Go",
+      "artist": "Aulii Cravalho",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.75,
+      "duration_ms": 155544,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Aulii Cravalho - How Far Ill Go.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.68",
+        "valence:0.75",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "641a81cf-a8f7-4d51-8dbc-74500d6b4a42",
+      "title": "Im Yours",
+      "artist": "Jason Mraz",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.85,
+      "duration_ms": 221808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Jason Mraz - Im Yours.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.68",
+        "valence:0.85",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "7fd9edc0-d278-4b26-a251-69864d41075e",
+      "title": "Peaches",
+      "artist": "Justin Bieber",
+      "album": null,
+      "genre": "pop",
+      "bpm": 95,
+      "energy": 0.72,
+      "valence": 0.85,
+      "duration_ms": 197808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Justin Bieber - Peaches.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.85",
+        "tempo:95"
+      ]
+    },
+    {
+      "id": "d1ea2465-4b75-408b-8e41-257bd38ad22e",
+      "title": "Sugar",
+      "artist": "Maroon 5",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.75,
+      "valence": 0.82,
+      "duration_ms": 301392,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Maroon 5 - Sugar.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.82",
+        "tempo:120"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 30,
+    "avg_score": 75,
+    "total_duration_ms": 6989496,
+    "total_duration_minutes": 116
+  },
+  "mood_mapping": {
+    "valence": 0.8,
+    "arousal": 0.5,
+    "energy": 0.5
+  },
+  "music_requirements": {
+    "genres": [
+      "folk",
+      "pop"
+    ],
+    "tempo": "moderate",
+    "mood_characteristics": {
+      "valence_level": "very_positive",
+      "energy_level": "moderate",
+      "description": "野餐休闲氛围，适合轻松愉快的音乐"
+    }
+  }
+}

@@ -1,0 +1,468 @@
+{
+  "template_id": "TPL_056",
+  "template_name": "兴奋出游",
+  "scene_type": "excited_mode",
+  "category": "state",
+  "generated_at": "2026-03-01T13:30:47.418Z",
+  "playlist": [
+    {
+      "id": "7386df79-4db5-4c01-8a26-6cfc303a120e",
+      "title": "学猫叫",
+      "artist": "小潘潘",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.75,
+      "valence": 0.88,
+      "duration_ms": 216072,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/小潘潘 - 学猫叫.mp3",
+      "score": 79,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.75",
+        "valence:0.88",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "d1ea2465-4b75-408b-8e41-257bd38ad22e",
+      "title": "Sugar",
+      "artist": "Maroon 5",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.75,
+      "valence": 0.82,
+      "duration_ms": 301392,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Maroon 5 - Sugar.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.75",
+        "valence:0.82",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "528e1419-2e81-48de-8a09-5fa6a3dd7741",
+      "title": "隔壁泰山",
+      "artist": "阿里郎",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.75,
+      "valence": 0.82,
+      "duration_ms": 199680,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/阿里郎 - 隔壁泰山.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.75",
+        "valence:0.82",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "cb9255e5-0b27-45d5-982d-0414db7364d0",
+      "title": "Firework",
+      "artist": "Katy Perry",
+      "album": null,
+      "genre": "pop",
+      "bpm": 124,
+      "energy": 0.82,
+      "valence": 0.91,
+      "duration_ms": 233280,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Katy Perry - Firework.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.82",
+        "valence:0.91",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "a41a700c-f9be-4cf4-a8a4-26522a1a6dcf",
+      "title": "Hall of Fame",
+      "artist": "The Script ft william",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.9,
+      "duration_ms": 233088,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Script ft william - Hall of Fame.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.90",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "77237391-e743-420c-8601-bcab69fe4f03",
+      "title": "Good Time",
+      "artist": "Owl City  Carly Rae Jepsen",
+      "album": null,
+      "genre": "pop",
+      "bpm": 124,
+      "energy": 0.82,
+      "valence": 0.93,
+      "duration_ms": 207552,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Owl City  Carly Rae Jepsen - Good Time.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.82",
+        "valence:0.93",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "7150a872-28d1-4749-b551-e9f3955e088c",
+      "title": "Counting Stars",
+      "artist": "OneRepublic",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.78,
+      "valence": 0.82,
+      "duration_ms": 283080,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/OneRepublic - Counting Stars.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.78",
+        "valence:0.82",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "ba10b3ca-0edf-437a-9084-83401c050d78",
+      "title": "Roar",
+      "artist": "Katy Perry",
+      "album": null,
+      "genre": "pop",
+      "bpm": 130,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 269160,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Katy Perry - Roar.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:130"
+      ]
+    },
+    {
+      "id": "8ff39e1f-8fe6-4463-a698-bf50cd486350",
+      "title": "日不落",
+      "artist": "蔡依林",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 221880,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/蔡依林 - 日不落.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "94769d2c-c01c-43bc-bb4e-affe9468afe4",
+      "title": "Best Day of My Life",
+      "artist": "American Authors",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 220224,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/American Authors - Best Day of My Life.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "238b756d-29b3-43b0-82f5-dd064f1b821c",
+      "title": "红日",
+      "artist": "李克勤",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 285360,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/李克勤 - 红日.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "a4cefed0-2891-44cf-9b3a-4a72a632d447",
+      "title": "On Top of the World",
+      "artist": "Imagine Dragons",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 241968,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Imagine Dragons - On Top of the World.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "d329ea83-b7aa-41e8-bfbf-b717aa014dbf",
+      "title": "看我七十二变",
+      "artist": "蔡依林",
+      "album": null,
+      "genre": "pop",
+      "bpm": 128,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 224856,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/蔡依林 - 看我七十二变.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "d995683c-0308-48cf-9a44-5a9732a2b7b8",
+      "title": "Dont Worry Be Happy",
+      "artist": "Bobby McFerrin",
+      "album": null,
+      "genre": "pop",
+      "bpm": 116,
+      "energy": 0.72,
+      "valence": 0.95,
+      "duration_ms": 231696,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bobby McFerrin - Dont Worry Be Happy.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.72",
+        "valence:0.95"
+      ]
+    },
+    {
+      "id": "e031cbe6-4933-4ee7-876a-abf19741121a",
+      "title": "小苹果",
+      "artist": "筷子兄弟",
+      "album": null,
+      "genre": "pop",
+      "bpm": 128,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 221904,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/筷子兄弟 - 小苹果.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "863353b8-d7b5-4d12-ab4c-5d67ad33337e",
+      "title": "Butter",
+      "artist": "BTS",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 182688,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/BTS - Butter.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "c1360954-2a5c-4104-8b48-0db92b2cc592",
+      "title": "Shut Up and Dance",
+      "artist": "Walk the Moon",
+      "album": null,
+      "genre": "pop",
+      "bpm": 128,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 246192,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Walk the Moon - Shut Up and Dance.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "78644c6e-7142-4ebd-89a4-b10e979a4266",
+      "title": "卡路里",
+      "artist": "火箭少女101",
+      "album": null,
+      "genre": "pop",
+      "bpm": 128,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 170568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/火箭少女101 - 卡路里.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "016d1d5a-36e2-4f68-a897-173c6d8e5bd4",
+      "title": "Shake It Off",
+      "artist": "Taylor Swift",
+      "album": null,
+      "genre": "pop",
+      "bpm": 160,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 241632,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Taylor Swift - Shake It Off.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:160"
+      ]
+    },
+    {
+      "id": "02d3efdb-97ad-482b-8d50-29f591412a35",
+      "title": "海草舞",
+      "artist": "萧全",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.92,
+      "duration_ms": 300216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/萧全 - 海草舞.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.92",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "310a6355-9a88-4e4b-9fc3-aba941950577",
+      "title": "Stronger",
+      "artist": "Kelly Clarkson",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.82,
+      "duration_ms": 220968,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Kelly Clarkson - Stronger.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.85",
+        "valence:0.82",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "736507a6-977f-48aa-9d35-13cb6b001bf0",
+      "title": "Moves Like Jagger",
+      "artist": "Maroon 5",
+      "album": null,
+      "genre": "pop",
+      "bpm": 128,
+      "energy": 0.82,
+      "valence": 0.79,
+      "duration_ms": 202056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Maroon 5 - Moves Like Jagger.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.82",
+        "valence:0.79",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "a4aff92c-51a1-4638-bcb1-1d238e89b58f",
+      "title": "最炫民族风",
+      "artist": "凤凰传奇",
+      "album": null,
+      "genre": "pop",
+      "bpm": 128,
+      "energy": 0.92,
+      "valence": 0.88,
+      "duration_ms": 284088,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/凤凰传奇 - 最炫民族风.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.92",
+        "valence:0.88",
+        "tempo:128"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 23,
+    "avg_score": 76,
+    "total_duration_ms": 5439600,
+    "total_duration_minutes": 91
+  },
+  "mood_mapping": {
+    "valence": 0.9,
+    "arousal": 0.75,
+    "energy": 0.75
+  },
+  "music_requirements": {
+    "genres": [
+      "pop",
+      "dance"
+    ],
+    "tempo": "fast",
+    "mood_characteristics": {
+      "valence_level": "very_positive",
+      "energy_level": "high",
+      "description": "兴奋出游氛围，适合欢快的音乐"
+    }
+  }
+}

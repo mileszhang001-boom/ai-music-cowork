@@ -1,0 +1,578 @@
+{
+  "template_id": "TPL_102",
+  "template_name": "高速巡航",
+  "scene_type": "highway_cruise",
+  "category": "environment",
+  "generated_at": "2026-03-01T13:30:47.451Z",
+  "playlist": [
+    {
+      "id": "fe989a6c-121a-487a-93bd-b95e45b7d5d0",
+      "title": "晴天",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 318288,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 晴天.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.68",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "cfc34b7b-23ec-4073-a5dc-bea5a4855ffb",
+      "title": "三年二班",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.52,
+      "duration_ms": 459768,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 三年二班.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "61d161f8-8762-467e-a9e6-d32f61f35c46",
+      "title": "Time After Time",
+      "artist": "Cyndi Lauper",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.52,
+      "duration_ms": 297000,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Cyndi Lauper - Time After Time.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "ffef8ee5-3e50-42e6-ba07-2342601f498a",
+      "title": "夜来香",
+      "artist": "邓丽君",
+      "album": null,
+      "genre": "pop",
+      "bpm": 84,
+      "energy": 0.35,
+      "valence": 0.62,
+      "duration_ms": 192912,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/邓丽君 - 夜来香.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.35",
+        "valence:0.62"
+      ]
+    },
+    {
+      "id": "459d35fa-0200-42b2-a349-d9277749141f",
+      "title": "Your Song",
+      "artist": "Elton John",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 228360,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Elton John - Your Song.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.72",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "395153ed-9ddd-4945-b485-14778387a7bc",
+      "title": "Postcards From Italy",
+      "artist": "Beirut",
+      "album": null,
+      "genre": "indie",
+      "bpm": 92,
+      "energy": 0.58,
+      "valence": 0.63,
+      "duration_ms": 257375,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Beirut - Postcards From Italy.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:indie",
+        "energy:0.58",
+        "valence:0.63",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "62435885-154e-49fb-a56e-c6c51c753810",
+      "title": "青花瓷",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 80,
+      "energy": 0.45,
+      "valence": 0.62,
+      "duration_ms": 243096,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 青花瓷.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.62"
+      ]
+    },
+    {
+      "id": "b130b68c-adc1-45c7-a731-2d6d0a3af857",
+      "title": "California Dreamin",
+      "artist": "The Mamas  The Papas",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.55,
+      "valence": 0.68,
+      "duration_ms": 157512,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Mamas  The Papas - California Dreamin.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.55",
+        "valence:0.68",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "e4bf49f4-70a4-4716-9e45-8d5ccc50ab19",
+      "title": "Heat Waves",
+      "artist": "Glass Animals",
+      "album": null,
+      "genre": "indie",
+      "bpm": 104,
+      "energy": 0.62,
+      "valence": 0.58,
+      "duration_ms": 235080,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Glass Animals - Heat Waves.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:indie",
+        "valence:0.58",
+        "tempo:104"
+      ]
+    },
+    {
+      "id": "e07169e5-8927-466e-b604-32f6a2dac1d5",
+      "title": "Rhythm of the Rain",
+      "artist": "The Cascades",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 157008,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cascades - Rhythm of the Rain.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "463f8a1d-27c1-49a4-b0f2-85da8232f9d4",
+      "title": "Crying in the Rain",
+      "artist": "The Everly Brothers",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 122136,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Everly Brothers - Crying in the Rain.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "b6b666f8-eb4e-4e34-afc4-a49e05cccd3a",
+      "title": "甜蜜蜜",
+      "artist": "邓丽君",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.82,
+      "duration_ms": 209928,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/邓丽君 - 甜蜜蜜.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "e0284061-cff5-491c-8d37-283d7ba9c781",
+      "title": "Teardrops on My Guitar",
+      "artist": "Taylor Swift",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 217128,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Taylor Swift - Teardrops on My Guitar.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "8d5c317e-2b46-408d-a62d-5d9b707597b6",
+      "title": "黄昏晓",
+      "artist": "王心凌",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.62,
+      "valence": 0.71,
+      "duration_ms": 285696,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/王心凌 - 黄昏晓.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.71",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "1493375f-144c-40fd-a8f1-0ae4b57a16c8",
+      "title": "追光者",
+      "artist": "岑宁儿",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.42,
+      "valence": 0.58,
+      "duration_ms": 226272,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/岑宁儿 - 追光者.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.42",
+        "valence:0.58"
+      ]
+    },
+    {
+      "id": "e0b1f15d-8d53-4357-ad99-38717c33ff2f",
+      "title": "曾经的你",
+      "artist": "许巍",
+      "album": null,
+      "genre": "rock",
+      "bpm": 84,
+      "energy": 0.62,
+      "valence": 0.58,
+      "duration_ms": 262464,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/许巍 - 曾经的你.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.58"
+      ]
+    },
+    {
+      "id": "a33e5673-f101-4fb2-b156-5f4853a72fef",
+      "title": "Drivers License",
+      "artist": "Olivia Rodrigo",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.42,
+      "valence": 0.28,
+      "duration_ms": 247056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Olivia Rodrigo - Drivers License.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.42",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "0aff7e2e-e32a-4e0d-bcef-afdd1aedaaaf",
+      "title": "突然的自我",
+      "artist": "伍佰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.55,
+      "duration_ms": 215280,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/伍佰 - 突然的自我.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.55",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "c948c68d-5dfd-4207-b1ab-a3d3b0c11250",
+      "title": "春天里",
+      "artist": "汪峰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.55,
+      "duration_ms": 284568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/汪峰 - 春天里.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.55",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "34e88352-1c71-4b5a-816c-2d707c3e2b51",
+      "title": "美丽新世界",
+      "artist": "伍佰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.55,
+      "duration_ms": 206112,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/伍佰 - 美丽新世界.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.55",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "7a6bb56f-7707-42d2-93ad-4ad5df934262",
+      "title": "奇妙能力歌",
+      "artist": "陈粒",
+      "album": null,
+      "genre": "indie",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.6,
+      "duration_ms": 253416,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/陈粒 - 奇妙能力歌.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:indie",
+        "energy:0.45",
+        "valence:0.60"
+      ]
+    },
+    {
+      "id": "4c518578-7b6f-4181-8499-0f7ce0464444",
+      "title": "方向",
+      "artist": "许巍",
+      "album": null,
+      "genre": "rock",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.6,
+      "duration_ms": 240000,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/许巍 - 方向.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.45",
+        "valence:0.60"
+      ]
+    },
+    {
+      "id": "81e2b532-7153-4b5f-b527-228eaf0197e7",
+      "title": "家",
+      "artist": "许巍",
+      "album": null,
+      "genre": "rock",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.6,
+      "duration_ms": 283032,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/许巍 - 家.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.45",
+        "valence:0.60"
+      ]
+    },
+    {
+      "id": "ca2efda7-080d-4e94-9ed1-f52fa7daca9b",
+      "title": "Road to Nowhere",
+      "artist": "Talking Heads",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.72,
+      "valence": 0.58,
+      "duration_ms": 249816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Talking Heads - Road to Nowhere.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.58",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "7afa1aa8-5335-47f6-982f-abf969588fa9",
+      "title": "西湖",
+      "artist": "痛仰乐队",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.52,
+      "duration_ms": 254016,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/痛仰乐队 - 西湖.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "19a32781-e932-4e82-ac50-59a05c9588a6",
+      "title": "Against the Wind",
+      "artist": "Bob Seger",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.52,
+      "duration_ms": 333936,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bob Seger - Against the Wind.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "ab68b1ea-4c71-4170-8ac0-ddac341b0be6",
+      "title": "Everyday Is a Winding Road",
+      "artist": "Sheryl Crow",
+      "album": null,
+      "genre": "rock",
+      "bpm": 112,
+      "energy": 0.68,
+      "valence": 0.55,
+      "duration_ms": 253320,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Sheryl Crow - Everyday Is a Winding Road.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.55",
+        "tempo:112"
+      ]
+    },
+    {
+      "id": "8eb851b0-3be0-4c7d-8422-adcebf9cb70d",
+      "title": "兄弟",
+      "artist": "任贤齐",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.72,
+      "duration_ms": 292848,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/任贤齐 - 兄弟.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.72",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "173908a6-b44b-47c9-84d0-9eb83bbaad8e",
+      "title": "Walking in the Rain",
+      "artist": "The Ronettes",
+      "album": null,
+      "genre": "pop",
+      "bpm": 112,
+      "energy": 0.65,
+      "valence": 0.48,
+      "duration_ms": 198288,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Ronettes - Walking in the Rain.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.48",
+        "tempo:112"
+      ]
+    },
+    {
+      "id": "4ea33d4d-6a51-4bd1-9fdf-c09b9f17833f",
+      "title": "光",
+      "artist": "陈粒",
+      "album": null,
+      "genre": "indie",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.62,
+      "duration_ms": 143208,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/陈粒 - 光.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:indie",
+        "energy:0.45",
+        "valence:0.62"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 30,
+    "avg_score": 72,
+    "total_duration_ms": 7324919,
+    "total_duration_minutes": 122
+  },
+  "mood_mapping": {
+    "valence": 0.6,
+    "arousal": 0.4,
+    "energy": 0.4
+  },
+  "music_requirements": {
+    "genres": [
+      "rock",
+      "pop",
+      "indie"
+    ],
+    "tempo": "moderate",
+    "mood_characteristics": {
+      "valence_level": "positive",
+      "energy_level": "low_moderate",
+      "description": "高速巡航氛围，适合稳定节奏的音乐"
+    }
+  }
+}

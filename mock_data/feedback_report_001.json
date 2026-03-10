@@ -1,0 +1,20 @@
+{
+  "report_id": "fb_rep_001",
+  "timestamp": "2026-02-28T08:30:00Z",
+  "scene_id": "scene_morning_commute_001",
+  "user_id": "user_12345",
+  "feedback_type": "explicit",
+  "action": "skip",
+  "track_id": "track_rock_001",
+  "context_at_action": {
+    "time_in_track_ms": 15000,
+    "current_energy_level": 0.8,
+    "vehicle_speed": 45
+  },
+  "inferred_reason": "energy_too_high_for_current_mood",
+  "layer_adjustments": {
+    "layer1_action": "skip_track",
+    "layer2_action": "lower_target_energy_by_10_percent",
+    "layer3_action": "update_persona_preference_morning_energy"
+  }
+}

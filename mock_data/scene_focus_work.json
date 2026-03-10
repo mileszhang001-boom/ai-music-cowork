@@ -1,0 +1,56 @@
+{
+  "scene_id": "scene_focus_work_001",
+  "timestamp": "2026-03-02T14:00:00Z",
+  "intent": "deep_focus",
+  "confidence": 0.89,
+  "source": "layer3_slow_path",
+  "persona": {
+    "id": "persona_remote_worker",
+    "description": "车内办公",
+    "preferences": {
+      "liked_genres": ["lofi", "ambient", "classical"],
+      "disliked_genres": ["pop", "rock", "hiphop"],
+      "vibe": "focused"
+    }
+  },
+  "context": {
+    "time": "14:00",
+    "weather": "cloudy",
+    "oms": {
+      "occupants": 1,
+      "type": "adult"
+    },
+    "mic": "silent"
+  },
+  "announcement": {
+    "tts_text": "开启专注模式，为您播放无干扰的背景音乐。",
+    "voice_type": "neutral_ai"
+  },
+  "orchestration": {
+    "transition": {
+      "type": "fade",
+      "duration_ms": 3000
+    },
+    "energy_curve": [
+      {"time_offset_s": 0, "energy_level": 0.3},
+      {"time_offset_s": 300, "energy_level": 0.3},
+      {"time_offset_s": 600, "energy_level": 0.3},
+      {"time_offset_s": 900, "energy_level": 0.3},
+      {"time_offset_s": 1200, "energy_level": 0.3}
+    ],
+    "content_hints": {
+      "genres": ["lofi", "ambient"],
+      "tempo": "medium_slow",
+      "instrumental_only": true
+    },
+    "light_hints": {
+      "color_palette": ["#4682B4", "#B0C4DE"],
+      "effect": "static",
+      "brightness": 0.3
+    },
+    "audio_hints": {
+      "eq_preset": "flat",
+      "spatial_audio": "stereo_narrow"
+    }
+  }
+}

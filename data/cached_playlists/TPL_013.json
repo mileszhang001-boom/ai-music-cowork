@@ -1,0 +1,443 @@
+{
+  "template_id": "TPL_013",
+  "template_name": "傍晚通勤",
+  "scene_type": "evening_commute",
+  "category": "time",
+  "generated_at": "2026-03-01T13:30:47.385Z",
+  "playlist": [
+    {
+      "id": "61d161f8-8762-467e-a9e6-d32f61f35c46",
+      "title": "Time After Time",
+      "artist": "Cyndi Lauper",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.52,
+      "duration_ms": 297000,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Cyndi Lauper - Time After Time.mp3",
+      "score": 86,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.52",
+        "tempo:92",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "8d5c317e-2b46-408d-a62d-5d9b707597b6",
+      "title": "黄昏晓",
+      "artist": "王心凌",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.62,
+      "valence": 0.71,
+      "duration_ms": 285696,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/王心凌 - 黄昏晓.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.71",
+        "tempo:92",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "9f1e8b99-5634-455c-b975-1e6162cb9f52",
+      "title": "Here Comes the Rain Again",
+      "artist": "Eurythmics",
+      "album": null,
+      "genre": "pop",
+      "bpm": 112,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 283608,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Eurythmics - Here Comes the Rain Again.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.42",
+        "tempo:112",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "cfc34b7b-23ec-4073-a5dc-bea5a4855ffb",
+      "title": "三年二班",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.52,
+      "duration_ms": 459768,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 三年二班.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "5a0fe027-593e-43f8-a164-a88becf342db",
+      "title": "第一天",
+      "artist": "孙燕姿",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.62,
+      "duration_ms": 254040,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/孙燕姿 - 第一天.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.62",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "52fe1bc7-fbd0-4cb8-8555-f143ce60222c",
+      "title": "爱在西元前",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.72,
+      "duration_ms": 238200,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 爱在西元前.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.72",
+        "tempo:92",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "84a3c150-2dfb-41ae-993c-c655d8bea8c3",
+      "title": "世界",
+      "artist": "张过年",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.72,
+      "duration_ms": 243840,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/张过年 - 世界.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.72",
+        "tempo:92",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "ffef8ee5-3e50-42e6-ba07-2342601f498a",
+      "title": "夜来香",
+      "artist": "邓丽君",
+      "album": null,
+      "genre": "pop",
+      "bpm": 84,
+      "energy": 0.35,
+      "valence": 0.62,
+      "duration_ms": 192912,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/邓丽君 - 夜来香.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.35",
+        "valence:0.62"
+      ]
+    },
+    {
+      "id": "83e3fffd-66d2-4f49-9698-a8db7cb7ff77",
+      "title": "演员",
+      "artist": "薛之谦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.42,
+      "valence": 0.38,
+      "duration_ms": 298608,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/薛之谦 - 演员.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.42",
+        "valence:0.38",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "fe989a6c-121a-487a-93bd-b95e45b7d5d0",
+      "title": "晴天",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 318288,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 晴天.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.68",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "ca0032ab-74e8-4556-ba12-5084d97ac70c",
+      "title": "逆光",
+      "artist": "孙燕姿",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 296376,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/孙燕姿 - 逆光.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.38",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "39a62575-ade8-43d5-8258-ad8d48672cb3",
+      "title": "细雨",
+      "artist": "陈奕迅",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 273408,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/陈奕迅 - 细雨.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.35",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "e07169e5-8927-466e-b604-32f6a2dac1d5",
+      "title": "Rhythm of the Rain",
+      "artist": "The Cascades",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 157008,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cascades - Rhythm of the Rain.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.38",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "da41a4fb-0c31-4b02-889f-5d5d415eddbf",
+      "title": "Yesterday",
+      "artist": "The Beatles",
+      "album": null,
+      "genre": "pop",
+      "bpm": 96,
+      "energy": 0.35,
+      "valence": 0.28,
+      "duration_ms": 125712,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Beatles - Yesterday.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.35",
+        "tempo:96"
+      ]
+    },
+    {
+      "id": "459d35fa-0200-42b2-a349-d9277749141f",
+      "title": "Your Song",
+      "artist": "Elton John",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 228360,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Elton John - Your Song.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.72",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "463f8a1d-27c1-49a4-b0f2-85da8232f9d4",
+      "title": "Crying in the Rain",
+      "artist": "The Everly Brothers",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 122136,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Everly Brothers - Crying in the Rain.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.38",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "e0284061-cff5-491c-8d37-283d7ba9c781",
+      "title": "Teardrops on My Guitar",
+      "artist": "Taylor Swift",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 217128,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Taylor Swift - Teardrops on My Guitar.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.38",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "5e8610e3-f376-4a97-8595-8e1517da0a13",
+      "title": "体面",
+      "artist": "于文文",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.42,
+      "valence": 0.31,
+      "duration_ms": 282792,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/于文文 - 体面.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.42",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "7d8dadf2-fcf7-49a3-81bf-b75e189baa46",
+      "title": "Thinking Out Loud",
+      "artist": "Ed Sheeran",
+      "album": null,
+      "genre": "pop",
+      "bpm": 69,
+      "energy": 0.42,
+      "valence": 0.78,
+      "duration_ms": 289128,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Ed Sheeran - Thinking Out Loud.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.42",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "62ad8ef9-3fd7-40be-bfb2-8241f27c3e6d",
+      "title": "泡沫",
+      "artist": "邓紫棋",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.48,
+      "valence": 0.32,
+      "duration_ms": 258744,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/邓紫棋 - 泡沫.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.48",
+        "scene:evening_commute"
+      ]
+    },
+    {
+      "id": "a33e5673-f101-4fb2-b156-5f4853a72fef",
+      "title": "Drivers License",
+      "artist": "Olivia Rodrigo",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.42,
+      "valence": 0.28,
+      "duration_ms": 247056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Olivia Rodrigo - Drivers License.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.42",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "b130b68c-adc1-45c7-a731-2d6d0a3af857",
+      "title": "California Dreamin",
+      "artist": "The Mamas  The Papas",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.55,
+      "valence": 0.68,
+      "duration_ms": 157512,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Mamas  The Papas - California Dreamin.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.68",
+        "tempo:92"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 22,
+    "avg_score": 74,
+    "total_duration_ms": 5527320,
+    "total_duration_minutes": 92
+  },
+  "mood_mapping": {
+    "valence": 0.55,
+    "arousal": 0.35,
+    "energy": 0.35
+  },
+  "music_requirements": {
+    "genres": [
+      "pop",
+      "r&b"
+    ],
+    "tempo": "moderate",
+    "mood_characteristics": {
+      "valence_level": "slightly_positive",
+      "energy_level": "low_moderate",
+      "description": "下班放松氛围，适合舒缓的音乐"
+    }
+  }
+}

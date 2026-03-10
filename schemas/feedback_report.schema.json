@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Feedback Report",
+  "type": "object",
+  "properties": {
+    "scene_id": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "music_feedback": {
+      "type": "object",
+      "properties": {
+        "playlist_generated": { "type": "boolean" },
+        "tracks_count": { "type": "integer" },
+        "hints_adopted": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              { "type": "boolean" },
+              { "type": "string" }
+            ]
+          }
+        },
+        "actual_parameters": {
+          "type": "object"
+        },
+        "current_track": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "artist": { "type": "string" },
+            "bpm": { "type": "integer" }
+          }
+        },
+        "user_actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "track": { "type": "string" },
+              "at_sec": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "lighting_feedback": {
+      "type": "object",
+      "properties": {
+        "transition_completed": { "type": "boolean" },
+        "actual_duration_sec": { "type": "integer" },
+        "hints_adopted": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              { "type": "boolean" },
+              { "type": "string" }
+            ]
+          }
+        },
+        "actual_parameters": {
+          "type": "object"
+        },
+        "hardware_errors": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "audio_feedback": {
+      "type": "object",
+      "properties": {
+        "preset_applied": { "type": "string" },
+        "hints_adopted": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              { "type": "boolean" },
+              { "type": "string" }
+            ]
+          }
+        },
+        "actual_volume_db": { "type": "number" },
+        "dsp_errors": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "user_interactions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "text": { "type": "string" },
+          "timestamp": { "type": "string" },
+          "target": { "type": "string" },
+          "value": { "type": ["number", "string"] }
+        }
+      }
+    }
+  },
+  "required": ["scene_id", "timestamp"]
+}

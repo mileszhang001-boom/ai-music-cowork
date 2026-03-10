@@ -1,0 +1,687 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "description": "音乐标签体系定义 - 参考 Spotify、网易云音乐、QQ音乐等主流平台标准",
+  
+  "platforms_reference": {
+    "spotify": {
+      "audio_features": ["energy", "valence", "danceability", "acousticness", "instrumentalness", "speechiness", "liveness", "tempo"],
+      "description": "Spotify Web API 提供的音频特征分析，基于信号处理算法"
+    },
+    "netease_cloud_music": {
+      "tags": ["语种", "风格", "场景", "情感", "主题"],
+      "description": "网易云音乐采用多维度标签体系，包含用户生成标签和官方分类"
+    },
+    "qq_music": {
+      "categories": ["流派", "情绪", "场景", "年代", "语种"],
+      "description": "QQ音乐强调场景化和情绪化分类，支持智能推荐"
+    }
+  },
+
+  "schema": {
+    "track_base_info": {
+      "description": "歌曲基础信息",
+      "fields": {
+        "id": {
+          "type": "string",
+          "required": true,
+          "description": "歌曲唯一标识符",
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "example": "mc_001"
+        },
+        "title": {
+          "type": "string",
+          "required": true,
+          "description": "歌曲标题",
+          "max_length": 200,
+          "example": "晴天"
+        },
+        "title_pinyin": {
+          "type": "string",
+          "required": false,
+          "description": "标题拼音（用于搜索）",
+          "example": "qing tian"
+        },
+        "artist": {
+          "type": "string",
+          "required": true,
+          "description": "艺术家/歌手名称",
+          "max_length": 200,
+          "example": "周杰伦"
+        },
+        "artist_pinyin": {
+          "type": "string",
+          "required": false,
+          "description": "艺术家拼音（用于搜索）",
+          "example": "zhou jie lun"
+        },
+        "album": {
+          "type": "string",
+          "required": false,
+          "description": "专辑名称",
+          "max_length": 200,
+          "example": "叶惠美"
+        },
+        "year": {
+          "type": "integer",
+          "required": false,
+          "description": "发行年份",
+          "min": 1900,
+          "max": 2100,
+          "example": 2003
+        },
+        "language": {
+          "type": "string",
+          "required": false,
+          "description": "语言",
+          "enum": ["zh", "en", "ja", "ko", "instrumental", "other"],
+          "example": "zh"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "required": false,
+          "description": "时长（毫秒）",
+          "min": 0,
+          "example": 269000
+        }
+      }
+    },
+
+    "objective_attributes": {
+      "description": "客观音频属性 - 基于 Spotify 音频特征模型",
+      "fields": {
+        "bpm": {
+          "type": "integer",
+          "required": false,
+          "description": "每分钟节拍数 (Beats Per Minute)",
+          "min": 40,
+          "max": 220,
+          "example": 120,
+          "mapping": {
+            "very_slow": "40-70",
+            "slow": "70-90",
+            "moderate": "90-120",
+            "fast": "120-150",
+            "very_fast": "150-220"
+          }
+        },
+        "key": {
+          "type": "string",
+          "required": false,
+          "description": "调性",
+          "enum": [
+            "C_major", "G_major", "D_major", "A_major", "E_major", "B_major", "F_sharp_major", "C_sharp_major",
+            "F_major", "B_flat_major", "E_flat_major", "A_flat_major", "D_flat_major", "G_flat_major",
+            "A_minor", "E_minor", "B_minor", "F_sharp_minor", "C_sharp_minor", "G_sharp_minor", "D_sharp_minor",
+            "D_minor", "G_minor", "C_minor", "F_minor", "B_flat_minor", "E_flat_minor"
+          ],
+          "example": "C_major"
+        },
+        "time_signature": {
+          "type": "integer",
+          "required": false,
+          "description": "拍号",
+          "enum": [3, 4, 5, 6, 7],
+          "default": 4,
+          "example": 4
+        }
+      }
+    },
+
+    "spotify_audio_features": {
+      "description": "Spotify 风格音频特征 - 范围 0.0-1.0",
+      "fields": {
+        "energy": {
+          "type": "float",
+          "required": true,
+          "description": "能量强度 - 衡量歌曲的活力和强度",
+          "min": 0.0,
+          "max": 1.0,
+          "example": 0.65,
+          "interpretation": {
+            "0.0-0.3": "低能量 - 柔和、安静",
+            "0.3-0.6": "中等能量 - 平衡",
+            "0.6-1.0": "高能量 - 激烈、动感"
+          }
+        },
+        "valence": {
+          "type": "float",
+          "required": true,
+          "description": "情绪正向度 - 衡量歌曲传递的积极/消极情绪",
+          "min": 0.0,
+          "max": 1.0,
+          "example": 0.75,
+          "interpretation": {
+            "0.0-0.3": "负面情绪 - 悲伤、愤怒、压抑",
+            "0.3-0.6": "中性情绪 - 复杂、矛盾",
+            "0.6-1.0": "正面情绪 - 快乐、愉悦、积极"
+          }
+        },
+        "danceability": {
+          "type": "float",
+          "required": false,
+          "description": "可舞性 - 基于节奏、稳定性、节拍强度等",
+          "min": 0.0,
+          "max": 1.0,
+          "example": 0.70,
+          "interpretation": {
+            "0.0-0.3": "不适合跳舞",
+            "0.3-0.6": "中等可舞性",
+            "0.6-1.0": "适合跳舞"
+          }
+        },
+        "acousticness": {
+          "type": "float",
+          "required": false,
+          "description": "原声程度 - 歌曲是否为原声乐器演奏",
+          "min": 0.0,
+          "max": 1.0,
+          "example": 0.25,
+          "interpretation": {
+            "0.0-0.3": "电子/合成音为主",
+            "0.3-0.7": "混合",
+            "0.7-1.0": "原声乐器为主"
+          }
+        },
+        "instrumentalness": {
+          "type": "float",
+          "required": false,
+          "description": "纯音乐程度 - 歌曲是否无人声",
+          "min": 0.0,
+          "max": 1.0,
+          "example": 0.05,
+          "interpretation": {
+            "0.0-0.5": "有人声",
+            "0.5-1.0": "纯音乐（值越高越确定）"
+          }
+        },
+        "speechiness": {
+          "type": "float",
+          "required": false,
+          "description": "人声程度 - 检测语音与歌唱的区别",
+          "min": 0.0,
+          "max": 1.0,
+          "example": 0.10,
+          "interpretation": {
+            "0.0-0.33": "音乐为主",
+            "0.33-0.66": "音乐与语音混合",
+            "0.66-1.0": "语音为主（如有声书、播客）"
+          }
+        },
+        "liveness": {
+          "type": "float",
+          "required": false,
+          "description": "现场感 - 检测是否有现场观众",
+          "min": 0.0,
+          "max": 1.0,
+          "example": 0.12,
+          "interpretation": {
+            "0.0-0.8": "录音室版本",
+            "0.8-1.0": "现场版本"
+          }
+        }
+      }
+    },
+
+    "genre_classification": {
+      "description": "音乐流派分类 - 综合三大平台流派体系",
+      "fields": {
+        "genre": {
+          "type": "string",
+          "required": true,
+          "description": "主要流派",
+          "enum": [
+            "pop",
+            "rock",
+            "jazz",
+            "classical",
+            "electronic",
+            "folk",
+            "rnb",
+            "hip_hop",
+            "country",
+            "ambient",
+            "blues",
+            "metal",
+            "punk",
+            "reggae",
+            "latin",
+            "indie",
+            "soul",
+            "funk",
+            "disco",
+            "lofi",
+            "ballad",
+            "acoustic",
+            "soundtrack",
+            "world",
+            "children",
+            "religious",
+            "other"
+          ],
+          "example": "pop"
+        },
+        "sub_genres": {
+          "type": "array",
+          "required": false,
+          "description": "子流派标签",
+          "items": {
+            "type": "string"
+          },
+          "examples": {
+            "rock": ["classic_rock", "alternative_rock", "indie_rock", "hard_rock", "soft_rock"],
+            "electronic": ["house", "techno", "trance", "dubstep", "edm", "synthwave"],
+            "pop": ["dance_pop", "synth_pop", "indie_pop", "k_pop", "c_pop", "j_pop"],
+            "hip_hop": ["trap", "old_school", "new_school", "conscious"],
+            "jazz": ["smooth_jazz", "bebop", "swing", "fusion"]
+          }
+        }
+      }
+    },
+
+    "mood_tags": {
+      "description": "情绪标签体系 - 基于 Valence-Arousal 情绪模型",
+      "fields": {
+        "mood_tags": {
+          "type": "array",
+          "required": true,
+          "description": "情绪标签数组（可多选）",
+          "min_items": 1,
+          "max_items": 5,
+          "items": {
+            "type": "string",
+            "enum": [
+              "happy",
+              "sad",
+              "energetic",
+              "calm",
+              "romantic",
+              "melancholy",
+              "peaceful",
+              "excited",
+              "nostalgic",
+              "hopeful",
+              "dark",
+              "bright",
+              "dreamy",
+              "aggressive",
+              "relaxing",
+              "uplifting",
+              "sentimental",
+              "playful",
+              "mysterious",
+              "epic"
+            ]
+          },
+          "example": ["happy", "energetic", "hopeful"]
+        }
+      },
+      "valence_arousal_mapping": {
+        "description": "情绪标签与 Valence-Arousal 模型的映射关系",
+        "quadrants": {
+          "high_valence_high_arousal": {
+            "range": "valence > 0.5, energy > 0.5",
+            "tags": ["happy", "energetic", "excited", "uplifting", "playful"]
+          },
+          "high_valence_low_arousal": {
+            "range": "valence > 0.5, energy <= 0.5",
+            "tags": ["calm", "peaceful", "relaxing", "romantic"]
+          },
+          "low_valence_high_arousal": {
+            "range": "valence <= 0.5, energy > 0.5",
+            "tags": ["aggressive", "dark", "epic"]
+          },
+          "low_valence_low_arousal": {
+            "range": "valence <= 0.5, energy <= 0.5",
+            "tags": ["sad", "melancholy", "nostalgic", "sentimental", "dreamy"]
+          }
+        }
+      }
+    },
+
+    "activity_tags": {
+      "description": "活动场景标签",
+      "fields": {
+        "activity_tags": {
+          "type": "array",
+          "required": false,
+          "description": "活动标签数组",
+          "min_items": 0,
+          "max_items": 5,
+          "items": {
+            "type": "string",
+            "enum": [
+              "driving",
+              "working",
+              "exercise",
+              "relax",
+              "party",
+              "sleep",
+              "study",
+              "cooking",
+              "cleaning",
+              "gaming",
+              "meditation",
+              "yoga",
+              "running",
+              "walking",
+              "commute"
+            ]
+          },
+          "example": ["driving", "commute"]
+        }
+      }
+    },
+
+    "weather_tags": {
+      "description": "天气场景标签",
+      "fields": {
+        "weather_tags": {
+          "type": "array",
+          "required": false,
+          "description": "天气标签数组",
+          "min_items": 0,
+          "max_items": 3,
+          "items": {
+            "type": "string",
+            "enum": [
+              "sunny",
+              "rainy",
+              "cloudy",
+              "snowy",
+              "windy",
+              "stormy",
+              "foggy",
+              "clear_night"
+            ]
+          },
+          "example": ["sunny"]
+        }
+      }
+    },
+
+    "time_tags": {
+      "description": "时间段标签",
+      "fields": {
+        "time_tags": {
+          "type": "array",
+          "required": false,
+          "description": "时间标签数组",
+          "min_items": 0,
+          "max_items": 3,
+          "items": {
+            "type": "string",
+            "enum": [
+              "morning",
+              "afternoon",
+              "evening",
+              "night",
+              "late_night",
+              "dawn",
+              "dusk"
+            ]
+          },
+          "example": ["morning"]
+        }
+      },
+      "time_range_mapping": {
+        "morning": "06:00-09:00",
+        "afternoon": "09:00-17:00",
+        "evening": "17:00-21:00",
+        "night": "21:00-00:00",
+        "late_night": "00:00-06:00",
+        "dawn": "05:00-07:00",
+        "dusk": "17:00-19:00"
+      }
+    },
+
+    "scene_tags": {
+      "description": "场景标签 - 对应 Layer 2 场景描述符",
+      "fields": {
+        "scene_tags": {
+          "type": "array",
+          "required": false,
+          "description": "场景标签数组",
+          "min_items": 0,
+          "max_items": 5,
+          "items": {
+            "type": "string",
+            "enum": [
+              "morning_commute",
+              "night_drive",
+              "road_trip",
+              "party",
+              "romantic_date",
+              "focus_work",
+              "relax",
+              "workout",
+              "sleep",
+              "meditation",
+              "rainy_day",
+              "sunny_day",
+              "winter",
+              "summer",
+              "family_trip",
+              "city",
+              "highway",
+              "home",
+              "office",
+              "cafe",
+              "outdoor"
+            ]
+          },
+          "example": ["morning_commute", "city"]
+        }
+      }
+    },
+
+    "extended_metadata": {
+      "description": "扩展元数据",
+      "fields": {
+        "expression": {
+          "type": "string",
+          "required": false,
+          "description": "歌曲表达的情感描述",
+          "max_length": 500,
+          "example": "清晨的阳光，充满希望"
+        },
+        "user_feedback": {
+          "type": "string",
+          "required": false,
+          "description": "用户反馈备注",
+          "max_length": 500,
+          "example": "很适合早晨听"
+        },
+        "scene_match": {
+          "type": "string",
+          "required": false,
+          "description": "场景匹配描述",
+          "max_length": 200,
+          "example": "早晨通勤，正能量"
+        },
+        "content_rating": {
+          "type": "string",
+          "required": false,
+          "description": "内容分级",
+          "enum": ["G", "PG", "PG-13", "R"],
+          "default": "G",
+          "example": "G"
+        },
+        "popularity": {
+          "type": "integer",
+          "required": false,
+          "description": "流行度评分 (0-100)",
+          "min": 0,
+          "max": 100,
+          "example": 85
+        }
+      }
+    },
+
+    "file_metadata": {
+      "description": "文件元数据",
+      "fields": {
+        "file_path": {
+          "type": "string",
+          "required": false,
+          "description": "文件路径",
+          "example": "/data/music/song.mp3"
+        },
+        "file_size": {
+          "type": "integer",
+          "required": false,
+          "description": "文件大小（字节）",
+          "example": 5242880
+        },
+        "format": {
+          "type": "string",
+          "required": false,
+          "description": "音频格式",
+          "enum": ["MP3", "FLAC", "WAV", "M4A", "OGG", "AAC"],
+          "example": "MP3"
+        },
+        "bitrate": {
+          "type": "integer",
+          "required": false,
+          "description": "比特率 (kbps)",
+          "example": 320
+        },
+        "sample_rate": {
+          "type": "integer",
+          "required": false,
+          "description": "采样率 (Hz)",
+          "example": 44100
+        },
+        "llm_analyzed": {
+          "type": "integer",
+          "required": false,
+          "description": "是否经过 LLM 分析 (0/1)",
+          "enum": [0, 1],
+          "example": 1
+        }
+      }
+    }
+  },
+
+  "validation_rules": {
+    "required_fields": ["id", "title", "artist", "genre", "energy", "valence", "mood_tags"],
+    "numeric_ranges": {
+      "bpm": {"min": 40, "max": 220},
+      "energy": {"min": 0.0, "max": 1.0},
+      "valence": {"min": 0.0, "max": 1.0},
+      "danceability": {"min": 0.0, "max": 1.0},
+      "acousticness": {"min": 0.0, "max": 1.0},
+      "instrumentalness": {"min": 0.0, "max": 1.0},
+      "speechiness": {"min": 0.0, "max": 1.0},
+      "liveness": {"min": 0.0, "max": 1.0}
+    },
+    "array_constraints": {
+      "mood_tags": {"min": 1, "max": 5},
+      "activity_tags": {"min": 0, "max": 5},
+      "weather_tags": {"min": 0, "max": 3},
+      "time_tags": {"min": 0, "max": 3},
+      "scene_tags": {"min": 0, "max": 5}
+    }
+  },
+
+  "tag_inference_rules": {
+    "description": "标签推导规则 - 从现有字段推导其他标签",
+    "rules": [
+      {
+        "name": "valence_from_genre",
+        "condition": "genre in ['jazz', 'classical', 'lofi', 'blues']",
+        "result": "valence range: 0.3-0.5"
+      },
+      {
+        "name": "valence_from_genre_pop",
+        "condition": "genre in ['pop', 'rock', 'electronic', 'dance']",
+        "result": "valence range: 0.5-0.8"
+      },
+      {
+        "name": "danceability_from_bpm",
+        "formula": "danceability = min(1, bpm / 150)",
+        "description": "BPM 越高，可舞性越高"
+      },
+      {
+        "name": "instrumentalness_from_language",
+        "condition": "language == 'instrumental'",
+        "result": "instrumentalness = 0.9"
+      },
+      {
+        "name": "mood_from_energy_valence",
+        "rules": [
+          {
+            "condition": "energy > 0.7 && valence > 0.6",
+            "tags": ["energetic", "happy"]
+          },
+          {
+            "condition": "energy < 0.3 && valence < 0.4",
+            "tags": ["calm", "melancholy"]
+          },
+          {
+            "condition": "energy > 0.7 && valence < 0.4",
+            "tags": ["aggressive", "dark"]
+          },
+          {
+            "condition": "energy < 0.3 && valence > 0.6",
+            "tags": ["peaceful", "relaxing"]
+          }
+        ]
+      }
+    ]
+  },
+
+  "examples": {
+    "complete_track": {
+      "id": "mc_001",
+      "title": "晴天",
+      "title_pinyin": "qing tian",
+      "artist": "周杰伦",
+      "artist_pinyin": "zhou jie lun",
+      "album": "叶惠美",
+      "year": 2003,
+      "language": "zh",
+      "duration_ms": 269000,
+      "genre": "pop",
+      "sub_genres": ["ballad", "mandopop"],
+      "bpm": 75,
+      "key": "G_major",
+      "time_signature": 4,
+      "energy": 0.45,
+      "valence": 0.55,
+      "danceability": 0.50,
+      "acousticness": 0.65,
+      "instrumentalness": 0.05,
+      "speechiness": 0.10,
+      "liveness": 0.10,
+      "mood_tags": ["nostalgic", "romantic", "sentimental"],
+      "activity_tags": ["driving", "relax"],
+      "weather_tags": ["sunny", "cloudy"],
+      "time_tags": ["afternoon", "evening"],
+      "scene_tags": ["home", "city"],
+      "expression": "青春校园的回忆，淡淡的忧伤与温暖",
+      "content_rating": "G",
+      "popularity": 95
+    },
+    "electronic_track": {
+      "id": "mc_002",
+      "title": "Strobe",
+      "artist": "Deadmau5",
+      "album": "For Lack of a Better Name",
+      "year": 2009,
+      "language": "instrumental",
+      "duration_ms": 637000,
+      "genre": "electronic",
+      "sub_genres": ["progressive_house"],
+      "bpm": 128,
+      "energy": 0.75,
+      "valence": 0.70,
+      "danceability": 0.85,
+      "acousticness": 0.05,
+      "instrumentalness": 0.95,
+      "mood_tags": ["energetic", "uplifting", "dreamy"],
+      "activity_tags": ["party", "exercise", "driving"],
+      "scene_tags": ["night_drive", "party"]
+    }
+  }
+}

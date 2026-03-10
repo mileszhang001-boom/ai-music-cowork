@@ -1,0 +1,77 @@
+{
+  "version": "2.0",
+  "scene_id": "scene_fatigue_alert_001",
+  "timestamp": "2026-02-27T15:45:00+08:00",
+  "scene_name": "疲劳提醒",
+  "scene_narrative": "检测到驾驶员疲劳，提供高能量提神体验",
+  "intent": {
+    "mood": {
+      "valence": 0.5,
+      "arousal": 0.9
+    },
+    "energy_level": 0.9,
+    "energy_curve": [
+      0.9,
+      0.85
+    ],
+    "curve_duration_minutes": 10,
+    "atmosphere": "alert_energetic",
+    "social_context": "solo_driver",
+    "trip_phase": "late",
+    "trip_progress": 0.8,
+    "constraints": {
+      "content_rating": "PG-13",
+      "max_volume_db": -5,
+      "avoid_sudden_changes": false,
+      "brightness_max": 1.0
+    },
+    "user_overrides": {
+      "exclude_tags": [],
+      "preferred_language": []
+    },
+    "transition": {
+      "type": "critical",
+      "style": "instant",
+      "duration_sec": 0
+    }
+  },
+  "hints": {
+    "music": {
+      "suggested_tags": [
+        "电子",
+        "摇滚",
+        "高能量"
+      ],
+      "suggested_tempo": [
+        120,
+        160
+      ],
+      "suggested_artists": [],
+      "suggested_vocal_style": "powerful"
+    },
+    "lighting": {
+      "suggested_palette": [
+        "bright_white",
+        "alert_blue"
+      ],
+      "suggested_rhythm": "strobe_mild"
+    },
+    "audio": {
+      "suggested_spatial": "focused_driver",
+      "suggested_bass_level": "high"
+    }
+  },
+  "announcement": {
+    "text": "检测到你有点疲劳，为你切换到提神模式，建议找个服务区休息一下。",
+    "timing": "before_transition",
+    "voice_style": "alert_female"
+  },
+  "meta": {
+    "confidence": 0.98,
+    "source": "layer2_fast_path",
+    "reasoning": "OMS检测到驾驶员频繁揉眼和闭眼，触发紧急疲劳提醒",
+    "fallback_template": "TPL_099",
+    "expires_at": "2026-02-27T16:00:00+08:00",
+    "low_confidence_dimensions": []
+  }
+}

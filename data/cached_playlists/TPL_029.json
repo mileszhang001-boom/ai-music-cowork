@@ -1,0 +1,426 @@
+{
+  "template_id": "TPL_029",
+  "template_name": "大风天气",
+  "scene_type": "windy_day",
+  "category": "weather",
+  "generated_at": "2026-03-01T13:30:47.398Z",
+  "playlist": [
+    {
+      "id": "ac9e8a5a-2bca-485f-a24d-fc5115387240",
+      "title": "像风一样自由",
+      "artist": "许巍",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.75,
+      "duration_ms": 219912,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/许巍 - 像风一样自由.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:rock",
+        "tempo:92",
+        "scene:windy_day"
+      ]
+    },
+    {
+      "id": "13f25741-d601-4afb-958d-59bc53133175",
+      "title": "Hotel California",
+      "artist": "Eagles",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.65,
+      "valence": 0.48,
+      "duration_ms": 391368,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Eagles - Hotel California.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.48",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "0974269b-806f-466d-b4b8-14b6b4800839",
+      "title": "Rain",
+      "artist": "The Beatles",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 188208,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Beatles - Rain.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.42",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "8375e212-e8c5-4afc-b3f8-606e9db15649",
+      "title": "浪人情歌",
+      "artist": "伍佰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 270048,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/伍佰 - 浪人情歌.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.42",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "78d61bac-9df2-4622-8f79-def1ea84b77f",
+      "title": "Have You Ever Seen the Rain",
+      "artist": "Creedence Clearwater Revival",
+      "album": null,
+      "genre": "rock",
+      "bpm": 112,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 183744,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Creedence Clearwater Revival - Have You Ever Seen the Rain.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.42",
+        "tempo:112"
+      ]
+    },
+    {
+      "id": "7a8797db-4b1d-4472-b120-e81a70f4a22d",
+      "title": "Running on Empty",
+      "artist": "Jackson Browne",
+      "album": null,
+      "genre": "rock",
+      "bpm": 112,
+      "energy": 0.65,
+      "valence": 0.48,
+      "duration_ms": 300000,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Jackson Browne - Running on Empty.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.48",
+        "tempo:112"
+      ]
+    },
+    {
+      "id": "e274e90c-8d33-4fab-9734-0a189a830075",
+      "title": "Wholl Stop the Rain",
+      "artist": "Creedence Clearwater Revival",
+      "album": null,
+      "genre": "rock",
+      "bpm": 104,
+      "energy": 0.65,
+      "valence": 0.42,
+      "duration_ms": 150048,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Creedence Clearwater Revival - Wholl Stop the Rain.mp3",
+      "score": 69,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.42",
+        "tempo:104"
+      ]
+    },
+    {
+      "id": "a7f5188c-e791-4429-b39f-285896534acf",
+      "title": "Kentucky Rain",
+      "artist": "Elvis Presley",
+      "album": null,
+      "genre": "rock",
+      "bpm": 84,
+      "energy": 0.52,
+      "valence": 0.38,
+      "duration_ms": 198504,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Elvis Presley - Kentucky Rain.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.38"
+      ]
+    },
+    {
+      "id": "ed440239-c5e6-4887-8647-f9bd49db03f2",
+      "title": "再见杰克",
+      "artist": "痛仰乐队",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.72,
+      "valence": 0.45,
+      "duration_ms": 273816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/痛仰乐队 - 再见杰克.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.45",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "186ccd65-d2d2-4f95-aee3-3496f56388db",
+      "title": "脱缰",
+      "artist": "陈粒",
+      "album": null,
+      "genre": "indie",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.52,
+      "duration_ms": 269160,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/陈粒 - 脱缰.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:indie",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "7afa1aa8-5335-47f6-982f-abf969588fa9",
+      "title": "西湖",
+      "artist": "痛仰乐队",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.52,
+      "duration_ms": 254016,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/痛仰乐队 - 西湖.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "3a737848-04aa-4a4b-b5de-3371ac3170d3",
+      "title": "晚风",
+      "artist": "伍佰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 84,
+      "energy": 0.62,
+      "valence": 0.48,
+      "duration_ms": 224208,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/伍佰 - 晚风.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.48"
+      ]
+    },
+    {
+      "id": "19a32781-e932-4e82-ac50-59a05c9588a6",
+      "title": "Against the Wind",
+      "artist": "Bob Seger",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.52,
+      "duration_ms": 333936,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bob Seger - Against the Wind.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "e4bf49f4-70a4-4716-9e45-8d5ccc50ab19",
+      "title": "Heat Waves",
+      "artist": "Glass Animals",
+      "album": null,
+      "genre": "indie",
+      "bpm": 104,
+      "energy": 0.62,
+      "valence": 0.58,
+      "duration_ms": 235080,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Glass Animals - Heat Waves.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:indie",
+        "valence:0.58",
+        "tempo:104"
+      ]
+    },
+    {
+      "id": "dba68332-1c35-4ba6-a6c1-5dadd4727d7f",
+      "title": "伤心的人别听慢歌",
+      "artist": "五月天",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.32,
+      "duration_ms": 219456,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/五月天 - 伤心的人别听慢歌.mp3",
+      "score": 66,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.32",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "0aff7e2e-e32a-4e0d-bcef-afdd1aedaaaf",
+      "title": "突然的自我",
+      "artist": "伍佰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.55,
+      "duration_ms": 215280,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/伍佰 - 突然的自我.mp3",
+      "score": 66,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.55",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "c948c68d-5dfd-4207-b1ab-a3d3b0c11250",
+      "title": "春天里",
+      "artist": "汪峰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.55,
+      "duration_ms": 284568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/汪峰 - 春天里.mp3",
+      "score": 66,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.55",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "395153ed-9ddd-4945-b485-14778387a7bc",
+      "title": "Postcards From Italy",
+      "artist": "Beirut",
+      "album": null,
+      "genre": "indie",
+      "bpm": 92,
+      "energy": 0.58,
+      "valence": 0.63,
+      "duration_ms": 257375,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Beirut - Postcards From Italy.mp3",
+      "score": 66,
+      "match_reasons": [
+        "genre:indie",
+        "valence:0.63",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "ab68b1ea-4c71-4170-8ac0-ddac341b0be6",
+      "title": "Everyday Is a Winding Road",
+      "artist": "Sheryl Crow",
+      "album": null,
+      "genre": "rock",
+      "bpm": 112,
+      "energy": 0.68,
+      "valence": 0.55,
+      "duration_ms": 253320,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Sheryl Crow - Everyday Is a Winding Road.mp3",
+      "score": 66,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.55",
+        "tempo:112"
+      ]
+    },
+    {
+      "id": "4f271f84-2d18-448b-8db0-229b7599a3b9",
+      "title": "Demons",
+      "artist": "Imagine Dragons",
+      "album": null,
+      "genre": "rock",
+      "bpm": 102,
+      "energy": 0.78,
+      "valence": 0.42,
+      "duration_ms": 177216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Imagine Dragons - Demons.mp3",
+      "score": 65,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.42",
+        "tempo:102"
+      ]
+    },
+    {
+      "id": "0cbec36e-f286-498d-9ba4-085f9ee5567a",
+      "title": "Only Happy When It Rains",
+      "artist": "Garbage",
+      "album": null,
+      "genre": "rock",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.32,
+      "duration_ms": 241992,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Garbage - Only Happy When It Rains.mp3",
+      "score": 65,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.32",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "06fa2cf2-4bc2-42a1-9657-d9d98d1228a8",
+      "title": "The Rain Song",
+      "artist": "Led Zeppelin",
+      "album": null,
+      "genre": "rock",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 459120,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Led Zeppelin - The Rain Song.mp3",
+      "score": 64,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.45",
+        "valence:0.38"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 22,
+    "avg_score": 67,
+    "total_duration_ms": 5600375,
+    "total_duration_minutes": 93
+  },
+  "mood_mapping": {
+    "valence": 0.45,
+    "arousal": 0.3,
+    "energy": 0.3
+  },
+  "music_requirements": {
+    "genres": [
+      "rock",
+      "indie"
+    ],
+    "tempo": "moderate",
+    "mood_characteristics": {
+      "valence_level": "neutral",
+      "energy_level": "low_moderate",
+      "description": "大风天气氛围，适合有力量感的音乐"
+    }
+  }
+}

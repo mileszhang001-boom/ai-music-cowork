@@ -1,0 +1,47 @@
+{
+  "name": "in-car-ai-entertainment",
+  "version": "1.0.0",
+  "description": "车载座舱 AI 娱乐融合方案",
+  "main": "src/index.js",
+  "scripts": {
+    "start:mocker": "node src/mocker/eventBusMocker.js",
+    "test": "mocha 'tests/**/*.test.js' --require tests/setup.js",
+    "test:coverage": "nyc npm test",
+    "lint": "eslint src/ tests/",
+    "lint:fix": "eslint src/ tests/ --fix",
+    "test:layer1": "node scripts/layer1/demo.js",
+    "test:layer2": "node scripts/layer2/demo.js",
+    "test:layer3": "node scripts/layer3/demo.js",
+    "test:integration": "node scripts/integration/e2e_test.js",
+    "demo:layer1": "node scripts/layer1/demo.js",
+    "demo:layer2": "node scripts/layer2/demo.js",
+    "demo:layer3": "node scripts/layer3/demo.js",
+    "demo:full": "node scripts/integration/e2e_test.js",
+    "debug": "node scripts/debug.js",
+    "debug:run": "node scripts/debug.js --run 4 1",
+    "debug:run:full": "node scripts/debug.js --run 4 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "events": "^3.3.0",
+    "openai": "^6.25.0",
+    "sql.js": "^1.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "automotive",
+    "ai",
+    "entertainment",
+    "music-recommendation",
+    "smart-cabin"
+  ]
+}

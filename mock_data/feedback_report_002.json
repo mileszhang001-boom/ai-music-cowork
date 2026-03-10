@@ -1,0 +1,20 @@
+{
+  "report_id": "fb_rep_002",
+  "timestamp": "2026-02-28T19:45:00Z",
+  "scene_id": "scene_romantic_date_001",
+  "user_id": "user_12345",
+  "feedback_type": "implicit",
+  "action": "volume_up",
+  "track_id": "track_jazz_005",
+  "context_at_action": {
+    "time_in_track_ms": 45000,
+    "current_energy_level": 0.4,
+    "vehicle_speed": 30
+  },
+  "inferred_reason": "enjoying_current_vibe",
+  "layer_adjustments": {
+    "layer1_action": "none",
+    "layer2_action": "extend_current_vibe_duration",
+    "layer3_action": "reinforce_genre_preference_jazz"
+  }
+}

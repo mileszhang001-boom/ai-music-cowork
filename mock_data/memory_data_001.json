@@ -1,0 +1,15 @@
+{
+  "user_id": "user_12345",
+  "memory_type": "short_term",
+  "session_id": "session_20260228_0800",
+  "recent_tracks": [
+    {"track_id": "track_pop_005", "played_at": "2026-02-28T08:05:00Z", "completion_rate": 1.0},
+    {"track_id": "track_rock_001", "played_at": "2026-02-28T08:08:30Z", "completion_rate": 0.2, "action": "skip"},
+    {"track_id": "track_pop_012", "played_at": "2026-02-28T08:09:00Z", "completion_rate": 0.8}
+  ],
+  "recent_scenes": [
+    {"scene_id": "scene_morning_commute_001", "started_at": "2026-02-28T08:00:00Z", "duration_s": 1800}
+  ],
+  "current_mood_estimate": "energetic",
+  "last_updated": "2026-02-28T08:30:00Z"
+}

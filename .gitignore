@@ -1,0 +1,25 @@
+node_modules/
+coverage/
+.DS_Store
+*.log
+.env
+.env.local
+.nyc_output/
+
+# Android build files
+android-player/app/build/
+android-player/build/
+android-player/.gradle/
+Android_app/**/build/
+Android_app/.gradle/
+Android_app/local.properties
+*.apk
+*.aab
+
+# Music files
+new-music/
+
+# IDE
+.idea/
+*.iml
+.vscode/

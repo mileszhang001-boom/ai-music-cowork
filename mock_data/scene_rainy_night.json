@@ -1,0 +1,84 @@
+{
+  "version": "2.0",
+  "scene_id": "scene_rainy_night_001",
+  "timestamp": "2026-02-27T22:30:00+08:00",
+  "scene_name": "深夜雨天独行",
+  "scene_narrative": "雨夜独自通勤回家，安静放松的氛围",
+  "intent": {
+    "mood": {
+      "valence": 0.3,
+      "arousal": 0.2
+    },
+    "energy_level": 0.25,
+    "energy_curve": [
+      0.3,
+      0.2,
+      0.15,
+      0.1,
+      0.1
+    ],
+    "curve_duration_minutes": 45,
+    "atmosphere": "melancholic_calm",
+    "social_context": "solo_driver",
+    "trip_phase": "early",
+    "trip_progress": 0.1,
+    "constraints": {
+      "content_rating": "PG",
+      "max_volume_db": -12,
+      "avoid_sudden_changes": true,
+      "brightness_max": 0.4
+    },
+    "user_overrides": {
+      "exclude_tags": [
+        "流行乐"
+      ],
+      "preferred_language": []
+    },
+    "transition": {
+      "type": "event",
+      "style": "crossfade",
+      "duration_sec": 5
+    }
+  },
+  "hints": {
+    "music": {
+      "suggested_tags": [
+        "爵士",
+        "安静",
+        "独立民谣"
+      ],
+      "suggested_tempo": [
+        60,
+        80
+      ],
+      "suggested_artists": [],
+      "suggested_vocal_style": "soft"
+    },
+    "lighting": {
+      "suggested_palette": [
+        "warm_amber",
+        "soft_peach"
+      ],
+      "suggested_rhythm": "slow_breathing"
+    },
+    "audio": {
+      "suggested_spatial": "intimate_cocoon",
+      "suggested_bass_level": "low"
+    }
+  },
+  "announcement": {
+    "text": "外面在下雨，为你准备了安静的爵士乐，好好放松一下吧。",
+    "timing": "before_transition",
+    "voice_style": "warm_female"
+  },
+  "meta": {
+    "confidence": 0.92,
+    "source": "layer3_llm",
+    "reasoning": "时间为深夜，天气下雨，单人驾驶，结合用户偏好爵士且不喜欢流行乐，生成安静放松的氛围",
+    "fallback_template": "TPL_042",
+    "expires_at": "2026-02-27T23:15:00+08:00",
+    "low_confidence_dimensions": [
+      "mood_valence"
+    ]
+  }
+}

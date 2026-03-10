@@ -1,0 +1,12 @@
+{
+  "event_id": "l1_evt_001",
+  "timestamp": "2026-02-28T08:30:05Z",
+  "trigger": "user_skip_button",
+  "action": "skip_track",
+  "parameters": {
+    "crossfade_duration_ms": 500,
+    "next_track_id": "track_pop_012"
+  },
+  "latency_ms": 45,
+  "status": "executed"
+}

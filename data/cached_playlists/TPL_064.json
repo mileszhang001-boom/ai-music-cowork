@@ -1,0 +1,543 @@
+{
+  "template_id": "TPL_064",
+  "template_name": "冒险精神",
+  "scene_type": "adventure_mode",
+  "category": "state",
+  "generated_at": "2026-03-01T13:30:47.424Z",
+  "playlist": [
+    {
+      "id": "2869cab2-5e81-44b7-9110-1d9639e458bc",
+      "title": "Brown Eyed Girl",
+      "artist": "Van Morrison",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.75,
+      "valence": 0.82,
+      "duration_ms": 184320,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Van Morrison - Brown Eyed Girl.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.75",
+        "valence:0.82",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "a36c1463-4934-4c27-88ba-d4503ed5730d",
+      "title": "Summer of 69",
+      "artist": "Bryan Adams",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.78,
+      "valence": 0.82,
+      "duration_ms": 207288,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bryan Adams - Summer of 69.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.78",
+        "valence:0.82",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "04085bda-e5ce-4135-b520-0d9fc1c8081a",
+      "title": "Running Down a Dream",
+      "artist": "Tom Petty",
+      "album": null,
+      "genre": "rock",
+      "bpm": 128,
+      "energy": 0.78,
+      "valence": 0.82,
+      "duration_ms": 279864,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Tom Petty - Running Down a Dream.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.78",
+        "valence:0.82",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "42bf263b-f413-4ea9-8ebd-7a8f60e141d6",
+      "title": "Lisztomania",
+      "artist": "Phoenix",
+      "album": null,
+      "genre": "indie",
+      "bpm": 128,
+      "energy": 0.82,
+      "valence": 0.79,
+      "duration_ms": 206208,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Phoenix - Lisztomania.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:indie",
+        "energy:0.82",
+        "valence:0.79",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "ffb9ff7a-601a-4e8a-b1b1-0decdecd304b",
+      "title": "Take It Easy",
+      "artist": "Eagles",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.65,
+      "valence": 0.72,
+      "duration_ms": 212328,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Eagles - Take It Easy.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.65",
+        "valence:0.72",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "bb1c0534-07f2-4eb6-9345-aabbbbf18575",
+      "title": "飞得更高",
+      "artist": "汪峰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 330216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/汪峰 - 飞得更高.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "b4d87bc4-b790-4a94-aadd-883628f041e5",
+      "title": "Time to Pretend",
+      "artist": "MGMT",
+      "album": null,
+      "genre": "indie",
+      "bpm": 128,
+      "energy": 0.75,
+      "valence": 0.68,
+      "duration_ms": 258720,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/MGMT - Time to Pretend.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:indie",
+        "energy:0.75",
+        "valence:0.68",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "010f914f-f8ec-4877-8fe3-54d340769827",
+      "title": "派对动物",
+      "artist": "五月天",
+      "album": null,
+      "genre": "rock",
+      "bpm": 140,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 283728,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/五月天 - 派对动物.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:140"
+      ]
+    },
+    {
+      "id": "82f2277c-fe68-4717-8818-dc4b1c87ed1a",
+      "title": "怒放的生命",
+      "artist": "汪峰",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 275232,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/汪峰 - 怒放的生命.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "f7850252-df47-44ac-8d35-27aaf51562d5",
+      "title": "相信自己",
+      "artist": "零点乐队",
+      "album": null,
+      "genre": "rock",
+      "bpm": 132,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 189384,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/零点乐队 - 相信自己.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:132"
+      ]
+    },
+    {
+      "id": "43243917-1747-4844-87b6-2ffdfecf3596",
+      "title": "Centuries",
+      "artist": "Fall Out Boy",
+      "album": null,
+      "genre": "rock",
+      "bpm": 128,
+      "energy": 0.82,
+      "valence": 0.75,
+      "duration_ms": 271752,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Fall Out Boy - Centuries.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.82",
+        "valence:0.75",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "6d6ae325-96ef-4044-a32c-6c497e8f9966",
+      "title": "相信自己",
+      "artist": "Beyond",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 182808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Beyond - 相信自己.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "fcaddf2d-b15b-4da5-ad8d-f60023b3c338",
+      "title": "你要跳舞吗",
+      "artist": "新裤子",
+      "album": null,
+      "genre": "rock",
+      "bpm": 128,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 219216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/新裤子 - 你要跳舞吗.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "88610e55-f10a-436e-b9c6-707fd66497cd",
+      "title": "1901",
+      "artist": "Phoenix",
+      "album": null,
+      "genre": "indie",
+      "bpm": 120,
+      "energy": 0.82,
+      "valence": 0.75,
+      "duration_ms": 192648,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Phoenix - 1901.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:indie",
+        "energy:0.82",
+        "valence:0.75",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "ccd41e09-01c5-497b-936d-e4670940aa7a",
+      "title": "Go Your Own Way",
+      "artist": "Fleetwood Mac",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.75,
+      "valence": 0.68,
+      "duration_ms": 218448,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Fleetwood Mac - Go Your Own Way.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.75",
+        "valence:0.68",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "d49f7b57-46e0-4ce0-ab55-17b9680df162",
+      "title": "不再犹豫",
+      "artist": "Beyond",
+      "album": null,
+      "genre": "rock",
+      "bpm": 132,
+      "energy": 0.82,
+      "valence": 0.75,
+      "duration_ms": 247992,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Beyond - 不再犹豫.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.82",
+        "valence:0.75",
+        "tempo:132"
+      ]
+    },
+    {
+      "id": "27e6dff5-599e-4b06-9b7f-d9b0a37a11eb",
+      "title": "Here Comes the Sun",
+      "artist": "The Beatles",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.75,
+      "valence": 0.92,
+      "duration_ms": 191808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Beatles - Here Comes the Sun.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.75",
+        "valence:0.92",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "7a202765-e7be-4066-b0e7-56bf28eda452",
+      "title": "骄傲的少年",
+      "artist": "南征北战NZBZ",
+      "album": null,
+      "genre": "rock",
+      "bpm": 128,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 261048,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/南征北战NZBZ - 骄傲的少年.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:128"
+      ]
+    },
+    {
+      "id": "478c9666-6ec0-4f8e-bfed-8a9eeec6087f",
+      "title": "真的汉子",
+      "artist": "林子祥",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 288024,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/林子祥 - 真的汉子.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "71a70ec7-57c1-4ace-844a-0d9a01cb1f75",
+      "title": "The Final Countdown",
+      "artist": "Europe",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 296184,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Europe - The Final Countdown.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "3567a803-64e9-481b-bf93-12ebc3a58ab8",
+      "title": "Natural",
+      "artist": "Imagine Dragons",
+      "album": null,
+      "genre": "rock",
+      "bpm": 124,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 189576,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Imagine Dragons - Natural.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "d593b199-5066-40fb-aab7-9d62dd11a070",
+      "title": "Its My Life",
+      "artist": "Bon Jovi",
+      "album": null,
+      "genre": "rock",
+      "bpm": 124,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 266976,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bon Jovi - Its My Life.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "003c91e7-a6e4-4df9-84b1-b4082b384957",
+      "title": "Livin on a Prayer",
+      "artist": "Bon Jovi",
+      "album": null,
+      "genre": "rock",
+      "bpm": 124,
+      "energy": 0.85,
+      "valence": 0.78,
+      "duration_ms": 248832,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bon Jovi - Livin on a Prayer.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.85",
+        "valence:0.78",
+        "tempo:124"
+      ]
+    },
+    {
+      "id": "15a814e1-c48f-4af9-9381-266ffba19c06",
+      "title": "追梦赤子心",
+      "artist": "GALA",
+      "album": null,
+      "genre": "rock",
+      "bpm": 132,
+      "energy": 0.88,
+      "valence": 0.79,
+      "duration_ms": 320304,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/GALA - 追梦赤子心.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.88",
+        "valence:0.79",
+        "tempo:132"
+      ]
+    },
+    {
+      "id": "533265df-c0ff-4130-8dbd-7bb2c66bc6ad",
+      "title": "Paradise City",
+      "artist": "Guns N Roses",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 408216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Guns N Roses - Paradise City.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.78",
+        "tempo:120"
+      ]
+    },
+    {
+      "id": "4266a9a4-9de2-4cd0-92c2-7f88195198a5",
+      "title": "Song 2",
+      "artist": "Blur",
+      "album": null,
+      "genre": "rock",
+      "bpm": 152,
+      "energy": 0.92,
+      "valence": 0.78,
+      "duration_ms": 122568,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Blur - Song 2.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:rock",
+        "valence:0.78",
+        "tempo:152"
+      ]
+    },
+    {
+      "id": "328a9036-2d34-4d8d-8f1a-97bd7815eebb",
+      "title": "倔强",
+      "artist": "五月天",
+      "album": null,
+      "genre": "rock",
+      "bpm": 120,
+      "energy": 0.78,
+      "valence": 0.65,
+      "duration_ms": 263328,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/五月天 - 倔强.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:rock",
+        "energy:0.78",
+        "valence:0.65",
+        "tempo:120"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 27,
+    "avg_score": 75,
+    "total_duration_ms": 6617016,
+    "total_duration_minutes": 110
+  },
+  "mood_mapping": {
+    "valence": 0.8,
+    "arousal": 0.7,
+    "energy": 0.7
+  },
+  "music_requirements": {
+    "genres": [
+      "rock",
+      "indie"
+    ],
+    "tempo": "fast",
+    "mood_characteristics": {
+      "valence_level": "very_positive",
+      "energy_level": "high",
+      "description": "冒险探索氛围，适合有力量感的音乐"
+    }
+  }
+}

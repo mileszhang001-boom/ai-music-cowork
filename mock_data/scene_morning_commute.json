@@ -1,0 +1,56 @@
+{
+  "scene_id": "scene_morning_commute_001",
+  "timestamp": "2026-02-28T08:00:00Z",
+  "intent": "energetic_start",
+  "confidence": 0.88,
+  "source": "layer3_slow_path",
+  "persona": {
+    "id": "persona_office_worker",
+    "description": "上班族",
+    "preferences": {
+      "liked_genres": ["pop", "rock"],
+      "disliked_genres": ["classical"],
+      "vibe": "upbeat"
+    }
+  },
+  "context": {
+    "time": "08:00",
+    "weather": "sunny",
+    "oms": {
+      "occupants": 1,
+      "type": "adult"
+    },
+    "mic": "silent"
+  },
+  "announcement": {
+    "tts_text": "早上好！新的一天开始了，来点充满活力的音乐吧。",
+    "voice_type": "energetic_male"
+  },
+  "orchestration": {
+    "transition": {
+      "type": "crossfade",
+      "duration_ms": 3000
+    },
+    "energy_curve": [
+      {"time_offset_s": 0, "energy_level": 0.6},
+      {"time_offset_s": 300, "energy_level": 0.7},
+      {"time_offset_s": 600, "energy_level": 0.8},
+      {"time_offset_s": 900, "energy_level": 0.85},
+      {"time_offset_s": 1200, "energy_level": 0.9}
+    ],
+    "content_hints": {
+      "genres": ["pop", "rock"],
+      "tempo": "fast",
+      "instrumental_only": false
+    },
+    "light_hints": {
+      "color_palette": ["#FFD700", "#FFA500"],
+      "effect": "pulse",
+      "brightness": 0.8
+    },
+    "audio_hints": {
+      "eq_preset": "pop",
+      "spatial_audio": "stereo_wide"
+    }
+  }
+}

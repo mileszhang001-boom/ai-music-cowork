@@ -1,0 +1,8 @@
+- [x] PC 端工具可以成功提取音乐元数据
+- [x] PC 端工具生成的 index.db 包含 FTS5 表
+- [x] Android 模块可以加载 SQLite 索引
+- [x] Android 模块可以按条件检索音乐
+- [x] ExoPlayer 可以播放本地音乐文件
+- [x] ContentEngine 优先返回本地音乐
+- [x] 端到端测试通过：检索 → 生成歌单 → 播放
+- [x] 文档已更新

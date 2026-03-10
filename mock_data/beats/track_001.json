@@ -1,0 +1,12 @@
+{
+  "track_id": "track_001",
+  "track_name": "Rainy Night Jazz",
+  "duration_ms": 180000,
+  "beats": [
+    {"timestamp_ms": 1000, "energy": 0.3},
+    {"timestamp_ms": 2000, "energy": 0.4},
+    {"timestamp_ms": 3000, "energy": 0.5},
+    {"timestamp_ms": 4000, "energy": 0.6},
+    {"timestamp_ms": 5000, "energy": 0.5}
+  ]
+}

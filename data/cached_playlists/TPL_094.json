@@ -1,0 +1,496 @@
+{
+  "template_id": "TPL_094",
+  "template_name": "摄影之旅",
+  "scene_type": "road_trip",
+  "category": "special",
+  "generated_at": "2026-03-01T13:30:47.445Z",
+  "playlist": [
+    {
+      "id": "449ded5b-2c73-40c3-b904-403f50c1fa25",
+      "title": "Orinoco Flow",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.78,
+      "duration_ms": 223248,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Orinoco Flow.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.45",
+        "valence:0.78"
+      ]
+    },
+    {
+      "id": "2ea5df29-209d-4007-95c2-cdb7d8b292d7",
+      "title": "Prelude in C Major",
+      "artist": "Johann Sebastian Bach",
+      "album": null,
+      "genre": "classical",
+      "bpm": 80,
+      "energy": 0.45,
+      "valence": 0.65,
+      "duration_ms": 164832,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Johann Sebastian Bach - Prelude in C Major.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.45",
+        "valence:0.65",
+        "tempo:80"
+      ]
+    },
+    {
+      "id": "62b5e77a-7ec1-428c-b5a1-f18ec0fbdb70",
+      "title": "Sunrise Sunset",
+      "artist": "Vladimir Horowitz",
+      "album": null,
+      "genre": "classical",
+      "bpm": 68,
+      "energy": 0.45,
+      "valence": 0.62,
+      "duration_ms": 266664,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Vladimir Horowitz - Sunrise Sunset.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.45",
+        "valence:0.62",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "d552096a-eaa9-41f6-a6d4-2490f082f334",
+      "title": "Experience",
+      "artist": "Ludovico Einaudi",
+      "album": null,
+      "genre": "classical",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.6,
+      "duration_ms": 315552,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Ludovico Einaudi - Experience.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.45",
+        "valence:0.60",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "e4ba6bcb-29dd-480d-8218-fddf748f4ce8",
+      "title": "Aria",
+      "artist": "Goldberg Variations",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.45,
+      "valence": 0.6,
+      "duration_ms": 347208,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Goldberg Variations - Aria.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.45",
+        "valence:0.60",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "f678b75f-d792-47b0-abe6-59f55464026f",
+      "title": "Divenire",
+      "artist": "Ludovico Einaudi",
+      "album": null,
+      "genre": "classical",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.6,
+      "duration_ms": 487728,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Ludovico Einaudi - Divenire.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.45",
+        "valence:0.60",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "460faee4-e8e5-40c7-81cb-c6b69c74d546",
+      "title": "Arrival of the Birds",
+      "artist": "The Cinematic Orchestra",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.68,
+      "duration_ms": 462672,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cinematic Orchestra - Arrival of the Birds.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.35",
+        "valence:0.68",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "ef98db0f-87fc-4c8f-b0b9-2982acdacef3",
+      "title": "Air on the G String",
+      "artist": "Johann Sebastian Bach",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.35,
+      "valence": 0.65,
+      "duration_ms": 308688,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Johann Sebastian Bach - Air on the G String.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.35",
+        "valence:0.65",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "765e9064-fb52-4aa0-949a-d427e5ad9b49",
+      "title": "May It Be",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.35,
+      "valence": 0.62,
+      "duration_ms": 214152,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - May It Be.mp3",
+      "score": 72,
+      "match_reasons": [
+        "genre:ambient",
+        "energy:0.35",
+        "valence:0.62",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "c280ee1f-87ea-4961-84e5-ef29d68325cc",
+      "title": "Saëns - The Swan",
+      "artist": "Camille Saint",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.35,
+      "valence": 0.6,
+      "duration_ms": 186600,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Camille Saint-Saëns - The Swan.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.35",
+        "valence:0.60",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "d8ae009f-23a9-43b8-b6cb-411f35a6363f",
+      "title": "The Well-Tempered Clavier Prelude No1",
+      "artist": "Johann Sebastian Bach",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.35,
+      "valence": 0.6,
+      "duration_ms": 168216,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Johann Sebastian Bach - The Well-Tempered Clavier Prelude No1.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.35",
+        "valence:0.60",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "a4a19e01-e674-4bd4-969f-44a8bac70bbd",
+      "title": "Clair de Lune",
+      "artist": "Claude Debussy",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.35,
+      "valence": 0.6,
+      "duration_ms": 248016,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Claude Debussy - Clair de Lune.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.35",
+        "valence:0.60",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "8a3a8c11-cda1-4ad9-88aa-ac7ac9248c24",
+      "title": "Meditation from Thaïs",
+      "artist": "Jules Massenet",
+      "album": null,
+      "genre": "classical",
+      "bpm": 60,
+      "energy": 0.35,
+      "valence": 0.6,
+      "duration_ms": 322896,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Jules Massenet - Meditation from Thaïs.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.35",
+        "valence:0.60",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "f10ab047-481c-4b76-a9c8-1bd15582805a",
+      "title": "River Flows in You",
+      "artist": "Yiruma",
+      "album": null,
+      "genre": "classical",
+      "bpm": 72,
+      "energy": 0.35,
+      "valence": 0.6,
+      "duration_ms": 209616,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Yiruma - River Flows in You.mp3",
+      "score": 71,
+      "match_reasons": [
+        "genre:classical",
+        "energy:0.35",
+        "valence:0.60",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "c45db85e-713c-49de-b7ae-204789983818",
+      "title": "Prayer for Peace",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.65,
+      "duration_ms": 3829728,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Prayer for Peace.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:ambient",
+        "valence:0.65",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "81cb7dc7-fe60-45bb-b4b9-b936550019ad",
+      "title": "Green Music",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.68,
+      "duration_ms": 2754144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - Green Music.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:ambient",
+        "valence:0.68",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "7cfbdd73-6d69-43ab-af77-08f961ac5d28",
+      "title": "Flora",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.68,
+      "duration_ms": 3520608,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - Flora.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:ambient",
+        "valence:0.68",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "38cb1048-7756-46a2-bab8-7de1501de96f",
+      "title": "Inner Peace",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 62,
+      "energy": 0.25,
+      "valence": 0.68,
+      "duration_ms": 3829728,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Inner Peace.mp3",
+      "score": 70,
+      "match_reasons": [
+        "genre:ambient",
+        "valence:0.68",
+        "tempo:62"
+      ]
+    },
+    {
+      "id": "03c3dbd2-4b8e-42a0-8978-6ebfe737df97",
+      "title": "朋友",
+      "artist": "周华健",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 278880,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周华健 - 朋友.mp3",
+      "score": 68,
+      "match_reasons": [
+        "energy:0.45",
+        "valence:0.72",
+        "tempo:72",
+        "scene:road_trip"
+      ]
+    },
+    {
+      "id": "930e6378-0c50-44e9-87b3-4bf2d78fc389",
+      "title": "Sail Away",
+      "artist": "Enya",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.6,
+      "duration_ms": 267168,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Enya - Sail Away.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:ambient",
+        "valence:0.60",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "974be0b2-6525-4491-b14e-4e0d33e52ace",
+      "title": "Zen Garden",
+      "artist": "Deuter",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 68,
+      "energy": 0.25,
+      "valence": 0.6,
+      "duration_ms": 11266056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Deuter - Zen Garden.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:ambient",
+        "valence:0.60",
+        "tempo:68"
+      ]
+    },
+    {
+      "id": "5efa44ff-764d-4ee5-a9c1-a57e770b75fa",
+      "title": "Spiral",
+      "artist": "Hiroshi Yoshimura",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 72,
+      "energy": 0.25,
+      "valence": 0.6,
+      "duration_ms": 342144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Hiroshi Yoshimura - Spiral.mp3",
+      "score": 68,
+      "match_reasons": [
+        "genre:ambient",
+        "valence:0.60",
+        "tempo:72"
+      ]
+    },
+    {
+      "id": "bc64f443-deec-49ac-b591-2b479d4526e7",
+      "title": "You Are My Sunshine",
+      "artist": "Jimmie Davis",
+      "album": null,
+      "genre": "country",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 166104,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Jimmie Davis - You Are My Sunshine.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.45",
+        "valence:0.72",
+        "scene:road_trip"
+      ]
+    },
+    {
+      "id": "481e01db-460b-4798-96df-6bf48764a961",
+      "title": "Chakra Healing",
+      "artist": "Steven Halpern",
+      "album": null,
+      "genre": "ambient",
+      "bpm": 60,
+      "energy": 0.2,
+      "valence": 0.6,
+      "duration_ms": 3713904,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Steven Halpern - Chakra Healing.mp3",
+      "score": 67,
+      "match_reasons": [
+        "genre:ambient",
+        "valence:0.60",
+        "tempo:60"
+      ]
+    },
+    {
+      "id": "f2f5f1f4-24d9-4e16-8de7-e01da1ac7907",
+      "title": "春风十里",
+      "artist": "鹿先森乐队",
+      "album": null,
+      "genre": "folk",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 396840,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/鹿先森乐队 - 春风十里.mp3",
+      "score": 67,
+      "match_reasons": [
+        "energy:0.45",
+        "valence:0.72",
+        "scene:road_trip"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 25,
+    "avg_score": 71,
+    "total_duration_ms": 34291392,
+    "total_duration_minutes": 572
+  },
+  "mood_mapping": {
+    "valence": 0.75,
+    "arousal": 0.5,
+    "energy": 0.5
+  },
+  "music_requirements": {
+    "genres": [
+      "ambient",
+      "classical"
+    ],
+    "tempo": "slow",
+    "mood_characteristics": {
+      "valence_level": "positive",
+      "energy_level": "moderate",
+      "description": "摄影创作氛围，适合优美的音乐"
+    }
+  }
+}

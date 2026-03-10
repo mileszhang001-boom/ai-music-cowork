@@ -1,0 +1,471 @@
+{
+  "template_id": "TPL_007",
+  "template_name": "周一早晨",
+  "scene_type": "morning_commute",
+  "category": "time",
+  "generated_at": "2026-03-01T13:30:47.380Z",
+  "playlist": [
+    {
+      "id": "e07169e5-8927-466e-b604-32f6a2dac1d5",
+      "title": "Rhythm of the Rain",
+      "artist": "The Cascades",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 157008,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Cascades - Rhythm of the Rain.mp3",
+      "score": 85,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.38",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "463f8a1d-27c1-49a4-b0f2-85da8232f9d4",
+      "title": "Crying in the Rain",
+      "artist": "The Everly Brothers",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 122136,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Everly Brothers - Crying in the Rain.mp3",
+      "score": 85,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.38",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "e0284061-cff5-491c-8d37-283d7ba9c781",
+      "title": "Teardrops on My Guitar",
+      "artist": "Taylor Swift",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.38,
+      "duration_ms": 217128,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Taylor Swift - Teardrops on My Guitar.mp3",
+      "score": 85,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.38",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "fe989a6c-121a-487a-93bd-b95e45b7d5d0",
+      "title": "晴天",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.68,
+      "duration_ms": 318288,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 晴天.mp3",
+      "score": 83,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.68",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "459d35fa-0200-42b2-a349-d9277749141f",
+      "title": "Your Song",
+      "artist": "Elton John",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.72,
+      "duration_ms": 228360,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Elton John - Your Song.mp3",
+      "score": 82,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "a33e5673-f101-4fb2-b156-5f4853a72fef",
+      "title": "Drivers License",
+      "artist": "Olivia Rodrigo",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.42,
+      "valence": 0.28,
+      "duration_ms": 247056,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Olivia Rodrigo - Drivers License.mp3",
+      "score": 81,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.42",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "cfc34b7b-23ec-4073-a5dc-bea5a4855ffb",
+      "title": "三年二班",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.52,
+      "duration_ms": 459768,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 三年二班.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "5e57034b-24a0-417d-863c-43587cbedcab",
+      "title": "稻香",
+      "artist": "周杰伦",
+      "album": null,
+      "genre": "pop",
+      "bpm": 84,
+      "energy": 0.52,
+      "valence": 0.78,
+      "duration_ms": 223800,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/周杰伦 - 稻香.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.52",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "25715e98-6844-40b1-ac3a-f67beeaa2dfd",
+      "title": "As It Was",
+      "artist": "Harry Styles",
+      "album": null,
+      "genre": "pop",
+      "bpm": 95,
+      "energy": 0.72,
+      "valence": 0.68,
+      "duration_ms": 165648,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Harry Styles - As It Was.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.68",
+        "tempo:95",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "61d161f8-8762-467e-a9e6-d32f61f35c46",
+      "title": "Time After Time",
+      "artist": "Cyndi Lauper",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.45,
+      "valence": 0.52,
+      "duration_ms": 297000,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Cyndi Lauper - Time After Time.mp3",
+      "score": 78,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.52",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "01092ea7-717b-468f-9fef-8eaa3f9a3638",
+      "title": "少年",
+      "artist": "梦然",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 260952,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/梦然 - 少年.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "5c4af492-f6aa-48af-8171-044099bcf022",
+      "title": "Brave",
+      "artist": "Sara Bareilles",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.75,
+      "duration_ms": 237816,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Sara Bareilles - Brave.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.68",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "fe9c1d56-e0ca-4e27-a178-d842c44aa3e4",
+      "title": "Brand New Day",
+      "artist": "Sting",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 237144,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Sting - Brand New Day.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "cf18e867-2051-4683-8ed7-99fe47138acb",
+      "title": "Raindrops Keep Fallin on My Head",
+      "artist": "BJ Thomas",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 176136,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/BJ Thomas - Raindrops Keep Fallin on My Head.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "15e1ede3-42b1-4800-aad2-a489b5f81848",
+      "title": "Sunday Morning",
+      "artist": "Maroon 5",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.65,
+      "valence": 0.78,
+      "duration_ms": 264360,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Maroon 5 - Sunday Morning.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "93870c0c-f433-4c35-acea-710b6f0d7d0c",
+      "title": "我的滑板鞋",
+      "artist": "庞麦郎",
+      "album": null,
+      "genre": "pop",
+      "bpm": 120,
+      "energy": 0.75,
+      "valence": 0.68,
+      "duration_ms": 180120,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/庞麦郎 - 我的滑板鞋.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "valence:0.68",
+        "tempo:120",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "5fd39c6a-15a1-4805-8e58-cfb1625e26c1",
+      "title": "Against All Odds",
+      "artist": "Phil Collins",
+      "album": null,
+      "genre": "pop",
+      "bpm": 76,
+      "energy": 0.42,
+      "valence": 0.38,
+      "duration_ms": 210768,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Phil Collins - Against All Odds.mp3",
+      "score": 77,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.42",
+        "valence:0.38",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "b877a70d-a381-45a5-80eb-5429d7f936ad",
+      "title": "Count on Me",
+      "artist": "Bruno Mars",
+      "album": null,
+      "genre": "pop",
+      "bpm": 96,
+      "energy": 0.65,
+      "valence": 0.82,
+      "duration_ms": 192936,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Bruno Mars - Count on Me.mp3",
+      "score": 76,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "tempo:96",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "173908a6-b44b-47c9-84d0-9eb83bbaad8e",
+      "title": "Walking in the Rain",
+      "artist": "The Ronettes",
+      "album": null,
+      "genre": "pop",
+      "bpm": 112,
+      "energy": 0.65,
+      "valence": 0.48,
+      "duration_ms": 198288,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/The Ronettes - Walking in the Rain.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.65",
+        "valence:0.48",
+        "tempo:112"
+      ]
+    },
+    {
+      "id": "dba4ccc7-929b-40b8-a01f-b9852eaa83d9",
+      "title": "Circles",
+      "artist": "Post Malone",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.58,
+      "valence": 0.42,
+      "duration_ms": 226344,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Post Malone - Circles.mp3",
+      "score": 75,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.58",
+        "valence:0.42",
+        "tempo:92"
+      ]
+    },
+    {
+      "id": "14019867-8f38-4375-a005-26d9076951ba",
+      "title": "突然好想你",
+      "artist": "五月天",
+      "album": null,
+      "genre": "pop",
+      "bpm": 72,
+      "energy": 0.45,
+      "valence": 0.32,
+      "duration_ms": 286296,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/五月天 - 突然好想你.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.45",
+        "valence:0.32",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "641a81cf-a8f7-4d51-8dbc-74500d6b4a42",
+      "title": "Im Yours",
+      "artist": "Jason Mraz",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.68,
+      "valence": 0.85,
+      "duration_ms": 221808,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/Jason Mraz - Im Yours.mp3",
+      "score": 74,
+      "match_reasons": [
+        "genre:pop",
+        "energy:0.68",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    },
+    {
+      "id": "0b6dc6f4-e841-46ed-9256-20adb66713c6",
+      "title": "世界第一等",
+      "artist": "刘德华",
+      "album": null,
+      "genre": "pop",
+      "bpm": 92,
+      "energy": 0.72,
+      "valence": 0.85,
+      "duration_ms": 242304,
+      "file_path": "/Users/bella/ai-music-cowork/data/music/music_library_downloads/刘德华 - 世界第一等.mp3",
+      "score": 73,
+      "match_reasons": [
+        "genre:pop",
+        "tempo:92",
+        "scene:morning_commute"
+      ]
+    }
+  ],
+  "stats": {
+    "total_tracks": 23,
+    "avg_score": 78,
+    "total_duration_ms": 5371464,
+    "total_duration_minutes": 90
+  },
+  "mood_mapping": {
+    "valence": 0.5,
+    "arousal": 0.5,
+    "energy": 0.5
+  },
+  "music_requirements": {
+    "genres": [
+      "pop",
+      "dance"
+    ],
+    "tempo": "moderate",
+    "mood_characteristics": {
+      "valence_level": "neutral",
+      "energy_level": "moderate",
+      "description": "周一提神氛围，适合中等能量的激励音乐"
+    }
+  }
+}
